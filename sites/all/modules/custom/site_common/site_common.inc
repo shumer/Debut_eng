@@ -129,3 +129,95 @@ function site_common_user_has_role($role, $account = NULL) {
   }
   return $has_role;
 }
+
+/**
+ * Get specific field delta.
+ */
+function site_common_field_get_item($entity_type, $entity, $field_name, $deltas = NULL, $key = NULL, $langcode = NULL) {
+
+  // Check that node contain this firld.
+  if (empty($entity) || !is_object($entity) || !property_exists($entity, $field_name)) {
+    return NULL;
+  }
+
+  // Get items.
+  $items = field_get_items($entity_type, $entity, $field_name, $langcode);
+
+  if (empty($items)) {
+    if (is_numeric($deltas)) {
+      return;
+    }
+    else {
+      return array();
+    }
+  }
+
+  if (is_numeric($deltas)) {
+    $_return_delta = $deltas;
+    $deltas = array($deltas);
+  }
+  else {
+    $deltas = !empty($deltas)
+      ? $deltas
+      : array_keys($items);
+  }
+  $return = array();
+
+  // Get all items.
+  foreach ($deltas as $delta) {
+    if (!empty($items[$delta])) {
+      if ($key === NULL) {
+        $return[$delta] = $items[$delta];
+      }
+      else {
+        $return[$delta] = !empty($items[$delta][$key])
+          ? $items[$delta][$key]
+          : NULL;
+      }
+    }
+    else {
+      $return[$delta] = NULL;
+    }
+  }
+
+  if (isset($_return_delta)) {
+    $return = !empty($return[$_return_delta])
+      ? $return[$_return_delta]
+      : NULL;
+  }
+  return $return;
+}
+
+/**
+ * Get view results and clean up view.
+ */
+function site_common_views_get_view_result($name, $display_id = NULL) {
+  $args = func_get_args();
+  // Remove $name.
+  array_shift($args);
+  if (count($args)) {
+    // Remove $display_id.
+    array_shift($args);
+  }
+
+  $view = views_get_view($name);
+  if (is_object($view)) {
+    if (is_array($args)) {
+      $view->set_arguments($args);
+    }
+    if (is_string($display_id)) {
+      $view->set_display($display_id);
+    }
+    else {
+      $view->init_display();
+    }
+    $view->pre_execute();
+    $view->execute();
+    $result = $view->result;
+    $view->destroy();
+    return $result;
+  }
+  else {
+    return array();
+  }
+}
