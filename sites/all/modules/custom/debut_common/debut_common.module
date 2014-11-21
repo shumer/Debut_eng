@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Module logic and API.
+ */
+
+// Define search url.
+define('DEBUT_COMMON_PATH_SEARCH', drupal_get_normal_path(variable_get('DEBUT_COMMON_PATH_SEARCH', 'search')));
+
+// Load includes.
+module_load_include('inc', 'debut_common');
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function debut_common_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'panels' || $module == 'ctools' || $module == 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}

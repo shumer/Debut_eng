@@ -1,0 +1,10 @@
+name = debut
+description = Main Debut theme
+version = 7.x-1.0
+core = 7.x
+engine = phptemplate
+
+; Panels layouts.
+plugins[panels][layouts] = layouts
+
+

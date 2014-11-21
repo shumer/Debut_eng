@@ -221,3 +221,11 @@ function site_common_views_get_view_result($name, $display_id = NULL) {
     return array();
   }
 }
+
+/**
+ * Check if current user if site developer.
+ */
+function site_common_developer() {
+  // TODO: switch based on the session settings.
+  return !empty($_SESSION['site_common_developer']);
+}
