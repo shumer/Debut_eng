@@ -1,0 +1,14 @@
+name = Cache Common
+description = Common tools and plugins for Cache.
+core = 7.x
+package = Caching
+
+version = "7.x-0.2"
+core = "7.x"
+
+files[] = plugins/views/cache_common_views_plugin_row_entity_view.inc
+files[] = cache_common.controllers.class.inc
+
+dependencies[] = qtools
+dependencies[] = views
+dependencies[] = ctools

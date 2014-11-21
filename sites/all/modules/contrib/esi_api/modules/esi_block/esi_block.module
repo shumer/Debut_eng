@@ -1,0 +1,171 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * ESI Block integration.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function esi_block_menu() {
+  $items = array();
+  $items['admin/config/development/esi/block'] = array(
+    'title' => "Block",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('esi_block_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'esi_block.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_esi().
+ */
+function esi_block_esi_api() {
+  return array('block' => t("Block"));
+}
+
+/**
+ * Load single block emulating _block_load_blocks() behavior.
+ */
+function esi_block_load_block($theme_key, $module, $delta) {
+  _block_load_blocks();
+  $result = db_select('block', 'b')
+    ->fields('b')
+    ->condition('b.theme', $theme_key)
+    ->condition('b.status', 1)
+    ->condition('b.module', $module)
+    ->condition('b.delta', $delta)
+    ->addTag('block_load')
+    ->addTag('translatable')
+    ->execute();
+  $block_info = $result->fetchAllAssoc('bid');
+  // Allow modules to modify the block list.
+  drupal_alter('block_list', $block_info);
+  // Simulate _block_load_blocks() return, containing only our block.
+  return array_shift($block_info);
+}
+
+/**
+ * Implements hook_esi_api_TYPE_render().
+ */
+function esi_block_esi_api_block_render($identifier, $variables) {
+  global $theme_key;
+
+  list($module, $delta, $cid) = explode(':', $identifier);
+
+  // Fetch our only block and render our region, using block module internals.
+  $block = esi_block_load_block($theme_key, $module, $delta);
+
+  $key = $module . '_' . $delta;
+  $region_blocks = _block_render_blocks(array($key => $block));
+
+  return !empty($region_blocks) ? _block_get_renderable_array($region_blocks) : '';
+}
+
+/**
+ * Render a single block ESI tag. 
+ */
+function esi_block_render_block($module, $delta) {
+  global $theme_key;
+
+  // Allow specific block implementations to alter variables.
+  $func = $module . '_block_variables';
+  if (function_exists($func)) {
+    if ($additional = $func($delta)) {
+      $variables += $additional;
+    }
+  }
+
+  // Load block for getting cid thus allowing a level more of caching.
+  $block = esi_block_load_block($theme_key, $module, $delta);
+
+  // ESI identifier.
+  $identifier = $module . ':' . $delta;
+  if ($cid = _block_get_cache_id($block)) {
+    $identifier .= ':' . $cid;
+  }
+
+  return esi_api_build_tag('block', $identifier, NULL, ESI_API_CACHE_CUSTOM_THEME);
+}
+
+/**
+ * Removes the 'block' theme wrapper before displaying it.
+ */
+function esi_block_render_block_pre_render(&$elements) {
+  unset($elements['#theme_wrappers']);
+}
+
+/**
+ * Implements hook_page_alter().
+ * 
+ * This is the only alteration point where we can still modify the blocks
+ * render array before it's being fully built. Using this hook implementation
+ * we can remove the 'block' theme wrapper from ESI rendered blocks and avoid
+ * its duplication.
+ * 
+ * @see esi_block_block_view_alter()
+ */
+function esi_block_page_alter(&$build) {
+  global $theme_key;
+  // Iterate over regions, then blocks, and find the one that we already
+  // altered before.
+  foreach (system_region_list($theme_key) as $name => $description) {
+    if (isset($build[$name])) {
+      foreach (element_children($build[$name]) as $key) {
+        if (isset($build[$name][$key]['#esi_block'])) {
+          unset($build[$name][$key]['#theme_wrappers']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_block_load_alter().
+ * 
+ * Bypass block rendering and includes our own business logic for ESI
+ * inclusion instead.
+ * 
+ * Modules will probably already have rendered their data from here, which is
+ * bad for performances because we cannot skip blocks build. In certain cases
+ * some of them will cost a lot more just to check some access than really
+ * rendering.
+ * 
+ * Mark this block as being rendered by the ESI Block module. This will
+ * allow us to alter the region build array and remove the 'block' theme
+ * wrapper therefore ensure this wrapper won't be called twice (once now
+ * and the other while rendering the block in a parallel HTTP request).
+ * 
+ * @see esi_block_page_alter()
+ */
+function esi_block_block_view_alter(&$data, $block) {
+  $caching_policy = variable_get('esi_block_caching_policy', DRUPAL_CACHE_PER_PAGE);
+
+  // Let the system module render the main content block. 
+  // Also leave block with an aggressive caching policy live in page.
+  if (!esi_api_enabled()
+    || esi_api_is_callback_context()
+    || ($block->module == 'system' && $block->delta == 'main')
+    || ($caching_policy == DRUPAL_CACHE_GLOBAL && $block->cache == DRUPAL_CACHE_GLOBAL)
+    || ($caching_policy == DRUPAL_CACHE_PER_PAGE && ($block->cache == DRUPAL_CACHE_GLOBAL)  || ($block->cache == DRUPAL_CACHE_PER_PAGE))
+  ){
+    return;
+  }
+
+  // Remove actual content and replace with our own.
+  if (is_array($data)) {
+    unset($data['subject'], $data['content']);
+  }
+  else {
+    $data = array();
+  }
+
+  // Mark this block as being rendered by the ESI Block module.
+  $data['content'] = esi_block_render_block($block->module, $block->delta);
+  $data['content']['#esi_block'] = TRUE;
+}

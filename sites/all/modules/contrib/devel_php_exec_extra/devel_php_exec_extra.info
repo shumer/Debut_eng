@@ -1,0 +1,6 @@
+name = Devel PHP Exec Extra
+description = Extend PHP Exec
+core = 7.x
+package = Development
+dependencies[] = devel
+dependencies[] = libraries

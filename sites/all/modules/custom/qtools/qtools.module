@@ -1,0 +1,11 @@
+<?php
+/**
+ * @file
+ * Module hooks.
+ */
+
+define('QTOOLS_VIEWS_MODE_FIELDS', 1);
+define('QTOOLS_VIEWS_MODE_PREVIEW', 2);
+
+// Loading base api set.
+module_load_include('inc', 'qtools');

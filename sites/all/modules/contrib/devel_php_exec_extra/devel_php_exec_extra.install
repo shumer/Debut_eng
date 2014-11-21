@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Remove redundant variable.
+ */
+function devel_php_exec_extra_update_7100() {
+  variable_del('devel_php_exec_extra_theme');
+}

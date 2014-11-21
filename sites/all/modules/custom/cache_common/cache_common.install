@@ -1,0 +1,87 @@
+<?php
+/**
+ * @file
+ * Install hooks.
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function cache_common_enable() {
+  // Set cache class if not yet set.
+  $cur_no_cache_class = variable_get('cache_class_cache_common_no_cache', FALSE);
+  if (empty($cur_no_cache_class)) {
+    variable_set('cache_class_cache_common_no_cache', 'CacheCommonNoCache');
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function cache_common_uninstall() {
+  // Remove our cache class and table if in our controll.
+  $cur_no_cache_class = variable_get('cache_class_cache_common_no_cache', FALSE);
+  if ($cur_no_cache_class == 'CacheCommonNoCache') {
+    variable_del('cache_class_cache_common_no_cache');
+  }
+}
+
+/**
+ * Implements hook_schema().
+ */
+function cache_common_schema() {
+  $schema = array();
+  $schema['cache_common_cache_tags'] = array(
+    'description' => t('Stores cache tags mapping.'),
+    'fields' => array(
+      'cid' => array(
+        'description' => t('Primary Key: Unique cache ID.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'bin' => array(
+        'description' => t('Primary Key: Cache bin.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'expire' => array(
+        'description' => t('A Unix timestamp indicating when the cache entry should expire, or 0 for never.'),
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'tags' => array(
+        'description' => t('Cache tags, for selective purge.'),
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'indexes' => array(
+      'expire' => array('expire'),
+    ),
+    'primary key' => array('cid', 'bin'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Install cache tags schema.
+ */
+function cache_common_update_7000() {
+  if (db_table_exists('cache_common_cache_tags')) {
+    return;
+  }
+
+  // Install schema.
+  $schema = cache_common_schema();
+  _drupal_schema_initialize($schema, 'cache_common');
+
+  foreach ($schema as $name => $table) {
+    db_create_table($name, $table);
+  }
+}

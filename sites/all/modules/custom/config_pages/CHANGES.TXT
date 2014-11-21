@@ -1,0 +1,6 @@
+0.3
+Supports for embed field colections to be imported/exported
+Embed Field collections will be recreated if you import page from another content
+Config metawrapper avaialble through config_pages_config()
+Minor fixes
+config_pages_get() now accept field names instead of settings manes

@@ -1,0 +1,10 @@
+; $Id$
+name = QTools Varnish
+description = QTools Varnish support and integration with panels.
+package = QTools
+
+core = 7.x
+php = 5.x
+version = "7.x-2.02"
+
+dependencies[] = qtools

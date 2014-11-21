@@ -1,0 +1,39 @@
+.CodeMirror{
+	height:auto;
+	font-size:1.5em;
+	line-height:1.5em;
+	border:1px solid #AAA;
+	border-top:0;
+}
+.CodeMirror-scroll{
+	min-height:300px;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+.CodeMirror-gutters{
+	min-height:300px;
+}
+
+.CodeMirror-completions option.internal{
+	color:red;
+}
+.CodeMirror-completions option.user{
+	color:green;
+}
+
+.ui-corner-all{
+	border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+}
+.ui-tabs-nav .ui-icon{
+	float:left;
+	margin:0.5em 0;
+	cursor:pointer;
+}
+.ui-icon-plusthick{
+	display:inline-block;
+}
+.ui-tabs .ui-tabs-nav li input{
+	float: left;
+    padding: 0.5em 1em;
+}

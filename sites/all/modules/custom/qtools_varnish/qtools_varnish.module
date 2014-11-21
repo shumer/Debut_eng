@@ -1,0 +1,1156 @@
+<?php
+/**
+ * @file
+ * Module hooks.
+ */
+
+// Outcoming headers (dashes).
+define('QTOOLS_VARNISH_HEADER_TTL', 'X-TTL');
+define('QTOOLS_VARNISH_HEADER_GRACE', 'X-GRACE');
+define('QTOOLS_VARNISH_HEADER_CACHE_TAG', 'X-TAG');
+define('QTOOLS_VARNISH_HEADER_CACHE_DEBUG', 'X-CACHE_DEBUG');
+define('QTOOLS_VARNISH_HEADER_DOESI', 'X-DOESI');
+define('QTOOLS_VARNISH_HEADER_RNDPAGE', 'X-RNDPAGE');
+define('QTOOLS_VARNISH_HEADER_RNDGOTO', 'X-RNDGOTO');
+
+// Incoming header (underscores).
+define('QTOOLS_VARNISH_HEADER_ENABLED', 'HTTP_X_ESI');
+
+// Cookie names.
+define('QTOOLS_VARNISH_COOKIE_BIN', 'QTEBIN');
+define('QTOOLS_VARNISH_COOKIE_INF', 'QTEINF');
+
+// Private key (noise).
+define('QTOOLS_VARNISH_QBIN_NOISE', _qtools_varnish_settings('general', 'noise', ''));
+
+// ESI error codes.
+define('QTOOLS_VARNISH_ERR_SIGNATURE_FAIL', 'e0');
+define('QTOOLS_VARNISH_ERR_PARAMS_MISSING', 'e1');
+define('QTOOLS_VARNISH_ERR_STALE_PARAMS_MISSING', 'e2');
+define('QTOOLS_VARNISH_ERR_DISPLAY_NONE', 'e3');
+define('QTOOLS_VARNISH_ERR_PANE_NONE', 'e4');
+define('QTOOLS_VARNISH_ERR_MENU_DENIED', 'e5');
+define('QTOOLS_VARNISH_ERR_EMPTY', 'e6');
+
+// ESI Types.
+define('QTOOLS_VARNISH_ESI_TYPE_PANE', 'qtools_varnish_esi_type_pane');
+define('QTOOLS_VARNISH_ESI_TYPE_USER_BLOCK', 'qtools_varnish_esi_type_user_block');
+
+// Cache options.
+define('QTOOLS_VARNISH_OPTION_CACHE_PAGE', 'qtools_varnish:cache_page');
+
+// Page cache ID.
+define('QTOOLS_VARNISH_CACHE_ID_PAGE', 'qtools_varnish_cache_id_page');
+
+// Cache tags.
+define('QTOOLS_VARNISH_TAG_USER_BLOCKS', 'user_blocks');
+
+// Purge types.
+define('QTOOLS_VARNISH_PURGE_REQUEST', 1);
+define('QTOOLS_VARNISH_PURGE_TAG', 2);
+
+// Permissions.
+define('QTOOLS_VARNISH_PERM_BYPASS_VARNISH', 'qtools_varnish_perm_bypass_varnish');
+
+// Page RND key.
+define('QTOOLS_VARNISH_VAR_RND', qtools_api__unique_id());
+
+// Include module parts.
+module_load_include('inc', 'qtools_varnish');
+module_load_include('_varnish.inc', 'qtools_varnish');
+
+// Start page cache before anything happens.
+// While its not a good practive to place executable code in file namespace,
+// we cant use hook_boot() as it will mess up with the hooks implementations.
+qtools_api__cache_start(QTOOLS_VARNISH_CACHE_ID_PAGE);
+
+/**
+ * Implements hook_restore().
+ */
+function qtools_varnish_env_restore($type, $settings) {
+  $error = '';
+  if ($type != 'settings') {
+    $error = t('unsupported conf type [!type]', array('!type' => $type));
+  }
+  else {
+    foreach ($settings as $block => $data) {
+      foreach ($data as $setting => $value) {
+        _qtools_varnish_settings_set($block, $setting, $value);
+      }
+    }
+  }
+  return $error;
+}
+
+/**
+ * Return module settings.
+ */
+function _qtools_varnish_settings($block, $setting, $default = NULL) {
+  $settings = variable_get('qtools_varnish_settings', array());
+  if (isset($settings[$block])) {
+    return isset($settings[$block][$setting])
+      ? $settings[$block][$setting]
+      : $default;
+  }
+  return $default;
+}
+
+/**
+ * Return module settings.
+ */
+function _qtools_varnish_settings_set($block, $setting, $value = NULL) {
+  $settings = variable_get('qtools_varnish_settings', array());
+
+  // Clear value.
+  if ($value === NULL) {
+    if (isset($settings[$block]) && isset($settings[$block][$setting])) {
+      unset($settings[$block][$setting]);
+    }
+  }
+  else {
+    // Set new value.
+    $settings[$block][$setting] = $value;
+  }
+  variable_set('qtools_varnish_settings', $settings);
+}
+
+/**
+ * Check if this server can handle Varnish.
+ */
+function _qtools_varnish_enabled() {
+  global $theme, $is_https;
+  $varnish_enabled = &drupal_static('_qtools_varnish_enabled', NULL);
+  if ($varnish_enabled !== NULL) {
+    return $varnish_enabled;
+  }
+
+  // Disabled by default.
+  $varnish_enabled = FALSE;
+
+  // Enable Varnish if header present.
+  if (!empty($_SERVER[QTOOLS_VARNISH_HEADER_ENABLED])) {
+
+    // Check for https.
+    if (_qtools_varnish_settings('available', 'https') || !$is_https) {
+
+      // Do nothing if in admin theme.
+      $admin_theme = variable_get('admin_theme', 0);
+      if (_qtools_varnish_settings('available', 'admin_theme') || ($admin_theme != $theme)) {
+
+        // From now Varnish enabled by default.
+        $varnish_enabled = TRUE;
+
+        // Disable if current user may bypass varnish.
+        if (user_access(QTOOLS_VARNISH_PERM_BYPASS_VARNISH)) {
+          $varnish_enabled = FALSE;
+        }
+
+        // Disable if varnish disabled for specific domain name.
+        if ($varnish_enabled) {
+          $config = explode(PHP_EOL, _qtools_varnish_settings('available', 'exclide', ''));
+          foreach ($config as $line) {
+            $rule = explode('|', trim($line));
+            if (($rule[0] == '*') || ($_SERVER['SERVER_NAME'] == $rule[0])) {
+              if (($rule[1] == '*') || strpos($_SERVER['REQUEST_URI'], $rule[1]) === 0) {
+                $varnish_enabled = FALSE;
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return $varnish_enabled;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function qtools_varnish_permission() {
+  return array(
+    QTOOLS_VARNISH_PERM_BYPASS_VARNISH => array(
+      'title' => t('Bypass Varnish'),
+      'description' => t('varnish will not be used for users with this permission set.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_drupal_goto_alter().
+ * Support for caching redirects.
+ */
+function qtools_varnish_drupal_goto_alter(&$path, &$options, &$http_response_code) {
+  global $is_https, $user, $base_secure_url, $base_insecure_url;
+
+  drupal_add_http_header(QTOOLS_VARNISH_HEADER_RNDGOTO, QTOOLS_VARNISH_VAR_RND);
+
+  // If page contain cookie we dont want to cache this redirect.
+  $headers = headers_list();
+  foreach ($headers as $line) {
+    if (strpos($line, 'Set-Cookie') !== FALSE) {
+      return;
+    }
+  }
+
+  // Exit if varnish is disabled.
+  if (!_qtools_varnish_enabled()) {
+    return;
+  }
+
+  // Past this point we want to cache redirect, Load redirects settings.
+  $config = explode(PHP_EOL, _qtools_varnish_settings('redirects', 'rules'));
+
+  // Checkif we have match current url with GET[q].
+  foreach ($config as $line) {
+    $rule = explode('|', trim($line));
+    if (drupal_match_path($_GET['q'], $rule[0]) ||
+      $rule[0] == $_SERVER['REQUEST_URI']) {
+
+      // Set TTL is able.
+      if (is_numeric($rule[1]) && ($rule[1] > 0)) {
+        qtools_varnish_set_page_ttl($rule[1]);
+      }
+
+      // First match wins (skip further checking).
+      break;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * We only taking controll over cache on html pages.
+ */
+function qtools_varnish_preprocess_html() {
+  global $theme, $user;
+
+  // Do nothing if in admin theme or user logged in.
+  $admin_theme = variable_get('admin_theme', 0);
+  if ($admin_theme == $theme) {
+    return;
+  }
+
+  $key = empty($user->uid) ? 'anonymous' : 'logged_in';
+
+  // Read config and attempt to take over Cache-control.
+  $rules = explode(PHP_EOL, _qtools_varnish_settings('cache_control', $key));
+  foreach ($rules as $line) {
+    $rule = explode('|', trim($line));
+    if (drupal_match_path($_GET['q'], $rule[0])) {
+      drupal_add_http_header('Cache-Control', $rule[1]);
+      // First one wins.
+      break;
+    }
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function qtools_varnish_menu() {
+
+  // Administration section.
+  $menu['admin/config/development/qtools_varnish'] = array(
+    'title' => "QTools: Varnish",
+    'description' => "Varnish settings.",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('qtools_varnish_admin_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'qtools_varnish.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  $menu['admin/config/development/qtools_varnish/settings'] = array(
+    'title' => "Settings",
+    'description' => "Varnish settings.",
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => 1,
+  );
+  $menu['admin/config/development/qtools_varnish/purge'] = array(
+    'title' => "Manual purge",
+    'description' => "Purge interface.",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('qtools_varnish_admin_purge_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'qtools_varnish.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+  );
+
+  // Administration section.
+  $menu['qtools_varnish/esi/%/%/%'] = array(
+    'page callback' => 'qtools_varnish_page_esi',
+    'page arguments' => array(2, 3, 4),
+    'access callback' => TRUE,
+    'file' => 'qtools_varnish.page.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $menu;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function qtools_varnish_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'panels' || $module == 'ctools' || $module == 'page_manager') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Purge user_blocks.
+ */
+function qtools_varnish_purge_user_blocks($tag_names = array(QTOOLS_VARNISH_TAG_USER_BLOCKS)) {
+  $cache_tags = array();
+
+  foreach ($tag_names as $tag) {
+    $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_USER);
+    $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_ROLE);
+    $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_PAGE);
+  }
+  qtools_varnish_purge_tags($cache_tags);
+}
+
+/**
+ * Validate user cookies and update if needed.
+ */
+function qtools_varnish_cookie_update($account = NULL) {
+  global $is_https, $user;
+
+  $qtools_varnish_need_reload = &drupal_static('qtools_varnish_need_reload');
+
+  // Cookies may be disabled for resource files, so no need to redirect in such a case.
+  if (qtools_api__redirect_forbidden()) {
+    return;
+  }
+
+  $account = !empty($account) ? $account : user_load($user->uid);
+
+  // If user should bypass varnish we must set per user bin.
+  if (user_access(QTOOLS_VARNISH_PERM_BYPASS_VARNISH, $account)) {
+    $bin = 'u' . $account->uid;
+  }
+  elseif ($account->uid > 0) {
+    $roles = array_filter(array_keys($account->roles));
+    sort($roles);
+    $bin = implode('_', $roles);
+  }
+  else {
+    // Bin for anonym user.
+    $bin = '0';
+  }
+  $cookie_inf = $bin;
+
+  // Allow Other modules to alter bin.
+  drupal_alter('qtools_varnish_user_cache_bin', $cookie_inf, $account);
+
+  // Hash bin (PER_ROLE-PER_PAGE).
+  $cookie_bin = hash('sha256', $cookie_inf . QTOOLS_VARNISH_QBIN_NOISE) . '-' . hash('sha256', QTOOLS_VARNISH_QBIN_NOISE);
+
+  // Update cookies if did not match.
+  if (empty($_COOKIE[QTOOLS_VARNISH_COOKIE_BIN]) || ($_COOKIE[QTOOLS_VARNISH_COOKIE_BIN] != $cookie_bin)) {
+
+    // Update cookies.
+    $params = session_get_cookie_params();
+    $expire = $params['lifetime'] ? (REQUEST_TIME + $params['lifetime']) : 0;
+    setcookie(QTOOLS_VARNISH_COOKIE_BIN, $cookie_bin, $expire, $params['path'], $params['domain'], FALSE, $params['httponly']);
+    setcookie(QTOOLS_VARNISH_COOKIE_INF, $cookie_inf, $expire, $params['path'], $params['domain'], FALSE, $params['httponly']);
+
+    // Mark this page as required reload as ESI request from this page will be sent with old cookie info.
+    $qtools_varnish_need_reload = TRUE;
+  }
+  elseif (!empty($_GET['reload'])) {
+    // Front asks us to do reload.
+    $qtools_varnish_need_reload = TRUE;
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function qtools_varnish_init() {
+  global $user;
+
+  // Skip all if environment is not ready.
+  if (!qtools_api__ready()) {
+    return;
+  }
+
+  // Add random header to see different pages.
+  drupal_add_http_header(QTOOLS_VARNISH_HEADER_RNDPAGE, QTOOLS_VARNISH_VAR_RND);
+
+  // Add cache debug header if in debug mode, this will command Varnish to display page tags.
+  $debug = _qtools_varnish_settings('general', 'debug', FALSE);
+  if ($debug) {
+    drupal_add_http_header(QTOOLS_VARNISH_HEADER_CACHE_DEBUG, 1);
+  }
+
+  $qtools_varnish_start_user = &drupal_static('qtools_varnish_start_user');
+  $qtools_varnish_start_user = $user->uid;
+
+  // If page is has a POST we need to flush user_block related cache.
+  if (!empty($_POST) && !empty($user->uid) && _qtools_varnish_settings('userblocks', 'clear_on_post', FALSE)) {
+    qtools_varnish_purge_user_blocks();
+  }
+
+  // Validate existing cookies and update them if needed.
+  qtools_varnish_cookie_update();
+
+  // Reload current page if required.
+  $qtools_varnish_need_reload = &drupal_static('qtools_varnish_need_reload');
+  if (!empty($qtools_varnish_need_reload)) {
+
+    // Setting cookie will prevent varnish from caching this.
+    setcookie('time', time(), NULL, '/');
+
+    $qtools_varnish_need_reload = FALSE;
+    $query = $_GET;
+    unset($query['q']);
+    if (isset($query['reload'])) {
+      unset($query['reload']);
+    }
+
+    $redirect_path = drupal_is_front_page()
+      ? ''
+      : $_GET['q'];
+
+    drupal_goto(url($redirect_path, array('absolute' => TRUE)), array($query));
+  }
+
+}
+
+/**
+ * Implements hook_esi_api().
+ */
+function qtools_varnish_esi_api() {
+  return array(
+    'qtools_varnish_pane' => t("QTools ESI cached pane"),
+    'qtools_varnish_region' => t("QTools ESI cached region"),
+    'qtools_varnish_userblocks' => t("QTools ESI cached region"),
+  );
+}
+
+/**
+ * Implements hook_esi_api_TYPE_render().
+ *
+ * Render User blocks.
+ */
+function qtools_varnish_esi_api_qtools_varnish_userblocks_render($identifier, $variables) {
+  global $user;
+  qtools_option('qtools_varnish:esi_rendered', TRUE);
+  $debug_content = '';
+  $content = '';
+
+  // Gather user specific content,
+  // note that this is placed as is to all targets before drupal behaviors.
+  $js_data = array();
+  $user_data = module_invoke_all('qtools_varnish_userblocks');
+
+  foreach ($user_data as $target => $data) {
+    if (is_array($data)) {
+      $js_data[$target] = $data;
+    } elseif (is_string($data)) {
+      $content .= '<div class="qtools_varnish_userblock" data-target="' . $target . '">' . $data . '</div>';
+    }
+  }
+
+  // Wrap content and add inline JS to make shure JS is present if this block is present.
+  $content = '<div id="qtools_varnish_userblocks" style="display:none;" time="' . time() . '">' . $content . '</div>';
+  $js = '<script type="text/javascript">
+  jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock").each(function () {
+    var $this = jQuery(this);
+    jQuery($this.attr("data-target")).replaceWith($this.html());
+  });' . 'jQuery.extend(true, Drupal.settings, ' . drupal_json_encode(drupal_array_merge_deep_array($js_data)) . ');'
+  . '</script>';
+
+  // Return actual content and set desired TTL.
+  $ttl = _qtools_varnish_settings('userblocks', 'ttl', -1);
+  $cache_tags = array();
+  $tags = explode(',', _qtools_varnish_settings('userblocks', 'cachetags', 'user'));
+  $tags[] = QTOOLS_VARNISH_TAG_USER_BLOCKS;
+  foreach ($tags as $tag) {
+    if (trim($tag) != '') {
+      $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_USER);
+    }
+  }
+
+  $debug_content .= theme('status_messages');
+
+  // We dont want to possibly cache status messages.
+  if (!empty($debug_content)) {
+    $ttl = 0;
+  }
+
+  // Grace for user block is 0 by design.
+  qtools_varnish_set_page_ttl($ttl, $cache_tags);
+
+  return qtools_varnish_wrap($debug_content . $content . $js, FALSE);
+}
+
+/**
+ * Get signature for different esi content types.
+ *
+ * Note that if 'qtools_varnish_privat_key' is not set it will fallback to site salt.
+ */
+function qtools_varnish_get_signature($esi_type, $esi_id, $params = array()) {
+
+  // Add items id.
+  $params[] = $esi_type;
+  $params[] = $esi_id;
+
+  // Bind type to string.
+  $params = qtools_api__bind_type($params, 's', TRUE);
+
+  // Hash with private key.
+  $private_key = variable_get('qtools_varnish_private_key', FALSE);
+  $seed = qtools_api__hash($params, $private_key);
+
+  return $seed;
+}
+
+/**
+ * Set desired TTL and cache tags for current page.
+ *
+ * @param $ttl
+ *   (int) TTL in seconds.
+ * @param $cache_tags.
+ *   (array) cache tags that if triggered will purge this request from varnish.
+ * @param $grace
+ *   (int) Grace in seconds.
+ */
+function qtools_varnish_set_page_ttl($ttl = 0, $cache_tags = array(), $grace = 0) {
+  global $user;
+
+  // Set page TTL.
+  drupal_add_http_header(QTOOLS_VARNISH_HEADER_TTL, $ttl);
+
+  // Set page Grace.
+  drupal_add_http_header(QTOOLS_VARNISH_HEADER_GRACE, $grace);
+
+  // Add page tag for logged in users.
+  if (!empty($user->uid)) {
+    $tag = qtools_api__cache_tag('noise', hash('sha256', QTOOLS_VARNISH_QBIN_NOISE));
+    $cache_tags[] = $tag;
+  }
+
+  // Set page cache tags.
+  drupal_add_http_header(QTOOLS_VARNISH_HEADER_CACHE_TAG, implode(';', $cache_tags) . ';');
+}
+
+/**
+ * Purge varnish cache for specific tags.
+ *
+ * qtools_varnish_purge_tags(array('n|771', 't|2754'));
+ *
+ * @param $tag
+ *   (string/array) list of tags to search and purge.
+ */
+function qtools_varnish_purge_tags($tag) {
+  global $user;
+
+  // Normalize tag.
+  $tag = qtools_api__cache_tags_prepare($tag, TRUE);
+
+  // Prepare variables.
+  $header  = QTOOLS_VARNISH_HEADER_CACHE_TAG;
+
+  // Build pattern.
+  $pattern = (count($tag) > 1)
+    ? implode(';|', $tag) . ';'
+    : reset($tag) . ';';
+
+  // Remove quotes from pattern.
+  $pattern = strtr($pattern, array('"' => '', "'" => ''));
+
+  // Clean all or only current host.
+  if (_qtools_varnish_settings('purge', 'all_hosts', TRUE)) {
+    $command_line = "ban obj.http.$header ~ \"$pattern\"";
+  }
+  else {
+    $host = qtools_varnish__varnish_get_host();
+    $command_line = "ban req.http.host ~ $host && obj.http.$header ~ \"$pattern\"";
+  }
+
+  // Log action.
+  if (_qtools_varnish_settings('general', 'logging', FALSE)) {
+    watchdog('qtools_varnish:purge', 'u=@uid purge !command_line', array(
+      '@uid' => $user->uid,
+      '!command_line' => $command_line,
+    ));
+  }
+
+  // Query Varnish.
+  $res = qtools_varnish__varnish_terminal_run(array($command_line));
+  return $res;
+}
+
+/**
+ * Purge varnish cache for specific request, like '/sites/all/files/1.txt';
+ *
+ * @param $pattern
+ *   (string/array) list of tags to search and purge.
+ * @param $exact
+ *   (bool) specify if pattern regex or exact match string.
+ */
+function qtools_varnish_purge_request($pattern, $exact = FALSE) {
+  global $user;
+
+  // Remove quotes from pattern.
+  $pattern = strtr($pattern, array('"' => '', "'" => ''));
+  $command = !empty($exact) ? '==' : '~';
+
+  // Clean all or only current host.
+  if (_qtools_varnish_settings('purge', 'all_hosts', TRUE)) {
+    $command_line = "ban req.url $command \"$pattern\"";
+  }
+  else {
+    $host = qtools_varnish__varnish_get_host();
+    $command_line = "ban req.http.host ~ $host && req.url $command \"$pattern\"";
+  }
+
+  // Log action.
+  if (_qtools_varnish_settings('general', 'logging', FALSE)) {
+    watchdog('qtools_varnish:purge', 'u=@uid purge !command_line', array(
+      '@uid' => $user->uid,
+      '!command_line' => $command_line,
+    ));
+  }
+
+  // Query Varnish.
+  $res = qtools_varnish__varnish_terminal_run(array($command_line));
+  return $res;
+}
+
+/**
+ * Get themed pane content.
+ */
+function _qtools_varnish_get_themed_pane($pane, $display = NULL, $context = array(), $tail_args = array()) {
+
+  // Get original pane content.
+  ctools_include('content');
+  $content = ctools_content_render($pane->type, $pane->subtype, $pane->configuration, array(), $tail_args, $context);
+
+  // Theme result.
+  if (!empty($content->content)) {
+    // Pane original markup is printed during page initial load.
+    // This routine is left for reference.
+    /*if (!empty($pane->style['style'])) {
+
+      ctools_include('plugins', 'panels');
+      $style = panels_get_style($pane->style['style']);
+
+      if (isset($style) && isset($style['render pane'])) {
+        $pane_content = theme($style['render pane'], array('content' => $content, 'pane' => $pane, 'display' => $display, 'style' => $style, 'settings' => $pane->style['settings']));
+      }
+    }
+
+    // Fallback.
+    if (!isset($pane_content)) {
+      $pane_content = theme('panels_pane', array('content' => $content, 'pane' => $pane, 'display' => $display));
+    }*/
+    $pane_content = is_array($content->content)
+      ? drupal_render($content->content)
+      : $content->content;
+  }
+
+  return isset($pane_content)
+    ? $pane_content
+    : NULL;
+}
+
+/**
+ * Wrap content with some info.
+ */
+function qtools_varnish_wrap($content, $tag = TRUE) {
+  global $user;
+
+  // Save ESI tags to watchdog.
+  if ($tag && _qtools_varnish_settings('general', 'logging', FALSE)) {
+    watchdog('qtools_varnish:tag', '@uid esi !esi_tag', array(
+      '@uid' => $user->uid,
+      '!esi_tag' => htmlentities($content),
+    ));
+  }
+
+  // Mark this page as it uses ESI.
+  if ($tag) {
+    drupal_add_http_header(QTOOLS_VARNISH_HEADER_DOESI, '1');
+  }
+
+  // Wrap ESI content.
+  $attributes = array(
+    'class' => ($tag) ? 'qtools_varnish_tag_wrapper' : 'qtools_varnish_content_wrapper',
+    'time'  => date('c'),
+    'stamp' => time(),
+  );
+
+  // Add origin if in debug mode.
+  if (_qtools_varnish_settings('general', 'debug', FALSE)) {
+    $attributes['origin'] = $_SERVER["REQUEST_URI"];
+  }
+  return '<div ' . drupal_attributes($attributes) . '>' . $content . '</div>';
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function qtools_varnish_entity_insert($entity, $type) {
+  qtools_varnish_entity_update($entity, $type);
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function qtools_varnish_entity_delete($entity, $type) {
+  qtools_varnish_entity_update($entity, $type);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function qtools_varnish_entity_update($entity, $type) {
+
+  // Exit if we should not purge automatically.
+  if (!_qtools_varnish_settings('purge', 'automatic', TRUE)) {
+    return;
+  }
+
+  // Get short tags.
+  $ids = entity_extract_ids($type, $entity);
+  $tags[] = qtools_api__cache_tag($type, '');
+  $tags[] = qtools_api__cache_tag($type, $ids[0]);
+  $tags[] = qtools_api__cache_tag($type, $ids[2]);
+
+  // If this is a comment we need to flush its node too.
+  if ($type == 'comment' && !empty($entity->nid)) {
+    $node = node_load($entity->nid);
+    if (!empty($node)) {
+      $ids2 = entity_extract_ids('node', $node);
+      $tags[] = qtools_api__cache_tag('node', '');
+      $tags[] = qtools_api__cache_tag('node', $ids2[0]);
+      $tags[] = qtools_api__cache_tag('node', $ids2[2]);
+    }
+  }
+
+  // Purge specific entity objects.
+  qtools_varnish_purge_tags($tags);
+
+  // Scan saved entity for resources fields and flush their values.
+  $original = $entity->original;
+  $fields = field_info_instances($type, $ids[2]);
+  foreach ($fields as $field_name => $tmp) {
+    // Get field info.
+    $info = field_info_field($field_name);
+
+    // If this is file field.
+    if (($info['type'] == 'image') || ($info['type'] == 'file')) {
+      // Get new field values.
+      $fids = qtools_api__field_get_item($type, $entity, $field_name, array(), 'fid');
+
+      // Load all files.
+      $files = file_load_multiple($fids);
+
+      // Flush URI foe each file.
+      foreach ($files as $file) {
+        $url = file_create_url($file->uri);
+        $url = parse_url($url);
+
+        // Finaly, issue purge command to Varnish.
+        if (!empty($url) && !empty($url['path']) && $url['path'] != '/') {
+          qtools_varnish_purge_request($url['path']);
+
+          // If this was an image - flush all styles.
+          if ($info['type'] == 'image') {
+            $tmp = explode('/', $url['path']);
+            $filename = array_pop($tmp);
+            $filename = 'styles/.*/' . $filename;
+            $tmp[] = $filename;
+            $pattern = implode('/', $tmp);
+
+            // Allow other modules to alter pattern if its not default.
+            drupal_alter('qtools_varnish_image_style_pattern', $pattern, $entity, $type, $field_name);
+            qtools_varnish_purge_request($pattern);
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Page Manager support
+//
+/**
+ * Alter the panel context settings form.
+ */
+function qtools_varnish_page_manager_variant_operations_alter(&$operations, $handler) {
+  // Do not add this to variants on the site template, as tempaltes
+  // cannot select templates.
+  if ($handler->task == 'site_template') {
+    return;
+  }
+
+  // Use this obnoxious construct to safely insert our item.
+  reset($operations['children']);
+  $new = array();
+  while (list($key, $value) = each($operations['children'])) {
+    $new[$key] = $value;
+    if ($key == 'summary') {
+      $new['qtools_varnish'] = array(
+        'title' => t('QTools Varnish'),
+        'description' => t('Choose how this page should be cached in varnish.'),
+        'form' => 'qtools_varnish_page_cache_form',
+      );
+    }
+  }
+  $operations['children'] = $new;
+}
+
+/**
+ * Load cache settings for page handler.
+ */
+function _qtools_varnish_page_cache_form_conf_get($handler_conf, $handler_id, $default = array()) {
+
+  if (!empty($handler_conf['qtools_varnish_page_cache_form'])) {
+    $conf = $handler_conf['qtools_varnish_page_cache_form'];
+
+    // Support previouse versions of qtools esi.
+    $conf['save_to_features'] = TRUE;
+  }
+  else {
+    $conf = $default;
+  }
+
+  // Load from variable.
+  if (empty($conf['save_to_features'])) {
+    $conf = variable_get('qtools_varnish_page_cache_form_conf:' . $handler_id, $default);
+  }
+
+  // Add handler id.
+  $conf['handler_id'] = $handler_id;
+
+  // Return conf.
+  return $conf;
+}
+
+/**
+ * Load cache settings for page handler.
+ */
+function _qtools_varnish_page_cache_form_conf_set($settings, $handler_id) {
+
+  // Unset purge settings.
+  unset($settings['purge']);
+
+  // By default we save config to a value.
+  if (empty($settings['save_to_features'])) {
+    variable_set('qtools_varnish_page_cache_form_conf:' . $handler_id, $settings);
+    $settings = array();
+  }
+  else {
+    // Otherwise we leave them in the page settings so that they will be saved alond with display.
+    // We also need to delete config variable.
+    variable_del('qtools_varnish_page_cache_form_conf:' . $handler_id);
+  }
+
+  return $settings;
+}
+
+/**
+ * Handle the form set page cache.
+ */
+function qtools_varnish_page_cache_form($form, &$form_state) {
+  $handler = $form_state['handler'];
+  $handler_id = $form_state['handler_id'];
+
+  $default_conf = array(
+    'ttl' => -1,
+    'save_to_features' => FALSE,
+    'grace' => 10,
+  );
+  $conf = _qtools_varnish_page_cache_form_conf_get($handler->conf, $handler_id, $default_conf);
+
+  $fields['#tree'] = TRUE;
+  $fields['info'] = array(
+    '#type' => 'markup',
+    '#markup' => t('<div>Note that this cache may (in rare cases) not be suitable for some panes, so always test your result.</div>'),
+  );
+
+  // Lifetime.
+  $options = drupal_map_assoc(array(3, 5, 10, 15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600, 7200, 14400, 28800, 43200, 86400, 172800, 259200, 345600, 604800), 'format_interval');
+  $options[-1] = t('Pass through');
+  ksort($options);
+  $fields['ttl'] = array(
+    '#title' => t('Lifetime'),
+    '#description' => t('We send this TTL to Varnish, this is not drupal related cache time.'),
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => $conf['ttl'],
+  );
+
+  // Grace.
+  $options = drupal_map_assoc(array(3, 5, 10, 15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600), 'format_interval');
+  $options[0] = t('No Grace (bad idea)');
+  ksort($options);
+  $grace_hint = t("Grace in the scope of Varnish means delivering otherwise expired objects when circumstances call for it.
+    This can happen because the backend-director selected is down or a different thread has already made a request to the backend that's not yet finished.");
+  $fields['grace'] = array(
+    '#title' => t('Grace Time'),
+    '#description' => $grace_hint,
+    '#type' => 'select',
+    '#options' => $options,
+    '#default_value' => $conf['grace'],
+  );
+
+  $fields['save_to_features'] = array(
+    '#title' => t('Save to features'),
+    '#description' => t('If checked, values will affect features with this display.'),
+    '#type' => 'checkbox',
+    '#default_value' => $conf['save_to_features'],
+  );
+
+  // Purge settings.
+  $fields['purge'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Purge settings'),
+  );
+  $fields['purge']['id'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Cache ID for manual purge'),
+    '#value' => $handler_id,
+    '#attributes' => array(
+      'readonly' => 'readonly'
+    ),
+  );
+  $fields['purge']['now'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Purge this page cache now'),
+  );
+
+  $form['qtools_varnish_page_cache_form'] = $fields;
+
+  return $form;
+}
+
+/**
+ * Submit handler.
+ */
+function qtools_varnish_page_cache_form_submit(&$form, &$form_state) {
+
+  // Update settings.
+  $settings = _qtools_varnish_page_cache_form_conf_set($form_state['values']['qtools_varnish_page_cache_form'], $form_state['handler_id']);
+  $form_state['handler']->conf['qtools_varnish_page_cache_form'] = $settings;
+
+  // Purge if required.
+  $purge = $form_state['values']['qtools_varnish_page_cache_form']['purge'];
+  if (!empty($purge['now'])) {
+    $tag = qtools_api__cache_tag('page', $form_state['handler_id']);
+    qtools_varnish_purge_tags($tag);
+  }
+}
+
+/**
+ * Implements hook_ctools_render_alter()
+ */
+function qtools_varnish_ctools_render_alter(&$info, $page, $context) {
+  global $user;
+
+  $settings = array();
+  if (isset($context['handler']->conf['qtools_varnish_page_cache_form'])) {
+    // Get settings for this display.
+    $settings = _qtools_varnish_page_cache_form_conf_get($context['handler']->conf, $context['handler']->name);
+    qtools_option(QTOOLS_VARNISH_OPTION_CACHE_PAGE, $settings);
+  }
+
+  $path_404 = drupal_get_normal_path(variable_get('site_404', ''));
+  $path_403 = drupal_get_normal_path(variable_get('site_403', ''));
+
+  // We in 404/403 subroute we must do things right away.
+  if (in_array($_GET['q'], array($path_404, $path_403)) && _qtools_varnish_enabled()) {
+
+    // See qtools_varnish_page_delivery_callback_alter().
+    // Set TTL info.
+    if (isset($settings['ttl'])) {
+      $tags = qtools_api__cache_tags_prepare(qtools_api__cache_tag('page', $settings['handler_id']));
+      $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
+      qtools_varnish_set_page_ttl($settings['ttl'], array_merge($tags, $cache_tags), $settings['grace']);
+    }
+
+    // See _qtools_varnish_page_delivery_callback().
+    // Add user blocks ESI.
+    if (!qtools_option('qtools_varnish:esi_rendered')) {
+      // Attach user specific info.
+      // Only add user blocks if we have an actual user.
+      if (!empty($user->uid)) {
+        $esi_tag = drupal_render(esi_api_build_tag('qtools_varnish_userblocks', '1', array('cachemode' => DRUPAL_CACHE_PER_USER), ESI_API_CACHE_NONE));
+        $esi_tag = qtools_varnish_wrap($esi_tag);
+
+        if (is_array($info['content'])) {
+          $info['content'][0]['qtools_varnish_user_block']['#markup'] = $esi_tag;
+        }
+        elseif (is_string($info['content'])) {
+          $info['content'] .= $esi_tag;
+        }
+      }
+    }
+    else {
+      // If any ESI was rendered we need to set cache control to none for this request.
+      // As actual caching will be done by varnish.
+      drupal_add_http_header('Cache-Control', 'no-cache, must-revalidate');
+    }
+  }
+  else {
+    // For other pages settings will be used through qtools_option().
+    // See qtools_varnish_page_delivery_callback_alter().
+  }
+}
+
+/**
+ * Get ttl from manual config for page.
+ */
+function _qtools_varnish_get_path_ttl(&$page_id, $path = '') {
+
+  // Default TTL.
+  $ttl = FALSE;
+
+  // Default path is $_GET['q'].
+  if (empty($path)) {
+    $path = $_GET['q'];
+  }
+
+  // Get custom settings rules.
+  $ruels = explode(PHP_EOL, trim(_qtools_varnish_settings('custom', 'rules')));
+  foreach ($ruels as $line) {
+    $conf = explode('|', trim($line));
+    if (count($conf) == 3) {
+      // Check for match.
+      if (drupal_match_path($path, $conf[0])) {
+        $ttl = $conf[1];
+        $page_id = drupal_clean_css_identifier($conf[2]);
+      }
+    }
+  }
+
+  return $ttl;
+}
+
+/**
+ * Page delivery callback replacement.
+ */
+function _qtools_varnish_page_delivery_callback($page_callback_result) {
+  global $user;
+  $original_callback = &drupal_static('qtools_varnish_page_delivery_callback_original', 'drupal_deliver_html_page');
+
+  // Page cache tags.
+  $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
+
+  // Add few headers (those configured through panels).
+  if ($settings = qtools_option(QTOOLS_VARNISH_OPTION_CACHE_PAGE)) {
+    if (isset($settings['ttl'])) {
+      // Only set page TTL if we are not redirecting anywhere, if we do - see goto_alter
+      // To set proper ttl.
+      $add_ttl = TRUE;
+      $headers = headers_list();
+      foreach ($headers as $line) {
+        if (strpos($line, 'Location') !== FALSE) {
+          $add_ttl = FALSE;
+        }
+      }
+      if ($add_ttl) {
+        $tags = qtools_api__cache_tags_prepare(qtools_api__cache_tag('page', $settings['handler_id']));
+        qtools_varnish_set_page_ttl($settings['ttl'], array_merge($tags, $cache_tags), $settings['grace']);
+      }
+    }
+  }
+
+  // Genrate ESI user block tag.
+  // Prevent recursion we could only deliver either user_blocks or ESI tag (normal page).
+  if (!qtools_option('qtools_varnish:esi_rendered')) {
+
+    // Only adds user blocks if we have an actual user.
+    if (!empty($user->uid)) {
+      $est_tag = esi_api_build_tag('qtools_varnish_userblocks', '1', array('cachemode' => DRUPAL_CACHE_PER_USER), ESI_API_CACHE_NONE);
+      $esi_tag = drupal_render($est_tag);
+      $esi_tag = qtools_varnish_wrap($esi_tag);
+
+      // Attach user specific info.
+      if (is_array($page_callback_result)) {
+        $page_callback_result[0]['qtools_varnish_user_block']['#markup'] = $esi_tag;
+      }
+      elseif (is_string($page_callback_result)) {
+        $page_callback_result .= $esi_tag;
+      }
+    }
+
+    // Custom TTL settings for pages that are not bound to panels.
+    // Only set page TTL if we are not redirecting anywhere, if we do - see goto_alter
+    // To set proper ttl.
+    $page_id = 'custom_page';
+    if ($path_ttl = _qtools_varnish_get_path_ttl($page_id)) {
+      $add_ttl = TRUE;
+      $headers = headers_list();
+      foreach ($headers as $line) {
+        if (strpos($line, 'Location') !== FALSE) {
+          $add_ttl = FALSE;
+        }
+      }
+      if ($add_ttl) {
+        $tags = qtools_api__cache_tags_prepare(qtools_api__cache_tag('page', $page_id));
+        qtools_varnish_set_page_ttl($path_ttl['ttl'], array_merge($tags, $cache_tags), $path_ttl['grace']);
+      }
+    }
+  }
+  else {
+    // If any ESI was rendered we need to set cache control to none for this request.
+    // As ESI ttl will be controlled by ESI settings.
+    drupal_add_http_header('Cache-Control', 'no-cache, must-revalidate');
+  }
+
+  // Pass to original callback.
+  return $original_callback($page_callback_result);
+}
+
+/**
+ * Implements hook_page_delivery_callback_alter().
+ */
+function qtools_varnish_page_delivery_callback_alter(&$callback) {
+  global $user;
+
+  // Kept for debug purposes.
+  if (!empty($_GET['info']) && ($_GET['info'] == QTOOLS_VARNISH_QBIN_NOISE) && function_exists('kpr')) {
+    kpr($_GET);
+    kpr($_POST);
+    kpr($_SERVER);
+    kpr($_COOKIE);
+    kpr(time());
+  }
+  // Exit if no Varnish support.
+  if (!_qtools_varnish_enabled()) {
+    return;
+  }
+
+  // If Varnish enabled we must provide ESI tag for user specific info, so we alter delivery callback.
+  $original_callback = &drupal_static('qtools_varnish_page_delivery_callback_original', $callback);
+  $callback = '_qtools_varnish_page_delivery_callback';
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function qtools_varnish_user_login($edit, $user) {
+
+  // Update cookies for logged in user.
+  qtools_varnish_cookie_update($user);
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function qtools_varnish_user_logout() {
+
+  // Destroy user cookies.
+  $params = session_get_cookie_params();
+  setcookie(QTOOLS_VARNISH_COOKIE_BIN, '', REQUEST_TIME - 3600, $params['path'], $params['domain']);
+  setcookie(QTOOLS_VARNISH_COOKIE_INF, '', REQUEST_TIME - 3600, $params['path'], $params['domain']);
+}

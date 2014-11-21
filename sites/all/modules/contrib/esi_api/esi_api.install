@@ -1,0 +1,16 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * ESI schema and installation specifics.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function esi_api_schema() {
+  $schema = array();
+  $schema['cache_esi'] = drupal_get_schema_unprocessed('system', 'cache');
+  return $schema;
+}

@@ -1,0 +1,360 @@
+<?php
+/**
+ * @file
+ * Module hooks.
+ */
+
+define('CACHE_COMMON_CACHE_BIN', 'cache');
+define('CACHE_COMMON_TABLE_CACHE_TAGS', 'cache_common_cache_tags');
+
+define('CACHE_COMMON_PATH_SITE_CONFIG', 'admin/cache_config');
+define('CACHE_COMMON_PERM_ADMIN', 'cache_common_perm_admin');
+
+define('CACHE_COMMON_VAR_FORCE_ACCESS_ANONYM', variable_get('CACHE_COMMON_VAR_FORCE_ACCESS_ANONYM', FALSE));
+define('CACHE_COMMON_ENGLISH_LANG_CODE', 'en-en');
+
+module_load_include('inc', 'cache_common');
+module_load_include('form.inc', 'cache_common');
+module_load_include('inc', 'cache_common', 'cache_common.controllers.class');
+
+/**
+ * Implements hook_flush_caches().
+ */
+function cache_common_flush_caches() {
+  return array('cache_common_no_cache');
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function cache_common_views_api() {
+  return array('api' => 2.0);
+}
+
+/**
+ * Implements hook_qtools_api__cache_tag_short_alter().
+ */
+function cache_common_qtools_api__cache_tag_short_alter(&$short) {
+  // Add commerce_product to short list, prevent collisions.
+  if (!in_array('cp', $short) && empty($short['commerce_product'])) {
+    $short['commerce_product'] = 'cp';
+  }
+  if (!in_array('a', $short) && empty($short['asset'])) {
+    $short['asset'] = 'a';
+  }
+  if (!in_array('c_p', $short) && empty($short['config_pages'])) {
+    $short['config_pages'] = 'c_p';
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function cache_common_entity_insert($entity, $type) {
+  cache_common_entity_update($entity, $type);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function cache_common_entity_update($entity, $type) {
+
+  // Get short tags.
+  $ids = entity_extract_ids($type, $entity);
+  $tags[] = qtools_api__cache_tag($type, '');
+  $tags[] = qtools_api__cache_tag($type, $ids[0]);
+  $tags[] = qtools_api__cache_tag($type, $ids[2]);
+
+  // Ignore changes caused by entities except used ones.
+  $flish_types = variable_get('cache_common_entity_update_flush_types', array(
+    'node',
+    'commerce_product',
+    'taxonomy_term',
+    'comment',
+  ));
+  if (!in_array($type, $flish_types)) {
+    return;
+  }
+
+  // If this is a comment we need to flush its node too.
+  if ($type == 'comment' && !empty($entity->nid)) {
+    $node = node_load($entity->nid);
+    $ids2 = entity_extract_ids('node', $node);
+    $tags[] = qtools_api__cache_tag('node', '');
+    $tags[] = qtools_api__cache_tag('node', $ids2[0]);
+    $tags[] = qtools_api__cache_tag('node', $ids2[2]);
+  }
+
+  cache_common_cache_clear($tags);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function cache_common_menu() {
+  $items = array();
+
+  // Module config.
+  $items[CACHE_COMMON_PATH_SITE_CONFIG] = array(
+    'title' => 'Cache site settings',
+    'description' => 'Cache site settings',
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array(CACHE_COMMON_PERM_ADMIN),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cache_common_form_site_settings'),
+  );
+
+  $items[CACHE_COMMON_PATH_SITE_CONFIG . '/configs'] = array(
+    'title' => 'Site settings',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function cache_common_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'panels' || $module == 'ctools') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_views_plugins_alter().
+ */
+function cache_common_views_plugins_alter(&$plugins) {
+
+  // Change Class for Rendered entity plugin.
+  if (isset($plugins['row']['entity'])) {
+    $plugins['row']['entity']['handler'] = 'cache_common_views_plugin_row_entity_view';
+    $plugins['row']['entity']['file'] = 'cache_common_views_plugin_row_entity_view.inc';
+    $plugins['row']['entity']['path'] = drupal_get_path('module', 'cache_common');
+  }
+}
+
+/**
+ * Cache placeholder, only purce cache tags when required.
+ */
+class CacheCommonNoCache implements DrupalCacheInterface {
+  protected $bin;
+
+  function __construct($bin) {
+    $this->bin = $bin;
+  }
+
+  function get($cid) {
+    $cids = array($cid);
+    $cache = $this->getMultiple($cids);
+    return reset($cache);
+  }
+
+  function getMultiple(&$cids) {
+    return array();
+  }
+
+  protected function garbageCollection() {
+    // Do nothing.
+  }
+
+  protected function prepareItem($cache) {
+    return FALSE;
+  }
+
+  function set($cid, $data, $expire = CACHE_PERMANENT) {
+    // Do nothing.
+  }
+
+  function clear($cid = NULL, $wildcard = FALSE) {
+    // Flush cache tags.
+    cache_common_cache_clear($cid);
+  }
+
+  function isEmpty() {
+    return TRUE;
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function cache_common_entity_info_alter(&$entity_info) {
+
+  // Default array of replacements.
+  $replacements = array(
+    'node' => 'CacheCommonNodeController',
+    'taxonomy_term' => 'CacheCommonTaxonomyTermController',
+    'commerce_product' => 'CacheCommonCommerceProductController',
+    'asset' => 'CacheCommonAssetController',
+  );
+
+  // Allow other modules to alter/disable changes.
+  drupal_alter('cache_common_controller_classes', $replacements);
+
+  // Replace entity controllers.
+  foreach ($replacements as $entity_type => $class_name) {
+    if (!empty($entity_info[$entity_type])) {
+      $entity_info[$entity_type]['controller class'] = $class_name;
+    }
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function cache_common_permission() {
+  return array(
+    CACHE_COMMON_PERM_ADMIN => array(
+      'title' => t('Cache Administrator'),
+      'description' => t('Can change cache policy'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_init().
+ */
+function cache_common_init() {
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function cache_common_field_formatter_info() {
+  $formatters = array(
+    // Entityreference fields formatter.
+    'cache_common_reference_field_default' => array(
+      'label' => t('Default Cached Reference formatter'),
+      'field types' => array('entityreference'),
+      'settings' => array(
+        'view_mode' => 'default',
+        'deltas' => NULL,
+      ),
+    ),
+  );
+
+  return $formatters;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function cache_common_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element = array();
+
+  // Settings form for Cached Entityreference formatter.
+  if ($display['type'] == 'cache_common_reference_field_default') {
+    $entity_info = entity_get_info($field['settings']['target_type']);
+
+    if (!empty($entity_info['view modes'])) {
+
+      $target_bundles = !empty($field['settings']['handler_settings']['target_bundles'])
+        ? $field['settings']['handler_settings']['target_bundles']
+        : $entity_info['bundles'];
+
+      if (!empty($entity_info['view modes'])) {
+        $options = array();
+        if (!empty($entity_info['view modes'])) {
+          foreach ($entity_info['view modes'] as $view_mode => $view_mode_settings) {
+            $options[$view_mode] = $view_mode_settings['label'];
+          }
+        }
+      }
+    }
+
+    $element['view_mode'] = array(
+      '#type' => 'select',
+      '#options' => $options,
+      '#title' => t('View mode'),
+      '#default_value' => $settings['view_mode'],
+      '#access' => count($options) > 1,
+    );
+
+    $element['deltas'] = array(
+      '#title' => t('Deltas'),
+      '#description' => t('Deltas to render. For first n items should be entered "-n". Leave blank to render all.'),
+      '#type' => 'textfield',
+      '#size' => 20,
+      '#default_value' => $settings['deltas'],
+      '#element_validate' => array('element_validate_integer'),
+    );
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function cache_common_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = array();
+
+  // Summary fo reference field formatter.
+  if ($display['type'] == 'cache_common_reference_field_default') {
+    $entity_info = entity_get_info($field['settings']['target_type']);
+
+    $view_mode_label = $settings['view_mode'] == 'default' ? t('Default') : $settings['view_mode'];
+    if (isset($entity_info['view modes'][$settings['view_mode']]['label'])) {
+      $view_mode_label = $entity_info['view modes'][$settings['view_mode']]['label'];
+    }
+    $summary[] = t('Rendered as @mode', array('@mode' => $view_mode_label));
+    $summary[] = !empty($settings['deltas'])
+      ? t('Deltas: @keys', array('@keys' => $settings['deltas']))
+      : t('All deltas will be rendered.');
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function cache_common_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  switch ($display['type']) {
+
+    // Givenchy Entityreference field.
+    case 'cache_common_reference_field_default':
+
+      // Calculate deltas.
+      $length = 0;
+      $deltas = isset($settings['deltas']) ? $settings['deltas'] : NULL;
+      if (is_numeric($deltas) && ($deltas >= 0)) {
+        $deltas = array($deltas);
+      }
+      elseif (is_numeric($deltas)) {
+        $length = -$deltas;
+        $deltas = array_keys($items);
+      }
+      elseif (empty($deltas)) {
+        $deltas = array_keys($items);
+      }
+
+      if ($length > 0) {
+        $deltas = array_slice($deltas, 0, $length);
+      }
+      $entitys_delta = array_keys($deltas);
+      $last_delta = array_pop($entitys_delta);
+
+      foreach ($deltas as $key) {
+        $html = cache_common_refence_field_render($entity, $field['settings']['target_type'], $items[$key], $settings['view_mode'], $key, $last_delta);
+        $element[$key] = array(
+          '#markup' => $html,
+        );
+      }
+
+      break;
+  }
+
+  return $element;
+}
+

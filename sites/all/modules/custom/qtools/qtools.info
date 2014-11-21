@@ -1,0 +1,9 @@
+name = QTools
+description = Hub for other QTools modules, provide basic apis.
+package = QTools
+
+core = 7.x
+php = 5.x
+version = "7.x-1.04"
+
+files[] = qtools.inc

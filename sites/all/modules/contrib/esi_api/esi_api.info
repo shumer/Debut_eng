@@ -1,0 +1,14 @@
+; $Id$
+name = ESI API
+description = Provides low level API for ESI handling.
+package = Performance
+version = VERSION
+core = 7.x
+configure = admin/config/development/esi
+
+; Information added by drupal.org packaging script on 2011-03-13
+version = "7.x-1.0-alpha2"
+core = "7.x"
+project = "esi_api"
+datestamp = "1300055767"
+

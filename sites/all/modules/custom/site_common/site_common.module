@@ -1,0 +1,240 @@
+<?php
+/**
+ * @file
+ * Module logic and API.
+ */
+
+define('SITE_COMMON_VAR_MOBILE_THRESHOLD', 925);
+
+// Load includes.
+module_load_include('inc', 'site_common');
+module_load_include('field.inc', 'site_common');
+
+/**
+ * Implements hooks_init().
+ */
+function site_common_init() {
+}
+
+/**
+ * Implements hook_menu().
+ */
+function site_common_menu() {
+  // Administration section.
+  $items['admin/config/development/site_common'] = array(
+    'title' => "Site common",
+    'description' => "Site common settings.",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('site_common_admin_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'site_common.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function site_common_form_backup_migrate_ui_manual_restore_form_alter(&$form, $form_state, $key) {
+
+  // Disable restore function by default.
+  $allowed = variable_get('site_common_allow_db_restore', FALSE);
+  if (!$allowed) {
+    drupal_set_message(t('Restore is not allowed for this domain %domain, please set %variable = TRUE
+    if you want to enable restoration', array(
+      '%domain' => $_SERVER['HTTP_HOST'],
+      '%variable' => 'site_common_allow_db_restore',
+    ), array('context' => 'COMMON: admin area')), 'warning');
+    $form['submit']['#disabled'] = TRUE;
+    $form['submit']['#value'] = t('Disabled for this host', array(), array('context' => 'COMMON: admin area'));
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function site_common_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'panels' || $module == 'ctools' || $module == 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function site_common_menu_alter(&$items) {
+
+  // This is never used.
+  if (!empty($items['admin/content/comment'])) {
+    unset($items['admin/content/comment']);
+  }
+  if (!empty($items['admin/content/comment/approval'])) {
+    unset($items['admin/content/comment/approval']);
+  }
+
+  // Hide `rss.xml`.
+  if (!empty($items['rss.xml'])) {
+    unset($items['rss.xml']);
+  }
+
+  // Hide `taxonomy/autocomplete` from anonymous.
+  if (!empty($items['taxonomy/autocomplete'])) {
+    $items['taxonomy/autocomplete']['access callback'] = '_site_common_autocomplete_access';
+  }
+
+  // Hide `commerce_product/autocomplete` from anonymous.
+  if (!empty($items['commerce_product/autocomplete'])) {
+    $items['commerce_product/autocomplete']['access callback'] = '_site_common_autocomplete_access';
+  }
+
+  // Close access to /node.
+  if (!empty($items['node'])) {
+    unset($items['node']);
+  }
+
+  // Close access to /taxonomy/term.
+  if (!empty($items['taxonomy/term/%taxonomy_term'])) {
+    unset($items['taxonomy/term/%taxonomy_term']);
+  }
+
+  // We want to be able controll view modes tabs for ease of use
+  // However entity_view_mode fails us badly few times, so no trust in it until it maintained.
+  foreach ($items as $path => &$item) {
+    if (!empty($item['access callback']) && is_string($item['access callback']) && $item['access callback'] == '_field_ui_view_mode_menu_access') {
+      $item['access callback'] = '_site_common_field_ui_view_mode_menu_access';
+    }
+  }
+}
+
+/**
+ * Access callback.
+ */
+function _site_common_field_ui_view_mode_menu_access($entity_type, $bundle, $view_mode, $access_callback) {
+
+  $args = func_get_args();
+
+  // Get otiginal Access responce
+  $access = call_user_func_array('_field_ui_view_mode_menu_access', $args);
+
+  // Close access based on bundle settings.
+  if ($access) {
+    $entity_info = entity_get_info($entity_type);
+    $view_mode = ($view_mode == 'default') ? 'full' : $view_mode;
+    $mode_info = $entity_info['view modes'][$view_mode];
+    if (isset($mode_info['site_common_bundles'])) {
+      $bundle = field_extract_bundle($entity_type, $bundle);
+      $access = in_array($bundle, $mode_info['site_common_bundles']);
+    }
+  }
+
+  // Allow other modules to modify access.
+  drupal_alter('site_common_field_ui_view_mode_menu_access', $access, $args);
+
+  return $access;
+}
+
+/**
+ * Access callback.
+ */
+function _site_common_autocomplete_access() {
+  global $user;
+  return !empty($user->uid);
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function site_common_theme_registry_alter(&$theme_registry) {
+  // Remove stored function.
+  variable_del('site_common_image_style_function');
+
+  // Swap function and save original.
+  if (_site_common_settings('lazy_load', 'enabled', FALSE)) {
+    if (!empty($theme_registry['image_style'])) {
+      variable_set('site_common_image_style_function', $theme_registry['image_style']['function']);
+      $theme_registry['image_style']['function'] = 'site_common_image_style';
+    }
+  }
+}
+
+/**
+ * Image style replacement.
+ * @see theme_image_style()
+ */
+function site_common_image_style($variables) {
+
+  // Get original image function.
+  $image_style_function = variable_get('site_common_image_style_function', 'theme_image_style');
+
+  // Get style.
+  $style_name = $variables['style_name'];
+
+  // Check if image should use lazy load.
+  if (_site_common_settings('lazy_load', 'enabled', FALSE)) {
+    $lazy_load_styles = _site_common_settings('lazy_load', 'image_styles', array());
+    $lazy_load = in_array($style_name, $lazy_load_styles);
+    if ($lazy_load) {
+      $placeholder_styles = _site_common_settings('lazy_load', 'placeholder_styles', array());
+      $placeholder = in_array($style_name, $placeholder_styles);
+    }
+    // Add lazyload JS.
+    site_common_js_add('lazy_load', FALSE, array(
+      'threshold' => _site_common_settings('lazy_load', 'threshold', SITE_COMMON_VAR_MOBILE_THRESHOLD),
+    ));
+  }
+  else {
+    $lazy_load = FALSE;
+  }
+  $no_size = !empty($variables['attributes']['no_size']) || $lazy_load;
+
+  // Add tracking class.
+  if ($lazy_load) {
+    $variables['attributes']['class'][] = 'img-lazy-load';
+  }
+  if ($no_size) {
+    // If no size supplied we should remove those.
+    $variables['width'] = NULL;
+    $variables['height'] = NULL;
+  }
+
+  // Pass to original image style.
+  $image = $image_style_function($variables);
+
+  // For just in case we remove image size.
+  if ($no_size) {
+    $image = preg_replace(array('/width="[^"]*"/', '/height="[^"]*"/'), array('', ''), $image);
+  }
+
+  // SRC processing for lazy load.
+  if ($lazy_load) {
+
+    // Load styles.
+    $image_styles = image_styles();
+
+    // Get default image src.
+    $default_image = '';
+    if (!empty($placeholder)) {
+      $dimensions = qtools_api__image_dimensions($variables['path'], $variables['style_name']);
+      if (empty($dimensions)) {
+        $dimensions = array('width' => 1, 'height' => 1);
+      }
+      $default_image = qtools_api__image_placeholder($dimensions['width'], $dimensions['height']);
+    }
+    $default_src = 'src="' . $default_image . '"';
+
+    // Search for mobile image style.
+    $mobile_src = '';
+    $mobile_style_name = $style_name . '__m';
+    if (!empty($image_styles[$mobile_style_name])) {
+      $mobile_src = image_style_url($mobile_style_name, $variables['path']);
+      $mobile_src = 'data-src-mobile="' . $mobile_src . '"';
+    }
+    $orig = $image;
+    $image = str_replace('src="', $default_src . ' ' . $mobile_src . ' data-src-default="', $image);
+    $image .= '<noscript>' . $orig . '</noscript>';
+  }
+
+  return $image;
+}
+

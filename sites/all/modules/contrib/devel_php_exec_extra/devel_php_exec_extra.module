@@ -1,0 +1,144 @@
+<?php
+
+function devel_php_exec_extra_menu() {
+  $items['devel_php_exec_extra/function_list/%'] = array(
+    'page callback' => 'devel_php_exec_extra_function_search',
+    'page arguments' => array(2),
+    'delivery callback' => 'drupal_json_output',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['devel_php_exec_extra/update_scripts'] = array(
+    'page callback' => 'devel_php_exec_extra_update_scripts',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function devel_php_exec_extra_function_search($name){
+  $safe_name = check_plain($name);
+  if(preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $safe_name) !== 1){
+    return NULL;
+  }
+
+  $functions = get_defined_functions();
+  $functions['internal'] = array_values(preg_grep("/^$safe_name/", $functions['internal']));
+  $functions['user'] = array_values(preg_grep("/^$safe_name/", $functions['user']));
+  return $functions;
+}
+
+function devel_php_exec_extra_update_scripts($form = NULL, &$form_state = NULL) {
+  global $user;
+
+  $scripts;
+  $current_script;
+  if($form_state != NULL){
+    $scripts = $user->data['devel_php_exec_extra_scripts'];
+    $current_script = $user->data['devel_php_exec_extra_current_script'];
+    $scripts[$current_script] = $form_state['values']['code'];
+  }
+  else{
+    $scripts = drupal_json_decode($_POST['scripts']);
+    $current_script = check_plain($_POST['currentScript']);
+  }
+  user_save($user, array('data' => array(
+    'devel_php_exec_extra_scripts' => $scripts,
+    'devel_php_exec_extra_current_script' => $current_script,
+  )));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function devel_php_exec_extra_form_devel_execute_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  $path = libraries_get_path('codemirror');
+  if ($path !== FALSE && file_exists($path . '/lib/codemirror.js')) {
+    $theme_name = empty($user->data['devel_php_exec_extra_theme']) ? 'default' : $user->data['devel_php_exec_extra_theme'];
+
+    $form['execute']['code']['#resizable'] = FALSE;
+    unset($form['execute']['code']['#title']);
+    $form['#validate'][] = 'devel_php_exec_extra_update_scripts';
+
+    drupal_add_js($path . '/lib/codemirror.js');
+    drupal_add_js($path . '/addon/edit/matchbrackets.js');
+    drupal_add_js($path . '/mode/xml/xml.js');
+    drupal_add_js($path . '/mode/javascript/javascript.js');
+    drupal_add_js($path . '/mode/css/css.js');
+    drupal_add_js($path . '/mode/php/php.js');
+    drupal_add_js($path . '/mode/clike/clike.js');
+    drupal_add_css($path . '/lib/codemirror.css');
+    drupal_add_css($path . '/addon/hint/simple-hint.css');
+
+    // We use the ui.tabs css but not the js.
+    drupal_add_css('misc/ui/jquery.ui.core.css');
+    drupal_add_css('misc/ui/jquery.ui.theme.css');
+    drupal_add_css('misc/ui/jquery.ui.tabs.css');
+
+    if (!is_null($theme_name)) {
+      drupal_add_css("$path/theme/$theme_name.css");
+    }
+
+    drupal_add_css(drupal_get_path('module', 'devel_php_exec_extra') . '/devel_php_exec_extra.css');
+
+    drupal_add_js(array('devel_php_exec_extra' => array(
+      'mode' => 'application/x-httpd-php-open',
+      'theme' => $theme_name,
+      'lineNumbers' => TRUE,
+      'matchBrackets' => TRUE,
+      'indentUnit' => 2,
+      'indentWithTabs' => FALSE,
+      'extraKeys' => array('Ctrl-Space' => 'autocomplete'),
+      'scripts' => $user->data['devel_php_exec_extra_scripts'],
+      'currentScript' => $user->data['devel_php_exec_extra_current_script'],
+    )), 'setting');
+
+    drupal_add_js(drupal_get_path('module', 'devel_php_exec_extra') . '/devel_php_exec_extra.js');
+  }
+  else{
+    drupal_set_message(t('Code mirror library not found.'), 'warning');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function devel_php_exec_extra_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#user_category'] == 'account') {
+    $user = $form['#user'];
+    $form['devel_php_exec_extra'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Devel PHP Exec Extra'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#weight' => 45,
+      '#access' => user_access('execute php code'),
+      'codemirror_theme' => array(
+        '#title' => t('CodeMirror Theme'),
+        '#type' => 'select',
+        '#options' => _devel_php_exec_extra_list_themes(),
+        '#default_value' => empty($user->data['devel_php_exec_extra_theme']) ? 'default' : $user->data['devel_php_exec_extra_theme'],
+      ),
+    );
+    $form['#submit'][] = '_devel_php_exec_extra_user_profile_submit';
+  }
+}
+
+function _devel_php_exec_extra_user_profile_submit(&$form, &$form_state) {
+  $account = user_load($form['#user']->uid, TRUE);
+  user_save($account, array('data' => array('devel_php_exec_extra_theme' => $form_state['values']['codemirror_theme'])));
+}
+
+function _devel_php_exec_extra_list_themes() {
+  $path = libraries_get_path('codemirror');
+  $files = scandir("$path/theme/");
+  $themes = array('default' => 'default');
+  foreach ($files as $f) {
+    $matches = array();
+    if (preg_match('/^([a-z\-]+)\.css$/', $f, $matches)) {
+      $themes[$matches[1]] = $matches[1];
+    }
+  }
+  return $themes;
+}

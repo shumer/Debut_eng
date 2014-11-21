@@ -1,0 +1,472 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * ESI Low-level API.
+ */
+
+/**
+ * Current ESI element should never be cached. Avoid using this when you can.
+ * This can be used if the module being wishes to compute itself its own cache
+ * identifier, or wishes to provide its own full cache handling.
+ */
+define('ESI_API_CACHE_NONE', 0);
+
+/**
+ * Current ESI element should be globally cached. This means that once rendered,
+ * it won't never be recomputed again.
+ */
+define('ESI_API_CACHE_GLOBAL', 1);
+
+/**
+ * Current ESI element should be cached using the default behavior. Default
+ * behavior is to compute a cache identifier that is computed using current
+ * element custom and global variables together.
+ */
+define('ESI_API_CACHE_DEFAULT', 2);
+
+/**
+ * Current ESI element should be cached using only the custom element variables
+ * diff as cache key.
+ */
+define('ESI_API_CACHE_CUSTOM', 3);
+
+/**
+ * Current ESI element should be cached using the custom element variables and
+ * theme being used.
+ */
+define('ESI_API_CACHE_CUSTOM_THEME', 4);
+
+/**
+ * Implements hook_menu().
+ */
+function esi_api_menu() {
+  $items = array();
+  $base = array(
+    'page callback' => 'esi_api_content_callback',
+    'page arguments' => array(1, 2),
+    'access callback' => TRUE,
+    'delivery callback' => 'esi_api_delivery_callback',
+    'theme callback' => 'esi_api_theme_from_variables',
+  );
+  // No variable item.
+  $items['esi/%/%'] = array('page arguments' => array(1, 2)) + $base;
+  // Variable item. Using variable hash inside the URL may help reverse proxy
+  // cache to bypass the Drupal bootstrap and element rendering.
+  $items['esi/%/%/%'] = array('page arguments' => array(1, 2, 3)) + $base;
+  // Administration section.
+  $items['admin/config/development/esi'] = array(
+    'title' => "ESI",
+    'description' => "ESI and AJAX downgrade fine tuning.",
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('esi_api_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'esi_api.admin.inc',
+  );
+  // Let other modules add their own tab from here.
+  $items['admin/config/development/esi/settings'] = array(
+    'title' => "Settings",
+    'weight' => -666,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_boot().
+ * 
+ * Fetch ESI given variables, and set them for later esi_api_variables() usage.
+ * 
+ * @see esi_api_variables().
+ */
+function esi_api_boot() {
+  global $esi_api_variables;
+  // First step for variable handling, sorry I couldn't figure out something
+  // better first.
+  if (isset($_POST['drupal_path'])) {
+    $esi_api_variables = $_POST + esi_api_variables_default();
+  }
+  else if (isset($_GET['drupal_path'])) {
+    $esi_api_variables = $_GET + esi_api_variables_default();
+    unset($esi_api_variables['q']);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function esi_api_theme() {
+  return array(
+    'esi_api_downgrade_loading' => array('file' => 'esi_api.downgrade.inc'),
+  );
+}
+
+/**
+ * Implements hook_flush_caches().
+ */
+function esi_api_flush_caches() {
+  return array('cache_esi');
+}
+
+/**
+ * Get the current HTTP Content-Type header.
+ * 
+ * Used at normal page build time, this will return the one set by the menu
+ * router or delivery callback itself.
+ */
+function esi_api_discover_http_content_type() {
+  // If this function has not been called by the custom element, attempt
+  // to find one using given variables.
+  if ($content_type = drupal_get_http_header('Content-Type')) {
+    return $content_type;
+  }
+  // If not found, return Drupal default.
+  return 'text/html; charset=utf-8';
+}
+
+/**
+ * Is ESI enabled site wide.
+ * 
+ * @return boolean
+ */
+function esi_api_enabled() {
+  static $enabled;
+  if (!isset($enabled)) {
+    $enabled = !drupal_match_path($_GET['q'], variable_get('esi_api_exclude', "admin\nadmin/*"));
+  }
+  return $enabled;
+}
+
+/**
+ * Tells if the current PHP execution run during an ESI callback context.
+ * 
+ * This function will be reliable only once the menu callback is being
+ * run, so if you are working in hook_init() or such, you are on your
+ * owb.
+ */
+function esi_api_is_callback_context($set = NULL) {
+  static $is;
+  if (isset($set)) {
+    $is = $set;
+  }
+  return isset($is) ? $is : FALSE; 
+}
+
+/**
+ * Is ESI enabled site wide.
+ * 
+ * @return boolean
+ */
+function esi_api_is_downgrade() {
+  static $is_downgrade;
+  if (!isset($is_downgrade)) {
+    if ($is_downgrade = !variable_get('esi_api_enabled', FALSE)) {
+      require_once dirname(__FILE__) . '/esi_api.downgrade.inc';
+    }
+    else {
+      require_once dirname(__FILE__) . '/esi_api.esi.inc';
+    }
+  }
+  return $is_downgrade;
+}
+
+/**
+ * Get default variables.
+ * 
+ * @return array.
+ */
+function esi_api_variables_default() {
+  global $theme_key;
+  return array(
+    'drupal_theme' => $theme_key,
+    'drupal_path' => $_GET['q'], 
+    'http_content_type' => esi_api_discover_http_content_type(),
+  );
+}
+
+/**
+ * Fetch or set ESI global variables, that will be merged into each custom
+ * element variables.
+ * 
+ * When used in normal page build context, this function will populate most
+ * variables by itself. When called in a ESI callback context, it will have
+ * been set at bootstrap time by fetching the given one.
+ * 
+ * @see esi_api_boot()
+ * 
+ * @param array $additional = NULL
+ *   (optional) If set, merge this array with already set variables.
+ * 
+ * @return array
+ *   Current variables.
+ */
+function esi_api_variables($additional = NULL) {
+  global $esi_api_variables;
+  global $theme_key;
+
+  // Variable won't be set when called at normal page build time. If we are
+  // in ESI callback context, this variables already have been set.
+  if (!isset($esi_api_variables)) {
+    // Build defaults.
+    $esi_api_variables = esi_api_variables_default();
+  }
+
+  if ($additional) {
+    $esi_api_variables += $additional;
+  }
+
+  return $esi_api_variables; 
+}
+
+/**
+ * Compute default variables.
+ * 
+ * Some variables are meant to reset Drupal core state at boot time, because
+ * Drupal has defaults too, some of our variables may be useless. This function
+ * will compute the full Drupal defaults and help us remove them before passing
+ * it through the final rendered page.
+ */
+function esi_api_variables_expunge_defaults(&$variables) {
+  foreach (esi_api_variables_default() as $key => $value) {
+    if (isset($variables[$key]) && $variables[$key] == $value) {
+      unset($variables[$key]);
+    }
+  }
+}
+
+/**
+ * Fetch theme to use from variables.
+ */
+function esi_api_theme_from_variables() {
+  $variables = esi_api_variables();
+  if (isset($variables['drupal_theme'])) {
+    return $variables['drupal_theme'];
+  }
+}
+
+/**
+ * Build ESI tag using the provided structure.
+ * 
+ * @param string $type
+ *   Business type of element that needs to be rendered.
+ * @param string $identifier
+ *   Cache identifier or pragmatic identifier of element that needs to be
+ *   rendered. If cache identifier exists in the 'cache_esi' table, the
+ *   element rendering will be skipped.
+ * @param array $custom_variables = array()
+ *   (optional) Additional variables to add to this tag. This will deactivate
+ *   efficient caching policy by using variables structure MD5 hash in order
+ *   to compute the final cache identifier.
+ *   If you pass here mutant variables, it will implie a lot of cache miss.
+ * @param int $cache_mode = ESI_API_CACHE_DEFAULT
+ *   (optional) See ESI_API_CACHE_* define() statements documentation. 
+ * 
+ * @return array
+ *   drupal_render() ready build array.
+ */
+function esi_api_build_tag($type, $identifier, $variables = array(), $cache_mode = ESI_API_CACHE_DEFAULT) {
+  $esi_api_variables = esi_api_variables();
+  $esi_api_variables_merged = FALSE;
+  $path = 'esi/' . $type . '/' . $identifier;
+  $cid = NULL;
+
+  // Compute cache identifier.
+  switch ($cache_mode) {
+    case ESI_API_CACHE_NONE:
+      $cid = NULL;
+      break;
+
+    case ESI_API_CACHE_GLOBAL:
+      $cid = 'global';
+      break;
+
+    case ESI_API_CACHE_CUSTOM:
+      ksort($variables);
+      $cid = md5(serialize($variables));
+      break;
+
+    case ESI_API_CACHE_CUSTOM_THEME:
+      if (isset($esi_api_variables['drupal_theme'])) {
+        $variables['drupal_theme'] = $esi_api_variables['drupal_theme'];
+      }
+      ksort($variables);
+      $cid = md5(serialize($variables));
+      break;
+
+    case ESI_API_CACHE_DEFAULT:
+    default:
+      $esi_api_variables_merged = TRUE;
+      $esi_api_variables += $variables;
+      ksort($esi_api_variables);
+      $cid = md5(serialize($esi_api_variables));
+      break;
+  }
+
+  // Compute real variables, for complete page build.
+  if (!$esi_api_variables_merged) {
+    $esi_api_variables += $variables;
+    // This is a small trick, we are going to remove all defaults from
+    // variables to maximize the cache hits and provide smaller URL's.
+    ksort($esi_api_variables);
+  }
+
+  // Finally compute real path, once cache identifier has been determined.
+  if (isset($cid)) {
+    $path .= '/' . $cid;
+  }
+
+  if (!esi_api_is_downgrade()) {
+    // FIXME: Maybe needs a better building?
+    $build = array();
+    esi_api_variables_expunge_defaults($esi_api_variables);
+    $build['#prefix'] = "<!--esi\n";
+    $build['#markup'] = '<esi:include src="' . url($path, array('query' => $esi_api_variables)) . '" maxwait="5000"/>';
+    $build['#suffix'] = "\n-->";
+  }
+  else {
+    $html_id = $type . '-' . $identifier;
+    // Build AJAX placeholder for AJAX query.
+    $build = array(
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => array(
+        'id' => $html_id,
+        'rel' => url($path),
+        'class' => array('esi-downgrade', 'esi-' . $type),
+      ),
+      // Replace with some nice "loading" stuff.
+      '#value' => theme('esi_api_downgrade_loading'),
+    );
+    // Also merge specific variables.
+    esi_api_variables_expunge_defaults($esi_api_variables);
+    drupal_add_js(array('esi' => array($html_id => $esi_api_variables)), 'setting');
+  }
+
+  return $build;
+}
+
+/**
+ * Fetch the asked content.
+ */
+function esi_api_content_callback($type, $identifier, $variables_hash = NULL) {
+  $module = NULL;
+  
+  $cid = isset($variables_hash) ? ($identifier . ':' . $variables_hash) : $identifier;
+
+  esi_api_is_callback_context(TRUE);
+
+  // Check for cached content.
+  if ($cached = cache_get($cid, 'cache_esi')) {
+    return $cached->data;
+  }
+
+  // Find the implementor.
+  foreach (module_implements('esi_api') as $_module) {
+    $types = module_invoke($_module, 'esi_api');
+    // First one is the winner.
+    if (isset($types[$type])) {
+      $module = $_module;
+      break;
+    }
+  }
+
+  if (!$module) {
+    // Module not found.
+    // This will trigger a 500 error code.
+    return NULL;
+  }
+
+  // Initialize the environment if needed.
+  // FIXME: This should go to another lighter function for code readability.
+  $esi_api_variables = esi_api_variables(); 
+  // Force path to initialiaze again. 
+  $_GET['q'] = $esi_api_variables['drupal_path'];
+  drupal_path_initialize();
+
+  $func = $module . '_esi_api_' . $type . '_render';
+  if (function_exists($func)) {
+    // Aggregate real variables from the ESI request.
+    $result = $func($identifier, $esi_api_variables);
+    cache_set($cid, $result, 'cache_esi');
+    return $result;
+  }
+
+  // Specific callback does not exists.
+  // This will trigger a 500 error code.
+  return NULL;
+}
+
+/**
+ * Implements hook_page_build().
+ * 
+ * Add our AJAX handling JS in case of graceful downgrade.
+ */
+function esi_api_page_build(&$build) {
+  if (esi_api_is_downgrade()) {
+    _esi_api_downgrade_page_build_alter($build);
+  }
+}
+
+/**
+ * Drop-in replacement for drupal_deliver_html_page(), backend based that will
+ * allow modules to choose the formatter they like. Beside, it will also avoid
+ * full page build and always return a unique piece of content.
+ */
+function esi_api_delivery_callback($page_callback_result) {
+  $variables = esi_api_variables();
+
+  if (is_null($page_callback_result)) {
+    // Erroneous case where the business callback returned nothing. This
+    // always implies a real bug from the underlaying module.
+    drupal_add_http_header('Content-Type', 'text/html; charset=utf-8');
+    drupal_add_http_header('Status', '500 Internal Server Error');
+    print '500 Internal Server Error';
+  }
+  else if (is_numeric($page_callback_result)) {
+    // Menu system specific return, errors.
+    drupal_add_http_header('Content-Type', 'text/html; charset=utf-8');
+
+    switch ($page_callback_result) {
+      case MENU_NOT_FOUND:
+        drupal_add_http_header('Status', '404 Not Found');
+        watchdog('access denied', check_plain($_GET['q']), NULL, WATCHDOG_WARNING);
+        print '404 Not Found';
+        break;
+
+      case MENU_ACCESS_DENIED:
+        drupal_add_http_header('Status', '403 Forbidden');
+        watchdog('access denied', check_plain($_GET['q']), NULL, WATCHDOG_WARNING);
+        print '403 Forbidden';
+        break;
+
+      case MENU_SITE_OFFLINE:
+        drupal_add_http_header('Status', '503 Service unavailable');
+        drupal_set_title(t('Site under maintenance'));
+        print '503 Service unavailable';
+        break;
+
+      default:
+        drupal_add_http_header('Content-Type', 'text/html; charset=utf-8');
+        drupal_add_http_header('Status', '500 Internal Server Error');
+        print '500 Internal Server Error';
+        break;
+    }
+  }
+  else {
+    // No error, we will build a correct error response.
+    drupal_add_http_header('Content-Type', $variables['http_content_type']);
+
+    if (is_array($page_callback_result)) {
+      // Build array, drupal_render() ready.
+      print drupal_render($page_callback_result);
+    }
+    else {
+      // Drupal old-school way, the menu callback returned a string instead
+      // of a full drupal_render() ready array.
+      
+      print (string) $page_callback_result;
+    }
+  }
+  drupal_page_footer();
+}
