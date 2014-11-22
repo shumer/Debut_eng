@@ -353,10 +353,15 @@ function debut_process_html(&$variables) {
     $variables['scripts'] = drupal_get_js('header', $js_list);
   }
 
+  // Unset unrequired css.
   $css = drupal_add_css();
   if (!empty($css)) {
     foreach($css as $key => $value ){
       preg_match('/misc\/ui/i', $key, $matches);
+      if (!empty($matches)){
+        unset($css[$key]);
+      }
+      preg_match('/modules\/system/i', $key, $matches);
       if (!empty($matches)){
         unset($css[$key]);
       }

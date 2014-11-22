@@ -115,8 +115,8 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
     );
   }
 
+  // Prepare language links for header.
   if (!empty($_conf['language_links'])) {
-    // Prepare language links for header.
     $language_links[] = l('RU', '', array('attributes' => array('class' => 'active')));
     $values = variable_get('debut_common_conf', array());
     $languages = $values['common']['site_language_links'];
@@ -138,7 +138,7 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
   // Prepare search form.
   $_html['search_form'] = '';
   if (!empty($_conf['search_form'])) {
-    $form = drupal_get_form('_debut_common_header_search_block_form');
+    $form = drupal_get_form('debut_common_header_search_form');
     $_html['search_form'] = render($form);
   }
 
@@ -159,29 +159,4 @@ function debut_common_header_content_type_theme(&$theme, $plugin) {
     'template'  => 'debut-common-header',
     'variables' => array('params' => array()),
   );
-}
-
-/**
- * Search form builder.
- */
-function _debut_common_header_search_block_form(&$form, &$form_state) {
-  $form['keys'] = array(
-    '#type' => 'textfield',
-    '#title' => '',
-  );
-
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Ok',
-  );
-
-  return $form;
-}
-
-/**
- * Search form submit.
- */
-function _debut_common_header_search_block_form_submit(&$form, &$form_state) {
-  unset($_REQUEST['destination']);
-  $form_state['redirect'] = debut_common_search_url($form_state['values']['keys']);
 }

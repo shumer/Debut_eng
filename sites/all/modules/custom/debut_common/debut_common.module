@@ -9,6 +9,7 @@ define('DEBUT_COMMON_PATH_SEARCH', drupal_get_normal_path(variable_get('DEBUT_CO
 
 // Load includes.
 module_load_include('inc', 'debut_common');
+module_load_include('form.inc', 'debut_common');
 
 /**
  * Implements hook_ctools_plugin_directory().
