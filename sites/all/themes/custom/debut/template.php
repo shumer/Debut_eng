@@ -376,7 +376,9 @@ function debut_process_html(&$variables) {
 
   $variables['styles_custom'] = drupal_get_css($css);
   $variables['styles_custom'] .= '<link type="text/css" rel="stylesheet" id="stylesheet" href="/' . $theme_path . '/html/css/screen.css?' . $query_string . '" media="all" />' . PHP_EOL;
-  $variables['styles_custom'] .= '<link type="text/css" rel="stylesheet" href="/' . $theme_path . '/debut-custom.css?' . $query_string . '" media="all" />' . PHP_EOL;
+  $variables['styles_custom'] .= '<link type="text/css" rel="stylesheet" href="/' . $theme_path . '/css/debut-custom.css?' . $query_string . '" media="all" />' . PHP_EOL;
+
+  $variables['messages'] = theme('status_messages');
 }
 
 /**
