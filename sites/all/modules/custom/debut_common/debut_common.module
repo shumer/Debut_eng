@@ -9,7 +9,7 @@ define('DEBUT_COMMON_PERM_CM', 'Act as Content Manager');
 define('DEBUT_COMMON_PERM_ADMIN_LINKS', 'DEBUT: see admin links');
 
 // Define search url.
-define('DEBUT_COMMON_PATH_SEARCH', drupal_get_normal_path(variable_get('DEBUT_COMMON_PATH_SEARCH', 'search')));
+define('DEBUT_COMMON_PATH_SEARCH', variable_get('DEBUT_COMMON_PATH_SEARCH', 'search'));
 
 // Load includes.
 module_load_include('inc', 'debut_common');

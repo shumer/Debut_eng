@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Node view feature.
+ */
+
+include_once 'debut_feature_pages_node_view.features.inc';

@@ -6,7 +6,7 @@
 function debut_debut_default_site_template_panels_layouts() {
   return array(
     'debut_default_site_template' => array(
-      'title'       => t('Debut: Default site layoute', array(), array('context' => 'COMMON: admin area')),
+      'title'       => t('Debut: Default site layout', array(), array('context' => 'COMMON: admin area')),
       'icon'        => 'debut_default_site_template.png',
       'category'    => t('Debut', array(), array('context' => 'COMMON: admin area')),
       'theme'       => 'debut_default_site_template',
