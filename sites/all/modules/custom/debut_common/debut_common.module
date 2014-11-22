@@ -3,6 +3,10 @@
  * @file
  * Module logic and API.
  */
+define('DEBUT_COMMON_MENU_ADMIN', 'admin/config/development/debut_config');
+define('DEBUT_COMMON_PERM_ADMIN', 'Administer Debut');
+define('DEBUT_COMMON_PERM_CM', 'Act as Content Manager');
+define('DEBUT_COMMON_PERM_ADMIN_LINKS', 'DEBUT: see admin links');
 
 // Define search url.
 define('DEBUT_COMMON_PATH_SEARCH', drupal_get_normal_path(variable_get('DEBUT_COMMON_PATH_SEARCH', 'search')));
@@ -18,4 +22,45 @@ function debut_common_ctools_plugin_directory($module, $plugin) {
   if ($module == 'panels' || $module == 'ctools' || $module == 'entityreference') {
     return 'plugins/' . $plugin;
   }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function debut_common_menu() {
+  $menu[DEBUT_COMMON_MENU_ADMIN] = array(
+    'title' => 'Debut',
+    'description' => 'Debut Configuration',
+    'access arguments' => array(DEBUT_COMMON_PERM_ADMIN),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('debut_common_form_conf'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'debut_common.admin.inc'
+  );
+
+  return $menu;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function debut_common_permission() {
+  $permissions = array();
+
+  $permissions[DEBUT_COMMON_PERM_ADMIN] = array(
+    'title' => t('Administer Debut'),
+    'description' => t('Perform administration tasks for Debut.'),
+  );
+
+  $permissions[DEBUT_COMMON_PERM_CM] = array(
+    'title' => t('Administer Debut content'),
+    'description' => t('Perform administration of content for Debut.'),
+  );
+
+  $permissions[DEBUT_COMMON_PERM_ADMIN_LINKS] = array(
+    'title' => t('Access to admin links'),
+    'description' => t('Enable to see admin links'),
+  );
+
+  return $permissions;
 }
