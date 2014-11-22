@@ -9,7 +9,39 @@ define('DEBUT_COMMON_PERM_CM', 'Act as Content Manager');
 define('DEBUT_COMMON_PERM_ADMIN_LINKS', 'DEBUT: see admin links');
 
 // Define search url.
-define('DEBUT_COMMON_PATH_SEARCH', drupal_get_normal_path(variable_get('DEBUT_COMMON_PATH_SEARCH', 'search')));
+define('DEBUT_COMMON_PATH_SEARCH', variable_get('DEBUT_COMMON_PATH_SEARCH', 'search'));
+
+// Define CT names.
+define('DEBUT_COMMON_TYPE_NEWS', 'news');
+define('DEBUT_COMMON_TYPE_PRESS', 'press_about_debut');
+define('DEBUT_COMMON_TYPE_DOCUMENTS', 'documents');
+define('DEBUT_COMMON_TYPE_PERSONS', 'debut_prize_person');
+define('DEBUT_COMMON_TYPE_JURY', 'debut_jury');
+define('DEBUT_COMMON_TYPE_BOOKS', 'books');
+define('DEBUT_COMMON_TYPE_PHOTOS', 'photo_listing');
+define('DEBUT_COMMON_TYPE_VIDEO', 'video');
+define('DEBUT_COMMON_TYPE_IBOOKS', 'ibooks');
+define('DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION', 'master_class_section');
+define('DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT', 'master_class_text');
+define('DEBUT_COMMON_TYPE_INTERVIEW', 'interview');
+define('DEBUT_COMMON_TYPE_TRAVELS', 'travel');
+define('DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION', 'travel_description');
+
+// Define site pages.
+define('DEBUT_COMMON_PAGE_PRIZE_PERSONS', 'prize_persons');
+define('DEBUT_COMMON_PAGE_ALPHABET_PERSONS', 'alphabet_persons');
+define('DEBUT_COMMON_PAGE_PRIZE_JURY', 'prize_jury');
+define('DEBUT_COMMON_PAGE_ALPHABET_JURY', 'alphabet_jury');
+define('DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT', 'press_list');
+define('DEBUT_COMMON_PAGE_NEWS_LIST', 'news_list');
+define('DEBUT_COMMON_PAGE_DOCUMENTS_LIST', 'documents_list');
+define('DEBUT_COMMON_PAGE_BOOKS_LIST', 'books');
+define('DEBUT_COMMON_PAGE_IBOOKS_LIST', 'ikniga');
+define('DEBUT_COMMON_PAGE_PHOTO_LIST', 'photo_listing');
+define('DEBUT_COMMON_PAGE_TRAVELS_LIST', 'travels');
+define('DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST', 'travels');
+define('DEBUT_COMMON_PAGE_VIDEO', 'video_list');
+define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
 
 // Load includes.
 module_load_include('inc', 'debut_common');

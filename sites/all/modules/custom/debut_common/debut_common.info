@@ -6,3 +6,5 @@ version = "7.x-0.1"
 core = "7.x"
 
 dependencies[] = ctools
+dependencies[] = site_common
+dependencies[] = cache_common

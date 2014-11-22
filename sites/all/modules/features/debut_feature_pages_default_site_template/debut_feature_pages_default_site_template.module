@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Default site template feature.
+ */
+
+include_once 'debut_feature_pages_default_site_template.features.inc';

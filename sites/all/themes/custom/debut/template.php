@@ -435,3 +435,20 @@ function debut_preprocess_taxonomy_term(&$variables) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess_exact)));
   }
 }
+
+/**
+ * Preprocess debut_common_breadcrumb.
+ */
+function debut_preprocess_debut_common_breadcrumb(&$variables) {
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme breadcrumbs links.
+  foreach ($_data['breadcrumbs'] as &$item) {
+    if (is_array($item)) {
+      $item = l($item['title'], $item['path']);
+    }
+  }
+
+  $_html['breadcrumbs'] = implode('<span class="divider">/</span>', $_data['breadcrumbs']);
+}
