@@ -7,4 +7,5 @@ engine = phptemplate
 ; Panels layouts.
 plugins[panels][layouts] = layouts
 
-
+scripts[] = js/site-ajax.js
+scripts[] = js/debut-custom.js
