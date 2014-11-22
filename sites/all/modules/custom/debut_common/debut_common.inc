@@ -62,9 +62,10 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for news node.
     case DEBUT_COMMON_TYPE_NEWS:
       $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
-      $date = strtotime($node->field_publication_date[0]['value']);
+      $publication_date = site_common_field_get_item('node', $node, 'field_news_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => 'field_publication_date_value[value][year]=' . $year));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_news_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
 

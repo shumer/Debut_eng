@@ -11,11 +11,12 @@
 $plugin = array(
   'title' => t('Debut Common: Breadcrumb', array(), array('context' => 'Debut: admin area')),
   'description' => t('Debut Common: Breadcrumb', array(), array('context' => 'Debut: admin area')),
-  'content_types' => 'debut_blocks_breadcrumb',
+  'content_types' => 'debut_common_breadcrumb',
   'single' => TRUE,
-  'render callback' => 'debut_blocks_breadcrumb_content_type_render',
-  'edit form' => 'debut_blocks_breadcrumb_content_type_edit_form',
-  'admin title' => 'debut_blocks_breadcrumb_content_type_admin_title',
+  'render callback' => 'debut_common_breadcrumb_content_type_render',
+  'edit form' => 'debut_common_breadcrumb_content_type_edit_form',
+  'admin title' => 'debut_common_breadcrumb_content_type_admin_title',
+  'hook theme' => 'debut_common_breadcrumb_content_type_theme',
   'category' => t('Debut', array(), array('context' => 'Debut: admin area')),
   'icon' => NULL,
   'no title override' => TRUE,
@@ -25,12 +26,12 @@ $plugin = array(
 /**
  * Render callback.
  */
-function debut_blocks_breadcrumb_content_type_render($subtype, $conf, $panel_args, $context) {
-  global $user;
-
+function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_args, $context) {
   $block = new stdClass();
   $block->title = NULL;
   $data = array();
+  $_html = array();
+  $_data = array();
   $context_node = $context[0];
 
   // Check for custom BC.
@@ -68,9 +69,12 @@ function debut_blocks_breadcrumb_content_type_render($subtype, $conf, $panel_arg
     $breadcrumb = array_merge($breadcrumb, debut_common_create_page_breadcrumbs());
   }
 
-  $data['breadcrumb'] = $breadcrumb;
-  $block->content = theme('debut_blocks_breadcrumb', $data, $conf);
+  $_data['breadcrumbs'] = $breadcrumb;
 
+  $data['_data'] = $_data;
+  $data['_html'] = $_html;
+
+  $block->content = theme('debut_common_breadcrumb', $data);
   return $block;
 }
 
@@ -79,7 +83,7 @@ function debut_blocks_breadcrumb_content_type_render($subtype, $conf, $panel_arg
  *
  * This is required to get access to the context.
  */
-function debut_blocks_breadcrumb_content_type_edit_form($form, &$form_state) {
+function debut_common_breadcrumb_content_type_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['conf'] = array(
     '#tree' => TRUE,
@@ -108,13 +112,25 @@ function debut_blocks_breadcrumb_content_type_edit_form($form, &$form_state) {
  *
  * This is required to get access to the context.
  */
-function debut_blocks_breadcrumb_content_type_edit_form_submit(&$form, &$form_state) {
+function debut_common_breadcrumb_content_type_edit_form_submit(&$form, &$form_state) {
   $form_state['conf'] = $form_state['values']['conf'];
 }
 
 /**
  * Admin title callback.
  */
-function debut_blocks_breadcrumb_content_type_admin_title($subtype, $conf, $context) {
+function debut_common_breadcrumb_content_type_admin_title($subtype, $conf, $context) {
   return t('Debut Common: Breadcrumb', array(), array('context' => 'Debut: admin area'));
+}
+
+
+/**
+ * Implements hook_content_type_theme().
+ */
+function debut_common_breadcrumb_content_type_theme(&$theme, $plugin) {
+  $theme['debut_common_breadcrumb'] = array(
+    'path'      => $plugin['path'],
+    'template'  => 'debut-common-breadcrumb',
+    'variables' => array('params' => array()),
+  );
 }
