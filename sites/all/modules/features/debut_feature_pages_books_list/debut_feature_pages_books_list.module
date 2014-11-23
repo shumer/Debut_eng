@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Books list feature.
+ */
+
+include_once 'debut_feature_pages_books_list.features.inc';

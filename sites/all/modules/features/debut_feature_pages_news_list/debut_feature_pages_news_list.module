@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - News list feature.
+ */
+
+include_once 'debut_feature_pages_news_list.features.inc';
