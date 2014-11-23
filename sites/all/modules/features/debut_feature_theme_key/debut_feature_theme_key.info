@@ -1,0 +1,13 @@
+name = Debut Feature: Theme key
+description = Debut Feature: Theme key
+core = 7.x
+package = Debut
+version = 7.x-0.01
+project = debut_feature_theme_key
+dependencies[] = ctools
+dependencies[] = strongarm
+dependencies[] = themekey
+dependencies[] = themekey_ui
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = themekey_paths
