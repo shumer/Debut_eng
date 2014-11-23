@@ -122,10 +122,18 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
         default:
           $class = '';
       }
-      $menu_links[] = array(
-        'data' => l(t($item['link']['title']), $path) . $children,
-        'class' => ($page == $path ) ? 'active' : $class,
-      );
+      if (!empty($item['below'])) {
+        $menu_links[] = array(
+          'data' => l(t($item['link']['title']), '', array('fragment' => '#', 'external' => TRUE)) . $children,
+          'class' => ($page == $path ) ? 'active' : $class,
+        );
+      }
+      else {
+        $menu_links[] = array(
+          'data' => l(t($item['link']['title']), $path),
+          'class' => ($page == $path ) ? 'active' : $class,
+        );
+      }
     }
   }
   else {
