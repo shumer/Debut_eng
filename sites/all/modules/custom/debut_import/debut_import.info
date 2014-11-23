@@ -1,0 +1,10 @@
+name = Debut importer
+description = "Debut importer"
+core = 7.x
+package = Debut
+version = "7.x-0.1"
+
+; Module dependencies
+dependencies[] = feeds
+dependencies[] = feeds_tamper
+dependencies[] = feeds_sql

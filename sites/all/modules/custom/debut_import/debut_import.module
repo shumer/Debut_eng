@@ -1,0 +1,48 @@
+<?php
+/**
+ * @file
+ * Debut import module.
+ */
+
+// Define variables for importer.
+define('DEBUT_IMPORT_NEWS_IMPORTER', 'debut_news_importer');
+
+// Define default import lng.
+define('DEBUT_IMPORT_DEFAULT_LNG', variable_get('DEBUT_IMPORT_DEFAULT_LNG', 'ru'));
+
+module_load_include('inc', 'debut_import');
+
+/**
+ * Implements hook_feeds_after_parse().
+ */
+function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
+
+  // Check if we on Debut imports.
+  if (!debut_import_import_id_check($source)) {
+    return;
+  }
+
+  switch ($source->importer->id) {
+    default:
+      break;
+  }
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
+
+  // Check if we on Debut imports.
+  if (!debut_import_import_id_check($source)) {
+    return;
+  }
+
+  switch ($source->importer->id) {
+    case DEBUT_IMPORT_NEWS_IMPORTER:
+      debut_import_news_presave($source, $entity, $item);
+      break;
+    default:
+      break;
+  }
+}
