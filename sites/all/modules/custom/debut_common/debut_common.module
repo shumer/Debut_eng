@@ -96,3 +96,12 @@ function debut_common_permission() {
 
   return $permissions;
 }
+
+/**
+ * Implements hook_init().
+ */
+function debut_common_init() {
+
+  // Force front end to have ajax libs.
+  drupal_add_library('system', 'drupal.ajax');
+}
