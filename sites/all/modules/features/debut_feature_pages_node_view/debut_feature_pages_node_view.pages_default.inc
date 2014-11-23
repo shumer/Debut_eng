@@ -87,6 +87,30 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-5fdcdaa3-b40f-4bca-aba0-b1e640bb4328'] = $pane;
     $display->panels['content_center'][0] = 'new-5fdcdaa3-b40f-4bca-aba0-b1e640bb4328';
     $pane = new stdClass();
+    $pane->pid = 'new-e44cb7a2-c070-4e9f-a483-da87736a3daa';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_menu';
+    $pane->subtype = 'debut_common_menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'browser_menu' => 'main-menu',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e44cb7a2-c070-4e9f-a483-da87736a3daa';
+    $display->content['new-e44cb7a2-c070-4e9f-a483-da87736a3daa'] = $pane;
+    $display->panels['content_left'][0] = 'new-e44cb7a2-c070-4e9f-a483-da87736a3daa';
+    $pane = new stdClass();
     $pane->pid = 'new-daeacc5b-e258-4e77-9454-a54121a77fdd';
     $pane->panel = 'top';
     $pane->type = 'debut-common-breadcrumb';
