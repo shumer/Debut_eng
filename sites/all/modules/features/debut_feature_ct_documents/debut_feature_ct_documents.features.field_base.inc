@@ -1,22 +1,22 @@
 <?php
 /**
  * @file
- * debut_feature_ct_news.features.field_base.inc
+ * debut_feature_ct_documents.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function debut_feature_ct_news_field_default_field_bases() {
+function debut_feature_ct_documents_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_news_annonce'
-  $field_bases['field_news_annonce'] = array(
+  // Exported field_base: 'field_document_bidy'
+  $field_bases['field_document_bidy'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_news_annonce',
+    'field_name' => 'field_document_bidy',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -37,40 +37,13 @@ function debut_feature_ct_news_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_news_full_text'
-  $field_bases['field_news_full_text'] = array(
+  // Exported field_base: 'field_publication_date'
+  $field_bases['field_publication_date'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_news_full_text',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_news_publication_date'
-  $field_bases['field_news_publication_date'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_news_publication_date',
+    'field_name' => 'field_publication_date',
     'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
