@@ -67,7 +67,12 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
           );
         }
       }
-      $children = theme('item_list', $children, NULL, 'ul', array('class' => 'sub_menu'));
+      $children = theme('item_list', array(
+        'items' => $children,
+        'title' => NULL,
+        'type' => 'ul',
+        'attributes' => array('class' => 'sub_menu')
+      ));
       switch ($type) {
         case DEBUT_COMMON_TYPE_DOCUMENTS:
           if ($path == DEBUT_COMMON_PAGE_DOCUMENTS_LIST) {
