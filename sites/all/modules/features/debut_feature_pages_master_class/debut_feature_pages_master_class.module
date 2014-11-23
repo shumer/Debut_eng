@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Master class feature.
+ */
+
+include_once 'debut_feature_pages_master_class.features.inc';
