@@ -23,9 +23,10 @@ function debut_feature_ct_documents_field_group_info() {
     'label' => 'General',
     'weight' => '0',
     'children' => array(
-      0 => 'field_publication_date',
-      1 => 'field_document_bidy',
-      2 => 'title',
+      0 => 'field_document_bidy',
+      1 => 'field_publication_date',
+      2 => 'field_document_body',
+      3 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
