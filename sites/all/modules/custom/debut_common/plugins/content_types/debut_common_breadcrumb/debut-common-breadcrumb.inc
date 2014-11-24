@@ -123,7 +123,6 @@ function debut_common_breadcrumb_content_type_admin_title($subtype, $conf, $cont
   return t('Debut Common: Breadcrumb', array(), array('context' => 'Debut: admin area'));
 }
 
-
 /**
  * Implements hook_content_type_theme().
  */

@@ -1,0 +1,11 @@
+name = Debut Feature: Date formats
+description = Debut Feature: Date formats
+core = 7.x
+package = Debut
+version = 7.x-0.01
+project = debut_feature_date_formats
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = date_format_debut_date_short

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Date formats feature.
+ */
+
+include_once 'debut_feature_date_formats.features.inc';
