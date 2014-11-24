@@ -64,7 +64,11 @@ function debut_feature_ct_documents_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__documents';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'listing' => array(
+        'custom_settings' => TRUE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(

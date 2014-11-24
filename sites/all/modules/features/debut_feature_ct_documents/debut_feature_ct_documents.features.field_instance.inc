@@ -24,6 +24,13 @@ function debut_feature_ct_documents_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 3,
       ),
+      'listing' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -57,6 +64,19 @@ function debut_feature_ct_documents_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
+      'listing' => array(
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
