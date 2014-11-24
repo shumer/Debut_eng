@@ -10,8 +10,8 @@
 function debut_feature_ct_documents_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-documents-field_document_bidy'
-  $field_instances['node-documents-field_document_bidy'] = array(
+  // Exported field_instance: 'node-documents-field_document_body'
+  $field_instances['node-documents-field_document_body'] = array(
     'bundle' => 'documents',
     'default_value' => NULL,
     'deleted' => 0,
@@ -22,7 +22,7 @@ function debut_feature_ct_documents_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -32,8 +32,8 @@ function debut_feature_ct_documents_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_document_bidy',
-    'label' => 'Document',
+    'field_name' => 'field_document_body',
+    'label' => 'Document text',
     'required' => 0,
     'settings' => array(
       'text_processing' => 1,
@@ -46,7 +46,7 @@ function debut_feature_ct_documents_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -99,13 +99,13 @@ function debut_feature_ct_documents_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Document');
+  t('Document text');
   t('Publication date');
 
   return $field_instances;

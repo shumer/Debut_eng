@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Importer - Documents Importer feature.
+ */
+
+include_once 'debut_feature_importer_documents_importer.features.inc';
