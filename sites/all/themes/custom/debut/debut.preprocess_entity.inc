@@ -18,7 +18,7 @@ function debut_preprocess_node__news__full(&$variables) {
   $_html['text']  = debut_render($content, 'field_news_full_text');
 
   // Publication date.
-  $publication_date = site_common_field_get_item('node', $node, 'field_news_publication_date', 0, 'value');
+  $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
   $publication_date = strtotime($publication_date);
   $_html['news_date'] = format_date($publication_date, 'custom', 'd-m-Y');
 }
