@@ -50,4 +50,6 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
     default:
       break;
   }
+
+  $entity->language = DEBUT_IMPORT_DEFAULT_LNG;
 }
