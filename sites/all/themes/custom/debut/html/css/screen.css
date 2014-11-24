@@ -1752,7 +1752,7 @@ section article.prem_list ol a {
 }
 /*------------end pager styles---------------*/
 /*------------news list styles---------------*/
-.news_list .view-news-list {
+.content .block-news-listing {
   float:left;
   width: 525px;
   font-family: Verdana,Arial,Helvetica,sans-serif;
