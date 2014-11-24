@@ -26,7 +26,8 @@ function debut_feature_ct_news_field_group_info() {
       0 => 'field_news_annonce',
       1 => 'field_news_full_text',
       2 => 'field_news_publication_date',
-      3 => 'title',
+      3 => 'field_publication_date',
+      4 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

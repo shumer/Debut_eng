@@ -26,7 +26,7 @@ function debut_import_import_id_check($source) {
 function debut_import_news_presave($source, &$entity, $item) {
 
   // Set publication date.
-  $entity->field_news_publication_date[LANGUAGE_NONE][0]['value'] = $item['node_data_field_publication_date_field_publication_date_valu'];
+  $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = $item['node_data_field_publication_date_field_publication_date_valu'];
 }
 
 /**

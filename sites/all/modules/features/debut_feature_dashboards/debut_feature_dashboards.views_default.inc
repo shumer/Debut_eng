@@ -279,17 +279,11 @@ function debut_feature_dashboards_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  /* Поле: Содержимое: Опубликовано */
-  $handler->display->display_options['fields']['status']['id'] = 'status';
-  $handler->display->display_options['fields']['status']['table'] = 'node';
-  $handler->display->display_options['fields']['status']['field'] = 'status';
-  $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Поле: Содержимое: News publication date */
-  $handler->display->display_options['fields']['field_news_publication_date']['id'] = 'field_news_publication_date';
-  $handler->display->display_options['fields']['field_news_publication_date']['table'] = 'field_data_field_news_publication_date';
-  $handler->display->display_options['fields']['field_news_publication_date']['field'] = 'field_news_publication_date';
-  $handler->display->display_options['fields']['field_news_publication_date']['label'] = 'Дата публикации';
-  $handler->display->display_options['fields']['field_news_publication_date']['settings'] = array(
+  /* Поле: Содержимое: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
     'format_type' => 'short',
     'fromto' => 'both',
     'multiple_number' => '',
@@ -348,8 +342,7 @@ function debut_feature_dashboards_views_default_views() {
     t('последняя »'),
     t('Nid'),
     t('Заголовок'),
-    t('Опубликовано'),
-    t('Дата публикации'),
+    t('Publication date'),
     t('Дата обновления'),
     t('Ссылка на редактирование'),
     t('Страница'),
