@@ -90,8 +90,8 @@ function debut_feature_ct_news_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_news_publication_date'
-  $field_instances['node-news-field_news_publication_date'] = array(
+  // Exported field_instance: 'node-news-field_publication_date'
+  $field_instances['node-news-field_publication_date'] = array(
     'bundle' => 'news',
     'deleted' => 0,
     'description' => '',
@@ -107,7 +107,7 @@ function debut_feature_ct_news_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -117,8 +117,8 @@ function debut_feature_ct_news_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_news_publication_date',
-    'label' => 'News publication date',
+    'field_name' => 'field_publication_date',
+    'label' => 'Publication date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -147,7 +147,7 @@ function debut_feature_ct_news_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('News annonce');
   t('News full text');
-  t('News publication date');
+  t('Publication date');
 
   return $field_instances;
 }
