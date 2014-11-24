@@ -4,4 +4,6 @@
  * Template placeholder.
  */
 ?>
-<?php print $_html['news_listing'];?>
+<div class="block-news-listing">
+  <?php print $_html['news_listing'];?>
+</div>
