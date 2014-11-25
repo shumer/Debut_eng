@@ -43,6 +43,9 @@ define('DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST', 'travels');
 define('DEBUT_COMMON_PAGE_VIDEO', 'video_list');
 define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
 
+// Define views name.
+define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
+
 // Load includes.
 module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
@@ -104,4 +107,26 @@ function debut_common_init() {
 
   // Force front end to have ajax libs.
   drupal_add_library('system', 'drupal.ajax');
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function debut_node_presave($node) {
+
+  $supported_types = array(
+    DEBUT_COMMON_TYPE_NEWS,
+    DEBUT_COMMON_TYPE_DOCUMENTS,
+  );
+
+  if (!in_array($node->type, $supported_types)) {
+    return;
+  }
+
+  // Clear cahce for year list data.
+  $cache_var = variable_get('debut_common_cache_data', array());
+  foreach ($cache_var as $item) {
+    cache_clear_all($item, 'cache');
+  }
+  variable_del('debut_common_cache_data');
 }
