@@ -72,7 +72,7 @@ debut_custom.attach = function ($context, settings) {
 
   // Move message to proper place.
   var $messages = $('.messages-container').html();
-  $('.messages-target').append($messages);
+  $('.messages-target').html($messages);
 }
 
 /**

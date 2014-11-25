@@ -22,6 +22,7 @@ function debut_feature_views_news_listing_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'еще';
   $handler->display->display_options['access']['type'] = 'none';
@@ -38,6 +39,7 @@ function debut_feature_views_news_listing_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '5';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Элементов на страницу';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Все -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Пропустить';
