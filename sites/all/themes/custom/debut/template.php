@@ -473,6 +473,9 @@ function debut_pager_link($variables) {
   $query = array();
   if (count($parameters)) {
     $query = drupal_get_query_parameters($parameters, array());
+    if (empty($query['field_publication_date_value']['value'])) {
+      $query['field_publication_date_value']['value']['year'] = date('Y', time());
+    }
   }
   if ($query_pager = pager_get_query_parameters()) {
     $query = array_merge($query, $query_pager);
@@ -543,10 +546,18 @@ function debut_pager($variables) {
   }
   // End of generation loop preparation.
 
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('<span class="ico"></span>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('<span class="ico"></span>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_first = '';
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? t('') : t('<span class="ico"></span>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? t('') : t('<span class="ico"></span>')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = '';
 
   if ($pager_total[$element] > 1) {
+    if ($li_first) {
+      $items[] = array(
+        'class' => 'pager-first',
+        'data' => $li_first,
+      );
+    }
     if ($li_previous) {
       $items[] = array(
         'class' => array('pager-previous'),
@@ -597,7 +608,13 @@ function debut_pager($variables) {
         'data' => $li_next,
       );
     }
-    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
+    if ($li_last) {
+      $items[] = array(
+        'class' => 'pager-first',
+        'data' => $li_last,
+      );
+    }
+    return theme('item_list', array(
       'items' => $items,
       'attributes' => array('class' => array('pager')),
     ));
