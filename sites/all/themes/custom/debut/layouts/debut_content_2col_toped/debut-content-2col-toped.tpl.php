@@ -2,36 +2,30 @@
 /**
  * @file
  *
- * Template (admin) for the debut-content-2col-stacked layout.
+ * Template layout.
  */
 ?>
-<div class="outer-page-wrapper">
-  <table border="1px">
-    <tr>
-      <td colspan="2"><?php
-        if (isset($content['top'])) {
-          print $content['top'];
-        }
-      ?></td>
-    </tr>
-    <tr>
-      <td colspan="2"><?php
-        if (isset($content['content_pre'])) {
-          print $content['content_pre'];
-        }
-      ?></td>
-    </tr>
-    <tr>
-      <td width="25%"><?php
-        if (isset($content['content_left'])) {
-          print $content['content_left'];
-        }
-      ?></td>
-      <td><?php
-        if (isset($content['content_center'])) {
-          print $content['content_center'];
-        }
-      ?></td>
-    </tr>
-  </table>
+<?php if (!empty($content['top'])) : ?>
+  <div class="underheader">
+    <?php print $content['top'];?>
+  </div>
+<?php endif; ?>
+
+<?php if (!empty($content['content_pre'])) : ?>
+  <section class="pre-content">
+    <?php print $content['content_pre'];?>
+  </section>
+<?php endif; ?>
+
+<div class="content cols-2 panel-2col">
+
+  <aside class="col-a col panel-col-first">
+    <?php print $content['content_left'];?>
+  </aside>
+
+  <div class="col-b col panel-col">
+    <div class="messages-target"></div>
+    <?php print $content['content_center'];?>
+  </div>
+
 </div>
