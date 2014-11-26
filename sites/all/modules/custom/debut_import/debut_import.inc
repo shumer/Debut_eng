@@ -11,6 +11,7 @@ function debut_import_import_id_check($source) {
   switch ($source->importer->id) {
     case DEBUT_IMPORT_NEWS_IMPORTER:
     case DEBUT_IMPORT_DOCUMENTS_IMPORTER:
+    case DEBUT_IMPORT_PRESS_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -21,19 +22,11 @@ function debut_import_import_id_check($source) {
 }
 
 /**
- * Actions on news import presave.
+ * Update publictaion date.
  */
-function debut_import_news_presave($source, &$entity, $item) {
+function debut_import_set_publication_date($source, &$entity, $item) {
 
   // Set publication date.
   $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = $item['node_data_field_publication_date_field_publication_date_valu'];
 }
 
-/**
- * Actions on documents import presave.
- */
-function debut_import_documents_presave($source, &$entity, $item) {
-
-  // Set publication date.
-  $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = $item['node_data_field_publication_date_field_publication_date_valu'];
-}
