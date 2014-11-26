@@ -198,3 +198,14 @@ function debut_common_create_page_breadcrumbs() {
 
   return $breadcrumb;
 }
+
+/**
+ * Process image widget.
+ */
+function debut_common_image_field_widget_process($element, &$form_state, $form) {
+  // Change the title field to a textarea.
+  $element['title']['#type'] = 'textarea';
+
+  // Return the altered element.
+  return $element;
+}
