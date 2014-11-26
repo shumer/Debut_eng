@@ -173,6 +173,29 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->uuid = '38731a91-e88e-40ac-a712-c361386f6379';
     $display->content['new-38731a91-e88e-40ac-a712-c361386f6379'] = $pane;
     $display->panels['top'][0] = 'new-38731a91-e88e-40ac-a712-c361386f6379';
+    $pane = new stdClass();
+    $pane->pid = 'new-e6c83764-d6e2-4b3f-81d9-dc10421e1097';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'e6c83764-d6e2-4b3f-81d9-dc10421e1097';
+    $display->content['new-e6c83764-d6e2-4b3f-81d9-dc10421e1097'] = $pane;
+    $display->panels['top'][1] = 'new-e6c83764-d6e2-4b3f-81d9-dc10421e1097';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

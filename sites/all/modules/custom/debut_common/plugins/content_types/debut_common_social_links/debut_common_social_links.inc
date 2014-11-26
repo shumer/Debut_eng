@@ -32,9 +32,10 @@ function debut_common_social_links_content_type_render($subtype, $conf, $panel_a
   $_data = array();
   $_html = array();
 
+  $current_context = reset($context);
   // Get title of node.
-  $text = !empty($context)
-    ? reset($context)->data->title
+  $text = !empty($current_context->data)
+    ? $current_context->data->title
     : NULL;
   $path = $_GET['q'];
 
