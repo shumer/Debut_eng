@@ -1537,14 +1537,14 @@ section article.prem_list ol a {
   position: relative;
 }
 
-.news-item,
+.news-item, .documents-item,
 .press-item {
   background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
   padding-bottom: 15px;
 }
 
 
-.news-title,
+.news-title, .documents-title,
 .press-title {
   background: none repeat scroll 0 0 transparent;
   color: #BD01B5;
@@ -1555,14 +1555,16 @@ section article.prem_list ol a {
   margin-top: 0.667em;
 }
 
-.news-body {
+.news-body,
+.documents-body {
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 10px;
   margin-top: 5px;
 }
 
-.news-item .date {
+.news-item .date,
+.documents-item .date {
   float: right;
   color: #999999;
   display: block;
