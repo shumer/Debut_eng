@@ -1,0 +1,6 @@
+date: 2014.22.37
+applied by: Shumenko Alexander
+module: Drupal 7.34
+patch: stream_wrappers.inc
+reason: fix for realpath method
+bug decription: https://drupal.org/node/1008402

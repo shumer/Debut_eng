@@ -37,7 +37,7 @@ function debut_import_set_publication_date($source, &$entity, $item) {
 function debut_import_set_filepath_for_video(&$result) {
   foreach ($result->items as &$item) {
     if (!empty($item['filepath'])) {
-      $item['filepath'] = 'public://import/' . $item['filepath'];
+      $item['filepath'] = DEBUT_IMPORT_SOURCE_MEDIA_PATH . $item['filepath'];
     }
   }
 }
