@@ -44,9 +44,10 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for documents node.
     case DEBUT_COMMON_TYPE_DOCUMENTS:
       $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
-      $date = strtotime($node->field_publication_date[0]['value']);
+      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => 'field_publication_date_value[value][year]=' . $year));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
 

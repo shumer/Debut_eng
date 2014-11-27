@@ -34,3 +34,30 @@ function debut_preprocess_node__news__listing(&$variables) {
   $_html['text'] = debut_render($content, 'field_news_annonce');;
   $_html['news_date'] = debut_render($content, 'field_publication_date');
 }
+
+/**
+ * Preprocess node__documents__full.
+ */
+function debut_preprocess_node__documents__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_render($content, 'field_document_body');
+  $_html['documents_date'] = debut_render($content, 'field_publication_date');
+}
+
+
+/**
+ * Preprocess node__documents__listing.
+ */
+function debut_preprocess_node__documents__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
