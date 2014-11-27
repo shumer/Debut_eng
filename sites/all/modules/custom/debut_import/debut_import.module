@@ -9,6 +9,7 @@ define('DEBUT_IMPORT_NEWS_IMPORTER', 'debut_news_importer');
 define('DEBUT_IMPORT_DOCUMENTS_IMPORTER', 'debut_documents_importer');
 define('DEBUT_IMPORT_PRESS_IMPORTER', 'debut_press_importer');
 define('DEBUT_IMPORT_VIDEO_IMPORTER', 'debut_video_importer');
+define('DEBUT_IMPORT_PHOTO_IMPORTER', 'debut_photo_reports_importer');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -30,7 +31,8 @@ function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $
   // Update parsed results.
   switch ($source->importer->id) {
     case DEBUT_IMPORT_VIDEO_IMPORTER:
-      debut_import_set_filepath_for_video($result);
+    case DEBUT_IMPORT_PHOTO_IMPORTER:
+      debut_import_update_filepath($result);
       break;
   }
 
@@ -56,6 +58,10 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case DEBUT_IMPORT_PRESS_IMPORTER:
     case DEBUT_IMPORT_VIDEO_IMPORTER:
       debut_import_set_publication_date($source, $entity, $item);
+      break;
+
+    case DEBUT_IMPORT_PHOTO_IMPORTER:
+      debut_import_photo_import_actions($source, $entity, $item);
       break;
     default:
       break;
