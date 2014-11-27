@@ -10,6 +10,8 @@ define('DEBUT_IMPORT_DOCUMENTS_IMPORTER', 'debut_documents_importer');
 define('DEBUT_IMPORT_PRESS_IMPORTER', 'debut_press_importer');
 define('DEBUT_IMPORT_VIDEO_IMPORTER', 'debut_video_importer');
 
+define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
+
 // Define default import lng.
 define('DEBUT_IMPORT_DEFAULT_LNG', variable_get('DEBUT_IMPORT_DEFAULT_LNG', 'ru'));
 
