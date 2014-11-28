@@ -76,13 +76,16 @@ function debut_preprocess_node__press_about_debut__full(&$variables) {
   
   $publication_link = site_common_field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
   $publication_text = site_common_field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
-  $author = site_common_field_get_item('node', $node, 'field_press_author', 0, 'value');
+  $author = debut_render($content, 'field_press_author');
 
   if (!empty($publication_link) && !empty($publication_text)) {
     $_html['press_link'] = l($publication_text, $publication_link, array(
       'absolute' => TRUE,
       'html' => true,
     ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
   }
   
   if (!empty($author)) {
