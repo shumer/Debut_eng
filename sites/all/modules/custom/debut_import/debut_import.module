@@ -7,6 +7,11 @@
 // Define variables for importer.
 define('DEBUT_IMPORT_NEWS_IMPORTER', 'debut_news_importer');
 define('DEBUT_IMPORT_DOCUMENTS_IMPORTER', 'debut_documents_importer');
+define('DEBUT_IMPORT_PRESS_IMPORTER', 'debut_press_importer');
+define('DEBUT_IMPORT_VIDEO_IMPORTER', 'debut_video_importer');
+define('DEBUT_IMPORT_PHOTO_IMPORTER', 'debut_photo_reports_importer');
+
+define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
 // Define default import lng.
 define('DEBUT_IMPORT_DEFAULT_LNG', variable_get('DEBUT_IMPORT_DEFAULT_LNG', 'ru'));
@@ -21,6 +26,14 @@ function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $
   // Check if we on Debut imports.
   if (!debut_import_import_id_check($source)) {
     return;
+  }
+
+  // Update parsed results.
+  switch ($source->importer->id) {
+    case DEBUT_IMPORT_VIDEO_IMPORTER:
+    case DEBUT_IMPORT_PHOTO_IMPORTER:
+      debut_import_update_filepath($result);
+      break;
   }
 
   switch ($source->importer->id) {
@@ -41,11 +54,14 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
 
   switch ($source->importer->id) {
     case DEBUT_IMPORT_NEWS_IMPORTER:
-      debut_import_news_presave($source, $entity, $item);
+    case DEBUT_IMPORT_DOCUMENTS_IMPORTER:
+    case DEBUT_IMPORT_PRESS_IMPORTER:
+    case DEBUT_IMPORT_VIDEO_IMPORTER:
+      debut_import_set_publication_date($source, $entity, $item);
       break;
 
-    case DEBUT_IMPORT_DOCUMENTS_IMPORTER:
-      debut_import_documents_presave($source, $entity, $item);
+    case DEBUT_IMPORT_PHOTO_IMPORTER:
+      debut_import_photo_import_actions($source, $entity, $item);
       break;
     default:
       break;

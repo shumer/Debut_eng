@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * debut_feature_pages_documents.pages_default.inc
+ * debut_feature_pages_page_403.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_pages().
  */
-function debut_feature_pages_documents_default_page_manager_pages() {
+function debut_feature_pages_page_403_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'documents';
+  $page->name = 'page_403';
   $page->task = 'page';
-  $page->admin_title = 'Documents';
+  $page->admin_title = 'Страница 403 (Доступ запрещен)';
   $page->admin_description = '';
-  $page->path = 'documents_list';
+  $page->path = 'page_403';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
@@ -26,9 +26,9 @@ function debut_feature_pages_documents_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_documents_panel_context';
+  $handler->name = 'page_page_403_panel_context';
   $handler->task = 'page';
-  $handler->subtask = 'documents';
+  $handler->subtask = 'page_403';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
@@ -43,26 +43,48 @@ function debut_feature_pages_documents_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'debut_content_3col_toped';
+  $display->layout = 'debut_content_2col_toped';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
-      'middle' => NULL,
       'top' => NULL,
       'content_pre' => NULL,
       'content_left' => NULL,
       'content_center' => NULL,
-      'content_right' => NULL,
     ),
   );
   $display->cache = array();
   $display->title = '';
-  $display->uuid = '0a9c90e8-54d3-48d9-aa9f-2ba4a38513c7';
+  $display->uuid = '31979644-91aa-42e1-8663-2da701549c3d';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-94c95136-5708-4561-9631-dd801ced1375';
+    $pane->pid = 'new-f44299d4-e89e-450f-b219-98e4c7a7fd3d';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_page_404';
+    $pane->subtype = 'debut_common_page_404';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text_block' => '<h1>Страница 403</h1>
+<p>Вы попали на страницу к которой у Вас нет доступа. Войдите на сайт или обратитесь к администратору</p>',
+      'override_title' => 1,
+      'override_title_text' => 'У вас нет доступа к этой странице',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f44299d4-e89e-450f-b219-98e4c7a7fd3d';
+    $display->content['new-f44299d4-e89e-450f-b219-98e4c7a7fd3d'] = $pane;
+    $display->panels['content_center'][0] = 'new-f44299d4-e89e-450f-b219-98e4c7a7fd3d';
+    $pane = new stdClass();
+    $pane->pid = 'new-a2bc9935-4959-40d5-8260-f5537d5420c0';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
     $pane->subtype = 'debut_common_menu';
@@ -82,11 +104,11 @@ function debut_feature_pages_documents_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '94c95136-5708-4561-9631-dd801ced1375';
-    $display->content['new-94c95136-5708-4561-9631-dd801ced1375'] = $pane;
-    $display->panels['content_left'][0] = 'new-94c95136-5708-4561-9631-dd801ced1375';
+    $pane->uuid = 'a2bc9935-4959-40d5-8260-f5537d5420c0';
+    $display->content['new-a2bc9935-4959-40d5-8260-f5537d5420c0'] = $pane;
+    $display->panels['content_left'][0] = 'new-a2bc9935-4959-40d5-8260-f5537d5420c0';
     $pane = new stdClass();
-    $pane->pid = 'new-80b752f5-a50d-4cc7-9523-89bf1cafd7b7';
+    $pane->pid = 'new-6d0ffabc-c875-42d4-b9da-8149230aa41f';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
     $pane->subtype = 'debut_common_breadcrumb';
@@ -94,7 +116,7 @@ function debut_feature_pages_documents_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Документы',
+      'custombc' => '403',
       'context' => array(
         0 => 'empty',
       ),
@@ -107,37 +129,14 @@ function debut_feature_pages_documents_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '80b752f5-a50d-4cc7-9523-89bf1cafd7b7';
-    $display->content['new-80b752f5-a50d-4cc7-9523-89bf1cafd7b7'] = $pane;
-    $display->panels['top'][0] = 'new-80b752f5-a50d-4cc7-9523-89bf1cafd7b7';
-    $pane = new stdClass();
-    $pane->pid = 'new-bbd438c7-7ad9-4518-8073-62dcf1ae32f6';
-    $pane->panel = 'top';
-    $pane->type = 'debut_common_social_links';
-    $pane->subtype = 'debut_common_social_links';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'context' => array(
-        0 => 'empty',
-      ),
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'bbd438c7-7ad9-4518-8073-62dcf1ae32f6';
-    $display->content['new-bbd438c7-7ad9-4518-8073-62dcf1ae32f6'] = $pane;
-    $display->panels['top'][1] = 'new-bbd438c7-7ad9-4518-8073-62dcf1ae32f6';
+    $pane->uuid = '6d0ffabc-c875-42d4-b9da-8149230aa41f';
+    $display->content['new-6d0ffabc-c875-42d4-b9da-8149230aa41f'] = $pane;
+    $display->panels['top'][0] = 'new-6d0ffabc-c875-42d4-b9da-8149230aa41f';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
+  $display->title_pane = 'new-6d0ffabc-c875-42d4-b9da-8149230aa41f';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['documents'] = $page;
+  $pages['page_403'] = $page;
 
   return $pages;
 

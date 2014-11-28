@@ -350,5 +350,512 @@ function debut_feature_dashboards_views_default_views() {
   );
   $export['admin_news'] = $view;
 
+  $view = new view();
+  $view->name = 'dashboard_photo_listing';
+  $view->description = '';
+  $view->tag = '';
+  $view->base_table = 'node';
+  $view->human_name = 'Список Фоторепортажи';
+  $view->core = 6;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Список новостей */
+  $handler = $view->new_display('default', 'Список новостей', 'default');
+  $handler->display->display_options['title'] = 'Панель управления: Фоторепортажи';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'еще';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'Act as Content Manager';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Применить';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Сбросить';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Элементов на страницу';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Все -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Пропустить';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« первая';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ предыдущая';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'следующая ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'последняя »';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'nid' => 'nid',
+    'title' => 'title',
+    'status' => 'status',
+    'field_news_publication_date' => 'field_news_publication_date',
+    'timestamp' => 'timestamp',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'nid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'status' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_news_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'timestamp' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Поле: Содержимое: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Поле: Содержимое: Заголовок */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  /* Поле: Содержимое: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Поле: Редакции материала: Дата обновления */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  /* Поле: Содержимое: Ссылка на редактирование */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  /* Критерий фильтра: Содержимое: Тип */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'photo_listing' => 'photo_listing',
+  );
+  /* Критерий фильтра: Содержимое: Заголовок */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Заголовок';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+
+  /* Display: Страница */
+  $handler = $view->new_display('page', 'Страница', 'page_1');
+  $handler->display->display_options['path'] = 'admin/content/dashboard_photo_listing';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Фоторепортажи';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['dashboard_photo_listing'] = array(
+    t('Список новостей'),
+    t('Панель управления: Фоторепортажи'),
+    t('еще'),
+    t('Применить'),
+    t('Сбросить'),
+    t('Сортировать по'),
+    t('По возрастанию'),
+    t('По убыванию'),
+    t('Элементов на страницу'),
+    t('- Все -'),
+    t('Пропустить'),
+    t('« первая'),
+    t('‹ предыдущая'),
+    t('следующая ›'),
+    t('последняя »'),
+    t('Nid'),
+    t('Заголовок'),
+    t('Publication date'),
+    t('Дата обновления'),
+    t('Ссылка на редактирование'),
+    t('Страница'),
+    t('ещё'),
+  );
+  $export['dashboard_photo_listing'] = $view;
+
+  $view = new view();
+  $view->name = 'dashboard_press_about_debut';
+  $view->description = '';
+  $view->tag = '';
+  $view->base_table = 'node';
+  $view->human_name = 'Список Пресса о Премии';
+  $view->core = 6;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Список новостей */
+  $handler = $view->new_display('default', 'Список новостей', 'default');
+  $handler->display->display_options['title'] = 'Панель управления: Новости';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'еще';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'Act as Content Manager';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Применить';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Сбросить';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Элементов на страницу';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Все -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Пропустить';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« первая';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ предыдущая';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'следующая ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'последняя »';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'nid' => 'nid',
+    'title' => 'title',
+    'status' => 'status',
+    'field_news_publication_date' => 'field_news_publication_date',
+    'timestamp' => 'timestamp',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'nid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'status' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_news_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'timestamp' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Поле: Содержимое: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Поле: Содержимое: Заголовок */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  /* Поле: Содержимое: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Поле: Редакции материала: Дата обновления */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  /* Поле: Содержимое: Ссылка на редактирование */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  /* Критерий фильтра: Содержимое: Тип */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'press_about_debut' => 'press_about_debut',
+  );
+  /* Критерий фильтра: Содержимое: Заголовок */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Заголовок';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+
+  /* Display: Страница */
+  $handler = $view->new_display('page', 'Страница', 'page_1');
+  $handler->display->display_options['path'] = 'admin/content/dashboard_press_about_debut';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Пресса о премии';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['dashboard_press_about_debut'] = array(
+    t('Список новостей'),
+    t('Панель управления: Новости'),
+    t('еще'),
+    t('Применить'),
+    t('Сбросить'),
+    t('Сортировать по'),
+    t('По возрастанию'),
+    t('По убыванию'),
+    t('Элементов на страницу'),
+    t('- Все -'),
+    t('Пропустить'),
+    t('« первая'),
+    t('‹ предыдущая'),
+    t('следующая ›'),
+    t('последняя »'),
+    t('Nid'),
+    t('Заголовок'),
+    t('Publication date'),
+    t('Дата обновления'),
+    t('Ссылка на редактирование'),
+    t('Страница'),
+    t('ещё'),
+  );
+  $export['dashboard_press_about_debut'] = $view;
+
+  $view = new view();
+  $view->name = 'dashboard_video';
+  $view->description = '';
+  $view->tag = '';
+  $view->base_table = 'node';
+  $view->human_name = 'Список Видео';
+  $view->core = 6;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Список новостей */
+  $handler = $view->new_display('default', 'Список новостей', 'default');
+  $handler->display->display_options['title'] = 'Панель управления: Видео';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'еще';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['access']['perm'] = 'Act as Content Manager';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Применить';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Сбросить';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Элементов на страницу';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Все -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Пропустить';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« первая';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ предыдущая';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'следующая ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'последняя »';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'nid' => 'nid',
+    'title' => 'title',
+    'status' => 'status',
+    'field_news_publication_date' => 'field_news_publication_date',
+    'timestamp' => 'timestamp',
+    'edit_node' => 'edit_node',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'nid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'status' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_news_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'timestamp' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'edit_node' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Поле: Содержимое: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Поле: Содержимое: Заголовок */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  /* Поле: Содержимое: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'short',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Поле: Редакции материала: Дата обновления */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  /* Поле: Содержимое: Ссылка на редактирование */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  /* Критерий фильтра: Содержимое: Тип */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'video' => 'video',
+  );
+  /* Критерий фильтра: Содержимое: Заголовок */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Заголовок';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+
+  /* Display: Страница */
+  $handler = $view->new_display('page', 'Страница', 'page_1');
+  $handler->display->display_options['path'] = 'admin/content/dashboard_video';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Видео';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['dashboard_video'] = array(
+    t('Список новостей'),
+    t('Панель управления: Видео'),
+    t('еще'),
+    t('Применить'),
+    t('Сбросить'),
+    t('Сортировать по'),
+    t('По возрастанию'),
+    t('По убыванию'),
+    t('Элементов на страницу'),
+    t('- Все -'),
+    t('Пропустить'),
+    t('« первая'),
+    t('‹ предыдущая'),
+    t('следующая ›'),
+    t('последняя »'),
+    t('Nid'),
+    t('Заголовок'),
+    t('Publication date'),
+    t('Дата обновления'),
+    t('Ссылка на редактирование'),
+    t('Страница'),
+    t('ещё'),
+  );
+  $export['dashboard_video'] = $view;
+
   return $export;
 }

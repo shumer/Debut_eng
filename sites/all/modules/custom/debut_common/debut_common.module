@@ -131,3 +131,20 @@ function debut_node_presave($node) {
   }
   variable_del('debut_common_cache_data');
 }
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function debut_common_field_widget_form_alter(&$element, &$form_state, $context) {
+
+  // If this is an image field type.
+  if ($context['field']['type'] == 'image') {
+
+    // Loop through the element children (there will always be at least one).
+    foreach (element_children($element) as $key => $child) {
+
+      // Add the new process function to the element.
+      $element[$key]['#process'][] = 'debut_common_image_field_widget_process';
+    }
+  }
+}
