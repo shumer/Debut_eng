@@ -12,6 +12,7 @@ define('DEBUT_IMPORT_VIDEO_IMPORTER', 'debut_video_importer');
 define('DEBUT_IMPORT_PHOTO_IMPORTER', 'debut_photo_reports_importer');
 define('DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER', 'debut_travels_description_importer');
 define('DEBUT_IMPORT_TRAVELS_IMPORTER', 'debut_travels_importer');
+define('DEBUT_IMPORT_MC_TEXT_IMPORTER', 'debut_master_class_text_importer');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 

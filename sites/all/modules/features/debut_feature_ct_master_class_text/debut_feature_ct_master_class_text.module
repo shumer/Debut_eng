@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: CT - Master class text feature.
+ */
+
+include_once 'debut_feature_ct_master_class_text.features.inc';
