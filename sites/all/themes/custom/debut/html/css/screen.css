@@ -1603,11 +1603,12 @@ section article.prem_list ol a {
 }
 
 .link-press {
-  background: url("../images/press-link.jpg") no-repeat scroll 0 7px transparent;
+  background: url("../images/press-link.jpg") no-repeat scroll 0 3px transparent;
   padding-left: 18px;
 }
 
-.link-press a {
+.link-press a,
+.link-press-text {
   color: #e89a16;
   font-family: Verdana,Arial,Helvetica,sans-serif;
   font-size: 11px;

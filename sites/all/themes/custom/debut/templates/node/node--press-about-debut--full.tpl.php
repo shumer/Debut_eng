@@ -10,7 +10,7 @@
     <h6><?php print $_html['title']; ?></h6>
   </div>
   <?php if (!empty($_html['press_link'])) : ?>
-    <div class="link-press">
+    <div class="link-press link-press-text">
       <?php print $_html['press_link']; ?>
     </div>
     <?php if (!empty($_html['author'])) : ?>
