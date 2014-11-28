@@ -186,7 +186,7 @@ sub vcl_deliver {
     unset resp.http.X-Varnish;
 
     /** Unset tags header if not in debug */
-    if (!resp.http.X-CACHE_DEBUG) {
+    if (!resp.http.X-CACHE-DEBUG) {
         unset resp.http.X-BIN;
         unset resp.http.X-TAG;
         unset resp.http.X-TTL2;
