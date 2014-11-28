@@ -49,7 +49,6 @@ function debut_preprocess_node__documents__full(&$variables) {
   $_html['documents_date'] = debut_render($content, 'field_publication_date');
 }
 
-
 /**
  * Preprocess node__documents__listing.
  */
