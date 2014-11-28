@@ -10,6 +10,8 @@ define('DEBUT_IMPORT_DOCUMENTS_IMPORTER', 'debut_documents_importer');
 define('DEBUT_IMPORT_PRESS_IMPORTER', 'debut_press_importer');
 define('DEBUT_IMPORT_VIDEO_IMPORTER', 'debut_video_importer');
 define('DEBUT_IMPORT_PHOTO_IMPORTER', 'debut_photo_reports_importer');
+define('DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER', 'debut_travels_description_importer');
+define('DEBUT_IMPORT_TRAVELS_IMPORTER', 'debut_travels_importer');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -57,6 +59,8 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case DEBUT_IMPORT_DOCUMENTS_IMPORTER:
     case DEBUT_IMPORT_PRESS_IMPORTER:
     case DEBUT_IMPORT_VIDEO_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_IMPORTER:
       debut_import_set_publication_date($source, $entity, $item);
       break;
 

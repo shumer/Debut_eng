@@ -1,0 +1,11 @@
+name = Debut Feature: Importer - Travels Importer
+description = Debut Feature: Importer - Travels Importer
+core = 7.x
+package = Debut Importers
+version = 7.x-0.01
+project = debut_feature_importer_travels_importer
+dependencies[] = ctools
+dependencies[] = feeds
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = debut_travels_importer
