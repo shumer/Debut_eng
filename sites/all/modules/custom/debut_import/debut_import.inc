@@ -14,6 +14,8 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_PRESS_IMPORTER:
     case DEBUT_IMPORT_VIDEO_IMPORTER:
     case DEBUT_IMPORT_PHOTO_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_IMPORTER:
       $result = TRUE;
       break;
     default:
