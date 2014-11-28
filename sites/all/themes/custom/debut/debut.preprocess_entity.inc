@@ -60,3 +60,32 @@ function debut_preprocess_node__documents__listing(&$variables) {
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
+
+/**
+ * Preprocess node__press_about_debut__listing.
+ */
+function debut_preprocess_node__press_about_debut__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
+  $_html['body'] = debut_render($content, 'field_press_text');
+  
+  $publication_link = site_common_field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
+  $publication_text = site_common_field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
+  $author = site_common_field_get_item('node', $node, 'field_press_author', 0, 'value');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+}

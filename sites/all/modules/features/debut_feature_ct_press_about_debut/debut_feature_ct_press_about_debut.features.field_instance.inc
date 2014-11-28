@@ -204,7 +204,7 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'debut_date_short',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
