@@ -54,9 +54,10 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for press about prize node.
     case DEBUT_COMMON_TYPE_PRESS:
       $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
-      $date = strtotime($node->field_publication_date[0]['value']);
+      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => 'field_publication_date_value[value][year]=' . $year));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('ield_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
 
