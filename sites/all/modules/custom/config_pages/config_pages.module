@@ -30,6 +30,7 @@ function config_pages_config_pages_context_groups() {
   return array(
     'config_pages:language' => t('Language'),
     'config_pages:host' => t('Hostname'),
+    'config_pages:domain' => t('Domain (domain module)'),
   );
 }
 
@@ -49,6 +50,15 @@ function config_pages_config_pages_context_value($key) {
       break;
     case 'host':
       $value = $_SERVER['HTTP_HOST'];
+      break;
+    case 'domain':
+      if (module_exists('domain')) {
+        $domain = domain_get_domain();
+        $value = $domain['machine_name'];
+      }
+      else {
+        $value = -1;
+      }
       break;
   }
 
@@ -74,6 +84,18 @@ function config_pages_config_pages_context_label($key, $value) {
       break;
     case 'host':
       $label = t('Host = @host', array('@host' => $_SERVER['HTTP_HOST']));
+      break;
+    case 'domain':
+      if (module_exists('domain')) {
+        $domain = domain_get_domain();
+        $label = t('Domain = @name (@path)', array(
+          '@name' => $domain['machine_name'],
+          '@path' => $domain['path'],
+        ));
+      }
+      else {
+        $label = t('All Domains (module not enabled)');
+      }
       break;
   }
 

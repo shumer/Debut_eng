@@ -4,7 +4,7 @@
  * Template file.
  */
 ?>
-<div class="col-xs-2 dsp-sidebar">
+<div class="col-xs-2 sidebar">
   <?php if (!empty($content['left'])): ?>
     <?php print $content['left']; ?>
   <?php endif; ?>

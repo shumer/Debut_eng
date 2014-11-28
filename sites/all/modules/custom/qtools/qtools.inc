@@ -515,6 +515,7 @@ function qtools_api__views_get_result($name, $display_id = 'default', $args = ar
  * Check if this page is allowed to redirect, be default resource files should not be redirected.
  */
 function qtools_api__redirect_forbidden($path = '') {
+  global $qtools_request_cookie;
 
   if (!empty($_SESSION['qtools_api__redirect_forbidden'])) {
     return TRUE;
@@ -522,9 +523,10 @@ function qtools_api__redirect_forbidden($path = '') {
   elseif (variable_get('qtools_api__redirect_forbidden', FALSE)) {
     return TRUE;
   }
-  elseif (variable_get('qtools_api__redirect_forbidden_nocookie', TRUE) && empty($_COOKIE)) {
+  elseif (variable_get('qtools_api__redirect_forbidden_nocookie', TRUE) && empty($qtools_request_cookie)) {
     // This one is important as search engines dont have cookie support
     // and we dont want them to enter infinite loop.
+    // Also images may have their cookies be stripped at Varnish level.
     return TRUE;
   }
 

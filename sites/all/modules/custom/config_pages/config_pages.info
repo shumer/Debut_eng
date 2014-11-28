@@ -2,7 +2,7 @@ name = Config Pages
 description = Provides entity for site configuration (this module is derivative from Model module https://drupal.org/project/model)
 core = 7.x
 package = QTools
-version = "7.x-0.04"
+version = "7.x-0.05"
 
 dependencies[] = entity
 
