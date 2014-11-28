@@ -620,3 +620,11 @@ function debut_pager($variables) {
     ));
   }
 }
+
+/**
+ * Theme field.
+ */
+function debut_field(&$variables) {
+  // Prevent default field wrapping into odd divs.
+  // this function MUST be present even if empty.
+}
