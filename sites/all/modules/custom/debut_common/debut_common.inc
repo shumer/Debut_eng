@@ -44,18 +44,20 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for documents node.
     case DEBUT_COMMON_TYPE_DOCUMENTS:
       $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
-      $date = strtotime($node->field_publication_date[0]['value']);
+      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => 'field_publication_date_value[value][year]=' . $year));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
 
     // Make breadcrumb for press about prize node.
     case DEBUT_COMMON_TYPE_PRESS:
       $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
-      $date = strtotime($node->field_publication_date[0]['value']);
+      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => 'field_publication_date_value[value][year]=' . $year));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('ield_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
 
@@ -197,4 +199,15 @@ function debut_common_create_page_breadcrumbs() {
   }
 
   return $breadcrumb;
+}
+
+/**
+ * Process image widget.
+ */
+function debut_common_image_field_widget_process($element, &$form_state, $form) {
+  // Change the title field to a textarea.
+  $element['title']['#type'] = 'textarea';
+
+  // Return the altered element.
+  return $element;
 }

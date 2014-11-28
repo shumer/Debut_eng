@@ -45,6 +45,7 @@ define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
 
 // Define views name.
 define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
+define('DEBUT_COMMON_VIEW_DOCUMENTS_LISTING', 'debut_view_list_documents');
 
 // Load includes.
 module_load_include('inc', 'debut_common');
@@ -129,4 +130,21 @@ function debut_node_presave($node) {
     cache_clear_all($item, 'cache');
   }
   variable_del('debut_common_cache_data');
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function debut_common_field_widget_form_alter(&$element, &$form_state, $context) {
+
+  // If this is an image field type.
+  if ($context['field']['type'] == 'image') {
+
+    // Loop through the element children (there will always be at least one).
+    foreach (element_children($element) as $key => $child) {
+
+      // Add the new process function to the element.
+      $element[$key]['#process'][] = 'debut_common_image_field_widget_process';
+    }
+  }
 }

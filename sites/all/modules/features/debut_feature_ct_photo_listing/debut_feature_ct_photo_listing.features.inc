@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * debut_feature_ct_press_about_debut.features.inc
+ * debut_feature_ct_photo_listing.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function debut_feature_ct_press_about_debut_ctools_plugin_api($module = NULL, $api = NULL) {
+function debut_feature_ct_photo_listing_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
@@ -19,14 +19,14 @@ function debut_feature_ct_press_about_debut_ctools_plugin_api($module = NULL, $a
 /**
  * Implements hook_node_info().
  */
-function debut_feature_ct_press_about_debut_node_info() {
+function debut_feature_ct_photo_listing_node_info() {
   $items = array(
-    'press_about_debut' => array(
-      'name' => t('Press about debut'),
+    'photo_listing' => array(
+      'name' => t('Фоторепортажи'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Заголовок'),
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );

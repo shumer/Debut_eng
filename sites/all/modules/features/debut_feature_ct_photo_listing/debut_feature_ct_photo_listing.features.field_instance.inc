@@ -1,35 +1,36 @@
 <?php
 /**
  * @file
- * debut_feature_ct_documents.features.field_instance.inc
+ * debut_feature_ct_photo_listing.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function debut_feature_ct_documents_field_default_field_instances() {
+function debut_feature_ct_photo_listing_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-documents-field_document_body'
-  $field_instances['node-documents-field_document_body'] = array(
-    'bundle' => 'documents',
-    'default_value' => NULL,
+  // Exported field_instance: 'node-photo_listing-field_photo_listing_photo'
+  $field_instances['node-photo_listing-field_photo_listing_photo'] = array(
+    'bundle' => 'photo_listing',
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -39,44 +40,39 @@ function debut_feature_ct_documents_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_document_body',
-    'label' => 'Document text',
+    'field_name' => 'field_photo_listing_photo',
+    'label' => 'Image',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 1,
+      'alt_field' => 1,
+      'default_image' => 0,
+      'file_directory' => 'photoreports',
+      'file_extensions' => 'png jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
+      'module' => 'image',
       'settings' => array(
-        'rows' => 5,
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
       ),
-      'type' => 'text_textarea',
-      'weight' => 3,
+      'type' => 'image_image',
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-documents-field_publication_date'
-  $field_instances['node-documents-field_publication_date'] = array(
-    'bundle' => 'documents',
+  // Exported field_instance: 'node-photo_listing-field_publication_date'
+  $field_instances['node-photo_listing-field_publication_date'] = array(
+    'bundle' => 'photo_listing',
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'debut_date_short',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 1,
-      ),
-      'listing' => array(
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
@@ -88,6 +84,12 @@ function debut_feature_ct_documents_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 1,
+      ),
+      'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -119,13 +121,13 @@ function debut_feature_ct_documents_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_select',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Document text');
+  t('Image');
   t('Publication date');
 
   return $field_instances;

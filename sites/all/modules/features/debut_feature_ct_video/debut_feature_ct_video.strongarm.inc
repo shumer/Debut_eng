@@ -1,95 +1,70 @@
 <?php
 /**
  * @file
- * debut_feature_ct_documents.strongarm.inc
+ * debut_feature_ct_video.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function debut_feature_ct_documents_strongarm() {
+function debut_feature_ct_video_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_documents';
+  $strongarm->name = 'comment_anonymous_video';
   $strongarm->value = 0;
-  $export['comment_anonymous_documents'] = $strongarm;
+  $export['comment_anonymous_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_mode_documents';
+  $strongarm->name = 'comment_default_mode_video';
   $strongarm->value = 1;
-  $export['comment_default_mode_documents'] = $strongarm;
+  $export['comment_default_mode_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_per_page_documents';
+  $strongarm->name = 'comment_default_per_page_video';
   $strongarm->value = '50';
-  $export['comment_default_per_page_documents'] = $strongarm;
+  $export['comment_default_per_page_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_documents';
-  $strongarm->value = '2';
-  $export['comment_documents'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'comment_form_location_documents';
+  $strongarm->name = 'comment_form_location_video';
   $strongarm->value = 1;
-  $export['comment_form_location_documents'] = $strongarm;
+  $export['comment_form_location_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_preview_documents';
+  $strongarm->name = 'comment_preview_video';
   $strongarm->value = '1';
-  $export['comment_preview_documents'] = $strongarm;
+  $export['comment_preview_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_subject_field_documents';
+  $strongarm->name = 'comment_subject_field_video';
   $strongarm->value = 1;
-  $export['comment_subject_field_documents'] = $strongarm;
+  $export['comment_subject_field_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__documents';
+  $strongarm->name = 'comment_video';
+  $strongarm->value = '1';
+  $export['comment_video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_node__video';
   $strongarm->value = array(
-    'view_modes' => array(
-      'listing' => array(
-        'custom_settings' => TRUE,
-      ),
-      'teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'full' => array(
-        'custom_settings' => FALSE,
-      ),
-      'rss' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_index' => array(
-        'custom_settings' => FALSE,
-      ),
-      'search_result' => array(
-        'custom_settings' => FALSE,
-      ),
-      'diff_standard' => array(
-        'custom_settings' => FALSE,
-      ),
-      'token' => array(
-        'custom_settings' => FALSE,
-      ),
-    ),
+    'view_modes' => array(),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
@@ -99,63 +74,61 @@ function debut_feature_ct_documents_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '2',
         ),
       ),
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__documents'] = $strongarm;
+  $export['field_bundle_settings_node__video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_documents';
+  $strongarm->name = 'language_content_type_video';
   $strongarm->value = '0';
-  $export['language_content_type_documents'] = $strongarm;
+  $export['language_content_type_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_documents';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
-  $export['menu_options_documents'] = $strongarm;
+  $strongarm->name = 'menu_options_video';
+  $strongarm->value = array();
+  $export['menu_options_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_documents';
+  $strongarm->name = 'menu_parent_video';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_documents'] = $strongarm;
+  $export['menu_parent_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_documents';
+  $strongarm->name = 'node_options_video';
   $strongarm->value = array(
     0 => 'status',
     1 => 'promote',
   );
-  $export['node_options_documents'] = $strongarm;
+  $export['node_options_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_documents';
+  $strongarm->name = 'node_preview_video';
   $strongarm->value = '1';
-  $export['node_preview_documents'] = $strongarm;
+  $export['node_preview_video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_documents';
+  $strongarm->name = 'node_submitted_video';
   $strongarm->value = 1;
-  $export['node_submitted_documents'] = $strongarm;
+  $export['node_submitted_video'] = $strongarm;
 
   return $export;
 }
