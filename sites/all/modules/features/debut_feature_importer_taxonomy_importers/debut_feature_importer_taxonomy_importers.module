@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Importer - Taxonomy_importers feature.
+ */
+
+include_once 'debut_feature_importer_taxonomy_importers.features.inc';

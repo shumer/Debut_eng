@@ -13,6 +13,7 @@ define('DEBUT_IMPORT_PHOTO_IMPORTER', 'debut_photo_reports_importer');
 define('DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER', 'debut_travels_description_importer');
 define('DEBUT_IMPORT_TRAVELS_IMPORTER', 'debut_travels_importer');
 define('DEBUT_IMPORT_MC_TEXT_IMPORTER', 'debut_master_class_text_importer');
+define('DEBUT_IMPORT_AUTHOR_TAX_IMPORTER', 'debut_prize_authors_taxonomy_import');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -68,9 +69,15 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case DEBUT_IMPORT_PHOTO_IMPORTER:
       debut_import_photo_import_actions($source, $entity, $item);
       break;
+
+    case DEBUT_IMPORT_AUTHOR_TAX_IMPORTER:
+      debut_import_term_import_actions($source, $entity, $item);
+      break;
+
     default:
       break;
   }
 
   $entity->language = DEBUT_IMPORT_DEFAULT_LNG;
+  //$entity->feeds_item->skip = TRUE;
 }
