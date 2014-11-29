@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: CT - Debut Jury feature.
+ */
+
+include_once 'debut_feature_ct_debut_jury.features.inc';
