@@ -82,5 +82,4 @@ function debut_import_photo_import_actions($source, &$entity, $item) {
  */
 function debut_import_term_import_actions($source, &$entity, $item) {
  $entity->tid = $item['tid'];
-
 }
