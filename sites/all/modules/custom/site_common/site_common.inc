@@ -35,6 +35,18 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
     // Add requirements.
     qtools_api__js_add('base');
 
+    // For JQM we need to load all drupal default scripts ahead of time.
+    if ($name == 'jquery_mobile') {
+
+      // Add views scripts.
+      if (module_exists('views')) {
+        views_add_js('ajax_view');
+      }
+      // Add qtools libs.
+      qtools_api__js_add('ajax');
+      qtools_api__js_add('autocomplete');
+    }
+
     // Add js.
     drupal_add_js($js_path);
     drupal_add_js(array(

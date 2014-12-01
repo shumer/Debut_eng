@@ -5,6 +5,7 @@
  */
 
 define('SITE_COMMON_VAR_MOBILE_THRESHOLD', 925);
+define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)');
 
 // Load includes.
 module_load_include('inc', 'site_common');
@@ -14,6 +15,33 @@ module_load_include('field.inc', 'site_common');
  * Implements hooks_init().
  */
 function site_common_init() {
+}
+
+/**
+ * Preprocess page.
+ */
+function site_common_preprocess_html($variables) {
+  global $theme;
+
+  // Add additional scripts for front theme.
+  if ($theme == variable_get('theme_default')) {
+    if (_site_common_settings('jquery_mobile', 'enabled')) {
+      site_common_js_add('jquery_mobile', FALSE, array(
+        'exclude' => _site_common_settings('jquery_mobile', 'exclude_url', SITE_COMMON_VAR_JQM_EXCLUDE),
+      ));
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function site_common_form_alter(&$form, &$form_state, $form_id) {
+  // Disable jQM ajax for forms.
+  $list = explode(PHP_EOL, _site_common_settings('jquery_mobile', 'exclude_form'));
+  if (in_array($form_id, $list)) {
+    $form['#attributes']['data-ajax'] = 'false';
+  }
 }
 
 /**

@@ -1,3 +1,6 @@
+7.x-0.5
+- jQuery Mobile integration script added
+
 7.x-0.4
 - Added environment settings restoration facility, please see site_common.drush.inc file
 

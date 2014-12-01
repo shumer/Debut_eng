@@ -14,6 +14,10 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_PRESS_IMPORTER:
     case DEBUT_IMPORT_VIDEO_IMPORTER:
     case DEBUT_IMPORT_PHOTO_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER:
+    case DEBUT_IMPORT_TRAVELS_IMPORTER:
+    case DEBUT_IMPORT_MC_TEXT_IMPORTER:
+    case DEBUT_IMPORT_AUTHOR_TAX_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -71,4 +75,11 @@ function debut_import_photo_import_actions($source, &$entity, $item) {
 
   // Set publication date.
   $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d H:i:s', $item['node_created']);
+}
+
+/**
+ * Actions for term import.
+ */
+function debut_import_term_import_actions($source, &$entity, $item) {
+ $entity->tid = $item['tid'];
 }

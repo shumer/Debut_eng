@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Importer - Travels Importer feature.
+ */
+
+include_once 'debut_feature_importer_travels_importer.features.inc';

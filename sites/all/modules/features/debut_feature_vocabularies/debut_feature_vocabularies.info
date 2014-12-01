@@ -1,0 +1,17 @@
+name = Debut Feature: Vocabularies
+description = Debut Feature: Vocabularies
+core = 7.x
+package = Debut
+version = 7.x-0.01
+project = debut_feature_vocabularies
+dependencies[] = features
+dependencies[] = taxonomy
+features[features_api][] = api:2
+features[taxonomy][] = alphabet
+features[taxonomy][] = debut_prizes
+features[taxonomy][] = jury_tags
+features[taxonomy][] = jury_years
+features[taxonomy][] = news_tags
+features[taxonomy][] = press_about_debut_tags
+features[taxonomy][] = writers_tags
+mtime = 1417250366

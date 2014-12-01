@@ -17,6 +17,41 @@ if(typeof String.prototype.trim !== 'function') {
 }
 
 /**
+ * Url parser.
+ */
+qtools.parseUrl = function (href) {
+  if (!qtools.parseUrl._parser) {
+    qtools.parseUrl._parser = document.createElement('a');
+  }
+  qtools.parseUrl._parser.href = href;
+  var result = {
+    href: qtools.parseUrl._parser.href,
+    host: qtools.parseUrl._parser.hostname,
+    path: qtools.parseUrl._parser.pathname,
+    search: qtools.parseUrl._parser.search,
+  };
+
+  return result;
+}
+
+/**
+ * Unescape function not finished.
+ */
+qtools.unescape = function (string) {
+  string = string.replace(/\\\//g, '/');
+  string = string.replace(/\\b/g, "\b");
+  string = string.replace(/\\f/g, "\f");
+  string = string.replace(/\\n/g, "\n");
+  string = string.replace(/\\0/g, "\0");
+  string = string.replace(/\\r/g, "\r");
+  string = string.replace(/\\t/g, "\t");
+  string = string.replace(/\\v/g, "\v");
+  string = string.replace(/\\'/g, "'");
+  string = string.replace(/\\"/g, '"');
+  return string;
+}
+
+/**
  * Create onload event.
  */
 qtools.addEventListener = function(c, b, a) {

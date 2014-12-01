@@ -2,7 +2,7 @@ name = Site Common
 description = Common tools and plugins.
 core = 7.x
 
-version = "7.x-0.4"
+version = "7.x-0.5"
 core = "7.x"
 
 dependencies[] = qtools
