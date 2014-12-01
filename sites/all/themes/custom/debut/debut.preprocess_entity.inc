@@ -62,7 +62,7 @@ function debut_preprocess_node__documents__listing(&$variables) {
 }
 
 /**
- * Preprocess node__press_about_debut__listing.
+ * Preprocess node__press_about_debut__full.
  */
 function debut_preprocess_node__press_about_debut__full(&$variables) {
   $node = &$variables['node'];
@@ -70,7 +70,7 @@ function debut_preprocess_node__press_about_debut__full(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['title'] = check_plain($node->title);
   $_html['press_date'] = debut_render($content, 'field_publication_date');
   $_html['body'] = debut_render($content, 'field_press_text');
   
