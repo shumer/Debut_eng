@@ -5,7 +5,7 @@
  *   Template file.
  */
 ?>
-<div class="documents node-item documents-item">
+<div class="documents node-item documents-item documents-item-full">
   <div class="documents-title">
     <?php print $_html['title']; ?>
   </div>
@@ -13,7 +13,7 @@
     <?php print $_html['body']; ?>
   </div>
   <div class="clear"></div>
-  <div class="date">
+  <div class="documents-date">
     <?php print $_html['documents_date']; ?>
   </div>
 </div>

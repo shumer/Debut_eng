@@ -92,3 +92,29 @@ function debut_preprocess_node__press_about_debut__full(&$variables) {
     $_html['author'] = $author;
   }
 }
+
+/**
+ * Preprocess node__master_class_text__full.
+ */
+function debut_preprocess_node__master_class_text__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['text']  = debut_render($content, 'field_master_class_text_body');
+}
+
+/**
+ * Preprocess node__master_class_text__search.
+ */
+function debut_preprocess_node__master_class_text__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['text'] = debut_common_trim(strip_tags(debut_render($content, 'field_master_class_text_body')), 150);
+}

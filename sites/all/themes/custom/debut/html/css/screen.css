@@ -1258,14 +1258,14 @@ li.hide-before-content:hover:before {
   line-height: 26px;
   padding: 3px 0 24px;
 }
-
+/*
 .documents-date {
   margin-top: 20px;
   text-align: right;
   font-weight: bold;
   padding-bottom: 5px;
 }
-
+*/
 .documents_list .view-documents-list {
   float:left;
   width: 525px;
@@ -1537,14 +1537,14 @@ section article.prem_list ol a {
   position: relative;
 }
 
-.news-item, .documents-item,
+.news-item,
 .press-item {
   background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
   padding-bottom: 15px;
 }
 
 
-.news-title, .documents-title,
+.news-title,
 .press-title {
   background: none repeat scroll 0 0 transparent;
   color: #BD01B5;
@@ -1555,8 +1555,7 @@ section article.prem_list ol a {
   margin-top: 0.667em;
 }
 
-.news-body,
-.documents-body {
+.news-body {
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 10px;
@@ -1564,7 +1563,7 @@ section article.prem_list ol a {
 }
 
 .news-item .date,
-.documents-item .date {
+.documents .documents-date{
   float: right;
   color: #999999;
   display: block;
