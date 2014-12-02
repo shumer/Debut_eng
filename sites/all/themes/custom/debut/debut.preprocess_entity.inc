@@ -118,3 +118,37 @@ function debut_preprocess_node__master_class_text__search(&$variables) {
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['text'] = debut_common_trim(strip_tags(debut_render($content, 'field_master_class_text_body')), 150);
 }
+
+/**
+ * Preprocess view mode full for travel description node.
+ */
+function debut_preprocess_node__travel_description__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_render($content, 'field_travels_description_body');
+  $_html['date'] = debut_render($content, 'field_publication_date');
+}
+
+/**
+ * Preprocess view mode listing for travel description node.
+ */
+function debut_preprocess_node__travel_description__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['date'] = debut_render($content, 'field_publication_date');
+}
+
+/**
+ * Preprocess travel_description_search(.
+ */
+function debut_preprocess_node__travel_description__search(&$variables) {
+  debut_preprocess_node__travel_description__listing($variables);
+}
