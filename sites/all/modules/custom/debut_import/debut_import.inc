@@ -18,6 +18,7 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_TRAVELS_IMPORTER:
     case DEBUT_IMPORT_MC_TEXT_IMPORTER:
     case DEBUT_IMPORT_AUTHOR_TAX_IMPORTER:
+    case DEBUT_IMPORT_JURY_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -82,4 +83,15 @@ function debut_import_photo_import_actions($source, &$entity, $item) {
  */
 function debut_import_term_import_actions($source, &$entity, $item) {
  $entity->tid = $item['tid'];
+}
+
+/**
+ * Set path for import video image.
+ */
+function debut_import_update_jury_filepath(&$result) {
+  foreach ($result->items as &$item) {
+    if (!empty($item['xpathparser:12'])) {
+      $item['xpathparser:12'] = DEBUT_IMPORT_SOURCE_MEDIA_PATH . $item['xpathparser:12'];
+    }
+  }
 }
