@@ -63,7 +63,7 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
           }
           $children[] = array(
             'data' => l(t($subitem['link']['title']), $subitem['link']['href']),
-            'class' => ($page == $subitem['link']['href']) ? 'active' : $subclass,
+            'class' => array( ($page == $subitem['link']['href']) ? 'active' : $subclass ),
           );
         }
       }
@@ -71,7 +71,7 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
         'items' => $children,
         'title' => NULL,
         'type' => 'ul',
-        'attributes' => array('class' => 'sub_menu')
+        'attributes' => array('class' => array('sub_menu'))
       ));
       switch ($type) {
         case DEBUT_COMMON_TYPE_DOCUMENTS:
@@ -125,13 +125,13 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
       if (!empty($item['below'])) {
         $menu_links[] = array(
           'data' => l(t($item['link']['title']), '', array('fragment' => '#', 'external' => TRUE)) . $children,
-          'class' => ($page == $path ) ? 'active' : $class,
+          'class' => array( ($page == $path ) ? 'active' : $class ),
         );
       }
       else {
         $menu_links[] = array(
           'data' => l(t($item['link']['title']), $path),
-          'class' => ($page == $path ) ? 'active' : $class,
+          'class' => array( ($page == $path ) ? 'active' : $class ),
         );
       }
     }
@@ -147,7 +147,7 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
     'items' => $menu_links,
     'title' => NULL,
     'type' => 'ul',
-    'attributes' => array('class' => 'menu')
+    'attributes' => array('class' => array('menu'))
   ));
   $data = array(
     '_html' => $_html,

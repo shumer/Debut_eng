@@ -152,3 +152,49 @@ function debut_preprocess_node__travel_description__listing(&$variables) {
 function debut_preprocess_node__travel_description__search(&$variables) {
   debut_preprocess_node__travel_description__listing($variables);
 }
+
+/**
+ * Preprocess view mode full for travel node.
+ */
+function debut_preprocess_node__travel__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $_html['title'] = check_plain($node->title);
+  $_html['content'] = debut_render($content, 'field_travel_travels');
+}
+
+/**
+ * Preprocess view mode teaser for travel node.
+ */
+function debut_preprocess_node__travel__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['content'] = debut_render($content, 'field_travel_travels');
+}
+
+/**
+ * Preprocess view mode listing for travel  node.
+ */
+
+function debut_preprocess_node__travel__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['date'] = debut_render($content, 'field_publication_date');
+}
+
+/**
+ * Preprocess travel_search.
+ */
+function debut_preprocess_node__travel__search(&$variables) {
+  debut_preprocess_node__travel__teaser($variables);
+}
