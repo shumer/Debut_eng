@@ -14,6 +14,7 @@ define('DEBUT_IMPORT_TRAVELS_DESCRIPTION_IMPORTER', 'debut_travels_description_i
 define('DEBUT_IMPORT_TRAVELS_IMPORTER', 'debut_travels_importer');
 define('DEBUT_IMPORT_MC_TEXT_IMPORTER', 'debut_master_class_text_importer');
 define('DEBUT_IMPORT_AUTHOR_TAX_IMPORTER', 'debut_prize_authors_taxonomy_import');
+define('DEBUT_IMPORT_JURY_IMPORTER', 'debut_jury_import');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -37,6 +38,9 @@ function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $
     case DEBUT_IMPORT_VIDEO_IMPORTER:
     case DEBUT_IMPORT_PHOTO_IMPORTER:
       debut_import_update_filepath($result);
+
+    case DEBUT_IMPORT_JURY_IMPORTER:
+      debut_import_update_jury_filepath($result);
       break;
   }
 

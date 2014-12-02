@@ -1,0 +1,17 @@
+name = Debut Feature: Importer - Debut Jury
+description = Debut Feature: Importer - Debut Jury
+core = 7.x
+package = Debut Importers
+version = 7.x-0.01
+project = debut_feature_importer_debut_jury
+dependencies[] = ctools
+dependencies[] = debut_feature_ct_debut_jury
+dependencies[] = feeds
+dependencies[] = feeds_tamper
+dependencies[] = feeds_xpathparser
+features[ctools][] = feeds:feeds_importer_default:1
+features[ctools][] = feeds_tamper:feeds_tamper_default:2
+features[features_api][] = api:2
+features[feeds_importer][] = debut_jury_import
+features[feeds_tamper][] = debut_jury_import-xpathparser_10-explode
+features[feeds_tamper][] = debut_jury_import-xpathparser_11-explode
