@@ -2305,7 +2305,8 @@ section article.prem_list ol a {
   text-transform: uppercase;
 }
 
-.travels-descrption-items li{
+.travels-items,
+.travels-description-items {
   margin-bottom: 20px;
   border-bottom: 1px dashed #c0c0c0;
 }
@@ -2327,7 +2328,8 @@ section article.prem_list ol a {
   padding: 12px 0 12px 0;
 }
 
-.travels .view-travels-list {
+.travels .view-travels-list,
+.block-travels-listing {
   float: left;
   width: 525px;
 }
