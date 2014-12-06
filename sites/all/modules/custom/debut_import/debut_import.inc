@@ -19,6 +19,7 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_MC_TEXT_IMPORTER:
     case DEBUT_IMPORT_AUTHOR_TAX_IMPORTER:
     case DEBUT_IMPORT_JURY_IMPORTER:
+    case DEBUT_IMPORT_PERSONS_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -92,6 +93,52 @@ function debut_import_update_jury_filepath(&$result) {
   foreach ($result->items as &$item) {
     if (!empty($item['xpathparser:12'])) {
       $item['xpathparser:12'] = DEBUT_IMPORT_SOURCE_MEDIA_PATH . $item['xpathparser:12'];
+    }
+  }
+}
+
+/**
+ * Actions for person import.
+ */
+function debut_import_update_presons_filepath(&$result) {
+  foreach ($result->items as &$item) {
+    if (!empty($item['xpathparser:5'])) {
+      $item['xpathparser:5'] = DEBUT_IMPORT_SOURCE_MEDIA_PATH . $item['xpathparser:5'];
+    }
+  }
+}
+
+/**
+ * Actions for person import.
+ */
+function debut_import_person_import_actions($source, &$entity, $item) {
+  $entity->field_person_image[LANGUAGE_NONE][0]['title'] = $entity->{'Temporary target 1'};
+  $entity->field_person_image[LANGUAGE_NONE][0]['alt'] = $entity->{'Temporary target 2'};
+
+  // Clear old field collection items if exists.
+  $fc_items_old = site_common_field_get_item('commerce_product', $entity, 'field_person_bibliography', NULL, 'value');
+  if (!empty($fc_items_old)) {
+    foreach ($fc_items_old as $fc_id) {
+      $fc_item = entity_load_single('field_collection_item', $fc_id);
+      if ($fc_item) {
+        // We delete FC manually because delete() method invoke host entity save action and we didn't want to do this.
+        entity_get_controller('field_collection_item')->delete(array($fc_id));
+      }
+      unset($entity->field_person_bibliography[LANGUAGE_NONE][$delta]);
+    }
+  }
+
+  if (!empty($entity->{'Temporary target 3'})) {
+    // Create new field collection items.
+    foreach ($entity->{'Temporary target 3'} as $key => $b_title) {
+      $b_text = $entity->{'Temporary target 4'}[$key];
+
+      // As we translate FC as whole entity, all field inside it are not translatable. So use LANGUAGE_NONE.
+      $fc_item = entity_create('field_collection_item', array('field_name' => 'field_person_bibliography'));
+      $fc_item->setHostEntity($entity->feeds_item->entity_type, $entity);
+      $fc_item->field_person_biography_title[LANGUAGE_NONE][0]['value'] = $b_title;
+      $fc_item->field_person_biography_text[LANGUAGE_NONE][0]['value'] = $b_text;
+      $fc_item->save(TRUE);
     }
   }
 }
