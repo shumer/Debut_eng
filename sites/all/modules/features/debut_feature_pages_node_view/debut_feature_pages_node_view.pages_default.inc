@@ -737,6 +737,31 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->uuid = 'dded7d14-43e7-4252-9305-da02d2b35eab';
     $display->content['new-dded7d14-43e7-4252-9305-da02d2b35eab'] = $pane;
     $display->panels['top'][0] = 'new-dded7d14-43e7-4252-9305-da02d2b35eab';
+    $pane = new stdClass();
+    $pane->pid = 'new-998e75d8-8f84-4d0b-b224-bb38d5f84f80';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '998e75d8-8f84-4d0b-b224-bb38d5f84f80';
+    $display->content['new-998e75d8-8f84-4d0b-b224-bb38d5f84f80'] = $pane;
+    $display->panels['top'][1] = 'new-998e75d8-8f84-4d0b-b224-bb38d5f84f80';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
