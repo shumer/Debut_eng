@@ -18,8 +18,8 @@ function debut_common_create_node_breadcrumbs($node) {
 
   $breadcrumb = array();
 
-  if (drupal_strlen($node->title) > 80) {
-    $node->title = debut_common_trim($node->title, 75);
+  if (drupal_strlen($node->title) > 60) {
+    $node->title = debut_common_trim($node->title, 55);
   }
   switch ($node->type) {
 
@@ -59,6 +59,10 @@ function debut_common_create_node_breadcrumbs($node) {
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('ield_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
       break;
 
     // Make breadcrumb for news node.
@@ -116,6 +120,10 @@ function debut_common_create_node_breadcrumbs($node) {
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
       $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
       break;
 
     // Make breadcrumb for travel description node.
@@ -210,4 +218,17 @@ function debut_common_image_field_widget_process($element, &$form_state, $form) 
 
   // Return the altered element.
   return $element;
+}
+
+/**
+ * Create node edit link.
+ */
+function debut_common_create_node_edit_link_breadcrumbs($node) {
+  $edit_link = '';
+  
+  if (node_access('update', $node)) {
+    $edit_link = l(t('Edit'), 'node/' . $node->nid . '/edit');
+  }
+  
+  return $edit_link;
 }
