@@ -16,6 +16,7 @@ define('DEBUT_IMPORT_MC_TEXT_IMPORTER', 'debut_master_class_text_importer');
 define('DEBUT_IMPORT_AUTHOR_TAX_IMPORTER', 'debut_prize_authors_taxonomy_import');
 define('DEBUT_IMPORT_JURY_IMPORTER', 'debut_jury_import');
 define('DEBUT_IMPORT_PERSONS_IMPORTER', 'debut_persons_import');
+define('DEBUT_IMPORT_BOOK_IMPORTER', 'debut_book_importer');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -39,6 +40,7 @@ function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $
     case DEBUT_IMPORT_VIDEO_IMPORTER:
     case DEBUT_IMPORT_PHOTO_IMPORTER:
       debut_import_update_filepath($result);
+      break;
 
     case DEBUT_IMPORT_JURY_IMPORTER:
       debut_import_update_jury_filepath($result);
@@ -46,6 +48,10 @@ function debut_import_feeds_after_parse(FeedsSource $source, FeedsParserResult $
 
     case DEBUT_IMPORT_PERSONS_IMPORTER:
       debut_import_update_presons_filepath($result);
+      break;
+
+    case DEBUT_IMPORT_BOOK_IMPORTER:
+      debut_import_update_book_filepath($result);
       break;
   }
 
@@ -87,6 +93,9 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
       debut_import_person_import_actions($source, $entity, $item);
       break;
 
+    case DEBUT_IMPORT_BOOK_IMPORTER:
+      debut_import_book_import_actions($source, $entity, $item);
+      break;
     default:
       break;
   }
