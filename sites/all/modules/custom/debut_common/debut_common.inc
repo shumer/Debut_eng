@@ -130,10 +130,14 @@ function debut_common_create_node_breadcrumbs($node) {
     case DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
-      $view = site_common_views_get_view_result(DEBUT_COMMON_VIEW_TRAVELS_LIST, $node->nid);
+      $view = site_common_views_get_view_result(DEBUT_COMMON_VIEW_TRAVELS_LISTING, $node->nid);
       $travel_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($travel_node->title, 'node/' . $travel_node->nid);
       $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
       break;
 
     // Make breadcrumb for photoreporst node.
