@@ -1,0 +1,14 @@
+name = Debut Feature: Config Pages - Manuscript page
+description = Правила подачи рукописей
+core = 7.x
+package = Debut Config Pages
+version = 7.x-0.01
+project = debut_feature_config_pages_manuscript_page
+dependencies[] = config_pages
+dependencies[] = entity
+dependencies[] = features
+dependencies[] = text
+features[config_pages_type][] = manuscript_page
+features[features_api][] = api:2
+features[field_base][] = field_manuscript_text
+features[field_instance][] = config_pages-manuscript_page-field_manuscript_text

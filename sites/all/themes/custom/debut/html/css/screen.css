@@ -1228,6 +1228,20 @@ li.hide-before-content:hover:before {
   padding-bottom: 10px;
 }
 
+.documents-item-listing {
+  background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  padding: 14px 0 13px;
+}
+
+.documents-title a {
+  color: #1C1C1C;
+  display: block;
+  min-height: 34px;
+  padding: 2px 0 0 41px;
+  text-decoration: none;
+}
+
 .documents-title {
   color: #545454;
   font-weight: normal;

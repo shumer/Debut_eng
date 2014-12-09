@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Config Pages - Manuscript page feature.
+ */
+
+include_once 'debut_feature_config_pages_manuscript_page.features.inc';

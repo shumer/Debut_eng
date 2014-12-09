@@ -62,6 +62,110 @@ function debut_feature_pages_documents_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-b1ac6663-9a09-487d-b4cb-a828839efd86';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Документы',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b1ac6663-9a09-487d-b4cb-a828839efd86';
+    $display->content['new-b1ac6663-9a09-487d-b4cb-a828839efd86'] = $pane;
+    $display->panels['content_center'][0] = 'new-b1ac6663-9a09-487d-b4cb-a828839efd86';
+    $pane = new stdClass();
+    $pane->pid = 'new-499a322a-28e0-46d5-8743-2b9ad8cd2fbc';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_list';
+    $pane->subtype = 'debut_common_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view' => 'debut_view_list_documents',
+      'pre_text' => '',
+      'post_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '499a322a-28e0-46d5-8743-2b9ad8cd2fbc';
+    $display->content['new-499a322a-28e0-46d5-8743-2b9ad8cd2fbc'] = $pane;
+    $display->panels['content_center'][1] = 'new-499a322a-28e0-46d5-8743-2b9ad8cd2fbc';
+    $pane = new stdClass();
+    $pane->pid = 'new-3b0b39c8-86ba-408d-91bb-e33905b9c756';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_documents_listing';
+    $pane->subtype = 'debut_common_documents_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '3b0b39c8-86ba-408d-91bb-e33905b9c756';
+    $display->content['new-3b0b39c8-86ba-408d-91bb-e33905b9c756'] = $pane;
+    $display->panels['content_center'][2] = 'new-3b0b39c8-86ba-408d-91bb-e33905b9c756';
+    $pane = new stdClass();
+    $pane->pid = 'new-32823a8a-13b4-4146-b0a4-3e439420004b';
+    $pane->panel = 'content_center';
+    $pane->type = 'content';
+    $pane->subtype = 'content';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'Hide if no result',
+            'php' => 'if (empty($_GET[\'field_publication_date_value\'])) {
+  return TRUE;
+}
+return FALSE;',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'bundle' => 'manuscript_page',
+      'view_mode' => 'full',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '32823a8a-13b4-4146-b0a4-3e439420004b';
+    $display->content['new-32823a8a-13b4-4146-b0a4-3e439420004b'] = $pane;
+    $display->panels['content_center'][3] = 'new-32823a8a-13b4-4146-b0a4-3e439420004b';
+    $pane = new stdClass();
     $pane->pid = 'new-94c95136-5708-4561-9631-dd801ced1375';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
