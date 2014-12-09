@@ -198,3 +198,17 @@ function debut_preprocess_node__travel__listing(&$variables) {
 function debut_preprocess_node__travel__search(&$variables) {
   debut_preprocess_node__travel__teaser($variables);
 }
+
+/**
+ * Preprocess config_page__manuscript_page__full.
+ */
+function debut_preprocess_config_pages__manuscript_page__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Text part.
+  $_html['text']  = debut_render($content, 'field_manuscript_text');
+}
+
