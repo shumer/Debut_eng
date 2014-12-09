@@ -209,6 +209,6 @@ function debut_preprocess_config_pages__manuscript_page__full(&$variables) {
   $_data = &$variables['_data'];
 
   // Text part.
-  $_html['text']  = debut_render($content, 'field_manuscript_text');
+  $_html['text'] = debut_render($content, 'field_manuscript_text');
 }
 
