@@ -43,12 +43,17 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'debut_content_3col_toped';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
     ),
   );
   $display->cache = array();
@@ -56,6 +61,141 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
   $display->uuid = 'ac7b031d-20f0-4dd5-b1b2-f51cc69c3d3e';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Пресса о премии',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'cc97951d-2288-4b50-944e-44bedbed50ca';
+    $display->content['new-cc97951d-2288-4b50-944e-44bedbed50ca'] = $pane;
+    $display->panels['content_center'][0] = 'new-cc97951d-2288-4b50-944e-44bedbed50ca';
+    $pane = new stdClass();
+    $pane->pid = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_list';
+    $pane->subtype = 'debut_common_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view' => 'debut_view_list_press_about_debut',
+      'pre_text' => '',
+      'post_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '452c78d8-549d-46fd-81d2-bac9882734fa';
+    $display->content['new-452c78d8-549d-46fd-81d2-bac9882734fa'] = $pane;
+    $display->panels['content_center'][1] = 'new-452c78d8-549d-46fd-81d2-bac9882734fa';
+    $pane = new stdClass();
+    $pane->pid = 'new-cbf2d8d5-084c-436e-bab0-8c98bd5767b0';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_press_listing';
+    $pane->subtype = 'debut_common_press_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'cbf2d8d5-084c-436e-bab0-8c98bd5767b0';
+    $display->content['new-cbf2d8d5-084c-436e-bab0-8c98bd5767b0'] = $pane;
+    $display->panels['content_center'][2] = 'new-cbf2d8d5-084c-436e-bab0-8c98bd5767b0';
+    $pane = new stdClass();
+    $pane->pid = 'new-24283e60-7423-41ce-b61d-285df88ab5ce';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_menu';
+    $pane->subtype = 'debut_common_menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'browser_menu' => 'main-menu',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '24283e60-7423-41ce-b61d-285df88ab5ce';
+    $display->content['new-24283e60-7423-41ce-b61d-285df88ab5ce'] = $pane;
+    $display->panels['content_left'][0] = 'new-24283e60-7423-41ce-b61d-285df88ab5ce';
+    $pane = new stdClass();
+    $pane->pid = 'new-37eca829-1809-4168-a452-63c294b1a73d';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '37eca829-1809-4168-a452-63c294b1a73d';
+    $display->content['new-37eca829-1809-4168-a452-63c294b1a73d'] = $pane;
+    $display->panels['top'][0] = 'new-37eca829-1809-4168-a452-63c294b1a73d';
+    $pane = new stdClass();
+    $pane->pid = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'a2aec159-a555-4600-9615-6cb1e23322c9';
+    $display->content['new-a2aec159-a555-4600-9615-6cb1e23322c9'] = $pane;
+    $display->panels['top'][1] = 'new-a2aec159-a555-4600-9615-6cb1e23322c9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
