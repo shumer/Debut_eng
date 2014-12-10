@@ -197,7 +197,7 @@ function debut_common_create_page_breadcrumbs() {
     // Bc for press page.
     case DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT:
       $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
-      $current_year = $_GET['field_publication_date_value'];
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
       if (!empty($current_year)) {
         $current_year = $current_year['value']['year'];
         $breadcrumb[] = $current_year;
