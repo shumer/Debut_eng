@@ -21,6 +21,7 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_JURY_IMPORTER:
     case DEBUT_IMPORT_PERSONS_IMPORTER:
     case DEBUT_IMPORT_BOOK_IMPORTER:
+    case DEBUT_IMPORT_IBOOK_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -166,7 +167,7 @@ function debut_import_book_import_actions($source, &$entity, $item) {
   // Clear old field collection items if exists.
   $fc_items_old = site_common_field_get_item('node', $entity, 'field_book_content', NULL, 'value');
   if (!empty($fc_items_old)) {
-    foreach ($fc_items_old as $fc_id) {
+    foreach ($fc_items_old as $delta => $fc_id) {
       $fc_item = entity_load_single('field_collection_item', $fc_id);
       if ($fc_item) {
         // We delete FC manually because delete() method invoke host entity save action and we didn't want to do this.
@@ -187,6 +188,18 @@ function debut_import_book_import_actions($source, &$entity, $item) {
       $fc_item->field_book_author[LANGUAGE_NONE][0]['target_id'] = $b_author;
       $fc_item->field_book_author_texts[LANGUAGE_NONE][0]['value'] = $b_text;
       $fc_item->save(TRUE);
+    }
+  }
+}
+
+
+/**
+ * Set path for import video image.
+ */
+function debut_import_update_ibook_filepath(&$result) {
+  foreach ($result->items as &$item) {
+    if (!empty($item['xpathparser:4'])) {
+      $item['xpathparser:4'] = DEBUT_IMPORT_SOURCE_MEDIA_PATH . $item['xpathparser:4'];
     }
   }
 }
