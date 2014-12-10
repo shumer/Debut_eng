@@ -1591,10 +1591,14 @@ section article.prem_list ol a {
   padding-bottom: 15px;
 }
 
-.press_list .view-press-about-debut {
+.block-press-listing {
   float:left;
   width: 525px;
   font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+.block-press-listing .press-item {
+  margin-bottom: 15px;
 }
 
 .node-type-press-about-debut .press-item .press-title {
