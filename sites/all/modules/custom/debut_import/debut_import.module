@@ -18,6 +18,7 @@ define('DEBUT_IMPORT_JURY_IMPORTER', 'debut_jury_import');
 define('DEBUT_IMPORT_PERSONS_IMPORTER', 'debut_persons_import');
 define('DEBUT_IMPORT_BOOK_IMPORTER', 'debut_book_importer');
 define('DEBUT_IMPORT_IBOOK_IMPORTER', 'debut_ibook_importer');
+define('DEBUT_IMPORT_INTERVIEW_IMPORTER', 'debut_interview_import');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
