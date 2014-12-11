@@ -193,7 +193,7 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
     'label' => 'Info for home page',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
