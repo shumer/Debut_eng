@@ -150,3 +150,15 @@ function debut_common_field_widget_form_alter(&$element, &$form_state, $context)
     }
   }
 }
+
+/**
+ * Implements hook_theme.
+ */
+function debut_common_theme() {
+  $theme['debut_common_embed_player'] = array(
+    'variables' => array('params' => array()),            
+    'template' => 'debut-common-embed-player',
+    'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
+  );
+  return($theme);
+}

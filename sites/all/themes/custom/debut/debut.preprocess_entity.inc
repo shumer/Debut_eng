@@ -242,3 +242,50 @@ function debut_preprocess_config_pages__manuscript_page__full(&$variables) {
   // Text part.
   $_html['text'] = debut_render($content, 'field_manuscript_text');
 }
+
+/**
+ * Preprocess video_listing.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_preprocess_node__video__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['body'] = debut_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = site_common_field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_image_src('http://youtube.com/' . $field);
+  $image = theme('image', $src, $node->title, $node->title, NULL, FALSE);
+  $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
+}
+
+/**
+ * Preprocess video_full.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_preprocess_node__video__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_render($content, 'field_video_body');
+
+  // Embed Player.
+  $field = site_common_field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_embed_src($field);
+  $_data['src'] = $src;
+  $_data['id'] = $node->nid;
+  
+  if (!empty($src)) {
+    $_html['player'] = theme('debut_common_embed_player', array('_data' => $_data));
+  }
+}

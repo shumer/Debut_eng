@@ -236,3 +236,59 @@ function debut_common_create_node_edit_link_breadcrumbs($node) {
   
   return $edit_link;
 }
+
+/**
+ * Get video embed url.
+ */
+function debut_common_embed_src($url) {
+
+  // Available players base.
+  $players = array(
+    'youtube' => array(
+      'base' => 'http://www.youtube.com/embed/',
+      'regexp_parse' => '/^(?:https?\:\/\/(?:www.)?youtu(?|\.be|be\.com)\/(?|watch\?v\=|embed\/|v\/)?)([^&]+)/',
+    ),
+    'dailymotion' => array(
+      'base' => 'http://www.dailymotion.com/embed/video/',
+      'regexp_parse' => '/^(?:http\:\/\/(?:www.)?dailymotion.com\/(?:embed\/)?video\/)([^?_]+)/',
+    ),
+  );
+
+  $src = $players['youtube']['base'] . $url . '?wmode=opaque';
+
+  // Check against available players.
+  foreach ($players as $player) {
+    $matches = array();
+    if (preg_match($player['regexp_parse'], $url, $matches) && count($matches) == 2) {
+      $src = $player['base'] . $matches[1] . '?wmode=opaque';
+      break;
+    }
+  }
+
+  return $src;
+}
+
+/**
+ * Get video image url.
+ */
+function debut_common_image_src($url) {
+
+  // Available players base.
+  $players = array(
+    'youtube' => array(
+      'base' => 'http://img.youtube.com/vi/',
+      'regexp_parse' => '/^(?:https?\:\/\/(?:www.)?youtu(?|\.be|be\.com)\/(?|watch\?v\=|embed\/|v\/)?)([^&]+)/',
+    ),
+  );
+
+  // Check against available players.
+  foreach ($players as $player) {
+    $matches = array();
+    if (preg_match($player['regexp_parse'], $url, $matches) && count($matches) == 2) {
+      $src = $player['base'] . $matches[1] . '/default.jpg';
+      break;
+    }
+  }
+
+  return $src;
+}
