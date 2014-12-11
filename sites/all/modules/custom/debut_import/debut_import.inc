@@ -22,6 +22,7 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_PERSONS_IMPORTER:
     case DEBUT_IMPORT_BOOK_IMPORTER:
     case DEBUT_IMPORT_IBOOK_IMPORTER:
+    case DEBUT_IMPORT_INTERVIEW_IMPORTER:
       $result = TRUE;
       break;
     default:
