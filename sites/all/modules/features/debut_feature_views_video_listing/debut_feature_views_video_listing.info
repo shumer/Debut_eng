@@ -1,0 +1,12 @@
+name = Debut Feature: Views - Video listing
+description = Debut Feature: Views - Video listing
+core = 7.x
+package = Debut Views
+version = 7.x-0.01
+project = debut_feature_views_video_listing
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = debut_view_list_video
+features_exclude[dependencies][entity] = entity
+features_exclude[dependencies][views] = views
+features_exclude[dependencies][views_content] = views_content

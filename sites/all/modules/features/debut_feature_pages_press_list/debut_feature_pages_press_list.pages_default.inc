@@ -180,7 +180,7 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => '',
+      'custombc' => 'Пресса о премии',
       'context' => array(
         0 => 'empty',
       ),
