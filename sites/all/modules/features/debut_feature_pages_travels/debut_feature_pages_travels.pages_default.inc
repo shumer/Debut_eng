@@ -181,7 +181,7 @@ function debut_feature_pages_travels_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => '',
+      'custombc' => 'Поездки',
       'context' => array(
         0 => 'empty',
       ),

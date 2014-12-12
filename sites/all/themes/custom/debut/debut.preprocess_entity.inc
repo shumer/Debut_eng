@@ -261,7 +261,16 @@ function debut_preprocess_node__video__listing(&$variables) {
   // Preview picture.
   $field = site_common_field_get_item('node', $node, 'field_video_url', 0, 'value');
   $src = debut_common_image_src('http://youtube.com/' . $field);
-  $image = theme('image', $src, $node->title, $node->title, NULL, FALSE);
+  
+  $params = array(
+    'path' => $src,
+    'alt' => $node->title,
+    'title' => $node->title,
+    'attributes' => NULL,
+    'getsize' => FALSE,
+  );
+  $image = theme('image', $params);
+  
   $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
 }
 
