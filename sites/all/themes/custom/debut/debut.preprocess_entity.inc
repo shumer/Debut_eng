@@ -43,7 +43,7 @@ function debut_preprocess_node__documents__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $_html['title'] = check_plain($node->title);
   $_html['body'] = debut_render($content, 'field_document_body');
   $_html['documents_date'] = debut_render($content, 'field_publication_date');
@@ -73,9 +73,9 @@ function debut_preprocess_node__press_about_debut__full(&$variables) {
   $_html['title'] = check_plain($node->title);
   $_html['press_date'] = debut_render($content, 'field_publication_date');
   $_html['body'] = debut_render($content, 'field_press_text');
-  
-  $publication_link = site_common_field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
-  $publication_text = site_common_field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
   $author = debut_render($content, 'field_press_author');
 
   if (!empty($publication_link) && !empty($publication_text)) {
@@ -87,7 +87,7 @@ function debut_preprocess_node__press_about_debut__full(&$variables) {
   elseif (!empty($publication_text)) {
     $_html['press_link'] = $publication_text;
   }
-  
+
   if (!empty($author)) {
     $_html['author'] = $author;
   }
@@ -104,12 +104,12 @@ function debut_preprocess_node__press_about_debut__listing(&$variables) {
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['body'] = debut_render($content, 'field_press_text');
-  $_html['press_date'] = debut_render($content, 'field_publication_date');  
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
 
-  $publication_link = site_common_field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
-  $publication_text = site_common_field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
   $author = debut_render($content, 'field_press_author');
-  
+
   if (!empty($publication_link) && !empty($publication_text)) {
     $_html['press_link'] = l($publication_text, $publication_link, array(
       'absolute' => TRUE,
@@ -193,7 +193,7 @@ function debut_preprocess_node__travel__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $_html['title'] = check_plain($node->title);
   $_html['content'] = debut_render($content, 'field_travel_travels');
 }
@@ -218,7 +218,7 @@ function debut_preprocess_node__travel__listing(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['date'] = debut_render($content, 'field_publication_date');
 }
@@ -259,9 +259,9 @@ function debut_preprocess_node__video__listing(&$variables) {
   $_html['body'] = debut_render($content, 'field_video_body');
 
   // Preview picture.
-  $field = site_common_field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
   $src = debut_common_image_src('http://youtube.com/' . $field);
-  
+
   $params = array(
     'path' => $src,
     'alt' => $node->title,
@@ -270,7 +270,7 @@ function debut_preprocess_node__video__listing(&$variables) {
     'getsize' => FALSE,
   );
   $image = theme('image', $params);
-  
+
   $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
 }
 
@@ -289,11 +289,11 @@ function debut_preprocess_node__video__full(&$variables) {
   $_html['body'] = debut_render($content, 'field_video_body');
 
   // Embed Player.
-  $field = site_common_field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
   $src = debut_common_embed_src($field);
   $_data['src'] = $src;
   $_data['id'] = $node->nid;
-  
+
   if (!empty($src)) {
     $_html['player'] = theme('debut_common_embed_player', array('_data' => $_data));
   }

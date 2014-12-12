@@ -44,7 +44,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for documents node.
     case DEBUT_COMMON_TYPE_DOCUMENTS:
       $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
-      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
@@ -54,7 +54,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for press about prize node.
     case DEBUT_COMMON_TYPE_PRESS:
       $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
-      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('ield_publication_date[value][year]=' . $year)));
@@ -68,7 +68,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for news node.
     case DEBUT_COMMON_TYPE_NEWS:
       $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
-      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
@@ -78,13 +78,13 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for video node.
     case DEBUT_COMMON_TYPE_VIDEO:
       $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
-      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO, array('query' => array('field_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       break;
-    
+
     // Make breadcrumb for master class section node.
     case DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION:
       $breadcrumb[] = l(t('Letopis Debuta'), DEBUT_COMMON_PAGE_NEWS_LIST);
@@ -239,11 +239,11 @@ function debut_common_image_field_widget_process($element, &$form_state, $form) 
  */
 function debut_common_create_node_edit_link_breadcrumbs($node) {
   $edit_link = '';
-  
+
   if (node_access('update', $node)) {
     $edit_link = l(t('Edit'), 'node/' . $node->nid . '/edit');
   }
-  
+
   return $edit_link;
 }
 
@@ -301,4 +301,12 @@ function debut_common_image_src($url) {
   }
 
   return $src;
+}
+
+/**
+ * Check if current user if site developer.
+ */
+function debut_common_developer() {
+  // TODO: switch based on the session settings.
+  return !empty($_SESSION['debut_common_developer']);
 }
