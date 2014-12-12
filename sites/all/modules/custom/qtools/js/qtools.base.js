@@ -25,6 +25,7 @@ qtools.parseUrl = function (href) {
   }
   qtools.parseUrl._parser.href = href;
   var result = {
+    hash: qtools.parseUrl._parser.hash,
     href: qtools.parseUrl._parser.href,
     host: qtools.parseUrl._parser.hostname,
     path: qtools.parseUrl._parser.pathname,

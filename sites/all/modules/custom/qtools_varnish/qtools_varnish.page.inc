@@ -117,7 +117,6 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
   return array(
     'content' => qtools_varnish_wrap($content, FALSE),
     'ttl' => !empty($cache_settins['ttl']) ? $cache_settins['ttl'] : -1,
-    'grace' => !empty($cache_settins['grace']) ? $cache_settins['grace'] : 0,
   );
 }
 
@@ -160,7 +159,7 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
 
         // Set page ttl.
         $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
-        qtools_varnish_set_page_ttl($result['ttl'], $cache_tags, $result['grace']);
+        qtools_varnish_set_page_ttl($result['ttl'], $cache_tags);
       }
     }
   }

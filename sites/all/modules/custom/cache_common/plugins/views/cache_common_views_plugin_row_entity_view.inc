@@ -79,6 +79,7 @@ class cache_common_views_plugin_row_entity_view extends views_plugin_row {
     // If above fails and we have relation - attempt to load items ourselvs.
     if (!empty($this->entity_type) && empty($this->entities) && empty($this->relationship) && !empty($this->options['relationship'])) {
       // Prepare entity Ids.
+      $ids = array();
       foreach ($values as $item) {
         $ids[] = $item->{$this->field_alias};
       }

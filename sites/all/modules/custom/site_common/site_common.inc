@@ -5,6 +5,31 @@
  */
 
 /**
+ * Add asynk js if it is not already added.
+ *
+ * If script is already added, nothing ill be changed.
+ */
+function site_common_add_asynk_js($js_file) {
+  $js_list = drupal_add_js();
+
+  // If this file is not yet added we add it as asynk load.
+  // @see site_common_preprocess_html().
+  if (empty($js_list[$js_file])) {
+    $js_file = url($js_file, array('absolute' => TRUE));
+    drupal_add_js($js_file, array('asynk' => TRUE));
+  }
+}
+
+/**
+ * Check if this request is done using
+ */
+function site_common_is_xmlhttp() {
+  if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    return TRUE;
+  }
+}
+
+/**
  * Return module settings.
  */
 function _site_common_settings($block, $setting, $default = NULL) {
@@ -21,11 +46,12 @@ function _site_common_settings($block, $setting, $default = NULL) {
  * Include site common js.
  *
  * @param $name
- *   (string) lazy_load
+ *   (string) jquery_mobile
  */
 function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
 
   // Get path and added scripts list.
+  $options = NULL;
   $added_list = &drupal_static(__FUNCTION__ . '_list', array());
   $js_path = drupal_get_path('module', 'site_common') . '/js/site-common.' . str_replace('_', '-', $name) . '.js';
 
@@ -38,17 +64,22 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
     // For JQM we need to load all drupal default scripts ahead of time.
     if ($name == 'jquery_mobile') {
 
-      // Add views scripts.
-      if (module_exists('views')) {
-        views_add_js('ajax_view');
-      }
+      // If this file added, it is present on every page.
+      $options['every_page'] = TRUE;
+
+      // Invoke resource preload hook.
+      module_invoke_all('site_common_preload_resources');
+    }
+
+    // Add Ajax requirements.
+    if ($name == 'ajax') {
       // Add qtools libs.
       qtools_api__js_add('ajax');
       qtools_api__js_add('autocomplete');
     }
 
     // Add js.
-    drupal_add_js($js_path);
+    drupal_add_js($js_path, $options);
     drupal_add_js(array(
       'site_common' => array(
         $name => $settings,
@@ -57,7 +88,6 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
     $added_list[] = $js_path;
   }
 }
-
 
 /**
  * Safe representation fo given string.
@@ -140,104 +170,4 @@ function site_common_user_has_role($role, $account = NULL) {
     $has_role = TRUE;
   }
   return $has_role;
-}
-
-/**
- * Get specific field delta.
- */
-function site_common_field_get_item($entity_type, $entity, $field_name, $deltas = NULL, $key = NULL, $langcode = NULL) {
-
-  // Check that node contain this firld.
-  if (empty($entity) || !is_object($entity) || !property_exists($entity, $field_name)) {
-    return NULL;
-  }
-
-  // Get items.
-  $items = field_get_items($entity_type, $entity, $field_name, $langcode);
-
-  if (empty($items)) {
-    if (is_numeric($deltas)) {
-      return;
-    }
-    else {
-      return array();
-    }
-  }
-
-  if (is_numeric($deltas)) {
-    $_return_delta = $deltas;
-    $deltas = array($deltas);
-  }
-  else {
-    $deltas = !empty($deltas)
-      ? $deltas
-      : array_keys($items);
-  }
-  $return = array();
-
-  // Get all items.
-  foreach ($deltas as $delta) {
-    if (!empty($items[$delta])) {
-      if ($key === NULL) {
-        $return[$delta] = $items[$delta];
-      }
-      else {
-        $return[$delta] = !empty($items[$delta][$key])
-          ? $items[$delta][$key]
-          : NULL;
-      }
-    }
-    else {
-      $return[$delta] = NULL;
-    }
-  }
-
-  if (isset($_return_delta)) {
-    $return = !empty($return[$_return_delta])
-      ? $return[$_return_delta]
-      : NULL;
-  }
-  return $return;
-}
-
-/**
- * Get view results and clean up view.
- */
-function site_common_views_get_view_result($name, $display_id = NULL) {
-  $args = func_get_args();
-  // Remove $name.
-  array_shift($args);
-  if (count($args)) {
-    // Remove $display_id.
-    array_shift($args);
-  }
-
-  $view = views_get_view($name);
-  if (is_object($view)) {
-    if (is_array($args)) {
-      $view->set_arguments($args);
-    }
-    if (is_string($display_id)) {
-      $view->set_display($display_id);
-    }
-    else {
-      $view->init_display();
-    }
-    $view->pre_execute();
-    $view->execute();
-    $result = $view->result;
-    $view->destroy();
-    return $result;
-  }
-  else {
-    return array();
-  }
-}
-
-/**
- * Check if current user if site developer.
- */
-function site_common_developer() {
-  // TODO: switch based on the session settings.
-  return !empty($_SESSION['site_common_developer']);
 }

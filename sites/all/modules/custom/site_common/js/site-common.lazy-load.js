@@ -20,7 +20,7 @@ site_common.lazy_load = site_common.lazy_load || {
  * Default load, should be overriden in your theme!
  */
 Drupal.behaviors.site_common_lazy_load = {
-  attach: function ($context, $settings) {
+  attach: function ($context, settings) {
     // Only run init if its not already inited.
     if (!site_common.lazy_load.ready()) {
       qtools.addOnLoadListener(function () {

@@ -28,7 +28,7 @@ function qtools_varnish__varnish_execute_command($client, $command) {
     return FALSE;
   }
   else {
-    // successful connection
+    // Successful connection.
     return $status;
   }
 }

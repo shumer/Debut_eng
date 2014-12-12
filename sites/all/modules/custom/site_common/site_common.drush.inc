@@ -98,12 +98,45 @@ function site_common_env_restore($type, $settings) {
     case 'admin':
       $error = _site_common_env_restore_admin($settings);
       break;
+    case 'domain':
+      $error = _site_common_env_restore_domain($settings);
+      break;
     default:
       $error = t('unsupported conf type [@type]', array('@type' => $type));
     end;
   }
 
   return $error;
+}
+
+/**
+ * Restore domains properties.
+ */
+function _site_common_env_restore_domain($settings) {
+  $error = array();
+
+  // Iterate through domains.
+  if (module_exists('domain')) {
+    foreach ($settings as $domain_name => $domain_config) {
+      // Load domain record.
+      $domain_id = domain_load_domain_id($domain_name);
+      $domain = domain_load($domain_id);
+      if (!empty($domain)) {
+        // Update domain record with config provided.
+        $domain = $domain_config + $domain;
+        domain_save($domain);
+      }
+      else {
+        $error[] = t('Domain @name not found', array('@name' => $domain_name));
+      }
+    }
+  }
+  else {
+    $error[] = t('Domain module not enabled');
+  }
+
+  // Return list of errors if any.
+  return implode(', ', $error);
 }
 
 /**
@@ -129,8 +162,6 @@ function _site_common_env_restore_variables($settings) {
  * Restore search api server configuration.
  */
 function _site_common_env_restore_search_api($settings) {
-
-  // Init variable.
   $error = array();
 
   // Restore each provided server.

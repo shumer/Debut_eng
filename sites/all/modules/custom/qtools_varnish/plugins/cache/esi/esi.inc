@@ -16,7 +16,6 @@ $plugin = array(
   'settings form submit' => 'qtools_varnish_esi_cache_settings_form_submit',
   'defaults' => array(
     'ttl' => 15,
-    'grace' => 10,
     'cachemode' => DRUPAL_CACHE_PER_PAGE,
     'options' => array(
       'context' => TRUE,
@@ -41,7 +40,7 @@ function qtools_varnish_esi_cache_set_cache($conf, $content, $display, $args, $c
 
   // If no ESI support by backend - exit.
   // TODO: fallback to DB cache.
-  if (!_qtools_varnish_enabled()) {
+  if (!qtools_varnish_enabled()) {
     return;
   }
 
@@ -126,19 +125,6 @@ function qtools_varnish_esi_cache_settings_form($conf, $display, $pid) {
     '#type' => 'select',
     '#options' => $options,
     '#default_value' => $conf['ttl'],
-  );
-
-  $options = drupal_map_assoc(array(3, 5, 10, 15, 30, 60, 120, 180, 240, 300, 600, 900, 1200, 1800, 3600), 'format_interval');
-  $options[0] = t('No Grace (bad idea)');
-  ksort($options);
-  $grace_hint = t("Grace in the scope of Varnish means delivering otherwise expired objects when circumstances call for it.
-    This can happen because the backend-director selected is down or a different thread has already made a request to the backend that's not yet finished.");
-  $form['grace'] = array(
-    '#title' => t('Grace Time'),
-    '#description' => $grace_hint,
-    '#type' => 'select',
-    '#options' => $options,
-    '#default_value' => $conf['grace'],
   );
 
   $options2 = array(

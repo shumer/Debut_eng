@@ -108,9 +108,14 @@ site_common.jquery_mobile.attach = function ($context, settings) {
       // Prevent the usual navigation behavior.
       event.preventDefault();
 
+      // Ignore anchor and empty links.
+      var url = qtools.parseUrl(href);
+      if (url.hash != '' || href == '') {
+        return;
+      }
+
       // Direct navigate for excluded (admin?) links.
       var pattern = Drupal.settings.site_common.jquery_mobile.exclude;
-      var url = qtools.parseUrl(href);
       if (url.href.match(pattern)) {
         window.location.href = href;
         return true;

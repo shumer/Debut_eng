@@ -6,6 +6,14 @@
 
 Example settings.php setings:
 
+// Allow database restoration for local environment.
+// THIS SHOULD BE HERE ONLY FOR LOCAL ENVS!
+$conf['site_common_allow_db_restore'] = TRUE;
+
+// Block environment from functioning until it is prepared.
+// THIS SHOUL BE DIFFERENT FOR EACH USER MACHINE
+$conf['site_common_local_environment'] = 'developer_local';
+
 // This is array diff to variable_get('qtools_varnish_settings')
 $site_common_env['qtools_varnish']['settings'] = array(
   'general' => array(
@@ -32,6 +40,7 @@ $site_common_env['site_common']['search_api'] = array(
 $site_common_env['site_common']['variables'] = array(
   'site_name' => 'mysite.com',
   'site_mail' => 'mail@gmail.com',
+  'site_common_current_environment' => $conf['site_common_local_environment'],
 );
 
 // Edit array to update user(1) with.
@@ -39,6 +48,18 @@ $site_common_env['site_common']['admin'] = array(
   'name' => 'admin',
   'pass' => 'admin',
   'mail' => 'mail@gmail.com',
+);
+
+// List of domain records that should be updated.
+$site_common_env['site_common']['domain'] = array(
+  'machine_name1' => array(
+    'subdomain' => 'site1.local.com',
+    'sitename' => 'Site1',
+  ),
+  'machine_name2' => array(
+    'subdomain' => 'site2.local.com',
+    'sitename' => 'Site2',
+  ),
 );
 
 // Move our settings to globals.

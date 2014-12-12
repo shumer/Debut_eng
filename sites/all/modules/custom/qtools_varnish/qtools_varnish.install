@@ -7,11 +7,11 @@
 /**
  * Implements hook_enable().
  */
-function qtools_esi_enable() {
+function qtools_varnish_enable() {
 
-  // Site private key.
-  if (!variable_get('qtools_esi_private_key', FALSE)) {
-    variable_set('qtools_esi_private_key', uniqid());
+  // Set tag value separator.
+  if (variable_get('QTOOLS_TAG_EQUAL_SIGN', '|') != '=') {
+    variable_set('QTOOLS_TAG_EQUAL_SIGN', '=');
   }
 
 }
@@ -19,5 +19,5 @@ function qtools_esi_enable() {
 /**
  * Implements hook_disable().
  */
-function qtools_esi_disable() {
+function qtools_varnish_disable() {
 }

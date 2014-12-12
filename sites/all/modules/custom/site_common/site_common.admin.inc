@@ -35,7 +35,7 @@ function site_common_admin_settings_form() {
     '#description' => t('You may want to override %behavior behavior in your theme.', array(
       '%behavior' => 'Drupal.behaviors.site_common_lazy_load',
     ), array('context' => 'COMMON: admin area')),
-    '#collapsible' => FALSE,
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
   $form['site_common_settings']['lazy_load']['enabled'] = array(
@@ -69,14 +69,12 @@ function site_common_admin_settings_form() {
     '#default_value' => _site_common_settings('lazy_load', 'placeholder_styles', array()),
   );
 
-  // Lazy Load images settings.
+  // JQuery Mobile images settings.
   $form['site_common_settings']['jquery_mobile'] = array(
     '#title' => t('jQuery Mobile', array(), array('context' => 'COMMON: admin area')),
     '#type' => 'fieldset',
-    '#description' => t('jQuery Mobile intergarion', array(
-      '%behavior' => 'Drupal.behaviors.site_common_lazy_load',
-    ), array('context' => 'COMMON: admin area')),
-    '#collapsible' => FALSE,
+    '#description' => t('jQuery Mobile intergarion', array(), array('context' => 'COMMON: admin area')),
+    '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
   $form['site_common_settings']['jquery_mobile']['enabled'] = array(
