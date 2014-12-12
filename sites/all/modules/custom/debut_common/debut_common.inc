@@ -75,6 +75,16 @@ function debut_common_create_node_breadcrumbs($node) {
       $breadcrumb[] = $node->title;
       break;
 
+    // Make breadcrumb for video node.
+    case DEBUT_COMMON_TYPE_VIDEO:
+      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $publication_date = site_common_field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
+      $year = date('Y', $date);
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = $node->title;
+      break;
+    
     // Make breadcrumb for master class section node.
     case DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION:
       $breadcrumb[] = l(t('Letopis Debuta'), DEBUT_COMMON_PAGE_NEWS_LIST);
@@ -187,7 +197,7 @@ function debut_common_create_page_breadcrumbs() {
     // BC for documents page.
     case DEBUT_COMMON_PAGE_DOCUMENTS_LIST:
       $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
-      $current_year = $_GET['field_publication_date_value'];
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
       if (!empty($current_year)) {
         $current_year = $current_year['value']['year'];
         $breadcrumb[] = $current_year;

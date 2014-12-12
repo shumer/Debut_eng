@@ -2417,16 +2417,16 @@ section article.prem_list ol a {
   height: 100%;
 }
 /*------------video teaser styles---------------*/
-.video_list .view-video-list {
+.block-video-listing{
   width: 525px;
 }
 
-.video_list .video {
+.video-list .video {
   background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
   margin-bottom: 15px;
 }
 
-.video_list .video h2 {
+.video-list .video h2 {
   background: none repeat scroll 0 0 transparent;
   color: #BD01B5;
   font-size: 18px;
@@ -2436,8 +2436,8 @@ section article.prem_list ol a {
   margin-top: 0.667em;
 }
 
-.video .player {
-  float: none;
+.video-listing .player {
+  float: left;
   margin-right: 10px;
 }
 
