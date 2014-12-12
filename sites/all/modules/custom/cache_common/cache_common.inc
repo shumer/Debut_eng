@@ -448,6 +448,16 @@ function cache_common_load_entity_single($entity_type, $entity_id) {
         $entity = $node;
       }
       break;
+    case 'commerce_product':
+      if ($sku = cache_common_load_sku($entity_id)) {
+        $entity = $sku;
+      }
+      break;
+    case 'asset':
+      if ($asset = cache_common_load_asset($entity_id)) {
+        $entity = $asset;
+      }
+      break;
     default:
       if ($entity = entity_load($entity_type, array($entity_id))) {
         $entity = $entity[$entity_id];
@@ -456,4 +466,54 @@ function cache_common_load_entity_single($entity_type, $entity_id) {
   }
 
   return $entity;
+}
+
+/**
+ * Safe entity load proxy, require status=1 at very least.
+ */
+function cache_common_load_sku($sku_id, $safe = TRUE) {
+  global $language, $user;
+
+  // Set account to check against.
+  $account = $user;
+
+  // Load default SKU.
+  $sku = commerce_product_load($sku_id);
+
+  // Check for SKU publish && Schedule.
+  if ($safe && !empty($sku)) {
+    if (empty($sku->status)) {
+      $sku = NULL;
+    }
+  }
+
+  // Check for access to translation, via access to unpublished node.
+  if ($safe && !empty($sku) && !user_access('view unpublished domain content', $account)) {
+    $handler = entity_translation_get_handler('commerce_product', $sku, TRUE);
+    $entity_translations = $handler->getTranslations();
+    if (empty($entity_translations->data) || empty($entity_translations->data[$language->language]['status'])) {
+      $sku = NULL;
+    }
+  }
+
+  return $sku;
+}
+
+/**
+ * Safe asset load proxy.
+ */
+function cache_common_load_asset($aid, $safe = TRUE) {
+  global $language, $user;
+
+  // Exit if aid not numeric.
+  if (!is_numeric($aid)) {
+    return;
+  }
+
+  $return = NULL;
+
+  // Load asset.
+  $return = asset_load($aid);
+
+  return $return;
 }

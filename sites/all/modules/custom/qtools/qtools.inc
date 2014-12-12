@@ -26,6 +26,7 @@ function qtools_api__developer($set = NULL) {
 function qtools_api__js_add($name = '', $force = FALSE) {
 
   // Get path and added scripts list.
+  $options = NULL;
   $added_list = &drupal_static(__FUNCTION__ . '_list', array());
   $js_path = drupal_get_path('module', 'qtools') . '/js/qtools.' . $name . '.js';
 
@@ -39,9 +40,13 @@ function qtools_api__js_add($name = '', $force = FALSE) {
     elseif ($name == 'autocomplete') {
       drupal_add_library('system', 'drupal.autocomplete');
     }
+    elseif ($name == 'base') {
+      // If file is added it is present on every page.
+      $options['every_page'] = TRUE;
+    }
 
     // Add js.
-    drupal_add_js($js_path);
+    drupal_add_js($js_path, $options);
     $added_list[] = $js_path;
   }
 }
@@ -367,19 +372,54 @@ function qtools_api__image_dimensions($source, $style = FALSE) {
  */
 function qtools_api__image_placeholder($width, $height) {
 
-  $image = imagecreatetruecolor($width, $height);
-  imagesavealpha($image, true);
-  $color = imagecolorallocatealpha($image, 0, 0, 0, 127);
-  imagefill($image, 0, 0, $color);
+  // Get file and directory path.
+  $directory = variable_get('qtools_api__image_placeholder_path', 'public://qtools_api__image_placeholder');
+  $file = $directory . '/' . $width . '_' . $height . '.src';
 
-  // Save image from buffer.
-  ob_start();
-    imagepng($image);
-    $contents = ob_get_contents();
-  ob_end_clean();
+  // Check foe existing image and return if already created.
+  if (file_exists($file)) {
+    // For safety reasons we did not store encoded results.
+    $contents = file_get_contents();
+  }
+  else {
+    // Build image.
+    $image = imagecreatetruecolor($width, $height);
+    imagesavealpha($image, true);
+    $color = imagecolorallocatealpha($image, 0, 0, 0, 127);
+    imagefill($image, 0, 0, $color);
 
-  // Build data URI
-  $dataUri = "data:image/png;base64," . base64_encode($contents);
+    // Save image from buffer.
+    ob_start();
+      imagepng($image);
+      $contents = ob_get_contents();
+    ob_end_clean();
+
+    // Prepare saving folder.
+    $prepared = FALSE;
+    if (!file_exists($directory)) {
+      $res = drupal_mkdir($directory);
+      if (empty($res)) {
+        watchdog('qtools_api:image', '@function can not create directory @dir', array(
+          '@function' => __FUNCTION__,
+          '@dir' => $directory,
+        ), WATCHDOG_ERROR);
+      }
+      else {
+        $prepared = TRUE;
+      }
+    }
+    else {
+      $prepared = TRUE;
+    }
+  }
+
+  // Save result.
+  if ($prepared) {
+    // Build data URI.
+    $dataUri = "data:image/png;base64," . base64_encode($contents);
+    file_put_contents($file, $dataUri);
+  }
+
   return $dataUri;
 }
 
@@ -1592,7 +1632,7 @@ function qtools_api__cache_tag_short() {
  *   (string/int) tag value like node nid.
  *
  * @return
- *   (string) cobmined tag like node|123.
+ *   (string) cobmined tag like node|123 or node=123.
  */
 function qtools_api__cache_tag($type, $value) {
 
@@ -1603,9 +1643,9 @@ function qtools_api__cache_tag($type, $value) {
   }
 
   // Normalize tag.
-  // Type should not contain pipes.
-  $type = str_replace('|', '_', $type);
-  $tag = current(qtools_api__cache_tags_prepare($type . '|' . $value));
+  // Type should not contain separator.
+  $type = str_replace(QTOOLS_TAG_EQUAL_SIGN, '_', $type);
+  $tag = current(qtools_api__cache_tags_prepare($type . QTOOLS_TAG_EQUAL_SIGN . $value));
   return $tag;
 }
 
@@ -1647,7 +1687,7 @@ function qtools_api__cache_tag_cust($type, $cachemode = DRUPAL_CACHE_PER_USER, $
  * Note that any ';' will be replaced with dash.
  *
  * @param $tag
- *   (string) tag to be applied to cache chains.
+ *   (string/array) tag to be applied to cache chains.
  * @param $cids
  *   (array) list of chain ids to apply $tag to, empty = all open chains.
  *

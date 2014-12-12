@@ -91,7 +91,7 @@ function debut_preprocess_entity(&$variables) {
   elseif (function_exists($preprocess_all)) {
     $preprocess_all($variables);
   }
-  elseif (site_common_developer()) {
+  elseif (debut_common_developer()) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess_exact)));
   }
 }
@@ -140,7 +140,7 @@ function debut_preprocess_node(&$variables) {
   if (function_exists($preprocess)) {
     $preprocess($variables);
   }
-  elseif (site_common_developer()) {
+  elseif (debut_common_developer()) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess)));
   }
   // Add specific templates.
@@ -173,7 +173,7 @@ function debut_preprocess_field(&$variables) {
     if (function_exists($preprocess)) {
       $preprocess($variables);
     }
-    elseif (site_common_developer()) {
+    elseif (debut_common_developer()) {
       dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess)));
     }
 
@@ -207,7 +207,7 @@ function debut_preprocess_views_view(&$variables) {
   if (function_exists($preprocess)) {
     return $preprocess($variables);
   }
-  elseif (site_common_developer()) {
+  elseif (debut_common_developer()) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess)));
   }
 }
@@ -223,7 +223,7 @@ function debut_preprocess_views_view_unformatted(&$variables) {
   if (function_exists($preprocess)) {
     return $preprocess($variables);
   }
-  elseif (site_common_developer()) {
+  elseif (debut_common_developer()) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess)));
   }
 }
@@ -433,7 +433,7 @@ function debut_preprocess_taxonomy_term(&$variables) {
   elseif (function_exists($preprocess_all)) {
     $preprocess_all($variables);
   }
-  elseif (site_common_developer()) {
+  elseif (debut_common_developer()) {
     dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess_exact)));
   }
 }

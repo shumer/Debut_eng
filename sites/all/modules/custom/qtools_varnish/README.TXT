@@ -1,4 +1,5 @@
 7.x-2.03
+- Support for Views GET method switch added.
 - Support for site_common environment restoration feature
 - Avaialbility settings moved to settings page (like enabled for https)
 - Ability to purge image/file cache when node updated with same image name.

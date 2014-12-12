@@ -22,7 +22,7 @@ function debut_feature_ct_documents_ctools_plugin_api($module = NULL, $api = NUL
 function debut_feature_ct_documents_node_info() {
   $items = array(
     'documents' => array(
-      'name' => t('Documents'),
+      'name' => t('Документы'),
       'base' => 'node_content',
       'description' => t('Документы'),
       'has_title' => '1',

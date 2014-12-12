@@ -22,11 +22,11 @@ function debut_feature_ct_press_about_debut_ctools_plugin_api($module = NULL, $a
 function debut_feature_ct_press_about_debut_node_info() {
   $items = array(
     'press_about_debut' => array(
-      'name' => t('Press about debut'),
+      'name' => t('Пресса о премии'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Заголовок'),
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );

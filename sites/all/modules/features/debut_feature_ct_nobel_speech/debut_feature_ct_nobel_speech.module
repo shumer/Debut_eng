@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: CT - Nobel speech feature.
+ */
+
+include_once 'debut_feature_ct_nobel_speech.features.inc';

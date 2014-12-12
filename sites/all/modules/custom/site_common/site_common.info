@@ -7,4 +7,3 @@ core = "7.x"
 
 dependencies[] = qtools
 dependencies[] = ctools
-dependencies[] = config_pages

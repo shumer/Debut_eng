@@ -5,22 +5,47 @@
  */
 
 define('SITE_COMMON_VAR_MOBILE_THRESHOLD', 925);
-define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)');
+define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)|(/admin_menu/)');
 
 // Load includes.
 module_load_include('inc', 'site_common');
 module_load_include('field.inc', 'site_common');
 
 /**
+ * Implements hook_site_common_preload_resources().
+ */
+function site_common_site_common_preload_resources() {
+
+  // Add views scripts.
+  if (module_exists('views')) {
+    views_add_js('ajax_view');
+  }
+
+  // Add ajax.
+  site_common_js_add('ajax');
+}
+
+/**
  * Implements hooks_init().
  */
 function site_common_init() {
+  // Hard stop if environment nor reconfigured.
+  $current_env = variable_get('site_common_current_environment');
+  $local_env = variable_get('site_common_local_environment');
+  if (!drupal_is_cli() && !empty($local_env) && $local_env != $current_env) {
+    print t('Current environment is [@env1], while local environment is [@env2], please reconfigure manually or with this command [@cmd]', array(
+      '@env1' => $current_env,
+      '@env2' => $local_env,
+      '@cmd' => 'drush site-common-env',
+    ));
+    die;
+  }
 }
 
 /**
  * Preprocess page.
  */
-function site_common_preprocess_html($variables) {
+function site_common_preprocess_html(&$variables) {
   global $theme;
 
   // Add additional scripts for front theme.
@@ -30,6 +55,25 @@ function site_common_preprocess_html($variables) {
         'exclude' => _site_common_settings('jquery_mobile', 'exclude_url', SITE_COMMON_VAR_JQM_EXCLUDE),
       ));
     }
+  }
+
+  // This runs before theme preproces.
+  $js_list = &drupal_static('drupal_add_js', array());
+
+  // Exclude all asynk items to be loaded after.
+  $asynk_list = array();
+  foreach ($js_list as $key => $info) {
+    if (!empty($info['asynk']) && $info['type'] == 'file') {
+      $asynk_list[] = $info['data'];
+      unset($js_list[$key]);
+    }
+  }
+
+  // Add asynk script list to the page.
+  if (!empty($asynk_list)) {
+    site_common_js_add('asynk', FALSE, array(
+      'js' => $asynk_list,
+    ));
   }
 }
 
@@ -122,9 +166,9 @@ function site_common_menu_alter(&$items) {
   }
 
   // Close access to /taxonomy/term.
-  if (!empty($items['taxonomy/term/%taxonomy_term'])) {
+  /*if (!empty($items['taxonomy/term/%taxonomy_term'])) {
     unset($items['taxonomy/term/%taxonomy_term']);
-  }
+  }*/
 
   // We want to be able controll view modes tabs for ease of use
   // However entity_view_mode fails us badly few times, so no trust in it until it maintained.

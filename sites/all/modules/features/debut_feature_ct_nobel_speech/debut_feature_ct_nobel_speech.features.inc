@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * debut_feature_ct_news.features.inc
+ * debut_feature_ct_nobel_speech.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function debut_feature_ct_news_ctools_plugin_api($module = NULL, $api = NULL) {
+function debut_feature_ct_nobel_speech_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
@@ -19,14 +19,14 @@ function debut_feature_ct_news_ctools_plugin_api($module = NULL, $api = NULL) {
 /**
  * Implements hook_node_info().
  */
-function debut_feature_ct_news_node_info() {
+function debut_feature_ct_nobel_speech_node_info() {
   $items = array(
-    'news' => array(
-      'name' => t('Новости'),
+    'nobel_speech' => array(
+      'name' => t('Нобелевские речи'),
       'base' => 'node_content',
-      'description' => t('Content type for site news.'),
+      'description' => '',
       'has_title' => '1',
-      'title_label' => t('Заголовок'),
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );
