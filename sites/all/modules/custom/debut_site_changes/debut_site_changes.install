@@ -1,0 +1,49 @@
+<?php
+/**
+ *
+ * @file
+ *   Install routine.
+ */
+
+/**
+ * Implements hook_uninstall();
+ */
+function debut_site_changes_uninstall() {
+  drupal_uninstall_schema('debut_site_changes');
+}
+
+/**
+ * implements hook_schema();
+ */
+function debut_site_changes_schema() {
+
+  $schema['debut_site_changes_stats'] = array(
+    'fields' => array(
+      'sid' => array(
+        'description' => t('Stats ID.'),
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => t('Parent node nid.'),
+        'type' => 'int',
+        'default' => 0,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'change_time' => array(
+        'description' => t('Time when node was changed.'),
+        'type' => 'int',
+        'default' => 0,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array(
+      'sid'
+    ),
+  );
+
+  return $schema;
+}
