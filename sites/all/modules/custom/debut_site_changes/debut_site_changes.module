@@ -1,0 +1,42 @@
+<?php
+/**
+ *
+ * @file
+ *   Module hooks.
+ */
+
+module_load_include('inc', 'debut_site_changes');
+module_load_include('form.inc', 'debut_site_changes');
+
+/**
+ * Implements hook_menu();
+ */
+function debut_site_changes_menu() {
+
+  $menu['admin/config/development/site_changes'] = array(
+    'title' => 'Debut Site changes',
+    'description' => 'Debut Configuration',
+    'access arguments' => array(DEBUT_COMMON_PERM_ADMIN),
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('debut_site_changes_form_config'),
+  );
+  return $menu;
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function debut_site_changes_node_insert($node) {
+  debut_site_changes_node_update($node);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function debut_site_changes_node_update($node) {
+  $save_stat = debut_site_changes_update_check_type($node->type);
+  if ($save_stat && !empty($node->nid)) {
+    debut_site_changes_update_stats($node);
+  }
+}
