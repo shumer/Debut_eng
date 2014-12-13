@@ -310,3 +310,83 @@ function debut_common_developer() {
   // TODO: switch based on the session settings.
   return !empty($_SESSION['debut_common_developer']);
 }
+
+/**
+ *  Create links for site changes block.
+ */
+function debut_common_create_changes_list($date) {
+
+  $changes = debut_site_changes_get_stats_date($date);
+
+  if (!empty($changes)) {
+    foreach ($changes as $sid => $day) {
+      switch ($day['type']) {
+        case DEBUT_COMMON_TYPE_PERSONS:
+          $section = t('«Prize persons»');
+          break;
+
+        case DEBUT_COMMON_TYPE_NEWS:
+          $section = t('«News»');
+          break;
+
+        case DEBUT_COMMON_TYPE_PRESS:
+          $section = t('«Press about prize»');
+          break;
+
+        case DEBUT_COMMON_TYPE_DOCUMENTS:
+          $section = t('«Documents»');
+          break;
+
+        case DEBUT_COMMON_TYPE_JURY:
+          $section = t('«Prize Jury»');
+          break;
+
+        case DEBUT_COMMON_TYPE_BOOKS:
+          $section = t('«Books»');
+          break;
+
+        case DEBUT_COMMON_TYPE_PHOTOS:
+          $section = t('«Photos»');
+          break;
+
+        case DEBUT_COMMON_TYPE_VIDEO:
+          $section = t('«Video»');
+          break;
+
+        case DEBUT_COMMON_TYPE_IBOOKS:
+          $section = t('«iBooks»');
+          break;
+
+        case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
+          $section = t('«Nobel speech»');
+          break;
+
+        default:
+          $section = t('Site');
+          break;
+      }
+      $links[] = t('View changes in setion !section', array('!section' => l($section, 'node/' . $day['nid'])));
+    }
+    $links = theme('item_list', array(
+      'items' => $links,
+      'title' => NULL,
+      'type' => 'ul',
+      'attributes' => array(
+        'class' => array('pager')
+      ),
+    ));
+  }
+  else {
+    $links = '<div class="empty_day">' . t('На эту дату нет обновлений.') . '</div>';
+  }
+
+  return $links;
+}
+
+/**
+ * Checking for valid date.
+ */
+function debut_common_validate_date($date) {
+  $a_date = DateTime::createFromFormat('m/d/Y', $date);
+  return $a_date && $a_date->format('m/d/Y') == $date;
+}

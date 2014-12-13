@@ -54,7 +54,7 @@ Drupal.ajax.prototype.specifiedResponse = function() {
   }{
 
   // Invoke ajax as specified in command.
-  qtools.log(command.title, command.data);
+  //qtools.log(command.title, command.data);
 }
 
   // Wrap success and error functions.
