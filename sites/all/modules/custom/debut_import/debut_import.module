@@ -20,6 +20,7 @@ define('DEBUT_IMPORT_BOOK_IMPORTER', 'debut_book_importer');
 define('DEBUT_IMPORT_IBOOK_IMPORTER', 'debut_ibook_importer');
 define('DEBUT_IMPORT_INTERVIEW_IMPORTER', 'debut_interview_import');
 define('DEBUT_IMPORT_NOBEL_IMPORTER', 'debut_nobel_import');
+define('DEBUT_IMPORT_MC_IMPORTER', 'debut_master_class_import');
 
 define('DEBUT_IMPORT_SOURCE_MEDIA_PATH', 'public://import/');
 
@@ -90,6 +91,10 @@ function debut_import_feeds_presave(FeedsSource $source, $entity, $item) {
 
     case DEBUT_IMPORT_NOBEL_IMPORTER:
       debut_import_nobel_set_publication_date($source, $entity, $item);
+      break;
+
+    case DEBUT_IMPORT_MC_IMPORTER:
+      debut_import_mc_set_publication_date($source, $entity, $item);
       break;
 
     case DEBUT_IMPORT_PHOTO_IMPORTER:
