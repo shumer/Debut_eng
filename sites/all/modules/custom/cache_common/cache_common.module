@@ -7,7 +7,6 @@
 define('CACHE_COMMON_CACHE_BIN', 'cache');
 define('CACHE_COMMON_TABLE_CACHE_TAGS', 'cache_common_cache_tags');
 
-define('CACHE_COMMON_PATH_SITE_CONFIG', 'admin/cache_config');
 define('CACHE_COMMON_PERM_ADMIN', 'cache_common_perm_admin');
 
 define('CACHE_COMMON_VAR_FORCE_ACCESS_ANONYM', variable_get('CACHE_COMMON_VAR_FORCE_ACCESS_ANONYM', FALSE));
@@ -95,19 +94,13 @@ function cache_common_menu() {
   $items = array();
 
   // Module config.
-  $items[CACHE_COMMON_PATH_SITE_CONFIG] = array(
-    'title' => 'Cache site settings',
-    'description' => 'Cache site settings',
+  $items['admin/config/development/cache_common'] = array(
+    'title' => 'Cache common settings',
+    'description' => 'Cache common settings',
     'type' => MENU_NORMAL_ITEM,
     'access arguments' => array(CACHE_COMMON_PERM_ADMIN),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cache_common_form_site_settings'),
-  );
-
-  $items[CACHE_COMMON_PATH_SITE_CONFIG . '/configs'] = array(
-    'title' => 'Site settings',
-    'type' => MENU_DEFAULT_LOCAL_TASK,
-    'weight' => -10,
   );
 
   return $items;
