@@ -24,6 +24,7 @@ function debut_import_import_id_check($source) {
     case DEBUT_IMPORT_IBOOK_IMPORTER:
     case DEBUT_IMPORT_INTERVIEW_IMPORTER:
     case DEBUT_IMPORT_NOBEL_IMPORTER:
+    case DEBUT_IMPORT_MC_IMPORTER:
       $result = TRUE;
       break;
     default:
@@ -213,4 +214,13 @@ function debut_import_nobel_set_publication_date($source, &$entity, $item) {
 
   // Set publication date.
   $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = $item['xpathparser:3'];
+}
+
+/**
+ * Update publictaion date.
+ */
+function debut_import_mc_set_publication_date($source, &$entity, $item) {
+
+  // Set publication date.
+  $entity->field_publication_date[LANGUAGE_NONE][0]['value'] = $item['xpathparser:6'];
 }
