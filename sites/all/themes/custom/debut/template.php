@@ -762,7 +762,7 @@ function debut_recaptcha_custom_widget() {
     <div id="recaptcha_image" class="recaptcha_image"></div>
     <div class="recaptcha_only_if_incorrect_sol" style="color:red">$recaptcha_only_if_incorrect_sol</div>
     <span class="recaptcha_only_if_image">$recaptcha_only_if_image_enter</span>
-    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+    <div class="form-text-wrap"><div class="form-text-wrap-inner"><input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="form-text" /></div></div>
     <div class="recaptcha_get_another_captcha"><a href="javascript:Recaptcha.reload()">$recaptcha_get_another_captcha</a></div>
 EOT;
 }
