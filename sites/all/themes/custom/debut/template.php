@@ -693,3 +693,59 @@ function debut_item_list($variables) {
 
   return $output;
 }
+
+/**
+ * Returns HTML for a textfield form element.
+ */
+function debut_textfield($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
+  _form_set_class($element, array('form-text'));
+
+  $extra = '';
+  if ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  $output = '<div class="form-text-wrap"><div class="form-text-wrap-inner">';
+  $output .= '<input' . drupal_attributes($element['#attributes']) . ' />';
+  $output .= '</div></div>';
+
+  return $output . $extra;
+}
+
+/**
+ * Returns HTML for a textarea form element.
+ */
+function debut_textarea($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id', 'name', 'cols', 'rows'));
+  _form_set_class($element, array('form-textarea'));
+
+  $wrapper_attributes = array(
+    'class' => array('form-textarea-wrapper', 'form-textarea-wrap'),
+  );
+
+  // Add resizable behavior.
+  if (!empty($element['#resizable'])) {
+    drupal_add_library('system', 'drupal.textarea');
+    $wrapper_attributes['class'][] = 'resizable';
+  }
+
+  $output = '<div' . drupal_attributes($wrapper_attributes) . '>';
+  $output .= '<div class="form-textarea-wrap-inner">';
+  $output .= '<textarea' . drupal_attributes($element['#attributes']) . '>' . check_plain($element['#value']) . '</textarea>';
+  $output .= '</div></div>';
+
+  return $output;
+}

@@ -91,6 +91,7 @@ em, i {
   line-height: 0;
 }
 
+.hidden,
 .is-hidden {
   display: none;
 }
@@ -1201,6 +1202,7 @@ li.hide-before-content:hover:before {
   overflow: auto;
   padding: 0;
   width: 185px;
+  resize: none;
 }
 
 .block-contact-us .champs {
