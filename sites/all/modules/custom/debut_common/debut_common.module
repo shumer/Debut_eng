@@ -173,3 +173,30 @@ function debut_common_theme() {
   );
   return($theme);
 }
+
+/**
+ * Implements hook_mail_edit_text().
+ */
+function debut_common_mail_edit_text($mailkey, $language) {
+  $return = array();
+  $return['subject'] = t('Subject');
+  $return['body'] = t('Body');
+  return $return;
+}
+
+/**
+ * Implements hook_mailkeys().
+ */
+function debut_common_mailkeys() {
+  return array(
+    'contact_us_admin' => t('Sends administration mail when user submits "Contact us" form.'),
+  );
+}
+
+/**
+ * Implements hook_mail().
+ */
+function debut_common_mail($key, &$message, $params) {
+  $message['subject'] = t('Original subject');
+  $message['body'][] = t('Original body');
+}
