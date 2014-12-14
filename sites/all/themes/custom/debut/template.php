@@ -749,3 +749,20 @@ function debut_textarea($variables) {
 
   return $output;
 }
+
+/**
+ * Theme function: creates the custom themed recaptcha widget.
+ */
+function debut_recaptcha_custom_widget() {
+  $recaptcha_only_if_incorrect_sol = t('Попробуйте еще раз');
+  $recaptcha_only_if_image_enter = t('Введите текст с картинки:');
+  $recaptcha_get_another_captcha = t('Обновить изображение');
+  $help = t('Help');
+  return <<<EOT
+    <div id="recaptcha_image" class="recaptcha_image"></div>
+    <div class="recaptcha_only_if_incorrect_sol" style="color:red">$recaptcha_only_if_incorrect_sol</div>
+    <span class="recaptcha_only_if_image">$recaptcha_only_if_image_enter</span>
+    <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+    <div class="recaptcha_get_another_captcha"><a href="javascript:Recaptcha.reload()">$recaptcha_get_another_captcha</a></div>
+EOT;
+}
