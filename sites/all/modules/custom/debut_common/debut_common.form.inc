@@ -68,12 +68,62 @@ function debut_common_contact_us_form($form, $form_state) {
     '#value' => 'Send'
   );
 
+  $form['#validate'][] = 'debut_common_contact_us_form_validate';
+
   return $form;
+}
+
+/**
+ * Validate contact us form.
+ */
+function debut_common_contact_us_form_validate($form, &$form_state) {
+  global $user;
+  $values = variable_get('debut_common_conf', array());
+  $ips = explode(',', $values['common']['site_banned_ip']);
+  if (!is_array($ips)) {
+    $ips = array($ips);
+  }
+  if (in_array($user->hostname, $ips)) {
+    form_set_error('contact_form_email', t('You IP adress was banned.'));
+    watchdog('Debut Forms', t('Submit contact form from banned IP address: @address', array('@address' => $user->hostname)), NULL, WATCHDOG_INFO);
+  }
+  $email = $form_state['values']['contact_form_email'];
+  if (!valid_email_address($email)) {
+    form_set_error('contact_form_email', t('Please, enter the valid email'));
+  }
 }
 
 /**
  * Contact form submit.
  */
 function debut_common_contact_us_form_submit($form, &$form_state) {
-  drupal_set_message('11');
+  global $user;
+
+  // Send mail with notify about contact us form.
+  $values = variable_get('debut_common_conf', array());
+  $mail_conf = $values['mail'];
+
+  $params['name'] = $form_state['values']['contact_form_name'];
+  $params['email'] = $form_state['values']['contact_form_email'];
+  $params['message-text'] = $form_state['values']['contact_form_message'];
+  $tokens['udata'] = $params;
+
+  if (function_exists('mail_template')) {
+    $mail_template = mail_template($mail_conf['message_contact_us'], 'ru', $tokens);
+
+    // Send email.
+    if (!empty($mail_template['mtid'])) {
+      $recipients = array('to' => array(), 'bcc' => array(), 'cc' => array());
+      $addresses = explode(',', $mail_conf['contact_us_email']);
+      if (!is_array($addresses)) {
+        $addresses = array($addresses);
+      }
+      $recipients['to'] = $addresses;
+      mail_template_send_mail($mail_conf['message_contact_us'], $recipients,
+        'ru', $tokens
+      );
+    }
+  }
+
+  drupal_set_message(t('You message has been sent. We contact to you shortly. Thank you.'));
 }
