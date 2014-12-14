@@ -298,3 +298,18 @@ function debut_preprocess_node__video__full(&$variables) {
     $_html['player'] = theme('debut_common_embed_player', array('_data' => $_data));
   }
 }
+
+/**
+ * Preprocess debut_common_contact_us_form.
+ */
+function debut_preprocess_form__debut_common_contact_us_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['name'] = drupal_render($form['contact_form_name']);
+  $_html['email'] = drupal_render($form['contact_form_email']);
+  $_html['message'] = drupal_render($form['contact_form_message']);
+
+  $_html['form'] = drupal_render_children($form);
+}
