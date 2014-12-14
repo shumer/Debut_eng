@@ -310,6 +310,7 @@ function debut_preprocess_form__debut_common_contact_us_form(&$variables) {
   $_html['name'] = drupal_render($form['contact_form_name']);
   $_html['email'] = drupal_render($form['contact_form_email']);
   $_html['message'] = drupal_render($form['contact_form_message']);
+  $_html['captcha'] = drupal_render($form['captcha']);
 
   $_html['form'] = drupal_render_children($form);
 }

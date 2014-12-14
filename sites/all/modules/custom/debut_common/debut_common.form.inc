@@ -41,6 +41,7 @@ function debut_common_contact_us_form($form, $form_state) {
     '#required' => TRUE,
     '#size' => 15
   );
+
   $form['contact_form_email'] = array(
     '#type' => 'textfield',
     '#title' => t('E-mail'),
@@ -49,6 +50,7 @@ function debut_common_contact_us_form($form, $form_state) {
     '#required' => TRUE,
     '#size' => 15
   );
+
   $form['contact_form_message'] = array(
     '#type' => 'textarea',
     '#title' => t('Message'),
@@ -59,20 +61,13 @@ function debut_common_contact_us_form($form, $form_state) {
     '#required' => TRUE,
     '#resizable' => FALSE,
   );
-  $form['contact_captcha_element'] = array(
-    '#type' => 'captcha',
-    '#captcha_type' => 'image_captcha/Image',
-    '#description' => t('<span class="reload-captcha">Обновить изображение</span>')
-  );
+
   $form['submit'] = array(
     '#type' => 'submit',
     '#attributes' => array('class' => array('button')),
     '#value' => 'Send'
   );
-  //$form['#after_build'][] = 'debut_blocks_block_contact_us_form_after_build';
-  //$form['#validate'][] = 'debut_blocks_block_contact_us_form_validate';
-  //$form['#submit'][] = 'debut_blocks_block_contact_us_form_submit';
-  //$form['#theme'][] = 'debut_blocks_block_contact_us_form';
+
   return $form;
 }
 

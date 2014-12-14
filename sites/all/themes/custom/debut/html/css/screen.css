@@ -1214,9 +1214,13 @@ li.hide-before-content:hover:before {
   color: #f09142;
 }
 
-.block-contact-us fieldset.captcha {
-  margin-left: 2px;
+.block-contact-us .captcha {
+  margin-left: 3px;
   padding-left: 0px;
+}
+
+.block-contact-us .captcha .recaptcha_image {
+  height: 38px !important;
 }
 
 .block-contact-us fieldset.captcha .form-text-wrap,
