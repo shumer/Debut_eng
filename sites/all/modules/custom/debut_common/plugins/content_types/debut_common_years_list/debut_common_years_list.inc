@@ -46,8 +46,8 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
     // If we don't have any data get in from view and store in cache.
     $view = qtools_api__views_get_result($conf['view'], 'year_list');
     foreach ($view as $item) {
-      $publicataion_date = isset($item->field_field_publication_date[0])
-        ? $item->field_field_publication_date[0]['raw']['value']
+      $publicataion_date = isset($item->field_publication_date)
+        ? $item->field_publication_date
         : NULL;
       $date = strtotime($publicataion_date);
       if (!empty($date)) {
