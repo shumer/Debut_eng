@@ -7,3 +7,5 @@ version = "7.x-0.1"
 dependencies[] = ctools
 dependencies[] = site_common
 dependencies[] = cache_common
+dependencies[] = mail_edit
+dependencies[] = mimemail
