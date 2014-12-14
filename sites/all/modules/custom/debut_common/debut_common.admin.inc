@@ -58,21 +58,23 @@ function debut_common_form_conf() {
       ? $values['mail']['contact_us_email'] : ''
   );
 
-    if (function_exists('mail_template_get_mail_template')) {
-    $templates = qtools_api__array_remap(mail_template_get_mail_template(), 'name');
-    $template_options = array(
-      '' => t('-- None --')
-    ) + qtools_api__array_extract($templates, 'title');
-
-    $form['debut_common_conf']['mail']['message_contact_us'] = array(
-      '#type' => 'select',
-      '#title' => t('Message contact us'),
-      '#description' => t('Mail template for "message send contact us" e-mail. Sent when user submit Contact us form.'),
-      '#options' => $template_options,
-      '#default_value' => isset($form['#_values']['mail']['message_contact_us'])
-        ? $form['#_values']['mail']['message_contact_us'] : NULL,
-    );
+  $query = db_select('mail_edit_registry', 'mer')->extend('PagerDefault')->limit(50)
+    ->fields('mer', array('id', 'module', 'mailkey', 'description'))
+    ->orderBy('mer.module')
+    ->orderBy('mer.mailkey');
+  $template_options = array();
+  foreach ($query->execute() as $template) {
+    $template_options[$template->id] = $template->description;
   }
+
+  $form['debut_common_conf']['mail']['message_contact_us'] = array(
+    '#type' => 'select',
+    '#title' => t('Message contact us'),
+    '#description' => t('Mail template for "message send contact us" e-mail. Sent when user submit Contact us form.'),
+    '#options' => $template_options,
+    '#default_value' => isset($form['#_values']['mail']['message_contact_us'])
+      ? $form['#_values']['mail']['message_contact_us'] : NULL,
+  );
 
   $form['debut_common_conf']['common']['site_language_links'] = array(
     '#title' => t('Enter links in format "EN|http://www.debutprize.com"'),
