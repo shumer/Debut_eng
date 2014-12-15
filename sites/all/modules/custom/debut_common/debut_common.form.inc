@@ -97,33 +97,16 @@ function debut_common_contact_us_form_validate($form, &$form_state) {
  * Contact form submit.
  */
 function debut_common_contact_us_form_submit($form, &$form_state) {
-  global $user;
+  global $language;
 
   // Send mail with notify about contact us form.
-  $values = variable_get('debut_common_conf', array());
-  $mail_conf = $values['mail'];
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
 
-  $params['name'] = $form_state['values']['contact_form_name'];
-  $params['email'] = $form_state['values']['contact_form_email'];
-  $params['message-text'] = $form_state['values']['contact_form_message'];
-  $tokens['udata'] = $params;
+  $values = $form_state['values'];
+  $token_bundle = 'debut_common_contact_us';
+  $params = array($token_bundle => $values);
 
-  if (function_exists('mail_template')) {
-    $mail_template = mail_template($mail_conf['message_contact_us'], 'ru', $tokens);
-
-    // Send email.
-    if (!empty($mail_template['mtid'])) {
-      $recipients = array('to' => array(), 'bcc' => array(), 'cc' => array());
-      $addresses = explode(',', $mail_conf['contact_us_email']);
-      if (!is_array($addresses)) {
-        $addresses = array($addresses);
-      }
-      $recipients['to'] = $addresses;
-      mail_template_send_mail($mail_conf['message_contact_us'], $recipients,
-        'ru', $tokens
-      );
-    }
-  }
-
+  $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, $values['contact_form_email']);
   drupal_set_message(t('You message has been sent. We contact to you shortly. Thank you.'));
 }
