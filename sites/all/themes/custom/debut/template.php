@@ -628,3 +628,60 @@ function debut_field(&$variables) {
   // Prevent default field wrapping into odd divs.
   // this function MUST be present even if empty.
 }
+
+/**
+ * Field render proxy.
+ */
+function debut_image_render($field, $mode = NULL, $deltas = NULL, $glue = NULL, $options = array()) {
+
+  // Sanity check.
+  if (empty($field) || empty($field['#items'])) {
+    return (!empty($glue) || is_numeric($deltas)) ? '' : array();
+  }
+
+  // Build default preset.
+  $preset = implode('__', array_filter(array($field['#bundle'], $field['#field_name'], $field['#view_mode'], $mode)));
+
+  // Calculate deltas.
+  if (is_numeric($deltas)) {
+    $_return_delta = $deltas;
+    $deltas = array($deltas);
+  }
+  elseif (empty($deltas)) {
+    $deltas = element_children($field);
+  }
+
+  // Default render.
+  $images = array();
+  foreach ($deltas as $key) {
+    if (empty($field[$key]['#item'])) {
+      if (!empty($field[$key]['#markup'])) {
+        $images[] = $field[$key]['#markup'];
+      }
+      continue;
+    }
+    $field[$key]['#image_style'] = $preset;
+    if (!empty($field['#item_default'])) {
+      $field[$key]['#item'] = array_merge_recursive($field[$key]['#item'], $field['#item_default']);
+    }
+    unset($field[$key]['#item']['width'], $field[$key]['#item']['height']);
+
+    $_image = drupal_render($field[$key]);
+    if (!empty($options['no_size'])) {
+      $_image = preg_replace(array('/width="[^"]*"/', '/height="[^"]*"/'), array('', ''), $_image);
+    }
+    $images[] = $_image;
+  }
+
+  // Glue if required.
+  if ($glue !== NULL) {
+    $images = implode($glue, $images);
+  }
+  elseif (isset($_return_delta)) {
+    $images = !empty($images[$_return_delta])
+      ? $images[$_return_delta]
+      : NULL;
+  }
+
+  return $images;
+}

@@ -298,3 +298,66 @@ function debut_preprocess_node__video__full(&$variables) {
     $_html['player'] = theme('debut_common_embed_player', array('_data' => $_data));
   }
 }
+
+/**
+ * Preprocess view mode teaser for press_photo_listing node.
+ */
+function debut_preprocess_node__photo_listing__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  $counter = 1;
+  foreach ($node->field_photo_listing_photo as $item) {
+    if ($counter >= 5) {
+      break;
+    }
+    $class = ($counter % 2) ? 'first' : 'last';
+    $image = '';
+    $image = theme('imagecache', 'preset_314x166',  $item['filepath'], $item['data']['alt']);
+    $image = l($image, 'node/' . $node->nid, array(
+      'html' => TRUE,
+      'attributes' => array('class' => $class),
+    ));
+    $_html['images'][] = $image;
+    $counter++;
+  }
+}
+
+/**
+ * Preprocess view mode full for press_photo_listing node.
+ */
+function debut_preprocess_node__photo_listing__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+
+  $photo_field = debut_get('field_photo_listing_photo', $content);
+ 
+  foreach ($photo_field['#items'] as $i => $item) {
+    $class = ($i % 2) ? 'first' : 'last';
+    $image = debut_image_render($photo_field, NULL, $i, ' ', array('no_size' => TRUE));
+    $link = l($image, file_create_url($item['uri']), array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => $class . ' gallery_elements',
+        'rel' => 'gallery',
+        'title' => $item['title']
+      ),
+    ));
+    $_html['images'][] = $link;
+  }
+}
+
+/**
+ * Preprocess photo_listing_search.
+ */
+function debut_preprocess_node__photo_listing_search(&$variables) {
+  debut_preprocess_node__photo_listing_teaser($variables);
+}
