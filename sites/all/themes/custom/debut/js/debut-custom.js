@@ -85,6 +85,11 @@ debut_custom.init = function ($context, settings) {
 
   // Mark init as complete.
   debut_custom._inited = true;
+  
+  $(".gallery_elements").fancybox({
+    nextEffect  : 'none',
+    prevEffect  : 'node'
+  });
 
   debut_custom.init_calendar($context, settings);
 }
@@ -178,5 +183,4 @@ debut_custom.attach_proxy = function ($context, settings) {
       var target = $(this).attr('data-proxy-target');
       var op = $(target).val($(this).val());
     });
-  });
 }
