@@ -83,4 +83,8 @@ debut_custom.init = function () {
   // Mark init as complete.
   debut_custom._inited = true;
 
+  $(".gallery_elements").fancybox({
+    nextEffect  : 'none',
+    prevEffect  : 'node'
+  });
 }
