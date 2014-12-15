@@ -200,3 +200,54 @@ function debut_common_mail($key, &$message, $params) {
   $message['subject'] = t('Original subject');
   $message['body'][] = t('Original body');
 }
+
+/**
+ * Implements hook_token_info().
+ */
+function debut_common_token_info() {
+
+  $info = array();
+
+  $info['types']['debut_common_contact_us'] = array(
+    'name' => t('Debut contact us'),
+    'description' => t('Debut contact us'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['manuscript_url'] = array(
+    'name' => t('Link to manuscript file.'),
+    'description' => t('Link to manuscript file.'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['name'] = array(
+    'name' => t('Sender name.'),
+    'description' => t('Sender name.'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['email'] = array(
+    'name' => t('Sender email.'),
+    'description' => t('Sender email.'),
+  );
+
+  $info['tokens']['debut_common_contact_us']['message_text'] = array(
+    'name' => t('Message text.'),
+    'description' => t('Message text.'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function debut_common_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+  if ($type == 'debut_common_contact_us') {
+    if (isset($data['debut_common_contact_us'])) {
+      $values = $data['debut_common_contact_us'];
+      $replacements['[debut_common_contact_us:name]'] = check_plain($values['contact_form_name']);
+      $replacements['[debut_common_contact_us:email]'] = check_plain($values['contact_form_email']);
+      $replacements['[debut_common_contact_us:message_text]'] = check_plain($values['contact_form_message']);
+    }
+  }
+  return $replacements;
+}

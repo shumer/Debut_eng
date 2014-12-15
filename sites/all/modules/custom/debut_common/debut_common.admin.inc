@@ -64,7 +64,7 @@ function debut_common_form_conf() {
     ->orderBy('mer.mailkey');
   $template_options = array();
   foreach ($query->execute() as $template) {
-    $template_options[$template->id] = $template->description;
+    $template_options[$template->mailkey] = $template->description;
   }
 
   $form['debut_common_conf']['mail']['message_contact_us'] = array(
