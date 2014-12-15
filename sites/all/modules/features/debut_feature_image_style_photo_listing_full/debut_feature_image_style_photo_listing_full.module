@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Image style - Photo listing full feature.
+ */
+
+include_once 'debut_feature_image_style_photo_listing_full.features.inc';

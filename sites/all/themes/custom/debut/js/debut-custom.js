@@ -85,6 +85,11 @@ debut_custom.init = function ($context, settings) {
 
   // Mark init as complete.
   debut_custom._inited = true;
+  
+  $(".gallery_elements").fancybox({
+    nextEffect  : 'none',
+    prevEffect  : 'node'
+  });
 
   debut_custom.init_calendar($context, settings);
 }
