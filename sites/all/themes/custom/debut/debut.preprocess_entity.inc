@@ -339,10 +339,10 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
   $_html['title'] = check_plain($node->title);
 
   $photo_field = debut_get('field_photo_listing_photo', $content);
- 
+
   foreach ($photo_field['#items'] as $i => $item) {
     $class = ($i % 2) ? 'first' : 'last';
-    $image = debut_image_render($photo_field, NULL, $i, ' ', array('no_size' => TRUE));
+    $image = drupal_render($photo_field[$i]);
     $link = l($image, file_create_url($item['uri']), array(
       'html' => TRUE,
       'attributes' => array(
