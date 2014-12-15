@@ -183,4 +183,5 @@ debut_custom.attach_proxy = function ($context, settings) {
       var target = $(this).attr('data-proxy-target');
       var op = $(target).val($(this).val());
     });
+  });
 }
