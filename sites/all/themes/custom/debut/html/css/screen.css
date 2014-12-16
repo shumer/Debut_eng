@@ -2593,6 +2593,7 @@ section article.prem_list ol a {
   overflow: auto;
   padding: 0;
   width: 400px;
+  resize: none;
 }
 
 .customfile {
@@ -3842,4 +3843,12 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 .content .documents-body strong,
 .content .news-body strong {
   font-weight: bold;
+}
+
+.manuscript-captcha .captcha {
+  padding-left: 115px;
+}
+
+.manuscript-form-wrap .captcha .form-item .form-text-wrap {
+  float: none ;
 }

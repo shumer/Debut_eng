@@ -110,3 +110,54 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
   $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, $values['contact_form_email']);
   drupal_set_message(t('You message has been sent. We contact to you shortly. Thank you.'));
 }
+
+/**
+ * Send manuscript form.
+ */
+function debut_common_send_manuscript_form($form, $form_state) {
+
+  $form['#attributes']['enctype'] = 'multipart/form-data';
+
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Name'),
+    '#attributes' => array('class' => array('send-manuscript-name')),
+    '#default_value' => '',
+    '#required' => TRUE,
+    '#size' => 30
+  );
+
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('E-mail'),
+    '#attributes' => array('class' => array('send-manuscript-email')),
+    '#default_value' => '',
+    '#required' => TRUE,
+    '#size' => 30
+  );
+
+  $form['comment'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Comment'),
+    '#attributes' => array('class' => array('send-manuscript-comment')),
+    '#default_value' => '',
+    '#rows' => '10',
+    '#cols' => '5',
+    '#required' => TRUE,
+    '#resizable' => FALSE
+  );
+
+  $form['file_upload'] = array(
+    '#type' => 'file',
+    '#title' => t('Select the file'),
+    '#description' => t('Select the file with extension .doc or .rtf')
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#attributes' => array('class' => array('button')),
+    '#value' => 'Send'
+  );
+
+  return $form;
+}
