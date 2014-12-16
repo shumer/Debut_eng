@@ -377,3 +377,24 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
 function debut_preprocess_node__photo_listing_search(&$variables) {
   debut_preprocess_node__photo_listing_teaser($variables);
 }
+
+/**
+ * Preprocess debut_common_send_manuscript_form.
+ */
+function debut_preprocess_form__debut_common_send_manuscript_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme path for future use.
+  $theme_path = drupal_get_path('theme', 'debut');
+  drupal_add_js($theme_path . '/html/js/jquery.fileinput.js');
+
+  $_html['name'] = drupal_render($form['name']);
+  $_html['email'] = drupal_render($form['email']);
+  $_html['message'] = drupal_render($form['comment']);
+  $_html['file_upload'] = drupal_render($form['file_upload']);
+  $_html['captcha'] = drupal_render($form['captcha']);
+
+  $_html['form'] = drupal_render_children($form);
+}

@@ -766,3 +766,15 @@ function debut_recaptcha_custom_widget() {
     <div class="recaptcha_get_another_captcha"><a href="javascript:Recaptcha.reload()">$recaptcha_get_another_captcha</a></div>
 EOT;
 }
+
+/**
+ * Returns HTML for a file upload form element.
+ */
+function debut_file($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'file';
+  element_set_attributes($element, array('id', 'name', 'size'));
+  _form_set_class($element, array('form-file'));
+
+  return '<div class="item-upload"><input' . drupal_attributes($element['#attributes']) . ' /></div>';
+}

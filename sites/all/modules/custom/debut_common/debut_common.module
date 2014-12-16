@@ -131,6 +131,9 @@ function debut_node_presave($node) {
   $supported_types = array(
     DEBUT_COMMON_TYPE_NEWS,
     DEBUT_COMMON_TYPE_DOCUMENTS,
+    DEBUT_COMMON_TYPE_PRESS,
+    DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION,
+    DEBUT_COMMON_TYPE_TRAVELS,
   );
 
   if (!in_array($node->type, $supported_types)) {
