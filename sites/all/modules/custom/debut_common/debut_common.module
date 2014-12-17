@@ -52,6 +52,8 @@ define('DEBUT_COMMON_VIEW_PRESS_ABOUT_DEBUT_LISTING', 'debut_view_list_press_abo
 define('DEBUT_COMMON_VIEW_VIDEO_LISTING', 'debut_view_list_video');
 define('DEBUT_COMMON_VIEW_PHOTO_LISTING', 'debut_view_list_photos');
 
+define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
+
 // Load includes.
 module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
