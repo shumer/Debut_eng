@@ -31,7 +31,14 @@ function debut_common_page_ajax_newsletter_subscribe_callback() {
   global $user;
   $commands = array();
 
-  drupal_set_message(t('You was subscribed successfully.'));
+  if (isset($_POST['email'])) {
+    $email = $_POST['email'];
+    if (valid_email_address($email)) {
+      simplenews_subscribe_user($mail, DEBUT_COMMON_TID_NEWSLETTERS, TRUE, 'newsleeter form');
+      drupal_set_message(t('You was subscribed successfully. Confirmation message sended to your email address.'));
+    }
+  }
+
   $messages = theme('status_messages');
   $commands[] = ajax_command_html('.messages-container', $messages);
 
