@@ -107,7 +107,7 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
   $token_bundle = 'debut_common_contact_us';
   $params = array($token_bundle => $values);
 
-  $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, $values['contact_form_email']);
+  $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, 'noreply@pokolenie-debut.ru');
   drupal_set_message(t('You message has been sent. We contact to you shortly. Thank you.'));
 }
 
@@ -115,8 +115,6 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
  * Send manuscript form.
  */
 function debut_common_send_manuscript_form($form, $form_state) {
-
-  $form['#attributes']['enctype'] = 'multipart/form-data';
 
   $form['name'] = array(
     '#type' => 'textfield',
@@ -160,4 +158,64 @@ function debut_common_send_manuscript_form($form, $form_state) {
   );
 
   return $form;
+}
+
+/**
+ * Validate send manuscript form.
+ */
+function debut_common_send_manuscript_form_validate($form, &$form_state) {
+
+  // Try to upload file.
+  $validators = array(
+    'file_validate_extensions' => array('doc rtf'),
+  );
+  $file = file_save_upload('file_upload', $validators);
+
+  // If the file passed validation.
+  if ($file) {
+    // Prepared dir.
+    $base_dir = 'public://sended_manuscripts/';
+    file_prepare_directory($base_dir, FILE_CREATE_DIRECTORY);
+    $date = date('m-Y', time());
+    $directory = $base_dir . $date;
+    file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+
+    // Move the file into the Drupal file system.
+    if ($file = file_move($file, $directory)) {
+
+      // Save the file for use in the submit handler.
+      $form_state['storage']['file'] = $file;
+    }
+    else {
+      form_set_error('file_upload', t('File could not be uploaded'));
+    }
+  }
+  else {
+    form_set_error('file_upload', t('File did not pass validation. Check file extension.'));
+  }
+}
+
+/**
+ * Send manuscript form submit.
+ */
+function debut_common_send_manuscript_form_submit($form, &$form_state) {
+  global $language;
+
+  // Mark file as permanent or Drupal will delete it on next cron run.
+  $file = $form_state['storage']['file'];
+  unset($form_state['storage']['file']);
+  $file->status = FILE_STATUS_PERMANENT;
+  file_save($file);
+
+  // Send mail with notify about contact us form.
+  $site_conf_values = variable_get('debut_common_conf', array());
+  $mail_conf = $site_conf_values['mail'];
+
+  $values = $form_state['values'];
+  $token_bundle = 'debut_common_send_manuscript';
+  $values['manuscript_url'] = l(t('Скачать файл'), file_create_url($file->uri));
+  $params = array($token_bundle => $values);
+
+  $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'noreply@pokolenie-debut.ru');
+  drupal_set_message(t('Ваше сообщение было успешно отправлено'));
 }
