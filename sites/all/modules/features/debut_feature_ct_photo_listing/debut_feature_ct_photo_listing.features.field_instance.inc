@@ -31,8 +31,15 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
       ),
       'listing' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_photo_listing_photo__listing',
+        ),
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -90,8 +97,15 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
       ),
       'listing' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'debut_date_short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
       'teaser' => array(

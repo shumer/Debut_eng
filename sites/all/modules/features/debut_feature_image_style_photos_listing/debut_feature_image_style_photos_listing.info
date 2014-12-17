@@ -1,0 +1,9 @@
+name = Debut Feature: Image style - Photos listing
+description = node__field_photo_listing_photo__listing
+core = 7.x
+package = Debut Image Styles
+version = 7.x-0.01
+project = debut_feature_image_style_photos_listing
+dependencies[] = image
+features[features_api][] = api:2
+features[image][] = node__field_photo_listing_photo__listing
