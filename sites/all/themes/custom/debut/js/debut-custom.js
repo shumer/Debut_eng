@@ -68,6 +68,9 @@ debut_custom.attach = function ($context, settings) {
   // Attach proxy.
   debut_custom.attach_proxy($context, settings);
 
+  // Attach newsletters subscription.
+  debut_custom.attach_newsletters($context, settings);
+
   // Init.
   if (!debut_custom._inited) {
     debut_custom.init($context, settings);
@@ -148,7 +151,6 @@ debut_custom.calendar_event_days = function(date) {
   return [true, ''];
 }
 
-
 // Attach proxy.
 debut_custom.attach_proxy = function ($context, settings) {
 
@@ -188,3 +190,32 @@ debut_custom.attach_proxy = function ($context, settings) {
     });
   });
 }
+
+// Check email address.
+debut_custom.is_email = function (email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+// Attach newsletters subscription.
+debut_custom.attach_newsletters = function ($context, settings) {
+
+  // Proxy clicks.
+  $context.find('.block-newsletters .form-button-submit').once('debut-newsletters-block', function (delta) {
+    $(this).click(function () {
+      var $this = $(this);
+      var email = $('.block-newsletters .email-input').val();
+      if (!debut_custom.is_email(email)) {
+        var $messages = $('.block-newsletters .messages').clone();
+        $('.messages-target').html($messages);
+        $('html, body').animate({scrollTop:0}, 'slow');
+      }
+      else {
+        var name = $this.attr('newsletter-subscribe');
+        var url = $this.attr('data-ajax-url');
+        var data = {'email': email};
+        qtools_ajax.ajax_call(name, url, data);
+      }
+    });
+  });
+};

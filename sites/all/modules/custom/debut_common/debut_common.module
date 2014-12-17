@@ -88,6 +88,15 @@ function debut_common_menu() {
     'file' => 'debut_common.page.inc',
   );
 
+  $menu['debut_common/ajax/debut_common_newsletter_subscribe'] = array(
+    'type' => MENU_CALLBACK,
+    'theme callback' => 'ajax_base_page_theme',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('access content'),
+    'page callback' => 'debut_common_page_ajax_newsletter_subscribe_callback',
+    'file' => 'debut_common.page.inc',
+  );
+
   return $menu;
 }
 
