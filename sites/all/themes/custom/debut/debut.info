@@ -8,6 +8,7 @@ engine = phptemplate
 plugins[panels][layouts] = layouts
 
 scripts[] = html/js/jquery-ui.js
+scripts[] = html/js/jquery.fileinput.js
 
 scripts[] = js/debut-custom.js
 

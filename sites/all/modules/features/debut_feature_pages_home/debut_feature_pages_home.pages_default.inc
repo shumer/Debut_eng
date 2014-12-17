@@ -84,6 +84,50 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->uuid = 'f1606c7d-a933-483e-8950-ac6baec77f29';
     $display->content['new-f1606c7d-a933-483e-8950-ac6baec77f29'] = $pane;
     $display->panels['content_left'][0] = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
+    $pane = new stdClass();
+    $pane->pid = 'new-d4b020ac-308e-4dfe-9235-67e27aeaec7b';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'd4b020ac-308e-4dfe-9235-67e27aeaec7b';
+    $display->content['new-d4b020ac-308e-4dfe-9235-67e27aeaec7b'] = $pane;
+    $display->panels['content_left'][1] = 'new-d4b020ac-308e-4dfe-9235-67e27aeaec7b';
+    $pane = new stdClass();
+    $pane->pid = 'new-3eef58eb-154e-44f3-b154-82b0d205917f';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '3eef58eb-154e-44f3-b154-82b0d205917f';
+    $display->content['new-3eef58eb-154e-44f3-b154-82b0d205917f'] = $pane;
+    $display->panels['content_left'][2] = 'new-3eef58eb-154e-44f3-b154-82b0d205917f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
   $handler->conf['display'] = $display;
