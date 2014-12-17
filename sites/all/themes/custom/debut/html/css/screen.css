@@ -3852,3 +3852,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 .manuscript-form-wrap .captcha .form-item .form-text-wrap {
   float: none ;
 }
+
+.element-invisible {
+  display: none;
+}

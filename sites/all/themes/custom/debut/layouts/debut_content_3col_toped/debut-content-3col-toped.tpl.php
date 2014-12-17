@@ -24,7 +24,7 @@
   </aside>
 
   <div class="col-b col panel-col">
-    <div class="messages-target"></div>
+    <div class="messages-target message-container"></div>
     <?php print $content['content_center'];?>
   </div>
 
