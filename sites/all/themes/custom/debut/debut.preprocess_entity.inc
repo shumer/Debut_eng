@@ -386,10 +386,6 @@ function debut_preprocess_form__debut_common_send_manuscript_form(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  // Theme path for future use.
-  $theme_path = drupal_get_path('theme', 'debut');
-  drupal_add_js($theme_path . '/html/js/jquery.fileinput.js');
-
   $_html['name'] = drupal_render($form['name']);
   $_html['email'] = drupal_render($form['email']);
   $_html['message'] = drupal_render($form['comment']);
