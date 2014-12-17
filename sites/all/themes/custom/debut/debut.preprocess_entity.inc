@@ -316,30 +316,31 @@ function debut_preprocess_form__debut_common_contact_us_form(&$variables) {
 }
 
 /**
- * Preprocess view mode teaser for press_photo_listing node.
+ * Preprocess view mode teaser for press_photo__listing node.
  */
-function debut_preprocess_node__photo_listing__teaser(&$variables) {
+function debut_preprocess_node__photo_listing__listing(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
+  
+  $visible_image_count = 4;
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-
-  $counter = 1;
-  foreach ($node->field_photo_listing_photo as $item) {
-    if ($counter >= 5) {
+  
+  $photo_field = debut_get('field_photo_listing_photo', $content);
+  
+  foreach ($photo_field['#items'] as $i => $item) {
+    if ($i >= $visible_image_count) {
       break;
     }
-    $class = ($counter % 2) ? 'first' : 'last';
-    $image = '';
-    $image = theme('imagecache', 'preset_314x166',  $item['filepath'], $item['data']['alt']);
+    $class = ($i % 2) ? 'first' : 'last';
+    $image = drupal_render($photo_field[$i]);
     $image = l($image, 'node/' . $node->nid, array(
       'html' => TRUE,
       'attributes' => array('class' => $class),
     ));
     $_html['images'][] = $image;
-    $counter++;
   }
 }
 
