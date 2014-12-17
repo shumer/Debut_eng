@@ -193,6 +193,7 @@ function debut_common_mail_edit_text($mailkey, $language) {
 function debut_common_mailkeys() {
   return array(
     'contact_us_admin' => t('Sends administration mail when user submits "Contact us" form.'),
+    'manuscript_admin' => t('Sends administration mail when user submits "Send Manuscript" form.'),
   );
 }
 
@@ -216,11 +217,6 @@ function debut_common_token_info() {
     'description' => t('Debut contact us'),
   );
 
-  $info['tokens']['debut_common_contact_us']['manuscript_url'] = array(
-    'name' => t('Link to manuscript file.'),
-    'description' => t('Link to manuscript file.'),
-  );
-
   $info['tokens']['debut_common_contact_us']['name'] = array(
     'name' => t('Sender name.'),
     'description' => t('Sender name.'),
@@ -232,6 +228,31 @@ function debut_common_token_info() {
   );
 
   $info['tokens']['debut_common_contact_us']['message_text'] = array(
+    'name' => t('Message text.'),
+    'description' => t('Message text.'),
+  );
+
+  $info['types']['debut_common_send_manuscript'] = array(
+    'name' => t('Debut Send Manuscript'),
+    'description' => t('Debut Send Manuscript'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['manuscript_url'] = array(
+    'name' => t('Link to manuscript file.'),
+    'description' => t('Link to manuscript file.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['name'] = array(
+    'name' => t('Sender name.'),
+    'description' => t('Sender name.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['email'] = array(
+    'name' => t('Sender email.'),
+    'description' => t('Sender email.'),
+  );
+
+  $info['tokens']['debut_common_send_manuscript']['message_text'] = array(
     'name' => t('Message text.'),
     'description' => t('Message text.'),
   );
@@ -250,6 +271,15 @@ function debut_common_tokens($type, $tokens, array $data = array(), array $optio
       $replacements['[debut_common_contact_us:name]'] = check_plain($values['contact_form_name']);
       $replacements['[debut_common_contact_us:email]'] = check_plain($values['contact_form_email']);
       $replacements['[debut_common_contact_us:message_text]'] = check_plain($values['contact_form_message']);
+    }
+  }
+  if ($type == 'debut_common_send_manuscript') {
+    if (isset($data['debut_common_send_manuscript'])) {
+      $values = $data['debut_common_send_manuscript'];
+      $replacements['[debut_common_send_manuscript:name]'] = check_plain($values['name']);
+      $replacements['[debut_common_send_manuscript:email]'] = check_plain($values['email']);
+      $replacements['[debut_common_send_manuscript:message_text]'] = check_plain($values['comment']);
+      $replacements['[debut_common_send_manuscript:manuscript_url]'] = $values['manuscript_url'];
     }
   }
   return $replacements;

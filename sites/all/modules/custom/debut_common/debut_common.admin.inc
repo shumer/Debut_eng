@@ -35,22 +35,6 @@ function debut_common_form_conf() {
       ? $values['mail']['manuscript_email'] : ''
   );
 
-  if (function_exists('mail_template_get_mail_template')) {
-    $templates = qtools_api__array_remap(mail_template_get_mail_template(), 'name');
-    $template_options = array(
-      '' => t('-- None --')
-    ) + qtools_api__array_extract($templates, 'title');
-
-    $form['debut_common_conf']['mail']['message_manuscript'] = array(
-      '#type' => 'select',
-      '#title' => t('Message manuscript'),
-      '#description' => t('Mail template for "message send manuscript" e-mail. Sent when user upload new manuscript.'),
-      '#options' => $template_options,
-      '#default_value' => isset($form['#_values']['mail']['message_manuscript'])
-        ? $form['#_values']['mail']['message_manuscript'] : NULL,
-    );
-  }
-
   $form['debut_common_conf']['mail']['contact_us_email'] = array(
     '#title' => t('Email address which contact us will be sent'),
     '#type' => 'textfield',
@@ -74,6 +58,15 @@ function debut_common_form_conf() {
     '#options' => $template_options,
     '#default_value' => isset($form['#_values']['mail']['message_contact_us'])
       ? $form['#_values']['mail']['message_contact_us'] : NULL,
+  );
+
+  $form['debut_common_conf']['mail']['message_manuscript'] = array(
+    '#type' => 'select',
+    '#title' => t('Message manuscript'),
+    '#description' => t('Mail template for "message send manuscript" e-mail. Sent when user upload new manuscript.'),
+    '#options' => $template_options,
+    '#default_value' => isset($form['#_values']['mail']['message_manuscript'])
+      ? $form['#_values']['mail']['message_manuscript'] : NULL,
   );
 
   $form['debut_common_conf']['common']['site_language_links'] = array(
