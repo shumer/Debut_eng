@@ -13,7 +13,7 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
   $page->api_version = 1;
   $page->name = 'news_list';
   $page->task = 'page';
-  $page->admin_title = 'News list';
+  $page->admin_title = 'Новости';
   $page->admin_description = '';
   $page->path = 'news_list';
   $page->access = array();
@@ -148,6 +148,50 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->uuid = 'ccf9800a-5607-4f3d-a0e4-1b96a7205b28';
     $display->content['new-ccf9800a-5607-4f3d-a0e4-1b96a7205b28'] = $pane;
     $display->panels['content_left'][0] = 'new-ccf9800a-5607-4f3d-a0e4-1b96a7205b28';
+    $pane = new stdClass();
+    $pane->pid = 'new-ec54a060-f125-44e3-83e5-79531248f98d';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ec54a060-f125-44e3-83e5-79531248f98d';
+    $display->content['new-ec54a060-f125-44e3-83e5-79531248f98d'] = $pane;
+    $display->panels['content_left'][1] = 'new-ec54a060-f125-44e3-83e5-79531248f98d';
+    $pane = new stdClass();
+    $pane->pid = 'new-54756c0c-7cbb-4f8b-adfb-8b7564896095';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '54756c0c-7cbb-4f8b-adfb-8b7564896095';
+    $display->content['new-54756c0c-7cbb-4f8b-adfb-8b7564896095'] = $pane;
+    $display->panels['content_left'][2] = 'new-54756c0c-7cbb-4f8b-adfb-8b7564896095';
     $pane = new stdClass();
     $pane->pid = 'new-38731a91-e88e-40ac-a712-c361386f6379';
     $pane->panel = 'top';

@@ -43,12 +43,17 @@ function debut_feature_pages_send_manuscript_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'debut_content_3col_toped';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
     ),
   );
   $display->cache = array();
@@ -56,6 +61,119 @@ function debut_feature_pages_send_manuscript_default_page_manager_pages() {
   $display->uuid = '2bd4efa0-57c9-4507-9650-7dbd81c51a87';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-00bad0ef-252e-4a17-8559-cb6cb6a4aa59';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'ОТПРАВИТЬ РУКОПИСЬ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '00bad0ef-252e-4a17-8559-cb6cb6a4aa59';
+    $display->content['new-00bad0ef-252e-4a17-8559-cb6cb6a4aa59'] = $pane;
+    $display->panels['content_center'][0] = 'new-00bad0ef-252e-4a17-8559-cb6cb6a4aa59';
+    $pane = new stdClass();
+    $pane->pid = 'new-25616515-ed1b-486d-bf61-63eae7018e25';
+    $pane->panel = 'content_center';
+    $pane->type = 'content';
+    $pane->subtype = 'content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'bundle' => 'manuscript_page',
+      'view_mode' => 'full',
+      'override_title' => 1,
+      'override_title_text' => 'ОТПРАВИТЬ РУКОПИСЬ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '25616515-ed1b-486d-bf61-63eae7018e25';
+    $display->content['new-25616515-ed1b-486d-bf61-63eae7018e25'] = $pane;
+    $display->panels['content_center'][1] = 'new-25616515-ed1b-486d-bf61-63eae7018e25';
+    $pane = new stdClass();
+    $pane->pid = 'new-40075f3d-506b-4ad7-ae86-c5b057ea8bad';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_send_manuscript';
+    $pane->subtype = 'debut_common_send_manuscript';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '40075f3d-506b-4ad7-ae86-c5b057ea8bad';
+    $display->content['new-40075f3d-506b-4ad7-ae86-c5b057ea8bad'] = $pane;
+    $display->panels['content_center'][2] = 'new-40075f3d-506b-4ad7-ae86-c5b057ea8bad';
+    $pane = new stdClass();
+    $pane->pid = 'new-43e45705-a380-47dc-ab2d-b8379ef70f0e';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_menu';
+    $pane->subtype = 'debut_common_menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'browser_menu' => 'main-menu',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '43e45705-a380-47dc-ab2d-b8379ef70f0e';
+    $display->content['new-43e45705-a380-47dc-ab2d-b8379ef70f0e'] = $pane;
+    $display->panels['content_left'][0] = 'new-43e45705-a380-47dc-ab2d-b8379ef70f0e';
+    $pane = new stdClass();
+    $pane->pid = 'new-ea5d8f3a-2fe9-419b-a645-5c566d77f291';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ea5d8f3a-2fe9-419b-a645-5c566d77f291';
+    $display->content['new-ea5d8f3a-2fe9-419b-a645-5c566d77f291'] = $pane;
+    $display->panels['content_left'][1] = 'new-ea5d8f3a-2fe9-419b-a645-5c566d77f291';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

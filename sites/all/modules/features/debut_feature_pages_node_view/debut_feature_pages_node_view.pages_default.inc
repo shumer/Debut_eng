@@ -128,6 +128,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-e44cb7a2-c070-4e9f-a483-da87736a3daa'] = $pane;
     $display->panels['content_left'][0] = 'new-e44cb7a2-c070-4e9f-a483-da87736a3daa';
     $pane = new stdClass();
+    $pane->pid = 'new-232605ac-d829-436e-9e02-b3953fc718ba';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '232605ac-d829-436e-9e02-b3953fc718ba';
+    $display->content['new-232605ac-d829-436e-9e02-b3953fc718ba'] = $pane;
+    $display->panels['content_left'][1] = 'new-232605ac-d829-436e-9e02-b3953fc718ba';
+    $pane = new stdClass();
+    $pane->pid = 'new-1cddab97-7237-4dd8-bb71-2da93060c221';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '1cddab97-7237-4dd8-bb71-2da93060c221';
+    $display->content['new-1cddab97-7237-4dd8-bb71-2da93060c221'] = $pane;
+    $display->panels['content_left'][2] = 'new-1cddab97-7237-4dd8-bb71-2da93060c221';
+    $pane = new stdClass();
     $pane->pid = 'new-35430b46-29a3-4f2e-87bc-09b7b39ae073';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
@@ -280,6 +324,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->uuid = 'e44cb7a2-c070-4e9f-a483-da87736a3daa';
     $display->content['new-e44cb7a2-c070-4e9f-a483-da87736a3daa'] = $pane;
     $display->panels['content_left'][0] = 'new-e44cb7a2-c070-4e9f-a483-da87736a3daa';
+    $pane = new stdClass();
+    $pane->pid = 'new-a3a60e16-7eb5-4b5f-b6b3-13e1938d43f0';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'a3a60e16-7eb5-4b5f-b6b3-13e1938d43f0';
+    $display->content['new-a3a60e16-7eb5-4b5f-b6b3-13e1938d43f0'] = $pane;
+    $display->panels['content_left'][1] = 'new-a3a60e16-7eb5-4b5f-b6b3-13e1938d43f0';
+    $pane = new stdClass();
+    $pane->pid = 'new-d6187a32-558a-4a8f-b987-f0daeb97c926';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'd6187a32-558a-4a8f-b987-f0daeb97c926';
+    $display->content['new-d6187a32-558a-4a8f-b987-f0daeb97c926'] = $pane;
+    $display->panels['content_left'][2] = 'new-d6187a32-558a-4a8f-b987-f0daeb97c926';
     $pane = new stdClass();
     $pane->pid = 'new-2702e824-3285-4230-9a54-acfef533dd5a';
     $pane->panel = 'top';
@@ -434,6 +522,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-6d422b35-4b73-40d6-b4e1-5f7817856431'] = $pane;
     $display->panels['content_left'][0] = 'new-6d422b35-4b73-40d6-b4e1-5f7817856431';
     $pane = new stdClass();
+    $pane->pid = 'new-523cc37f-f52d-48d6-9e6e-f7612850f2da';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '523cc37f-f52d-48d6-9e6e-f7612850f2da';
+    $display->content['new-523cc37f-f52d-48d6-9e6e-f7612850f2da'] = $pane;
+    $display->panels['content_left'][1] = 'new-523cc37f-f52d-48d6-9e6e-f7612850f2da';
+    $pane = new stdClass();
+    $pane->pid = 'new-4f0d4ff5-7da7-4177-850d-1caa1ff271e8';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '4f0d4ff5-7da7-4177-850d-1caa1ff271e8';
+    $display->content['new-4f0d4ff5-7da7-4177-850d-1caa1ff271e8'] = $pane;
+    $display->panels['content_left'][2] = 'new-4f0d4ff5-7da7-4177-850d-1caa1ff271e8';
+    $pane = new stdClass();
     $pane->pid = 'new-b17a67bd-9361-41d7-b270-d48d580b9d28';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
@@ -587,6 +719,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-66c55b3c-9498-458b-8e93-fead1b1b1068'] = $pane;
     $display->panels['content_left'][0] = 'new-66c55b3c-9498-458b-8e93-fead1b1b1068';
     $pane = new stdClass();
+    $pane->pid = 'new-42f47b09-270e-4823-b9e2-20ec3f173757';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '42f47b09-270e-4823-b9e2-20ec3f173757';
+    $display->content['new-42f47b09-270e-4823-b9e2-20ec3f173757'] = $pane;
+    $display->panels['content_left'][1] = 'new-42f47b09-270e-4823-b9e2-20ec3f173757';
+    $pane = new stdClass();
+    $pane->pid = 'new-11f01d38-b646-41b5-932d-652f3c26541e';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '11f01d38-b646-41b5-932d-652f3c26541e';
+    $display->content['new-11f01d38-b646-41b5-932d-652f3c26541e'] = $pane;
+    $display->panels['content_left'][2] = 'new-11f01d38-b646-41b5-932d-652f3c26541e';
+    $pane = new stdClass();
     $pane->pid = 'new-4c7cbd9c-602c-4a22-bd69-473bccece2ed';
     $pane->panel = 'top';
     $pane->type = 'debut_common_social_links';
@@ -714,6 +890,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->uuid = '4acbea1c-7f7a-4633-bb89-9bd380854431';
     $display->content['new-4acbea1c-7f7a-4633-bb89-9bd380854431'] = $pane;
     $display->panels['content_left'][0] = 'new-4acbea1c-7f7a-4633-bb89-9bd380854431';
+    $pane = new stdClass();
+    $pane->pid = 'new-6a9bfc99-98bb-4b5c-8f25-279bc7ff0337';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6a9bfc99-98bb-4b5c-8f25-279bc7ff0337';
+    $display->content['new-6a9bfc99-98bb-4b5c-8f25-279bc7ff0337'] = $pane;
+    $display->panels['content_left'][1] = 'new-6a9bfc99-98bb-4b5c-8f25-279bc7ff0337';
+    $pane = new stdClass();
+    $pane->pid = 'new-574889cd-1e7f-4939-b148-ee79acfd5967';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '574889cd-1e7f-4939-b148-ee79acfd5967';
+    $display->content['new-574889cd-1e7f-4939-b148-ee79acfd5967'] = $pane;
+    $display->panels['content_left'][2] = 'new-574889cd-1e7f-4939-b148-ee79acfd5967';
     $pane = new stdClass();
     $pane->pid = 'new-dded7d14-43e7-4252-9305-da02d2b35eab';
     $pane->panel = 'top';
@@ -868,6 +1088,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-049f24f5-2e09-4f20-ab4f-2e4e121b520b'] = $pane;
     $display->panels['content_left'][0] = 'new-049f24f5-2e09-4f20-ab4f-2e4e121b520b';
     $pane = new stdClass();
+    $pane->pid = 'new-9cf68cff-3ac0-45cf-99fe-334943336bb0';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '9cf68cff-3ac0-45cf-99fe-334943336bb0';
+    $display->content['new-9cf68cff-3ac0-45cf-99fe-334943336bb0'] = $pane;
+    $display->panels['content_left'][1] = 'new-9cf68cff-3ac0-45cf-99fe-334943336bb0';
+    $pane = new stdClass();
+    $pane->pid = 'new-5978c081-af06-4e3b-ab9e-d5e4f89af6e3';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '5978c081-af06-4e3b-ab9e-d5e4f89af6e3';
+    $display->content['new-5978c081-af06-4e3b-ab9e-d5e4f89af6e3'] = $pane;
+    $display->panels['content_left'][2] = 'new-5978c081-af06-4e3b-ab9e-d5e4f89af6e3';
+    $pane = new stdClass();
     $pane->pid = 'new-0dd31db4-0435-4ca1-9fc6-85631b8319cc';
     $pane->panel = 'top';
     $pane->type = 'debut_common_social_links';
@@ -1021,6 +1285,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-042dd59f-f0f3-4b42-b133-64441bcfbfe2'] = $pane;
     $display->panels['content_left'][0] = 'new-042dd59f-f0f3-4b42-b133-64441bcfbfe2';
     $pane = new stdClass();
+    $pane->pid = 'new-0a933f43-184d-4d4f-b473-d15835af6afa';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0a933f43-184d-4d4f-b473-d15835af6afa';
+    $display->content['new-0a933f43-184d-4d4f-b473-d15835af6afa'] = $pane;
+    $display->panels['content_left'][1] = 'new-0a933f43-184d-4d4f-b473-d15835af6afa';
+    $pane = new stdClass();
+    $pane->pid = 'new-f410c33c-3c85-4f9a-9d09-025b7b216908';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'f410c33c-3c85-4f9a-9d09-025b7b216908';
+    $display->content['new-f410c33c-3c85-4f9a-9d09-025b7b216908'] = $pane;
+    $display->panels['content_left'][2] = 'new-f410c33c-3c85-4f9a-9d09-025b7b216908';
+    $pane = new stdClass();
     $pane->pid = 'new-2f26c4fe-12ba-4de9-8117-2444d31b53b2';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
@@ -1173,6 +1481,50 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->uuid = '8c3c013f-0fec-4535-a3fd-5a2bf1eaea86';
     $display->content['new-8c3c013f-0fec-4535-a3fd-5a2bf1eaea86'] = $pane;
     $display->panels['content_left'][0] = 'new-8c3c013f-0fec-4535-a3fd-5a2bf1eaea86';
+    $pane = new stdClass();
+    $pane->pid = 'new-fbef4cf8-8f3d-45bc-bc49-b39e0470fe11';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'fbef4cf8-8f3d-45bc-bc49-b39e0470fe11';
+    $display->content['new-fbef4cf8-8f3d-45bc-bc49-b39e0470fe11'] = $pane;
+    $display->panels['content_left'][1] = 'new-fbef4cf8-8f3d-45bc-bc49-b39e0470fe11';
+    $pane = new stdClass();
+    $pane->pid = 'new-2a155b4b-0b0f-4034-8490-08e6f4bbc66e';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '2a155b4b-0b0f-4034-8490-08e6f4bbc66e';
+    $display->content['new-2a155b4b-0b0f-4034-8490-08e6f4bbc66e'] = $pane;
+    $display->panels['content_left'][2] = 'new-2a155b4b-0b0f-4034-8490-08e6f4bbc66e';
     $pane = new stdClass();
     $pane->pid = 'new-04708dd8-846f-4c7e-95a0-b9ca8df9710a';
     $pane->panel = 'top';
