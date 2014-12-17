@@ -50,6 +50,7 @@ define('DEBUT_COMMON_VIEW_TRAVELS_LISTING', 'debut_view_list_travels');
 define('DEBUT_COMMON_VIEW_DOCUMENTS_LISTING', 'debut_view_list_documents');
 define('DEBUT_COMMON_VIEW_PRESS_ABOUT_DEBUT_LISTING', 'debut_view_list_press_about_debut');
 define('DEBUT_COMMON_VIEW_VIDEO_LISTING', 'debut_view_list_video');
+define('DEBUT_COMMON_VIEW_PHOTO_LISTING', 'debut_view_list_photos');
 
 // Load includes.
 module_load_include('inc', 'debut_common');
