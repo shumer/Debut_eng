@@ -24,6 +24,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 5,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -68,6 +74,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 3,
       ),
       'listing' => array(
@@ -116,6 +128,19 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
+        'weight' => 2,
+      ),
+      'frame' => array(
+        'label' => 'above',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_jury_image__frame',
+        ),
+        'type' => 'site_common_image_field_default',
         'weight' => 2,
       ),
       'listing' => array(
@@ -172,6 +197,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 4,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -216,6 +247,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 7,
+      ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 7,
       ),
       'listing' => array(
@@ -264,6 +301,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 6,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -310,6 +353,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
+        'weight' => 9,
+      ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 9,
       ),
       'listing' => array(
@@ -362,6 +411,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 10,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -410,6 +465,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -456,6 +517,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 8,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'listing' => array(
         'label' => 'above',
         'settings' => array(),
@@ -500,6 +567,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'listing' => array(
