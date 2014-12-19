@@ -491,3 +491,9 @@ body.no-admin-menu #admin-toolbar {
 }
 
 /*--end travels style--*/
+
+#admin-menu-wrapper {
+  font-size: 12px;
+  padding: 5px 10px 0;
+}
+
