@@ -121,7 +121,7 @@ function debut_import_person_import_actions($source, &$entity, $item) {
   $entity->field_person_image[LANGUAGE_NONE][0]['alt'] = $entity->{'Temporary target 2'};
 
   // Clear old field collection items if exists.
-  $fc_items_old = site_common_field_get_item('node', $entity, 'field_person_bibliography', NULL, 'value');
+  $fc_items_old = qtools_api__field_get_item('node', $entity, 'field_person_bibliography', NULL, 'value');
   if (!empty($fc_items_old)) {
     foreach ($fc_items_old as $fc_id) {
       $fc_item = entity_load_single('field_collection_item', $fc_id);
@@ -168,7 +168,7 @@ function debut_import_update_book_filepath(&$result) {
 function debut_import_book_import_actions($source, &$entity, $item) {
 
   // Clear old field collection items if exists.
-  $fc_items_old = site_common_field_get_item('node', $entity, 'field_book_content', NULL, 'value');
+  $fc_items_old = qtools_api__field_get_item('node', $entity, 'field_book_content', NULL, 'value');
   if (!empty($fc_items_old)) {
     foreach ($fc_items_old as $delta => $fc_id) {
       $fc_item = entity_load_single('field_collection_item', $fc_id);

@@ -395,3 +395,254 @@ function debut_preprocess_form__debut_common_send_manuscript_form(&$variables) {
 
   $_html['form'] = drupal_render_children($form);
 }
+
+/**
+ * Preprocess books_full.
+ */
+function debut_preprocess_node__books__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $authors = array();
+  
+  // Check if photo present.
+  $book_image = debut_get('field_book_image', $content);
+  if (!empty($book_image)) {
+    $image = drupal_render($book_image[0]);
+    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  }
+
+  // Authors.
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      
+      $author = cache_common_entity_render('node', $authnode, 'frame');
+
+      // Author stories.
+      $stories = explode("\n", qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author_texts', 0, 'value'));
+
+      $authors[] = array(
+        'author' => $author,
+        'stories' => theme_item_list(array(
+          'items' => $stories,
+          'title' => '',
+          'type' => 'ul',
+          'attributes' => array('class' => 'listing'),
+        )),
+      );
+    }
+  }
+
+  $_html['authors'] = $authors;
+  
+  // Prepare pdf link if we have it.
+  $pdf_path = qtools_api__field_get_item('node', $node, 'field_book_pdf', 0, 'uri');
+  if (!empty($pdf_path)) {
+    $_html['pdf_link'] = l(t('Download PDF book version'), file_create_url($pdf_path), array(
+      'attributes' => array('class' => 'pdf'),
+    ));
+  }
+
+  $_html['title'] = check_plain($node->title);
+  $_html['publication'] = debut_render($content, 'field_book_publication');
+  $_html['stories_type'] = qtools_api__field_get_item('node', $node, 'field_book_stories_type', 0, 'value');
+  
+}
+
+/**
+ * Preprocess books_teaser.
+ */
+function debut_preprocess_node__books__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $node->_html['title'] = l($node->title, 'node/'. $node->nid);
+
+  // Check if photo present.
+  $book_image = debut_get('field_book_image', $content);
+  if (!empty($book_image)) {
+    $image = drupal_render($book_image[0]);
+    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  }
+
+  // Publication.
+  $_html['publication'] = debut_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_render($content, 'field_book_short_description');
+
+  // Authors.
+  $authors = array();
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      $authors[] = l($authnode->title, 'node/' . $authnode->nid);
+    }
+  }
+
+  if (!empty($authors)) {
+    $_html['authors'] = theme_item_list(array(
+      'items' => $authors,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'listing'),
+    ));
+  }
+}
+
+/**
+ * Preprocess books_compact.
+ */
+function debut_preprocess_node__books__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Link.
+  $node->_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+    'attributes' => array(
+      'class' => 'show-popup-book',
+    )
+  ));
+
+  // Check if photo present.
+  $book_image = debut_get('field_book_image', $content);
+  if (!empty($book_image)) {
+    $image = drupal_render($book_image[0]);
+    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  }
+}
+
+/**
+ * Preprocess books_popup.
+ */
+function debut_preprocess_node__books__popup(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  
+  $classes = &ctools_static('popup_1col_classes', array());
+  $classes['popup'] = !empty($classes['popup'])
+    ? $classes['popup'] . ' popup-b popup-commenter popup-video'
+    : 'popup-b popup-commenter popup-video';
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Check if photo present.
+  $book_image = debut_get('field_book_image', $content);
+  if (!empty($book_image)) {
+    $image = drupal_render($book_image[0]);
+    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  }
+
+  // Publication.
+  $_html['publication'] = debut_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_render($content, 'field_book_short_description');
+
+  // Authors.
+  $authors = array();
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      $authors[] = l($authnode->title, 'node/' . $authnode->nid);
+    }
+  }
+
+  if (!empty($authors)) {
+    $_html['authors'] = theme_item_list(array(
+      'items' => $authors,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'listing'),
+    ));
+  }
+}
+
+/**
+ * Preprocess books_search.
+ */
+function debut_preprocess_node__books__search(&$variables) {
+  debut_preprocess_node__books__listing($variables);
+}
+
+/**
+ * Preprocess debut_jury at frame view.
+ */
+function debut_preprocess_node__debut_jury__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  if (!empty($content['field_jury_image'])) {
+    $image_field = debut_get('field_jury_image', $content);
+    $image = drupal_render($image_field);
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess debut_prize_person at frame view.
+ */
+function debut_preprocess_node__debut_prize_person__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  if (!empty($content['field_person_image'])) {
+    $image_field = debut_get('field_person_image', $content);
+    $image = drupal_render($image_field);
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
