@@ -274,5 +274,6 @@ debut_custom.attach_fancy = function ($context, settings) {
  */
 window.debut_fancy_resize = function (fancy_width, fancy_height) {
   $('.fancybox-inner').height(fancy_height);
+  $('.fancybox-outer').height(fancy_height);
   $('.fancybox-wrap').height(fancy_height);
 }

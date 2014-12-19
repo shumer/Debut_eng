@@ -108,11 +108,10 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
   $params = array($token_bundle => $values);
 
   $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, 'noreply@pokolenie-debut.ru');
-  drupal_set_message(t('You message has been sent. We contact to you shortly. Thank you.'));
 
   // Redirect depending on popup state.
   if (debut_common_in_popup()) {
-    $form_state['redirect'] = 'debut_common/js/parent_reload';
+    $form_state['redirect'] = 'contact_us/submitted';
   }
   else {
     $form_state['redirect'] = '<front>';
