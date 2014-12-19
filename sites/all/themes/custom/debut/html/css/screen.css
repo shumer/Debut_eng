@@ -3856,3 +3856,177 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 .element-invisible {
   display: none;
 }
+
+.block-contact-us .block-text {
+  padding: 0px 0px 10px 20px;
+}
+
+/**---------------------- Contact us popup -----------------------**/
+.fancybox-title {
+  display: none;
+}
+
+.debut-popup .popup {
+  width: 420px;
+  background: #fff;
+}
+
+.debut-popup .popup .inside {
+  padding: 40px;
+  position: relative;
+  font-family: 'futura_book', Arial, sans-serif, Garuda, FreeSans;
+}
+
+.debut-popup .popup .inside header {
+  border-bottom: 1px solid #F09015;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.debut-popup .popup .inside h3 {
+  text-transform: uppercase;
+  padding: 0 70px 15px 0;
+  font-family: 'futura_bold', Arial, sans-serif, Garuda, FreeSans;
+  font-weight: normal;
+  font-size: 16px;
+}
+.debut-popup .popup .inside .content .form-wrap .form-item {
+  padding: 0 0 15px;
+  zoom: 1;
+}
+.debut-popup .popup .inside .content .captcha .recaptcha_only_if_image,
+.debut-popup .popup .inside .content .form-wrap .form-item label {
+  font-weight: normal;
+  font-size: 14px;
+  display: block;
+  float: left;
+  padding: 0 0 5px;
+  zoom: 1;
+}
+.debut-popup .popup .inside .content .form-wrap .form-item label .required {
+  color: #e31837;
+}
+.debut-popup .popup .inside .content .form-wrap .form-item .form-text {
+  border: 1px solid #e2e2e2;
+  padding: 0 8px;
+  font-family: 'futura_book', Arial, sans-serif, Garuda, FreeSans;
+  color: #666;
+  outline: none;
+  font-size: 14px;
+  margin: 0 0 3px;
+  height: 23px;
+  line-height: 23px;
+  width: 322px;
+  clear: both;
+}
+.debut-popup .popup .inside .content .form-wrap .form-item .form-textarea {
+  border: 1px solid #e2e2e2;
+  line-height: 16px;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin: 0;
+  font-family: 'futura_book', Arial, sans-serif, Garuda, FreeSans;
+  color: #666;
+  outline: none;
+  resize: none;
+  overflow: auto;
+  padding: 4px 8px;
+  margin: 0 0 3px;
+  width: 322px;
+  height: 135px;
+  clear: both;
+}
+.debut-popup .popup .inside .line-separator {
+  display: block;
+  clear: both;
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px solid #F09015;
+  padding: 8px 0 0;
+  margin: 0 0 20px;
+}
+.debut-popup .popup .inside .content .buttons {
+  *zoom: 1;
+}
+.debut-popup .popup .inside .content .buttons:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+.debut-popup .popup .inside .content .buttons .button {
+  float: right;
+  margin: 0;
+}
+.debut-popup .popup .inside .content .button-e a span {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px 6px;
+}
+.debut-popup .popup .inside .content .button-e a:hover {
+  text-decoration: none;
+  background: #BD01B5;
+  color: #fff;
+}
+.debut-popup .popup .inside .content .button-e a:hover span {
+  background: #BD01B5;
+  border: 1px solid #BD01B5;
+  color: #fff;
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+  background-image: url('../images/bgs/fancybox/fancybox_sprite.png');
+}
+#fancybox-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -22px;
+  margin-left: -22px;
+  background-position: 0 -108px;
+  opacity: 0.8;
+  cursor: pointer;
+  z-index: 8060;
+}
+#fancybox-loading div {
+  width: 44px;
+  height: 44px;
+  background: url('../images/bgs/fancybox/fancybox_loading.gif') center center no-repeat;
+}
+.fancybox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 8040;
+  display: none;
+}
+.debut-popup .popup .inside .close {
+  color: #000;
+}
+.debut-popup .popup .inside .close {
+  font-family: 'futura_bold', Arial, sans-serif, Garuda, FreeSans;
+  font-weight: normal;
+  font-size: 13px;
+  text-transform: uppercase;
+  position: absolute;
+  right: 39px;
+  top: 39px;
+  padding: 0 15px 0 0;
+  background: url('../images/bgs/bg_minus_close.png') 100% 6px no-repeat;
+  display: block;
+}
+
+.debut-popup .popup .inside .close:hover {
+  color: #BD01B5;
+  text-decoration: none;
+  background: url('../images/bgs/bg_minus_close.png') 100% -92px no-repeat;
+}
+/**-------------------------------------------------------------**/

@@ -55,15 +55,28 @@ function debut_common_contact_us_content_type_render($subtype, $_conf, $panel_ar
   $data = array();
   $_html = array();
 
-  // Get contac us form.
-  $form = drupal_get_form('debut_common_contact_us_form');
-  $_html['form'] = drupal_render($form);
-
   // Set title.
   $title = (!empty($conf['override_title_text']))
     ? $conf['override_title_text']
     : t('Contact us');
   $_html['title'] = $title;
+
+  $_html['text'] = t('If you have some questions, or whish to say your opinion, please use this link:');
+  $_html['contact_link_popup'] = l('<span>' . t('left the message') . '</span>', 'nofollow/nofollow/contact', array(
+    'attributes' => array(
+      'class' => 'fancy-call',
+      'rel' => 'nofollow',
+      'data-src' => url('nofollow/contact/popup', array('absolute' => TRUE)),
+    ),
+    'html' => TRUE,
+  ));
+  $_html['contact_link_mobile'] = l('<span>' . t('left the message') . '</span>', 'nofollow/contact', array(
+    'attributes' => array(
+      'class' => 'fancy-call-mobile',
+      'rel' => 'nofollow',
+    ),
+    'html' => TRUE,
+  ));
 
   $data['_html'] = $_html;
 
