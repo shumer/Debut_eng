@@ -99,6 +99,22 @@ function debut_common_menu() {
     'file' => 'debut_common.page.inc',
   );
 
+  // Close parent callback.
+  $menu['debut_common/js/parent_close'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'debut_common_page_js_parent_close',
+    'file' => 'debut_common.page.inc',
+  );
+
+  // Reload parent callback.
+  $menu['debut_common/js/parent_reload'] = array(
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'debut_common_page_js_parent_reload',
+    'file' => 'debut_common.page.inc',
+  );
+
   return $menu;
 }
 

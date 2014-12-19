@@ -44,3 +44,64 @@ function debut_common_page_ajax_newsletter_subscribe_callback() {
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }
+
+/**
+ * Close popup window.
+ */
+function debut_common_page_js_parent_close() {
+
+  $echo = '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><head>
+    <script type="text/javascript">
+    if (self != parent) {
+      try {
+        parent.jQuery.fancybox.close();
+      }
+      catch(ex) {
+      }
+    }
+    </script></head><body style="background: none repeat scroll 0 0 transparent;"></body></html>';
+  print $echo;
+
+  // Prevent anything else.
+  die;
+}
+
+/**
+ * Reload parent windoe object.
+ *
+ * Prints JS that will reload parent window object.
+ */
+function debut_common_page_js_parent_reload() {
+  global $is_https;
+  $trail = func_get_args();
+
+  $location = !empty($_REQUEST['destination'])
+    ? '\'' . url($_REQUEST['destination'], array('absolute' => TRUE)) . '\''
+    : 'href[0]';
+  if (!empty($trail)) {
+    $fragment = !empty($_REQUEST['fragment'])
+      ? $_REQUEST['fragment']
+      : '';
+    $location = '\'' . url(implode('/', $trail), array('absolute' => TRUE, 'fragment' => $fragment)) . '\'';
+  }
+
+  // Combine reload command.
+  if ($location == 'href[0]') {
+    $command = 'parent.location.reload(true)';
+  }
+  else {
+    $command = 'parent.location.href = ' . $location;
+  }
+
+  $echo = '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><head>
+    <script type="text/javascript">
+    if (self != parent) {
+      var href = parent.location.href.split(\'#\');
+      ' . $command . ';
+    }
+    </script></head></html>';
+  print $echo;
+
+  // Prevent anything else.
+  die;
+}
