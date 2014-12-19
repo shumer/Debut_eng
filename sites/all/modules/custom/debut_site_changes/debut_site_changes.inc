@@ -10,7 +10,7 @@
  */
 function debut_site_changes_update_check_type($type) {
   $values = variable_get('debut_site_changes_conf', array());
-  $types = $values['types']['node_types'];
+  $types = (isset($values['types']['node_types'])) ? $values['types']['node_types'] : '';
 
   return (!empty($types[$type])) ? TRUE : FALSE;
 }
