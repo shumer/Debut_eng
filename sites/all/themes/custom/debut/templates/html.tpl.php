@@ -46,6 +46,7 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js <?php print $html_classes; ?>" >
 <head>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="maximum-scale=0.75, minimum-scale=0.25" />
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>

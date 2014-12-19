@@ -241,11 +241,19 @@ debut_custom.attach_fancy = function ($context, settings) {
   })
 
   // Photo node action.
-  $context.find'.gallery_elements').once('debut-gallery-elements', function () {
+  $context.find('.gallery_elements').once('debut-gallery-elements', function () {
     $(this).fancybox({
       nextEffect  : 'none',
       prevEffect  : 'node'
       });
   });
 
+  if ($context.find(".popup .close.nojs").size() > 0) {
+    $context.find(".popup .close:not(.nojs), .popup .popup-close").hide();
+  }
+  else {
+    $context.find(".popup .close, .popup .popup-close").click(function(){
+      parent.$.fancybox.close();
+    });
+  }
 };
