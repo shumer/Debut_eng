@@ -97,7 +97,18 @@ debut_custom.init = function ($context, settings) {
 
   debut_custom.init_calendar($context, settings);
 
+  // Resize fancy if we inside.
+  if ((self != parent) && (location.protocol != 'https:')) {
+    var height = 0;
+    var width  = 0;
 
+    $('body').wrapInner('<div id="popup-wraper"/>');
+
+    $('#popup-wraper').css('float', 'left');
+    height = $('#popup-wraper').height();
+
+    parent.debut_fancy_resize(width, height);
+  }
 }
 
 /**
@@ -230,8 +241,8 @@ debut_custom.attach_fancy = function ($context, settings) {
       href: target,
       width : 420,
       minWidth : 420,
-      height: 600,
-      minHeight: 600,
+      height: 625,
+      minHeight: 625,
       padding: 0,
       scrolling: 'no',
       autoResize: false,
@@ -257,3 +268,11 @@ debut_custom.attach_fancy = function ($context, settings) {
     });
   }
 };
+
+/**
+ * Extend window object to support fancy resize.
+ */
+window.debut_fancy_resize = function (fancy_width, fancy_height) {
+  $('.fancybox-inner').height(fancy_height);
+  $('.fancybox-wrap').height(fancy_height);
+}

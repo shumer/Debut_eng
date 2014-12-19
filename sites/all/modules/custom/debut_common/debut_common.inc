@@ -390,3 +390,14 @@ function debut_common_validate_date($date) {
   $a_date = DateTime::createFromFormat('m/d/Y', $date);
   return $a_date && $a_date->format('m/d/Y') == $date;
 }
+
+/**
+ * Determinates if we are in popup.
+ */
+function debut_common_in_popup($set = NULL) {
+  $path = explode('/', $_GET['q']);
+  if ((end($path) == 'popup') || (end($path) == 'quick_view')) {
+    return TRUE;
+  }
+  return FALSE;
+}
