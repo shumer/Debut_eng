@@ -451,7 +451,7 @@ body.no-admin-menu #admin-toolbar {
 
 /*--travels style--*/
 .travels-description-title h1{
-  font-family: "trebuchet MS";
+  font-family: 'PT Sans', sans-serif;
   font-size: 24px;
   line-height: 26px;
   padding: 3px 0 24px;
