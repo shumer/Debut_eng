@@ -71,6 +71,9 @@ debut_custom.attach = function ($context, settings) {
   // Attach newsletters subscription.
   debut_custom.attach_newsletters($context, settings);
 
+  // Attach fancy.
+  debut_custom.attach_fancy($context, settings);
+
   // Init.
   if (!debut_custom._inited) {
     debut_custom.init($context, settings);
@@ -89,28 +92,25 @@ debut_custom.init = function ($context, settings) {
   // Mark init as complete.
   debut_custom._inited = true;
 
-  $('.gallery_elements').fancybox({
-    nextEffect  : 'none',
-    prevEffect  : 'node'
-  });
-
   // File upload on manuscript form.
   $context.find('.page-send-manuscript .item-upload input').customFileInput();
 
   debut_custom.init_calendar($context, settings);
+
+
 }
 
 /**
  * Init calendar block.
  */
 debut_custom.init_calendar = function ($context, settings) {
-  var calendar_monthes = Drupal.settings.debut_common_site_calendar.calendar_monthes;
-  var calendar_monthes_short = Drupal.settings.debut_common_site_calendar.calendar_monthes_short;
-  var calendar_days = Drupal.settings.debut_common_site_calendar.calendar_days;
-  var calendar_days_min = Drupal.settings.debut_common_site_calendar.calendar_days_min;
-  var calendar_days_short = Drupal.settings.debut_common_site_calendar.calendar_days_short;
 
   $context.find('.calendar-run').once('debut-calendar', function () {
+    var calendar_monthes = Drupal.settings.debut_common_site_calendar.calendar_monthes;
+    var calendar_monthes_short = Drupal.settings.debut_common_site_calendar.calendar_monthes_short;
+    var calendar_days = Drupal.settings.debut_common_site_calendar.calendar_days;
+    var calendar_days_min = Drupal.settings.debut_common_site_calendar.calendar_days_min;
+    var calendar_days_short = Drupal.settings.debut_common_site_calendar.calendar_days_short;
     var $this = $(this);
     $this.datepicker({
       dateFormat: 'mm/dd/yy',
@@ -218,4 +218,34 @@ debut_custom.attach_newsletters = function ($context, settings) {
       }
     });
   });
+};
+
+// Attach fancybo call.
+debut_custom.attach_fancy = function ($context, settings) {
+
+  // Contact us popup call.
+  $context.find(".block-contact-us .fancy-call").once('debut-contact-us', function () {
+    var target = ($(this).attr('data-src') != null) ? $(this).attr('data-src') : $(this).attr('href');
+    $(this).fancybox({
+      href: target,
+      width : 420,
+      minWidth : 420,
+      height: 600,
+      minHeight: 600,
+      padding: 0,
+      scrolling: 'no',
+      autoResize: false,
+      autoCenter: false,
+      'type' : 'iframe'
+    });
+  })
+
+  // Photo node action.
+  $context.find'.gallery_elements').once('debut-gallery-elements', function () {
+    $(this).fancybox({
+      nextEffect  : 'none',
+      prevEffect  : 'node'
+      });
+  });
+
 };

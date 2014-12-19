@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Contact feature.
+ */
+
+include_once 'debut_feature_pages_contact.features.inc';
