@@ -660,6 +660,7 @@ li.hide-before-content:hover:before {
 
 .block-browser ul li a {
   font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
   color: #1A2E5A;
   line-height: 19px;
   margin-left: 0px;
@@ -978,9 +979,10 @@ li.hide-before-content:hover:before {
 }
 
 .block-newsletters .form .text{
-  padding: 0px 0px 10px 20px;
+  padding: 0px 10px 10px 20px;
   font-size: 14px;
   font-weight: bold;
+  line-height: 19px;
 }
 .block-newsletters .form-item {
   padding-left: 20px;
@@ -3860,6 +3862,8 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 
 .block-contact-us .block-text {
   padding: 0px 0px 10px 20px;
+  font-size: 14px;
+  line-height: 19px;
 }
 
 /**---------------------- Contact us popup -----------------------**/
@@ -3919,6 +3923,9 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   line-height: 23px;
   width: 322px;
   clear: both;
+}
+.debut-popup .popup .inside .content #recaptcha_challenge_image {
+  width: 340px;
 }
 .debut-popup .popup .inside .content .form-wrap .form-item .form-textarea {
   border: 1px solid #e2e2e2;
