@@ -3924,6 +3924,9 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   width: 322px;
   clear: both;
 }
+.debut-popup .popup .inside .content #recaptcha_challenge_image {
+  width: 340px;
+}
 .debut-popup .popup .inside .content .form-wrap .form-item .form-textarea {
   border: 1px solid #e2e2e2;
   line-height: 16px;
