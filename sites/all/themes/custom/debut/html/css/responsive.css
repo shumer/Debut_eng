@@ -11,11 +11,14 @@
     width: 540px;
   }
 
-  .header{
+  .footer .inner,
+  .footer .inner .level-3,
+  .header {
     width: 800px;
   }
 
   .underheader .social {
     display: none;
   }
+
 }

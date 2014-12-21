@@ -4058,7 +4058,11 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 /**-------------------------------------------------------------**/
 .content .years-select-wrapper {
   float: right;
+  width: 200px;
 }
 .content .years-select-wrapper .years-select {
   width: 100px;
+}
+.content .years-select-wrapper .form-item {
+  float: right;
 }
