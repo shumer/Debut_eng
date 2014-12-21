@@ -20,10 +20,8 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
     ),
@@ -92,13 +90,9 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'label' => 'above',
         'module' => 'field_collection',
         'settings' => array(
-          'add' => 'Добавить',
-          'delete' => 'Удалить',
-          'description' => TRUE,
-          'edit' => 'Правка',
-          'view_mode' => 'full',
+          'view_mode' => 'teaser',
         ),
-        'type' => 'field_collection_view',
+        'type' => 'field_collection_fields',
         'weight' => 5,
       ),
       'listing' => array(
@@ -138,12 +132,15 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'site_common',
         'settings' => array(
+          'deltas' => '',
           'image_link' => '',
           'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__full',
         ),
-        'type' => 'image',
+        'type' => 'site_common_image_field_default',
         'weight' => 2,
       ),
       'listing' => array(

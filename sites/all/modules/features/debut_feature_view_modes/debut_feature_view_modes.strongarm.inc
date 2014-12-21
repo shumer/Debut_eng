@@ -20,7 +20,12 @@ function debut_feature_view_modes_strongarm() {
         'label' => 'listing',
         'custom settings' => 1,
       ),
+      'frame' => array(
+        'label' => 'Рамка',
+        'custom settings' => 1,
+      ),
     ),
+    'field_collection_item' => array(),
   );
   $export['entity_view_modes'] = $strongarm;
 

@@ -64,7 +64,11 @@ function debut_feature_ct_debut_person_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__debut_prize_person';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'frame' => array(
+        'custom_settings' => TRUE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
