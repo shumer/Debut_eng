@@ -284,9 +284,21 @@ window.debut_fancy_resize = function (fancy_width, fancy_height) {
 // Attach selects.
 debut_custom.attach_selects = function ($context, settings) {
 
-  $context.find(".form-type-select").once('debut_selects-1', function(){
-    $(this).find("select.years-select").selectmenu({
-      style:'dropdown'
+  $context.find('.form-type-select').once('debut_selects-1', function(){
+
+    // Years list select.
+    $(this).find('select.years-select').selectmenu({
+      style: 'dropdown',
+      change: function( event, ui ) {
+        var year = $(this).val();
+        var url = settings.debut_common.years_list[year];
+        debut_custom.redirect(url);
+      }
     });
   });
 }
+
+// Redirect actions.
+debut_custom.redirect = function ($url) {
+  window.location.href = $url;
+};

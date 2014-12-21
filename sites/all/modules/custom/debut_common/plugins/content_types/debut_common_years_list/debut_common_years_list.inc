@@ -79,35 +79,29 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
     $current_year = date('Y', time('now'));
   }
 
+  $years_list = array();
   foreach ($years as &$year) {
     $year_title = $year;
-
-    // Add prefix and post text for year if needed.
-    if (!empty($conf['pre_text'])) {
-      $year_title = $conf['pre_text'] . ' ' . $year_title;
-    }
-
-    if (!empty($conf['post_text'])) {
-      $year_title = $year_title . ' ' . $conf['post_text'];
-    }
 
     $query = array(
       'field_publication_date_value[value][year]' => $year,
       'sort_by' => 'field_publication_date_value',
       'sort_order' => ($year == $current_year) ? 'DESC' : 'ASC',
     );
-    $options[$year] = $year;
-    $year = array(
-     'data' => l($year_title, $path, array(
-       'query' => $query)
-     ),
-     'class' => ($year == $current_year) ? array('active') : array(''),
+    $link = url($path, array(
+      'query' => $query)
     );
-
+    $options[$year] = $year;
+    $years_list[$year] = $link;
   }
 
+  // Send variables to client side.
+  drupal_add_js(array('debut_common' => array(
+    'years_list' => $years_list,
+  )), 'setting');
+
   $_html['options'] = array(
-    'title' => '',
+    '#title' => 'Change year: ',
     '#type' => 'select',
     '#options' => $options,
     '#attributes' => array(
@@ -155,18 +149,6 @@ function debut_common_years_list_content_type_edit_form($form, &$form_state) {
     '#options' => $options,
     '#required' => TRUE,
     '#default_value' => (!empty($conf['view'])) ? $conf['view'] : '',
-  );
-
-  $form['conf']['pre_text'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Text before year'),
-    '#default_value' => (!empty($conf['pre_text'])) ? $conf['pre_text'] : '',
-  );
-
-  $form['conf']['post_text'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Text after year'),
-    '#default_value' => (!empty($conf['post_text'])) ? $conf['post_text'] : '',
   );
 
   return $form;

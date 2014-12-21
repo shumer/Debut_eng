@@ -1803,7 +1803,6 @@ section article.prem_list ol a {
 /*------------news list styles---------------*/
 .content .block-news-listing {
   float: left;
-  width: 525px;
   font-family: 'PT Sans', sans-serif;
 }
 /*------------end news list styles---------------*/
@@ -4057,6 +4056,9 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   background: url('../images/bgs/bg_minus_close.png') 100% -92px no-repeat;
 }
 /**-------------------------------------------------------------**/
+.content .years-select-wrapper {
+  float: right;
+}
 .content .years-select-wrapper .years-select {
-  width: 175px;
+  width: 100px;
 }
