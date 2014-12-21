@@ -104,7 +104,7 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
     '#title' => 'Select a year:',
     '#type' => 'select',
     '#options' => $options,
-    '#default_value' => $current_year,
+    '#value' => $current_year,
     '#attributes' => array(
       'class' => array('years-select'),
     ),

@@ -4070,3 +4070,9 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   float: left;
   margin-top: 8px;
 }
+.block-newsletters .block-content .form .form-item label {
+  font-weight: normal;
+  font-size: 14px;
+  display: block;
+  padding: 0 0 5px;
+}
