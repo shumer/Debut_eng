@@ -4,6 +4,11 @@ version = 7.x-1.0
 core = 7.x
 engine = phptemplate
 
+; ======== jquery ui css
+stylesheets[screen][] = "html/js/jquery-ui.min.css"
+stylesheets[screen][] = "html/js/jquery-ui.structure.min.css"
+stylesheets[screen][] = "html/js/jquery-ui.theme.min.css"
+
 ; Panels layouts.
 plugins[panels][layouts] = layouts
 

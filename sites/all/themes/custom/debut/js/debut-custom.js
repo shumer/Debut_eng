@@ -74,6 +74,9 @@ debut_custom.attach = function ($context, settings) {
   // Attach fancy.
   debut_custom.attach_fancy($context, settings);
 
+  // Attach selects.
+  debut_custom.attach_selects($context, settings);
+
   // Init.
   if (!debut_custom._inited) {
     debut_custom.init($context, settings);
@@ -276,4 +279,14 @@ window.debut_fancy_resize = function (fancy_width, fancy_height) {
   $('.fancybox-inner').height(fancy_height);
   $('.fancybox-outer').height(fancy_height);
   $('.fancybox-wrap').height(fancy_height);
+}
+
+// Attach selects.
+debut_custom.attach_selects = function ($context, settings) {
+
+  $context.find(".form-type-select").once('debut_selects-1', function(){
+    $(this).find("select.years-select").selectmenu({
+      style:'dropdown'
+    });
+  });
 }
