@@ -100,7 +100,8 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
     'years_list' => $years_list,
   )), 'setting');
 
-  $_html['options'] = array(
+  $select = array(
+    '#title' => 'Select a year:',
     '#type' => 'select',
     '#options' => $options,
     '#default_value' => $current_year,
@@ -108,7 +109,7 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
       'class' => array('years-select'),
     ),
   );
-
+  $_html['options'] = drupal_render($select);
   $_html['years'] = theme('item_list', array(
     'items' => $years,
     'title' => NULL,
