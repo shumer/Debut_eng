@@ -4050,13 +4050,29 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   background: url('../images/bgs/bg_minus_close.png') 100% -92px no-repeat;
 }
 /**-------------------------------------------------------------**/
-.content .years-select-wrapper {
+.content .years-select-wrapper,
+.content .years-select-wrapper .form-type-select {
   float: right;
-  width: 200px;
+  width: 210px;
+  height: 34px;
+  vertical-align: middle;
 }
 .content .years-select-wrapper .years-select {
   width: 100px;
-}
-.content .years-select-wrapper .form-item {
   float: right;
+}
+.content .years-select-wrapper .ui-widget {
+  float: right;
+}
+.content .years-select-wrapper .form-type-select label {
+  height: 34px;
+  display: block;
+  float: left;
+  margin-top: 8px;
+}
+.block-newsletters .block-content .form .form-item label {
+  font-weight: normal;
+  font-size: 14px;
+  display: block;
+  padding: 0 0 5px;
 }

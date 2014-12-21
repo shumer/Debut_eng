@@ -14,6 +14,7 @@
         <?php print t('Здесь вы можете подписаться на новости:'); ?>
       </div>
       <div class="form-item">
+        <label for="edit-contact-form-email"><?php print t('E-mail'); ?> <span class="form-required" title="<?php print t('Это поле обязательно для заполнения.'); ?>">*</span></label>
         <div class="form-text-wrap">
           <div class="form-text-wrap-inner">
             <input id="newsletters" class="form-text email-input" type="text" value="" size="15" name="newsletters" maxlength="128" />
