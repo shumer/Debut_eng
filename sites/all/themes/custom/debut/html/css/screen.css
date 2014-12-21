@@ -768,6 +768,10 @@ li.hide-before-content:hover:before {
   padding: 10px 0px 0px 10px;
 }
 
+.content .panel-col-first .block-titled .calendar-run .ui-widget{
+  border: 0px;
+}
+
 .content .panel-col-first .block-titled .calendar-run .ui-datepicker-header{
 	display: block;
 	position: relative;
@@ -776,6 +780,8 @@ li.hide-before-content:hover:before {
 	font-weight: normal;
 	text-align: center;
 	padding: 0 0 4px;
+  background: #fff;
+  border: 0px;
 }
 
 .content .panel-col-first .block-titled .calendar-run .ui-datepicker-header .ui-datepicker-prev{
@@ -840,6 +846,18 @@ li.hide-before-content:hover:before {
 
 .content .panel-col-first .block-titled .calendar-run table td{
 	border-right: 1px solid #ffdfac;
+}
+
+.content .panel-col-first .block-titled .calendar-run .ui-widget .ui-state-default {
+  border: 0px;
+}
+
+.content .panel-col-first .block-titled .calendar-run .ui-widget a.ui-state-highlight {
+  color: #be01b6;
+}
+
+.content .panel-col-first .block-titled .calendar-run .ui-widget td.ui-datepicker-today {
+  background: #ffe45c url("../js/images/ui-bg_highlight-soft_75_ffe45c_1x100.png") 50% top repeat-x;
 }
 
 .content .panel-col-first .block-titled .calendar-run table td{
@@ -915,7 +933,7 @@ li.hide-before-content:hover:before {
 }
 
 .content .panel-col-first .block-titled .debut_site_changes_text ul li {
-  background: url("../images/bgs/strl.gif") no-repeat scroll 10px 1px transparent;
+  background: url("../images/bgs/strl.gif") no-repeat scroll 10px -1px transparent;
   border: 0 solid #EA750C;
   float: none;
   margin: 0 0 10px;
