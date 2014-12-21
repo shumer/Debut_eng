@@ -1,0 +1,21 @@
+@media screen and (max-width: 1200px) {
+  #page-inner{
+    width: 800px;
+  }
+
+  .panel-3col .panel-col-last {
+    display:  none;
+  }
+
+  .panel-3col .panel-col {
+    width: 540px;
+  }
+
+  .header{
+    width: 800px;
+  }
+
+  .underheader .social {
+    display: none;
+  }
+}

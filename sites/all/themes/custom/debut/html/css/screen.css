@@ -166,7 +166,8 @@ em, i {
   height: 259px;
   width: 1200px;
   position: relative;
-  background: #FB7700 url("../images/bgs/header.png") no-repeat scroll -1px 0;
+  background: #FB7700 url("../images/bgs/header.png") no-repeat scroll -1px 2px;
+  margin-top: -2px;
 }
 
 .header .logo-container{
@@ -4018,7 +4019,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 }
 .debut-popup .popup .inside .close {
   color: #000;
-}
+}F09015 BD01B5
 .debut-popup .popup .inside .close {
   font-family: 'PT Sans', sans-serif;
   font-weight: normal;
@@ -4038,3 +4039,6 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   background: url('../images/bgs/bg_minus_close.png') 100% -92px no-repeat;
 }
 /**-------------------------------------------------------------**/
+.content .years-select-wrapper .years-select {
+  width: 175px;
+}

@@ -31,6 +31,7 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
   $data = array();
   $_html = array();
   $years = array();
+  $options = array();
 
   if (empty($conf['view'])) {
     return;
@@ -95,14 +96,24 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
       'sort_by' => 'field_publication_date_value',
       'sort_order' => ($year == $current_year) ? 'DESC' : 'ASC',
     );
-
+    $options[$year] = $year;
     $year = array(
      'data' => l($year_title, $path, array(
        'query' => $query)
      ),
      'class' => ($year == $current_year) ? array('active') : array(''),
     );
+
   }
+
+  $_html['options'] = array(
+    'title' => '',
+    '#type' => 'select',
+    '#options' => $options,
+    '#attributes' => array(
+      'class' => array('years-select'),
+    ),
+  );
 
   $_html['years'] = theme('item_list', array(
     'items' => $years,
