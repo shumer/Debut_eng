@@ -1310,7 +1310,6 @@ li.hide-before-content:hover:before {
 */
 .documents_list .view-documents-list {
   float:left;
-  width: 525px;
   font-family: 'PT Sans', sans-serif;
 }
 
@@ -1622,7 +1621,6 @@ section article.prem_list ol a {
 
 .block-press-listing {
   float: left;
-  width: 525px;
   font-family: 'PT Sans', sans-serif;
 }
 
@@ -2377,7 +2375,6 @@ section article.prem_list ol a {
 .travels .view-travels-list,
 .block-travels-listing {
   float: left;
-  width: 525px;
 }
 
 .travels .years {
@@ -2444,9 +2441,6 @@ section article.prem_list ol a {
   height: 100%;
 }
 /*------------video teaser styles---------------*/
-.block-video-listing{
-  width: 525px;
-}
 
 .video-list .video {
   background: url("../images/bgs/dots.gif") repeat-x scroll 0 100% transparent;
@@ -4036,7 +4030,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 }
 .debut-popup .popup .inside .close {
   color: #000;
-}F09015 BD01B5
+}
 .debut-popup .popup .inside .close {
   font-family: 'PT Sans', sans-serif;
   font-weight: normal;
