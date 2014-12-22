@@ -466,7 +466,7 @@ function debut_preprocess_node__books__listing(&$variables) {
   $_data = &$variables['_data'];
 
   // Caption.
-  $node->_html['title'] = l($node->title, 'node/'. $node->nid);
+  $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
 
   // Check if photo present.
   $book_image = debut_get('field_book_image', $content);
@@ -513,7 +513,7 @@ function debut_preprocess_node__books__compact(&$variables) {
   $_data = &$variables['_data'];
 
   // Link.
-  $node->_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
     'attributes' => array(
       'class' => 'show-popup-book',
     )
