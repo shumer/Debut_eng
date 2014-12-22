@@ -17,7 +17,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'http_response';
-  $handler->weight = -21;
+  $handler->weight = -20;
   $handler->conf = array(
     'title' => 'DEFAULT',
     'contexts' => array(),
@@ -34,7 +34,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -23;
+  $handler->weight = -22;
   $handler->conf = array(
     'title' => 'News',
     'no_blocks' => 0,
@@ -227,11 +227,208 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_view_panel_context_10';
+  $handler->task = 'node_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -30;
+  $handler->conf = array(
+    'title' => 'iBooks',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'ibooks' => 'ibooks',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'debut_content_3col_toped';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'df5178e7-2115-42b5-993d-1ea84f45e499';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-6698768e-414a-4057-859e-073a53c6b5d2';
+    $pane->panel = 'content_center';
+    $pane->type = 'cache_node_content';
+    $pane->subtype = 'cache_node_content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'build_mode' => 'full',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6698768e-414a-4057-859e-073a53c6b5d2';
+    $display->content['new-6698768e-414a-4057-859e-073a53c6b5d2'] = $pane;
+    $display->panels['content_center'][0] = 'new-6698768e-414a-4057-859e-073a53c6b5d2';
+    $pane = new stdClass();
+    $pane->pid = 'new-f69e16c1-f266-4d31-afda-ab643ad209e8';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_menu';
+    $pane->subtype = 'debut_common_menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'browser_menu' => 'main-menu',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f69e16c1-f266-4d31-afda-ab643ad209e8';
+    $display->content['new-f69e16c1-f266-4d31-afda-ab643ad209e8'] = $pane;
+    $display->panels['content_left'][0] = 'new-f69e16c1-f266-4d31-afda-ab643ad209e8';
+    $pane = new stdClass();
+    $pane->pid = 'new-f360f6de-f938-4f89-9993-969df754e4a0';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Изменения на сайте',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'f360f6de-f938-4f89-9993-969df754e4a0';
+    $display->content['new-f360f6de-f938-4f89-9993-969df754e4a0'] = $pane;
+    $display->panels['content_left'][1] = 'new-f360f6de-f938-4f89-9993-969df754e4a0';
+    $pane = new stdClass();
+    $pane->pid = 'new-30414660-cc78-4df9-bb9d-99a5f06d41ed';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_contact_us';
+    $pane->subtype = 'debut_common_contact_us';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Связаться с нами',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '30414660-cc78-4df9-bb9d-99a5f06d41ed';
+    $display->content['new-30414660-cc78-4df9-bb9d-99a5f06d41ed'] = $pane;
+    $display->panels['content_left'][2] = 'new-30414660-cc78-4df9-bb9d-99a5f06d41ed';
+    $pane = new stdClass();
+    $pane->pid = 'new-c2db2674-8cbf-4df8-9388-f291f757d808';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Проект iКнига',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c2db2674-8cbf-4df8-9388-f291f757d808';
+    $display->content['new-c2db2674-8cbf-4df8-9388-f291f757d808'] = $pane;
+    $display->panels['top'][0] = 'new-c2db2674-8cbf-4df8-9388-f291f757d808';
+    $pane = new stdClass();
+    $pane->pid = 'new-165ffb59-ee23-4181-b88f-c60f366e688d';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '165ffb59-ee23-4181-b88f-c60f366e688d';
+    $display->content['new-165ffb59-ee23-4181-b88f-c60f366e688d'] = $pane;
+    $display->panels['top'][1] = 'new-165ffb59-ee23-4181-b88f-c60f366e688d';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $export['node_view_panel_context_10'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'node_view_panel_context_2';
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -22;
+  $handler->weight = -21;
   $handler->conf = array(
     'title' => 'Document',
     'no_blocks' => 0,
@@ -428,7 +625,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -24;
+  $handler->weight = -23;
   $handler->conf = array(
     'title' => 'Press about debut',
     'no_blocks' => 0,
@@ -625,7 +822,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -25;
+  $handler->weight = -24;
   $handler->conf = array(
     'title' => 'Master class text',
     'no_blocks' => 0,
@@ -797,7 +994,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -27;
+  $handler->weight = -26;
   $handler->conf = array(
     'title' => 'Travel description',
     'no_blocks' => 0,
@@ -994,7 +1191,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -26;
+  $handler->weight = -25;
   $handler->conf = array(
     'title' => 'Travels',
     'no_blocks' => 0,
@@ -1191,7 +1388,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -28;
+  $handler->weight = -27;
   $handler->conf = array(
     'title' => 'Video',
     'no_blocks' => 0,
@@ -1388,7 +1585,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -29;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'Photos',
     'no_blocks' => 0,
@@ -1585,7 +1782,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -30;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Books',
     'no_blocks' => 0,
