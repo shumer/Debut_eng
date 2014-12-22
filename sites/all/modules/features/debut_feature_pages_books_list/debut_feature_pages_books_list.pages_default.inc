@@ -62,6 +62,46 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Книги',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $display->content['new-0c66ca9a-9a5f-4a96-980a-31050e5d0945'] = $pane;
+    $display->panels['content_center'][0] = 'new-0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $pane = new stdClass();
+    $pane->pid = 'new-54de0bb4-6545-4780-a85c-72724fd1d469';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_books_listing';
+    $pane->subtype = 'debut_common_books_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '54de0bb4-6545-4780-a85c-72724fd1d469';
+    $display->content['new-54de0bb4-6545-4780-a85c-72724fd1d469'] = $pane;
+    $display->panels['content_center'][1] = 'new-54de0bb4-6545-4780-a85c-72724fd1d469';
+    $pane = new stdClass();
     $pane->pid = 'new-361ca8ee-9483-4dd9-a5b8-3b432ef6de80';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
@@ -129,6 +169,54 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->uuid = 'bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8';
     $display->content['new-bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8'] = $pane;
     $display->panels['content_left'][2] = 'new-bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8';
+    $pane = new stdClass();
+    $pane->pid = 'new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Книги',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $display->content['new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0'] = $pane;
+    $display->panels['top'][0] = 'new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $pane = new stdClass();
+    $pane->pid = 'new-0c0f9057-c3f0-440f-81d4-cf594b1bcf6f';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0c0f9057-c3f0-440f-81d4-cf594b1bcf6f';
+    $display->content['new-0c0f9057-c3f0-440f-81d4-cf594b1bcf6f'] = $pane;
+    $display->panels['top'][1] = 'new-0c0f9057-c3f0-440f-81d4-cf594b1bcf6f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
