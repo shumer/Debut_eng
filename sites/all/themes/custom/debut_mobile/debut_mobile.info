@@ -1,0 +1,24 @@
+name = debut_mobile
+description = Mobile Debut theme
+version = 7.x-1.0
+core = 7.x
+engine = phptemplate
+
+; Scripts.
+scripts[] = html/js/modernizr.custom.js
+scripts[] = html/js/jquery.mobile.js
+scripts[] = html/js/jquery.once.js
+scripts[] = html/js/libs/jquery.flexslider.js
+scripts[] = html/js/behaviors/userMenu.js
+scripts[] = html/js/behaviors/mainMenuFold.js
+scripts[] = html/js/behaviors/newsMainSlider.js
+scripts[] = html/js/behaviors/notesSlider.js
+scripts[] = html/js/behaviors/productsMenu.js
+scripts[] = html/js/behaviors/newsMainSlider.js
+
+scripts[] = debut-mobile-custom.js
+
+; Styles
+stylesheets[all][] = html/css/screen.css
+stylesheets[all][] = html/css/jquery.mobile.icons.min.css
+stylesheets[all][] = html/css/debut-mobile.css
