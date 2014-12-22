@@ -259,15 +259,6 @@ function debut_preprocess_debut_form(&$variables) {
   }
 }
 
-
-/**
- * Theme field.
- */
-function givenchy_field(&$variables) {
-  // Prevent default field wrapping into odd divs.
-  // this function MUST be present even if empty.
-}
-
 /**
  * Set custom meta theme for forms.
  */
