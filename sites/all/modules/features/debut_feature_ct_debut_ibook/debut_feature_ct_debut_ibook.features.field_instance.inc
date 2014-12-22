@@ -21,13 +21,9 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'label' => 'above',
         'module' => 'field_collection',
         'settings' => array(
-          'add' => 'Добавить',
-          'delete' => 'Удалить',
-          'description' => TRUE,
-          'edit' => 'Правка',
           'view_mode' => 'full',
         ),
-        'type' => 'field_collection_view',
+        'type' => 'field_collection_fields',
         'weight' => 4,
       ),
       'listing' => array(
@@ -70,7 +66,7 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'node__field_book_image__full',
         ),
         'type' => 'image',
         'weight' => 2,
