@@ -1,0 +1,12 @@
+name = Debut Feature: Views - Books listing
+description = Debut Feature: Views - Books listing
+core = 7.x
+package = Debut Views
+version = 7.x-0.01
+project = debut_feature_views_books_listing
+dependencies[] = entity
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = debut_view_list_books
+features_exclude[dependencies][ctools] = ctools
