@@ -1,0 +1,17 @@
+.ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page {
+  border: 0 none;
+  display: none;
+  left: 0;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.ui-mobile .ui-page {
+  min-height: 300px;
+}
+.ui-mobile .ui-page-active {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
