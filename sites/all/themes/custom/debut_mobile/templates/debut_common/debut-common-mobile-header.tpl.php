@@ -23,3 +23,5 @@
     <?php print $_html['messages']; ?>
   </div>
 </header>
+<section class="banner">
+</section>

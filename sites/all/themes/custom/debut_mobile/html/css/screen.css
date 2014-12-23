@@ -35,6 +35,7 @@ ul, .block ul {
   padding: 12px 0;
   height: 36px;
   text-align: center;
+  background: url("../images/bgs/top_menu.png") repeat-x #fb7700;
 }
 .header .panel-trigger {
   position: absolute;
@@ -104,6 +105,9 @@ ul, .block ul {
 .ui-panel {
   width: 283px;
 }
+.ui-panel-animate.ui-panel-page-content-position-left {
+  transform: translate3d(283px, 0px, 0px);
+}
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
   transform: translate3d(-283px, 0px, 0px);
@@ -114,10 +118,13 @@ ul, .block ul {
 }
 .main-menu ul li {
   padding: 0;
+  background: #fef7ed;
+  margin: 0px;
 }
-.main-menu a {
+.main-menu a,
+.main-menu ul li a:visited {
   border-bottom: 1px solid #27282a;
-  color: #fff;
+  color: #000;
   display: block;
   padding: 23px 20px 22px 60px;
   position: relative;
@@ -130,8 +137,32 @@ a, a.active, li a.active {
   color: #000;
   text-decoration: none;
 }
-.main-menu a.active, .no-touch .main-menu a:hover {
-  background: none repeat scroll 0 0 #fff;
-  border-color: #dcdcdc;
+.main-menu {
+  background: none repeat scroll 0 0 #363739;
+  color: #fff;
+  font-size: 14px;
+  line-height: 16px;
+}
+.main-menu li a {
+  border-bottom: 1px dotted #c2c1c0;
   color: #000;
+  display: block;
+  padding: 23px 20px 22px 60px;
+  position: relative;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #fff;
+  font-weight: normal;
+}
+.main-menu ul li a.active,
+.no-touch .main-menu a:hover {
+  background: none repeat scroll 0 0 #f9a71f;
+  border-color: #dcdcdc;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  font-weight: bold;
+}
+.banner {
+  background: url("../images/bgs/header.png") no-repeat #fb7700;
+  height: 168px;
+  position: relative;
 }
