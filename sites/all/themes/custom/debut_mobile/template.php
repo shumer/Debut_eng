@@ -306,6 +306,12 @@ function debut_mobile_theme($existing, $type, $theme, $path) {
 function debut_mobile_process_html(&$variables) {
  global $is_https;
 
+  // Add ajax.
+  site_common_js_add('ajax');
+  site_common_js_add('jquery_mobile', FALSE, array(
+    'exclude' => _site_common_settings('jquery_mobile', 'exclude_url', SITE_COMMON_VAR_JQM_EXCLUDE),
+  ));
+
   // Set redirect flag.
   $variables['redirect'] = !empty($_SERVER['REQUEST_REPLACED']);
 
