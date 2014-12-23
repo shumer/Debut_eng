@@ -1,3 +1,10 @@
+ol, ul {
+  list-style: outside none none;
+}
+ul, .block ul {
+  margin: 0;
+  padding: 0;
+}
 .ui-mobile [data-role="page"], .ui-mobile [data-role="dialog"], .ui-page {
   border: 0 none;
   display: none;
@@ -24,7 +31,7 @@
   z-index: 1000;
 }
 .header .header-inner {
-  background: #363739;
+  background: #fb7700;
   padding: 12px 0;
   height: 36px;
   text-align: center;
@@ -104,4 +111,27 @@
 .ui-panel-animate.ui-panel-open.ui-panel-position-left.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-open.ui-panel-position-left.ui-panel-display-push {
   transform: none;
+}
+.main-menu ul li {
+  padding: 0;
+}
+.main-menu a {
+  border-bottom: 1px solid #27282a;
+  color: #fff;
+  display: block;
+  padding: 23px 20px 22px 60px;
+  position: relative;
+  text-transform: uppercase;
+}
+li a.active {
+  color: #000;
+}
+a, a.active, li a.active {
+  color: #000;
+  text-decoration: none;
+}
+.main-menu a.active, .no-touch .main-menu a:hover {
+  background: none repeat scroll 0 0 #fff;
+  border-color: #dcdcdc;
+  color: #000;
 }
