@@ -376,7 +376,7 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
  * Preprocess photo_listing_search.
  */
 function debut_preprocess_node__photo_listing_search(&$variables) {
-  debut_preprocess_node__photo_listing_teaser($variables);
+  debut_preprocess_node__photo_listing_listing($variables);
 }
 
 /**
@@ -457,7 +457,7 @@ function debut_preprocess_node__books__full(&$variables) {
 }
 
 /**
- * Preprocess books_teaser.
+ * Preprocess books_listing.
  */
 function debut_preprocess_node__books__listing(&$variables) {
   $node = &$variables['node'];
@@ -501,6 +501,9 @@ function debut_preprocess_node__books__listing(&$variables) {
       'attributes' => array('class' => 'listing'),
     ));
   }
+  else {
+    $_html['authors'] = '';
+  }  
 }
 
 /**
@@ -755,6 +758,9 @@ function debut_preprocess_node__ibooks__listing(&$variables) {
       'attributes' => array('class' => 'listing'),
     ));
   }
+  else {
+    $_html['authors'] = '';
+  }
 }
 
 /**
@@ -775,5 +781,5 @@ function debut_preprocess_node__ibooks__popup(&$variables) {
  * Preprocess ibooks_search.
  */
 function debut_preprocess_node__ibooks__search(&$variables) {
-  debut_preprocess_node__ibooks__teaser($variables);
+  debut_preprocess_node__ibooks__listing($variables);
 }

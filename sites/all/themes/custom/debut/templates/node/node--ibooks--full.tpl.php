@@ -20,15 +20,17 @@
   <?php endif; ?>
   <div class="book-content">
     <h4><?php print $_html['stories_type']; ?></h4>
-    <?php foreach ($_html['authors'] as $author) : ?>
-      <div class="book-author">
-        <?php print $author['author']; ?>
-        <div class="text">
-          <?php print $author['stories']; ?>
+    <?php if (!empty($_html['authors'])) : ?>
+      <?php foreach ($_html['authors'] as $author) : ?>
+        <div class="book-author">
+          <?php print $author['author']; ?>
+          <div class="text">
+            <?php print $author['stories']; ?>
+          </div>
+          <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    <?php endif; ?>
   </div>
   <div class="clear"></div>
   <div class="separator"></div>
