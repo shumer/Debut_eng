@@ -15,3 +15,93 @@
   overflow-x: hidden;
   overflow-y: visible;
 }
+
+/**=========================== header styles ======================**/
+.header {
+  border: medium none;
+  color: #fff;
+  position: relative;
+  z-index: 1000;
+}
+.header .header-inner {
+  background: #363739;
+  padding: 12px 0;
+  height: 36px;
+  text-align: center;
+}
+.header .panel-trigger {
+  position: absolute;
+  padding: 16px 25px 14px 25px;
+  top: 0;
+  left: 0;
+  font-size: 100%;
+}
+.header .panel-trigger span {
+  display: block;
+  height: 2px;
+  width: 21px;
+  background: #fff;
+  margin: 6px 0;
+}
+.header .logo {
+  width: 90px;
+  height: 36px;
+  margin: 0 auto;
+  padding: 0;
+}
+.header .logo a {
+  display: block;
+  width: 90px;
+  height: 36px;
+}
+.no-svg .header .logo a {
+  background: url("../images/svg-fallback/ico-logo.png") 0 0 no-repeat;
+}
+.header .logo .svg-ico {
+  display: block;
+}
+.header .logo .text {
+  text-indent: -9999px;
+  position: absolute;
+}
+.header .user-menu-trigger {
+  font-size: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+.ui-panel {
+  border-width: 0;
+  display: block;
+  max-height: none;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  width: 17em;
+}
+.ui-panel-closed {
+  clip: rect(1px, 1px, 1px, 1px);
+  left: 0;
+  max-height: 100%;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+.ui-panel-display-push {
+  z-index: 999;
+}
+.ui-panel-animate {
+  transition: transform 300ms ease 0s;
+}
+.ui-panel {
+  width: 283px;
+}
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay,
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+  transform: translate3d(-283px, 0px, 0px);
+}
+.ui-panel-animate.ui-panel-open.ui-panel-position-left.ui-panel-display-overlay,
+.ui-panel-animate.ui-panel-open.ui-panel-position-left.ui-panel-display-push {
+  transform: none;
+}

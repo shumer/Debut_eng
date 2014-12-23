@@ -20,12 +20,6 @@
         <span></span>
       </a>
     <?php endif; ?>
-    <div class="logo">
-      <a href="<?php print $_html['logo_link']; ?>" data-ajax="false">
-      </a>
-    </div>
-
     <?php print $_html['messages']; ?>
   </div>
-
 </header>
