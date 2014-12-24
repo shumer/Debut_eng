@@ -24,7 +24,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -72,7 +84,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 2,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -121,7 +145,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 1,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -170,7 +206,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -222,7 +270,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 4,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
