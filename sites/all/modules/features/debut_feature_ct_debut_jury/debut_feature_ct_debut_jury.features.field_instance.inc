@@ -36,6 +36,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -83,6 +89,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'weight' => 3,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -149,6 +161,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -209,6 +227,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -256,6 +280,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'weight' => 7,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -313,6 +343,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -362,6 +398,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'weight' => 9,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -423,6 +465,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -472,6 +520,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -529,6 +583,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -576,6 +636,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'weight' => 1,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

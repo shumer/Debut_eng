@@ -103,6 +103,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -153,6 +159,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -210,6 +222,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -259,6 +277,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -324,6 +348,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -368,6 +398,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -420,6 +456,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -486,6 +528,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -546,6 +594,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -595,6 +649,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -653,6 +713,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -700,6 +766,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -757,6 +829,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -806,6 +884,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

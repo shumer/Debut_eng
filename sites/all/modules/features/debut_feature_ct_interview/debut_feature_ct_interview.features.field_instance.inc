@@ -26,7 +26,19 @@ function debut_feature_ct_interview_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 2,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -73,7 +85,19 @@ function debut_feature_ct_interview_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'frame' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
