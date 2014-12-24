@@ -20,16 +20,15 @@ function debut_feature_ct_nobel_speech_field_default_field_instances() {
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -75,8 +74,9 @@ function debut_feature_ct_nobel_speech_field_default_field_instances() {
       ),
       'listing' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_plain',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -115,7 +115,7 @@ function debut_feature_ct_nobel_speech_field_default_field_instances() {
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'debut_date_short',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -126,8 +126,15 @@ function debut_feature_ct_nobel_speech_field_default_field_instances() {
       ),
       'listing' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'debut_date_short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
       'teaser' => array(
