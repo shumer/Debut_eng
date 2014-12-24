@@ -1,0 +1,11 @@
+name = Debut Feature: Pages - Search
+description = Debut Feature: Pages - Search
+core = 7.x
+package = Debut Pages
+version = 7.x-0.01
+project = debut_feature_pages_search
+dependencies[] = ctools
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:2
+features[page_manager_pages][] = search

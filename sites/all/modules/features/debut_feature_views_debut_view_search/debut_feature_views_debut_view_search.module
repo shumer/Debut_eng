@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Debut view Search feature.
+ */
+
+include_once 'debut_feature_views_debut_view_search.features.inc';
