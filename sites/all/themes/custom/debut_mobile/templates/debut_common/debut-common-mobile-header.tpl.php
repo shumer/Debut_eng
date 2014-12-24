@@ -24,4 +24,5 @@
   </div>
 </header>
 <section class="banner">
+  <?php print $_html['banner']; ?>
 </section>

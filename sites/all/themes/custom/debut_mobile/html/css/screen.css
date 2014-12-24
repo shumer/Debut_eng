@@ -161,8 +161,9 @@ a, a.active, li a.active {
   text-shadow: 0 1px 0 #000;
   font-weight: bold;
 }
-.banner {
-  background: url("../images/bgs/header.png") no-repeat #fb7700;
-  height: 168px;
-  position: relative;
+.main-menu ul li.active-trail {
+  background: url("../images/sprite-a.png") no-repeat scroll -1px -22px / 1000px 1000px rgba(0, 0, 0, 0);
+}
+.banner img {
+  width: 100%;
 }
