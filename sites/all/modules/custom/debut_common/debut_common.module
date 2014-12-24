@@ -314,3 +314,19 @@ function debut_common_tokens($type, $tokens, array $data = array(), array $optio
   }
   return $replacements;
 }
+
+/**
+ * Implements hook_menu_alter().
+ */
+function debut_common_menu_alter(&$items) {
+
+  // Make /search path available for panels.
+  if ($items['search']['page callback'] == 'search_view') {
+    unset($items['search']);
+  }
+
+  // Unset all search entries.
+  foreach (module_implements('search') as $name) {
+    unset($items['search/'. $name .'/%menu_tail']);
+  }
+}
