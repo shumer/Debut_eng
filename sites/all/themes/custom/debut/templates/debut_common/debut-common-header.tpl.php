@@ -15,7 +15,14 @@
 		</div>
 	</div>
   <div class="search-bar">
-    <?php print $_html['search_form']; ?>
+    <div class="form-item form-type-textfield form-item-keys">
+      <div class="form-text-wrap">
+        <div class="form-text-wrap-inner">
+          <input type="text" name="keys" value="" size="60" maxlength="128" class="form-text search-form-text" />
+        </div>
+      </div>
+    </div>
+    <input type="submit" id="edit-submit--2" name="op" value="Ok" class="form-submit search-form-submit" />
   </div>
 	<div class="pokolenie-logo-container">
 		<div class="pic">

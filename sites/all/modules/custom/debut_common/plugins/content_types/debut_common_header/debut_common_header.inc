@@ -134,13 +134,12 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
   }
   $_html['language_links'] = implode('', $language_links);
 
-
-  // Prepare search form.
-  $_html['search_form'] = '';
-  if (!empty($_conf['search_form'])) {
-    $form = drupal_get_form('debut_common_header_search_form');
-    $_html['search_form'] = render($form);
-  }
+  // Prepare data for search form.
+  $url_path = 'search';
+  $page_url = url($url_path);
+  drupal_add_js(array('debut' => array(
+    'page_url' => $page_url,
+  )), 'setting');
 
   $data['_html'] = $_html;
 
