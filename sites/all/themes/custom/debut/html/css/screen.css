@@ -4076,3 +4076,30 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   display: block;
   padding: 0 0 5px;
 }
+/**-----------nobel speach-----------**/
+.content .view-nobel-speech-debut {
+  float: left;
+  width: 525px;
+}
+
+.nobel-speech-item .date {
+  color: #999999;
+  display: block;
+  float: right;
+  font-size: 11px;
+  font-style: normal;
+  padding: 0 0 2px;
+}
+  
+.content .nobel-speech-item .news-body {
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+  
+.content .nobel-speech-item h1 {
+  line-height: 33px;
+}
+
+.content .news-body p {
+  font-size: 16px;
+  line-height: 22px;
+} 
