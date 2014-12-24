@@ -77,6 +77,9 @@ debut_custom.attach = function ($context, settings) {
   // Attach selects.
   debut_custom.attach_selects($context, settings);
 
+  // Attach search form.
+  debut_custom.attach_search_form($context, settings);
+
   // Init.
   if (!debut_custom._inited) {
     debut_custom.init($context, settings);
@@ -301,4 +304,21 @@ debut_custom.attach_selects = function ($context, settings) {
 // Redirect actions.
 debut_custom.redirect = function ($url) {
   window.location.href = $url;
+};
+
+// Search form actions.
+debut_custom.attach_search_form = function($context, settings) {
+  $context.find('.header .search-bar').once('search-page-form', function () {
+    var $this = $(this);
+
+    // Submit button.
+    $this.find('.search-form-submit').click(function () {
+      var search_value = encodeURIComponent($('.header .search-bar .search-form-text').val());
+      if (search_value) {
+       search_value = '/'+ search_value;
+      }
+      var url = settings.debut.page_url + search_value;
+      debut_custom.redirect(url);
+    });
+  });
 };
