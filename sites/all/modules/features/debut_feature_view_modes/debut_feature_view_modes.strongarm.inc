@@ -24,6 +24,10 @@ function debut_feature_view_modes_strongarm() {
         'label' => 'Рамка',
         'custom settings' => 1,
       ),
+      'search' => array(
+        'label' => 'search',
+        'custom settings' => 1,
+      ),
     ),
     'field_collection_item' => array(),
   );
