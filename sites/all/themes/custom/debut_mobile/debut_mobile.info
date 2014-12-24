@@ -19,6 +19,6 @@ scripts[] = html/js/behaviors/newsMainSlider.js
 scripts[] = debut-mobile-custom.js
 
 ; Styles
-stylesheets[all][] = html/css/screen.css
 stylesheets[all][] = html/css/jquery.mobile.icons.min.css
 stylesheets[all][] = html/css/debut-mobile.css
+stylesheets[all][] = html/css/screen.css

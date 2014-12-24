@@ -23,3 +23,6 @@
     <?php print $_html['messages']; ?>
   </div>
 </header>
+<section class="banner">
+  <?php print $_html['banner']; ?>
+</section>

@@ -44,6 +44,12 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
     ? '<div class="messages-target"></div>'
     : theme('status_messages');
 
+  // Theme path for future use.
+  $theme_path = drupal_get_path('theme', 'debut_mobile');
+  $_html['banner'] = theme('image', array(
+    'path' => $theme_path . '/html/images/bgs/header.png',
+  ));
+
   // Combine values.
   $data = array(
     '_html' => $_html,

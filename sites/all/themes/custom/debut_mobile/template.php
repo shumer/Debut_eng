@@ -306,6 +306,8 @@ function debut_mobile_theme($existing, $type, $theme, $path) {
 function debut_mobile_process_html(&$variables) {
  global $is_https;
 
+  admin_menu_suppress();
+
   // Add ajax.
   site_common_js_add('ajax');
   site_common_js_add('jquery_mobile', FALSE, array(
