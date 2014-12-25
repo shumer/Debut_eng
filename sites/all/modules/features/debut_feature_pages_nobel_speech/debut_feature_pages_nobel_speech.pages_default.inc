@@ -62,6 +62,67 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-96e9390f-e08c-4e8e-b8b6-c0b60407526a';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => '«Нобелевские речи»',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '96e9390f-e08c-4e8e-b8b6-c0b60407526a';
+    $display->content['new-96e9390f-e08c-4e8e-b8b6-c0b60407526a'] = $pane;
+    $display->panels['content_center'][0] = 'new-96e9390f-e08c-4e8e-b8b6-c0b60407526a';
+    $pane = new stdClass();
+    $pane->pid = 'new-86e234ab-09b5-4b68-9a88-8d7ddf035b18';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_list';
+    $pane->subtype = 'debut_common_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view' => 'debut_view_list_nobel_speach',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '86e234ab-09b5-4b68-9a88-8d7ddf035b18';
+    $display->content['new-86e234ab-09b5-4b68-9a88-8d7ddf035b18'] = $pane;
+    $display->panels['content_center'][1] = 'new-86e234ab-09b5-4b68-9a88-8d7ddf035b18';
+    $pane = new stdClass();
+    $pane->pid = 'new-c1c01052-3d2e-4128-8a18-24306dd4e6d2';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_nobel_listing';
+    $pane->subtype = 'debut_common_nobel_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'c1c01052-3d2e-4128-8a18-24306dd4e6d2';
+    $display->content['new-c1c01052-3d2e-4128-8a18-24306dd4e6d2'] = $pane;
+    $display->panels['content_center'][2] = 'new-c1c01052-3d2e-4128-8a18-24306dd4e6d2';
+    $pane = new stdClass();
     $pane->pid = 'new-7359132c-b573-4fd3-9dc6-339e04237084';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
@@ -129,6 +190,54 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->uuid = 'fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
     $display->content['new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc'] = $pane;
     $display->panels['content_left'][2] = 'new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
+    $pane = new stdClass();
+    $pane->pid = 'new-15c75228-9916-4f8e-9d85-ef0dd1f01101';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '«Нобелевские речи»',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '15c75228-9916-4f8e-9d85-ef0dd1f01101';
+    $display->content['new-15c75228-9916-4f8e-9d85-ef0dd1f01101'] = $pane;
+    $display->panels['top'][0] = 'new-15c75228-9916-4f8e-9d85-ef0dd1f01101';
+    $pane = new stdClass();
+    $pane->pid = 'new-51c29f10-3b99-4647-a0a2-b7874e17c971';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '51c29f10-3b99-4647-a0a2-b7874e17c971';
+    $display->content['new-51c29f10-3b99-4647-a0a2-b7874e17c971'] = $pane;
+    $display->panels['top'][1] = 'new-51c29f10-3b99-4647-a0a2-b7874e17c971';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

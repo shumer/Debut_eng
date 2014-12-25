@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Nobel speech listing feature.
+ */
+
+include_once 'debut_feature_views_nobel_speech_listing.features.inc';
