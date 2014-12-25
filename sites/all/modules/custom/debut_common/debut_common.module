@@ -43,6 +43,7 @@ define('DEBUT_COMMON_PAGE_TRAVELS_LIST', 'travels');
 define('DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST', 'travels');
 define('DEBUT_COMMON_PAGE_VIDEO', 'video_list');
 define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
+define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
 
 // Define views name.
 define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
@@ -53,6 +54,7 @@ define('DEBUT_COMMON_VIEW_VIDEO_LISTING', 'debut_view_list_video');
 define('DEBUT_COMMON_VIEW_PHOTO_LISTING', 'debut_view_list_photos');
 define('DEBUT_COMMON_VIEW_BOOKS_LISTING', 'debut_view_list_books');
 define('DEBUT_COMMON_VIEW_IBOOKS_LISTING', 'debut_view_list_ibooks');
+define('DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING', 'debut_view_list_nobel_speach');
 
 define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
 

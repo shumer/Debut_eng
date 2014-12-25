@@ -430,7 +430,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->handler = 'panel_context';
   $handler->weight = -30;
   $handler->conf = array(
-    'title' => 'Nobel speach',
+    'title' => 'Nobel speech',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -574,7 +574,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => '«Нобелевские речи»',
+      'custombc' => '',
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),

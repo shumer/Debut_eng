@@ -58,6 +58,11 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
                $subclass = 'active';
              }
             break;
+            case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
+             if ($subitem['link']['href'] == DEBUT_COMMON_PAGE_NOBEL_SPEECH) {
+               $subclass = 'active';
+             }
+            break;
             default:
               $subclass = '';
           }
@@ -116,6 +121,11 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
           break;
         case DEBUT_COMMON_TYPE_TRAVELS:
           if ($path == DEBUT_COMMON_PAGE_TRAVELS_LIST) {
+            $class = 'active';
+          }
+          break;
+        case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
+          if ($path == DEBUT_COMMON_PAGE_NOBEL_SPEECH) {
             $class = 'active';
           }
           break;

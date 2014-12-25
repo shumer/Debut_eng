@@ -2372,10 +2372,12 @@ section article.prem_list ol a {
   padding: 12px 0 12px 0;
 }
 
+/*
 .travels .view-travels-list,
 .block-travels-listing {
   float: left;
 }
+*/
 
 .travels .years {
   float: right;

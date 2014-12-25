@@ -838,7 +838,7 @@ function debut_preprocess_node__nobel_speech__full(&$variables) {
 /**
  * Preprocess view mode listing for nobel_speech_listing node.
  */
-function debut_preprocess_node__nobel_speech__listing(&$vars, $hook) {
+function debut_preprocess_node__nobel_speech__listing(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
   $_html = &$variables['_html'];
@@ -850,6 +850,6 @@ function debut_preprocess_node__nobel_speech__listing(&$vars, $hook) {
   $nid = qtools_api__field_get_item('node', $node, 'field_nobel_speech_author', 0, 'target_id');
   if (!empty($nid)) {
     $auth_node = cache_common_load_node($nid);
-    $_html['author'] = l($auth_node->title, 'node/' . $auth_node->nid);
+    $_html['author'] = check_plain($auth_node->title);
   }
 }
