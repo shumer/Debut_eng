@@ -150,6 +150,17 @@ function debut_common_create_node_breadcrumbs($node) {
       }
       break;
 
+    // Make breadcrumb for nobel_speech node.
+    case DEBUT_COMMON_TYPE_NOBEL_SPEECH: 
+      $breadcrumb[] = l(t('Letopis Debuta'), '');
+      $breadcrumb[] = l(t('Nobel speech'), DEBUT_COMMON_PAGE_NOBEL_SPEECH);
+      $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
+      break;
+      
     // Make breadcrumb for photoreporst node.
     case DEBUT_COMMON_TYPE_PHOTOS:
       $breadcrumb[] = l(t('Photoreports'), DEBUT_COMMON_PAGE_PHOTO_LIST);
