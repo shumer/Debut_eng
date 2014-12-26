@@ -15,10 +15,16 @@ scripts[] = html/js/behaviors/newsMainSlider.js
 scripts[] = html/js/behaviors/notesSlider.js
 scripts[] = html/js/behaviors/productsMenu.js
 scripts[] = html/js/behaviors/newsMainSlider.js
+scripts[] = html/js/jquery-ui.js
 
 scripts[] = debut-mobile-custom.js
 
 ; Styles
+; ======== jquery ui css
+stylesheets[all][] = html/js/jquery-ui.min.css
+stylesheets[all][] = html/js/jquery-ui.structure.min.css
+stylesheets[all][] = html/js/jquery-ui.theme.min.css
+
 stylesheets[all][] = html/css/jquery.mobile.icons.min.css
 stylesheets[all][] = html/css/debut-mobile.css
 stylesheets[all][] = html/css/screen.css

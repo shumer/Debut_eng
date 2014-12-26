@@ -11,7 +11,7 @@ var site_common = site_common || {};
   // Init main object.
   site_common.asynk = site_common.asynk || {
     _added: {},
-    _inited: false,
+    _inited: false
   };
 
   /**

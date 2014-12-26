@@ -5,8 +5,62 @@
  */
 
 /**
- * Implements hook_esi_api_TYPE_render().
- *
+ * Render User blocks.
+ */
+function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
+  global $user;
+
+  // Reference to debug array.
+  $debug_content = drupal_static('qtools_varnish_page_esi_debug_content', array());
+
+  $content = array();
+
+  // Gather user specific content, note that this is placed inline to update
+  // targets before drupal behaviors.
+  $js_data = array();
+  $user_data = module_invoke_all('qtools_varnish_userblocks');
+
+  // Parse returned data.
+  foreach ($user_data as $target => $data) {
+    if (is_array($data)) {
+      $js_data[$target] = $data;
+    }
+    elseif (is_string($data)) {
+      $content[] = '<div class="qtools_varnish_userblock-item" data-target="' . $target . '">' . $data . '</div>';
+    }
+  }
+
+  // Wrap content and add inline JS to make shure JS is present if this block is present.
+  $content[] = '<script type="text/javascript">
+  jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock-item").each(function () {
+    var $this = jQuery(this);
+    jQuery($this.attr("data-target")).replaceWith($this.html());
+  });' . 'jQuery.extend(true, Drupal.settings, ' . drupal_json_encode(drupal_array_merge_deep_array($js_data)) . ');'
+  . '</script>';
+
+  $content = implode(PHP_EOL, $content);
+  $content = '<div id="qtools_varnish_userblocks" style="display:none;" time="' . time() . '">' . $content . '</div>';
+
+  // Return actual content and set desired TTL.
+  $cache_tags = array();
+  $tags = explode(',', _qtools_varnish_settings('userblocks', 'cachetags', 'user'));
+  $tags[] = QTOOLS_VARNISH_TAG_USER_BLOCKS;
+  foreach ($tags as $tag) {
+    if (trim($tag) != '') {
+      $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_USER);
+    }
+  }
+
+  // Return actual content and set desired TTL.
+  // Grace for user block is 0 by design.
+  return array(
+    'content' => qtools_varnish_wrap($content, FALSE),
+    'ttl' => _qtools_varnish_settings('userblocks', 'ttl', -1),
+    'grace' => 0,
+  );
+}
+
+/**
  * Render one given pane, respecting context, visibility and styling.
  */
 function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature) {
@@ -125,7 +179,6 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
  */
 function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
 
-  // Content initialisation.
   $content = '';
 
   // Reference to debug content.
@@ -137,17 +190,24 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
   // Validate signature.
   $new_sig = qtools_varnish_get_signature($esi_type, $esi_id, $esi_args);
   if ($new_sig != $signature) {
+    // Signature error.
     $error = QTOOLS_VARNISH_ERR_SIGNATURE_FAIL;
   }
   else {
-    // TODO: actual dispatcher.
-    if ($esi_type == QTOOLS_VARNISH_ESI_TYPE_PANE) {
+    // Mark request as contained ESI.
+    qtools_option('qtools_varnish:esi_rendered', TRUE);
 
-      // Mark request as contained ESI.
-      qtools_option('qtools_varnish:esi_rendered', TRUE);
+    // Dispatch esi.
+    $handler = qtools_varnish_esi_handler($esi_type);
+    if (!empty($handler) && !empty($handler['callback'])) {
 
       // Get result.
-      $result = qtools_varnish_page_esi_pane_render($esi_id, $esi_args, $signature);
+      if (function_exists($handler['callback'])) {
+        $result = $handler['callback']($esi_id, $esi_args, $signature);
+      }
+      else {
+        $result = QTOOLS_VARNISH_ERR_CALLBACK;
+      }
 
       // Valid result should be an array.
       if (!is_array($result)) {
@@ -162,14 +222,20 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
         qtools_varnish_set_page_ttl($result['ttl'], $cache_tags);
       }
     }
+    else {
+      // Handler error.
+      $error = QTOOLS_VARNISH_ERR_HANDLER;
+    }
   }
 
   // TODO: log error.
   if (!empty($error)) {
     // Log error.
+    $content = '<!-- ' . $error . ' -->';
   }
 
   // Add debug content.
+  // NOT CACHE MESSAGES!.
   $debug_content[] = theme('status_messages');
 
   // Print content end exit.

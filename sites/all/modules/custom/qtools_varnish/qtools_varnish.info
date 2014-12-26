@@ -2,6 +2,7 @@
 name = QTools Varnish
 description = QTools Varnish support and integration with panels.
 package = QTools
+configure = admin/config/development/qtools_varnish
 
 core = 7.x
 php = 5.x

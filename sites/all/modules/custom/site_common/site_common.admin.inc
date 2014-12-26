@@ -92,7 +92,7 @@ function site_common_admin_settings_form() {
   $form['site_common_settings']['jquery_mobile']['exclude_form'] = array(
     '#title' => t('jQM excluded form ids', array(), array('context' => 'COMMON: admin area')),
     '#type' => 'textarea',
-    '#description' => t('Enter list of form ids from being served through jQM.', array(), array('context' => 'COMMON: admin area')),
+    '#description' => t('Enter list of form ids, that should not be served through jQM.', array(), array('context' => 'COMMON: admin area')),
     '#default_value' => _site_common_settings('jquery_mobile', 'exclude_form'),
   );
 

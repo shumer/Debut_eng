@@ -35,8 +35,6 @@ Drupal.ajax.prototype.commands.qtools_command_ajax = function (ajax, command, st
  * Custom command do log info.
  */
 Drupal.ajax.prototype.commands.qtools_command_log = function (ajax, command, status) {
-
-  // Invoke ajax as specified in command.
   qtools.log(command.title, command.data);
 }
 
@@ -51,11 +49,7 @@ Drupal.ajax.prototype.specifiedResponse = function() {
   // Do not perform another ajax command if one is already in progress.
   if (ajax.ajaxing) {
     return false;
-  }{
-
-  // Invoke ajax as specified in command.
-  //qtools.log(command.title, command.data);
-}
+  }
 
   // Wrap success and error functions.
   ajax._success = ajax.success;
@@ -311,6 +305,11 @@ qtools_ajax.queue_process = function (_fingerid, _fingerprint, info, msg) {
  */
 qtools_ajax.ajax_call = function (name, url, data, method, spam, unlock, skip_queue) {
 
+  // If name empty - default it to URL.
+  if (!name || name == '') {
+    name = url;
+  }
+
   // Check for spam and save firngerprint.
   spam = spam || 1000;
   unlock = unlock || spam + 1000;
@@ -346,7 +345,7 @@ qtools_ajax.ajax_call = function (name, url, data, method, spam, unlock, skip_qu
         'name': name,
         'url': url,
         'data': data,
-        'method': method,
+        'method': method || 'post',
         'spam': spam,
         'unlock' : unlock
       }, forbidden);
@@ -440,7 +439,7 @@ qtools_ajax.ajax_view = function (name, data, method, spam) {
 /**
  * Views ajax call wrapper.
  */
-qtools_ajax.ajax_form = function (domID, spam) {
+qtools_ajax.ajax_form = function (domID, spam, extraData) {
   var $form = $('form#' + domID);
   if ($form.length < 1) {
     // TODO log error.
@@ -448,7 +447,13 @@ qtools_ajax.ajax_form = function (domID, spam) {
   }
 
   // Serialize form.
-  var data = $('#' + domID).serialize();
+  var data = $('#' + domID).serializeArray();
+  if (extraData) {
+    for (i in extraData) {
+      data.push(extraData[i]);
+    }
+  }
+
   var url = $form.attr('action');
   var method = $form.attr('method');
 

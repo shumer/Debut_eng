@@ -17,6 +17,18 @@ module_load_include('form.inc', 'cache_common');
 module_load_include('inc', 'cache_common', 'cache_common.controllers.class');
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function cache_common_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'entity_info_alter') {
+    // Move self to the bottom of the list.
+    // This is required to work well with enityCache.
+    unset($implementations['cache_common']);
+    $implementations['cache_common'] = TRUE;
+  }
+}
+
+/**
  * Implements hook_flush_caches().
  */
 function cache_common_flush_caches() {
@@ -181,6 +193,7 @@ function cache_common_entity_info_alter(&$entity_info) {
     'taxonomy_term' => 'CacheCommonTaxonomyTermController',
     'commerce_product' => 'CacheCommonCommerceProductController',
     'asset' => 'CacheCommonAssetController',
+    'comment' => 'CacheCommonCommentController',
   );
 
   // Allow other modules to alter/disable changes.

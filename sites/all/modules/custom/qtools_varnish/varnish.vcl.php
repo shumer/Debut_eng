@@ -90,6 +90,10 @@ sub vcl_hash {
     } else {
         hash_data(server.ip);
     }
+    /** Place ajax into separate bin */
+    if (req.http.X-Requested-With) {
+        hash_data(req.http.X-Requested-With);
+    }
 
     /** Process authenticated users */
     if (req.http.Cookie ~ "^.*?SESS[^=]*=([^;]{5});*.*$") {

@@ -25,6 +25,7 @@ define('QTOOLS_VARNISH_COOKIE_INF', 'QTEINF');
 // Private key (noise).
 define('QTOOLS_VARNISH_QBIN_NOISE', _qtools_varnish_settings('general', 'noise', ''));
 
+
 // ESI error codes.
 define('QTOOLS_VARNISH_ERR_SIGNATURE_FAIL', 'e0');
 define('QTOOLS_VARNISH_ERR_PARAMS_MISSING', 'e1');
@@ -33,16 +34,18 @@ define('QTOOLS_VARNISH_ERR_DISPLAY_NONE', 'e3');
 define('QTOOLS_VARNISH_ERR_PANE_NONE', 'e4');
 define('QTOOLS_VARNISH_ERR_MENU_DENIED', 'e5');
 define('QTOOLS_VARNISH_ERR_EMPTY', 'e6');
+define('QTOOLS_VARNISH_ERR_HANDLER', 'e7');
+define('QTOOLS_VARNISH_ERR_CALLBACK', 'e8');
 
 // ESI Types.
 define('QTOOLS_VARNISH_ESI_TYPE_PANE', 'qtools_varnish_esi_type_pane');
-define('QTOOLS_VARNISH_ESI_TYPE_USER_BLOCK', 'qtools_varnish_esi_type_user_block');
+define('QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS', 'qtools_varnish_esi_type_userblocks');
 
 // Cache options.
 define('QTOOLS_VARNISH_OPTION_CACHE_PAGE', 'qtools_varnish:cache_page');
 
 // Page cache ID.
-define('QTOOLS_VARNISH_CACHE_ID_PAGE', 'qtools_varnish_cache_id_page');
+define('QTOOLS_VARNISH_CACHE_ID_PAGE', uniqid('QTPID'));
 
 // Cache tags.
 define('QTOOLS_VARNISH_TAG_USER_BLOCKS', 'user_blocks');
@@ -68,6 +71,21 @@ module_load_include('_varnish.inc', 'qtools_varnish');
 // While its not a good practive to place executable code in file namespace,
 // we cant use hook_boot() as it will mess up with the hooks implementations.
 qtools_api__cache_start(QTOOLS_VARNISH_CACHE_ID_PAGE);
+
+/**
+ * Implements qtools_varnish_esi_handlers().
+ */
+function qtools_varnish_qtools_varnish_esi_handlers() {
+  $handlers = array(
+    QTOOLS_VARNISH_ESI_TYPE_PANE => array(
+      'callback' => 'qtools_varnish_page_esi_pane_render',
+    ),
+    QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS => array(
+      'callback' => 'qtools_varnish_page_esi_userblocks_render',
+    ),
+  );
+  return $handlers;
+}
 
 /**
 * Implements hook_views_api().
@@ -239,7 +257,7 @@ function qtools_varnish_menu() {
     'page arguments' => array('qtools_varnish_admin_settings_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'qtools_varnish.admin.inc',
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
   );
   $menu['admin/config/development/qtools_varnish/settings'] = array(
     'title' => "Settings",
@@ -484,74 +502,6 @@ function qtools_varnish_init() {
 }
 
 /**
- * Implements hook_esi_api().
- */
-function qtools_varnish_esi_api() {
-  return array(
-    'qtools_varnish_pane' => t("QTools ESI cached pane"),
-    'qtools_varnish_region' => t("QTools ESI cached region"),
-    'qtools_varnish_userblocks' => t("QTools ESI cached region"),
-  );
-}
-
-/**
- * Implements hook_esi_api_TYPE_render().
- *
- * Render User blocks.
- */
-function qtools_varnish_esi_api_qtools_varnish_userblocks_render($identifier, $variables) {
-  global $user;
-  qtools_option('qtools_varnish:esi_rendered', TRUE);
-  $debug_content = '';
-  $content = '';
-
-  // Gather user specific content,
-  // note that this is placed as is to all targets before drupal behaviors.
-  $js_data = array();
-  $user_data = module_invoke_all('qtools_varnish_userblocks');
-
-  foreach ($user_data as $target => $data) {
-    if (is_array($data)) {
-      $js_data[$target] = $data;
-    } elseif (is_string($data)) {
-      $content .= '<div class="qtools_varnish_userblock" data-target="' . $target . '">' . $data . '</div>';
-    }
-  }
-
-  // Wrap content and add inline JS to make shure JS is present if this block is present.
-  $content = '<div id="qtools_varnish_userblocks" style="display:none;" time="' . time() . '">' . $content . '</div>';
-  $js = '<script type="text/javascript">
-  jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock").each(function () {
-    var $this = jQuery(this);
-    jQuery($this.attr("data-target")).replaceWith($this.html());
-  });' . 'jQuery.extend(true, Drupal.settings, ' . drupal_json_encode(drupal_array_merge_deep_array($js_data)) . ');'
-  . '</script>';
-
-  // Return actual content and set desired TTL.
-  $ttl = _qtools_varnish_settings('userblocks', 'ttl', -1);
-  $cache_tags = array();
-  $tags = explode(',', _qtools_varnish_settings('userblocks', 'cachetags', 'user'));
-  $tags[] = QTOOLS_VARNISH_TAG_USER_BLOCKS;
-  foreach ($tags as $tag) {
-    if (trim($tag) != '') {
-      $cache_tags[] = qtools_api__cache_tag_cust($tag, DRUPAL_CACHE_PER_USER);
-    }
-  }
-
-  $debug_content .= theme('status_messages');
-
-  // We dont want to possibly cache status messages.
-  if (!empty($debug_content)) {
-    $ttl = 0;
-  }
-
-  // Grace for user block is 0 by design.
-  qtools_varnish_set_page_ttl($ttl, $cache_tags);
-
-  return qtools_varnish_wrap($debug_content . $content . $js, FALSE);
-}
-
-/**
  * Get signature for different esi content types.
  *
  * Note that if 'qtools_varnish_privat_key' is not set it will fallback to site salt.
@@ -584,6 +534,11 @@ function qtools_varnish_get_signature($esi_type, $esi_id, $params = array()) {
  */
 function qtools_varnish_set_page_ttl($ttl = 0, $cache_tags = array(), $grace = NULL) {
   global $user;
+
+  // POST request will not be cached anyway.
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    return;
+  }
 
   // Set page TTL.
   drupal_add_http_header(QTOOLS_VARNISH_HEADER_TTL, $ttl);
@@ -878,14 +833,15 @@ function qtools_varnish_entity_update($entity, $type) {
   $tags[] = qtools_api__cache_tag($type, $ids[0]);
   $tags[] = qtools_api__cache_tag($type, $ids[2]);
 
-  // If this is a comment we need to flush its node too.
+  // If this is a comment we need to flush comment tag for node.
   if ($type == 'comment' && !empty($entity->nid)) {
     $node = node_load($entity->nid);
     if (!empty($node)) {
       $ids2 = entity_extract_ids('node', $node);
-      $tags[] = qtools_api__cache_tag('node', '');
+      /*$tags[] = qtools_api__cache_tag('node', '');
       $tags[] = qtools_api__cache_tag('node', $ids2[0]);
-      $tags[] = qtools_api__cache_tag('node', $ids2[2]);
+      $tags[] = qtools_api__cache_tag('node', $ids2[2]);*/
+      $tags[] = qtools_api__cache_tag('node_comments', $ids2[0]);
     }
   }
 
@@ -893,7 +849,9 @@ function qtools_varnish_entity_update($entity, $type) {
   qtools_varnish_purge_tags($tags);
 
   // Scan saved entity for resources fields and flush their values.
-  $original = $entity->original;
+  $original = !empty($entity->original)
+    ? $entity->original
+    : FALSE;
   $fields = field_info_instances($type, $ids[2]);
   foreach ($fields as $field_name => $tmp) {
     // Get field info.
@@ -1123,11 +1081,11 @@ function qtools_varnish_ctools_render_alter(&$info, $page, $context) {
       // Attach user specific info.
       // Only add user blocks if we have an actual user.
       if (!empty($user->uid)) {
-        $esi_tag = drupal_render(esi_api_build_tag('qtools_varnish_userblocks', '1', array('cachemode' => DRUPAL_CACHE_PER_USER), ESI_API_CACHE_NONE));
+        $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', array('cachemode' => DRUPAL_CACHE_PER_USER));
         $esi_tag = qtools_varnish_wrap($esi_tag);
 
         if (is_array($info['content'])) {
-          $info['content'][0]['qtools_varnish_user_block']['#markup'] = $esi_tag;
+          $info['content'][0][QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS]['#markup'] = $esi_tag;
         }
         elseif (is_string($info['content'])) {
           $info['content'] .= $esi_tag;
@@ -1210,13 +1168,12 @@ function _qtools_varnish_page_delivery_callback($page_callback_result) {
 
     // Only adds user blocks if we have an actual user.
     if (!empty($user->uid)) {
-      $est_tag = esi_api_build_tag('qtools_varnish_userblocks', '1', array('cachemode' => DRUPAL_CACHE_PER_USER), ESI_API_CACHE_NONE);
-      $esi_tag = drupal_render($est_tag);
+      $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', array('cachemode' => DRUPAL_CACHE_PER_USER));
       $esi_tag = qtools_varnish_wrap($esi_tag);
 
       // Attach user specific info.
       if (is_array($page_callback_result)) {
-        $page_callback_result[0]['qtools_varnish_user_block']['#markup'] = $esi_tag;
+        $page_callback_result[0][QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS]['#markup'] = $esi_tag;
       }
       elseif (is_string($page_callback_result)) {
         $page_callback_result .= $esi_tag;

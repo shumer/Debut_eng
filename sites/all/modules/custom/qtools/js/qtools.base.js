@@ -26,10 +26,10 @@ qtools.parseUrl = function (href) {
   qtools.parseUrl._parser.href = href;
   var result = {
     hash: qtools.parseUrl._parser.hash,
-    href: qtools.parseUrl._parser.href,
+    href: (qtools.parseUrl._parser.hostname != "") ? qtools.parseUrl._parser.href : '',
     host: qtools.parseUrl._parser.hostname,
     path: qtools.parseUrl._parser.pathname,
-    search: qtools.parseUrl._parser.search,
+    search: qtools.parseUrl._parser.search
   };
 
   return result;
@@ -70,13 +70,13 @@ qtools.addEventListener = function(c, b, a) {
  * Add onload listener.
  */
 qtools.addOnLoadListener = function (d, e) {
+  var a = document.readyState;
   if (typeof a === "undefined") {
     e = 0;
   }
   var f = function () {
     setTimeout(d, e);
   }
-  var a = document.readyState;
   if (a === "complete") {
     f();
   }

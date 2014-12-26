@@ -5,6 +5,27 @@
  */
 
 /**
+ * Parse single tag selector.
+ */
+function qtools_api__selector_parse($selector) {
+  $tag = '';
+  $id = '';
+  $class = array();
+
+  // Check for id attrib.
+  if (strpos($selector, '#')) {
+    list($tag, $selector) = explode('#', $selector);
+    $class = explode('.', $selector);
+    $id = array_shift($class);
+  }
+  elseif (strpos($selector, '.')) {
+    $class = explode('.', $selector);
+    $tag = array_shift($class);
+  }
+  return array($tag, $id, $class);
+}
+
+/**
  * See if current user is developer.
  */
 function qtools_api__developer($set = NULL) {
@@ -315,6 +336,14 @@ function qtools_api__path_match($string, $pattern = array()) {
     }
   }
   return $found;
+}
+
+/**
+ * Get role ID.
+ */
+function qtools_api__user_role($name) {
+  $roles = user_roles();
+  return array_search($name, $roles);
 }
 
 /**
@@ -851,7 +880,7 @@ function qtools_api__array_sort_tree($tree, $weights, $defaults, $sort_flags = S
   $weight = array_shift($weights);
   $default = !empty($defaults) ? array_shift($defaults) : '';
 
-  // Mak keys to weights.
+  // Map keys to weights.
   $keys = array_keys($tree);
   $tree_keys = array();
   foreach ($keys as $key) {
@@ -864,7 +893,7 @@ function qtools_api__array_sort_tree($tree, $weights, $defaults, $sort_flags = S
   // Rebuild tree using sorted keys.
   $tree_data = array();
   foreach ($tree_keys as $key => $weight) {
-    // Sort inner levels
+    // Sort inner levels.
     if (is_array($tree[$key]) && !empty($weights)) {
       $tree_data[$key] = qtools_api__array_sort_tree($tree[$key], $weights, $defaults, $sort_flags);
     }
@@ -1614,6 +1643,7 @@ function qtools_api__cache_tag_short() {
     'entity:taxonomy_term' => 't',
     'entity:comment' => 'c',
     'node' => 'n',
+    'node_comments' => 'nc',
     'user' => 'u',
     'taxonomy_term' => 't',
     'comment' => 'c',
@@ -1696,6 +1726,52 @@ function qtools_api__cache_tag_cust($type, $cachemode = DRUPAL_CACHE_PER_USER, $
  */
 function qtools_api__cache_tag_apply($tag, $cids = array()) {
   $tags = &drupal_static('qtools_api__cache_tag', array());
+  $bans = &drupal_static('qtools_api__cache_ban', array());
+  $keys = !empty($cids)
+    ? $cids
+    : array_keys($tags);
+
+  // Normalize tag.
+  $tag = qtools_api__cache_tags_prepare($tag);
+
+  // Check for bans.
+  if (!empty($bans['__global__'])) {
+    $tag = array_diff($tag, $bans['__global__']);
+  }
+
+  $return = array();
+  foreach ($keys as $key) {
+    if (isset($tags[$key])) {
+      // Check for bans.
+      if (!empty($bans[$key])) {
+        $_tag = array_diff($tag, $bans[$key]);
+        $tags[$key] = array_unique(array_merge($tags[$key], array_values($_tag)));
+      }
+      else {
+        $tags[$key] = array_unique(array_merge($tags[$key], array_values($tag)));
+      }
+      $return[$key] = $tags[$key];
+    }
+  }
+  return $return;
+}
+
+/**
+ * Cache tag remove.
+ *
+ * If seed are not specified unmark all opened cache pipes.
+ * Note that any ';' will be replaced with dash.
+ *
+ * @param $tag
+ *   (string/array) tag to be substracted from cache chains.
+ * @param $cids
+ *   (array) list of chain ids to substract $tag from, empty = all open chains.
+ *
+ * @return
+ *   (array) list of affected chains with their tags.
+ */
+function qtools_api__cache_tag_remove($tag, $cids = array()) {
+  $tags = &drupal_static('qtools_api__cache_tag', array());
   $keys = !empty($cids)
     ? $cids
     : array_keys($tags);
@@ -1706,11 +1782,56 @@ function qtools_api__cache_tag_apply($tag, $cids = array()) {
   $return = array();
   foreach ($keys as $key) {
     if (isset($tags[$key])) {
-      $tags[$key] = array_unique(array_merge($tags[$key], array_values($tag)));
+      // Substract given tags from chain.
+      $tags[$key] = array_diff($tags[$key], array_values($tag));
       $return[$key] = $tags[$key];
     }
   }
   return $return;
+}
+
+/**
+ * Cache tag ban.
+ *
+ * If seed are not specified creates global ban.
+ * Note that any ';' will be replaced with dash.
+ *
+ * @param $tag
+ *   (string/array) tag to be banned from cache chains.
+ * @param $cids
+ *   (array) list of chain ids to ban $tag from, empty = all open chains.
+ */
+function qtools_api__cache_tag_ban($tag, $cids = array()) {
+  $tags = &drupal_static('qtools_api__cache_tag', array());
+  $bans = &drupal_static('qtools_api__cache_ban', array());
+  $keys = !empty($cids)
+    ? $cids
+    : array_keys($tags);
+  $ban_keys = !empty($cids)
+    ? $cids
+    : array('__global__');
+
+  // Normalize tag.
+  $tag = qtools_api__cache_tags_prepare($tag);
+
+  // Substract given tags from chain.
+  // @see qtools_api__cache_tag_remove().
+  foreach ($keys as $key) {
+    if (isset($tags[$key])) {
+      $tags[$key] = array_diff($tags[$key], array_values($tag));
+    }
+  }
+
+  // Save bans.
+  foreach ($ban_keys as $key) {
+    if (isset($bans[$key])) {
+      $bans[$key] = array_unique(array_merge($bans[$key], array_values($tag)));
+    }
+    else {
+      $bans[$key] = array_values($tag);
+    }
+  }
+  return $bans;
 }
 
 /**

@@ -9,9 +9,11 @@
     <?php print $content['header']; ?>
   <?php endif; ?>
   <div role="main" class="ui-content">
+   <div class="block center-block">
     <?php if (!empty($content['content'])): ?>
       <?php print $content['content']; ?>
     <?php endif; ?>
+    </div>
   </div>
   <?php if (!empty($content['footer'])): ?>
     <footer class="footer ui-footer ui-bar-inherit" data-role="footer" role="contentinfo">

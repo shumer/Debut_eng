@@ -1,6 +1,8 @@
 name = Site Common
 description = Common tools and plugins.
 core = 7.x
+package = QTools
+configure = admin/config/development/site_common
 
 version = "7.x-0.5"
 core = "7.x"

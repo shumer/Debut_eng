@@ -22,7 +22,11 @@
     <?php endif; ?>
     <?php print $_html['messages']; ?>
   </div>
+  <div class="header-placeholders-block">
+    <div class="calendar-block-target" style="display: none;"></div>
+  </div>
+  <section class="banner">
+    <?php print $_html['banner']; ?>
+  </section>
 </header>
-<section class="banner">
-  <?php print $_html['banner']; ?>
-</section>
+

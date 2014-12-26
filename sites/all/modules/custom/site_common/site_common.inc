@@ -5,6 +5,55 @@
  */
 
 /**
+ * Generic submit function that marks form as submitted.
+ */
+function site_common_form_submit_manual(&$form, &$form_state) {
+  // Mark as submit.
+  $form['#_submitted'] = TRUE;
+
+  // This will skip redirect.
+  $form_state['no_redirect'] = TRUE;
+
+  // Pass $form_state back to form.
+  $form['#_form_state'] = $form_state;
+}
+
+/**
+ * Create Ajax clickable element.
+ */
+function site_common_ajax_link($title, $path, $options = array(), $method = 'POST', $sendid = FALSE) {
+  // Generate link options.
+  $options['attributes']['class'][] = 'site-common-ajax-call';
+  $options['attributes']['class'][] = 'site-common-jqm-navigate-disabled';
+  $options['attributes']['data-site-common-ajax-url'] = url($path, $options);
+  if ($method != 'POST') {
+    $options['attributes']['data-site-common-ajax-method'] = $method;
+  }
+  if ($sendid) {
+    $options['attributes']['data-site-common-ajax-sendid'] = 'true';
+  }
+
+  // Return link.
+  return l($title, '', $options);
+}
+
+/**
+ * Create Ajax element.
+ */
+function site_common_ajax_elment($group, $path, $attributes = array(), $method = 'POST') {
+
+  // Generate attributes.
+  $attributes['class'][] = 'site-common-ajax-group-' . $group;
+  $attributes['data-site-common-ajax-url'] = url($path, array('absolute' => TRUE));
+  if ($method != 'POST') {
+    $attributes['data-site-common-ajax-method'] = $method;
+  }
+
+  // Return element.
+  return site_common_render_tag('div', $attributes);
+}
+
+/**
  * Add asynk js if it is not already added.
  *
  * If script is already added, nothing ill be changed.
@@ -52,6 +101,7 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
 
   // Get path and added scripts list.
   $options = NULL;
+  $addfile = TRUE;
   $added_list = &drupal_static(__FUNCTION__ . '_list', array());
   $js_path = drupal_get_path('module', 'site_common') . '/js/site-common.' . str_replace('_', '-', $name) . '.js';
 
@@ -79,7 +129,9 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
     }
 
     // Add js.
-    drupal_add_js($js_path, $options);
+    if ($addfile) {
+      drupal_add_js($js_path, $options);
+    }
     drupal_add_js(array(
       'site_common' => array(
         $name => $settings,
@@ -114,6 +166,11 @@ function site_common_render_tag($tag = 'div', array $attributes = array()) {
   }
   else {
     $data = '';
+  }
+
+  // Support class arrays.
+  if (!empty($attributes['class']) && is_array($attributes['class'])) {
+    $attributes['class'] = implode(' ', $attributes['class']);
   }
 
   // Print tag.

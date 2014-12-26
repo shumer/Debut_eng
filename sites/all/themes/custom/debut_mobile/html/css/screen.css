@@ -164,6 +164,228 @@ a, a.active, li a.active {
 .main-menu ul li.active-trail {
   background: url("../images/sprite-a.png") no-repeat scroll -1px -22px / 1000px 1000px rgba(0, 0, 0, 0);
 }
+.header-placeholders-block,
+.banner {
+  max-width: 640px;
+  margin: 0 auto;
+}
 .banner img {
   width: 100%;
 }
+/*--footer-styles--*/
+
+.page .footer{
+  background: #f09015;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  text-shadow: 0 1px 0 #000;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .footer-inner{
+    padding: 8px 25px 9px;
+    height: 28px;
+    max-width: 880px;
+    margin: 0 auto;
+    @include clearfix;
+  }
+
+}
+/*--end-footer-styles--*/
+
+.block.center-block {
+  max-width: 640px;
+  margin: 0 auto;
+}
+/*------------calendar styles---------------*/
+.page .calendar-block {
+  background: #fff;
+}
+.page .calendar-block .calendar-run .ui-widget{
+  border: 0px;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header{
+	display: block;
+	position: relative;
+	font-size: 12px;
+	color: #7f7f7f;
+	font-weight: normal;
+	text-align: center;
+	padding: 0 0 4px;
+  background: #fff;
+  border: 0px;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev{
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next{
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev span,
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next span{
+	height: 12px;
+	width: 12px;
+	background: url(../images/sprite-a.png) -535px -55px no-repeat;
+	text-indent: -9999px;
+	font-size: 0px;
+	overflow: hidden;
+	display: block;
+	cursor: pointer;
+	border: 1px solid #fff;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next span{
+	background: url(../images/sprite-a.png) -551px -55px no-repeat;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev span:hover,
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next span:hover{
+	border: 1px solid #cccccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.page .calendar-block .calendar-run table{
+	margin: 0 auto;
+  width: 220px;
+  height: 160px;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker-title .ui-datepicker-month {
+  text-transform: uppercase;
+}
+
+.page .calendar-block .calendar-run table th{
+	border-bottom: 1px solid #ffdfac;
+	color: #7f7f7f;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: 'PT Sans', sans-serif;
+	padding: 0 0 4px;
+}
+
+.page .calendar-block .calendar-run table td{
+	border-right: 1px solid #ffdfac;
+}
+
+.page .calendar-block .calendar-run .ui-widget .ui-state-default {
+  border: 0px;
+}
+
+.page .calendar-block .calendar-run .ui-widget a.ui-state-highlight {
+  color: #be01b6;
+}
+
+.page .calendar-block .calendar-run .ui-widget td.ui-datepicker-today {
+  background: #ffe45c url("../js/images/ui-bg_highlight-soft_75_ffe45c_1x100.png") 50% top repeat-x;
+}
+
+.page .calendar-block .calendar-run table td{
+	padding: 0;
+	vertical-align: middle;
+	border-left: 1px solid #ffdfac;
+	border-bottom: 1px solid #ffdfac;
+  width: 28px;
+}
+
+.page .calendar-block .calendar-run td.ui-datepicker-unselectable{
+	background: #fff5eb;
+}
+
+.page .calendar-block .calendar-run table td:hover{
+	cursor: default;
+}
+
+.page .calendar-block .calendar-run table td a{
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 700;
+	font-size: 14px;
+	color: #7f7f7f;
+	padding: 2px 0 3px;
+	display: block;
+	text-align: center;
+}
+
+.page .calendar-block .calendar-run table td.ui-datepicker-today {
+	background: #c5edee;
+}
+
+.page .calendar-block .calendar-run table td.ui-state-custom a {
+  color: #be01b6;
+}
+
+.page .calendar-block .calendar-run table td a:hover,
+.page .calendar-block .calendar-run table td.ui-datepicker-current-day a {
+	text-decoration: none;
+	color: #be01b6;
+}
+
+.page .calendar-block .calendar-run table td.ui-datepicker-today a{
+	color: #7f7f7f;
+}
+
+.page .calendar-block .calendar-run .ui-datepicker td span {
+  display: block;
+  padding: 0.2em;
+  text-decoration: none;
+}
+.page .calendar-block .debut_site_changes_text {
+  margin: 0 auto;
+  text-align: center;
+}
+.page .calendar-block .debut_site_changes_text ul {
+  color: #593302;
+  font-size: 11px;
+  list-style: none outside none;
+  margin: 20px 0 0;
+  padding: 0;
+  text-align: center;
+  display: block;
+}
+
+.page .calendar-block .debut_site_changes_text a {
+  color: #be01b6;
+  text-decoration: none;
+}
+
+.page .calendar-block .debut_site_changes_text a:hover {
+  text-decoration: underline;
+}
+
+.page .calendar-block .debut_site_changes_text ul li {
+  background: url("../images/bgs/strl.gif") no-repeat scroll 10px -1px transparent;
+  border: 0 solid #EA750C;
+  float: none;
+  margin: 0 0 10px;
+  padding: 0 15px 0 25px;
+}
+
+.page .calendar-block .debut_site_changes_text .empty_day {
+  background: url("../images/bgs/strl.gif") no-repeat scroll 10px 0px transparent;
+  border: 0 solid #EA750C;
+  float: none;
+  margin: 0 0 10px;
+  padding: 0 15px 0 25px;
+  color: #593302;
+  font-size: 11px;
+  margin-top: 20px;
+}
+/*------------end calendar styles---------------*/

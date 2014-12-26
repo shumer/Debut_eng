@@ -5,6 +5,54 @@
  */
 
 /**
+ * Gather esi providers.
+ */
+function qtools_varnish_esi_handler($esi_type = NULL) {
+  $handlers = &drupal_static(__FUNCTION__, array());
+
+  // Return from static cache.
+  if (empty($handlers)) {
+    // Gather handlers list.
+    $handlers = module_invoke_all('qtools_varnish_esi_handlers');
+  }
+
+  if (!empty($esi_type)) {
+    $result = !empty($handlers[$esi_type]) ? $handlers[$esi_type] : NULL;
+  }
+  else {
+    $result = $handlers;
+  }
+  return $result;
+}
+
+/**
+ * Helper function that create userblock markup and check if it can be used.
+ */
+function qtools_varnish_create_user_block($selector, $attributes = array()) {
+  global $user;
+
+  $block = FALSE;
+
+  // User blocks are only available to users.
+  if (!empty($user->uid) && qtools_varnish_enabled()) {
+    // Parse selector.
+    list($tag, $id, $class) = qtools_api__selector_parse($selector);
+    if (empty($tag)) {
+      $tag = 'div';
+    }
+
+    // Update attributes.
+    $attributes += array(
+      'id' => $id,
+      'class' => implode(' ', $class),
+      'style' => 'display:none;',
+    );
+    $block = '<'. $tag . ' ' . drupal_attributes(array_filter($attributes)) . '></' . $tag . '>';
+  }
+  return $block;
+}
+
+/**
  * Check if this server can handle Varnish.
  */
 function qtools_varnish_enabled() {
