@@ -10,11 +10,26 @@
  * This should be called inside ::load() entity controller's method.
  */
 function _cache_common_cache_tags_apply($entity_type, $entities) {
-  if (function_exists('qtools_api__cache_tag_apply')) {
-    foreach ($entities as $entity) {
-      $ids = entity_extract_ids($entity_type, $entity);
-      qtools_api__cache_tag_apply(qtools_api__cache_tag($entity_type, $ids[0]));
+  // Build default tag set.
+  foreach ($entities as $entity) {
+    $ids = entity_extract_ids($entity_type, $entity);
+    $tags[] = qtools_api__cache_tag($entity_type, $ids[0]);
+
+    // For comments we also track groupped node tag.
+    if ($entity_type == 'comment') {
+      $tag_node_comments = qtools_api__cache_tag('node_comments', $entity->nid);
+      if (!in_array($tag_node_comments, $tags)) {
+        $tags[] = $tag_node_comments;
+      }
     }
+  }
+
+  // Allow other modules to alter applied tags.
+  drupal_alter('cache_common_cache_tags_apply', $tags, $entity_type, $entities);
+
+  // Apply tags if have any.
+  if (!empty($tags)) {
+    qtools_api__cache_tag_apply($tags);
   }
 }
 

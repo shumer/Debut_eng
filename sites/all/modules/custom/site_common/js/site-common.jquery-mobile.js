@@ -11,7 +11,7 @@ var site_common = site_common || {};
 
 // Init main object.
 site_common.jquery_mobile = site_common.jquery_mobile || {
-  _inited: false,
+  _inited: false
 };
 
 // Overrige drupal attach behaviors.
@@ -30,6 +30,16 @@ $(window).on('pagecontainerbeforeshow', function(event, data) {
   site_common.jquery_mobile.pagecontainerbeforeshow(event, data);
 });
 
+// On page beforehide - update Drupal.settings in container if they were changed.
+$(window).on('pagecontainerbeforehide', function(event, data) {
+  site_common.jquery_mobile.pagecontainerbeforehide(event, data);
+});
+
+// On page hide - update Drupal.settings in container if they were changed.
+$(window).on('pagecontainerhide', function(event, data) {
+  site_common.jquery_mobile.pagecontainerhide(event, data);
+});
+
 // On page load reattach behaviors.
 $(window).on('pagecontainerload', function (event, data) {
 
@@ -43,10 +53,13 @@ $(window).on('pagecontainerload', function (event, data) {
     var eval_text = 'var site_common_drupal_settings = (' + response_text;
     eval(eval_text);
     if (site_common_drupal_settings) {
+      // Save data to DOM element.
       site_common_drupal_settings._site_common_jquery_mobile_url = data.absUrl;
-      // Save data to DOM element and switch global settings.
       $context[0]._drupalSettings = site_common_drupal_settings;
-      Drupal.settings = site_common_drupal_settings;
+    }
+    else {
+      // Fallback to default settings.
+      $context[0]._drupalSettings = site_common.jquery_mobile._original_settings;
     }
   }
 
@@ -91,12 +104,16 @@ site_common.jquery_mobile.attach = function ($context, settings) {
   }
 
   // Define a click binding for all links in the page.
-  $context.find('a, .site-common-jqm-navigate').once('site-common-jqm-navigate', function () {
-    var $this = $(this);
-    $this.click(function(event) {
-      // Skip if item disabled.
-      if ($this.hasClass('.site-common-jqm-navigate-disabled')) {
-        return true;
+  $context.find('a, .site-common-jqm-navigate').not('.site-common-jqm-navigate-ignored, .ui-btn, [href^="#"]').once('site-common-jqm-navigate', function () {
+    $(this).click(function(event) {
+      var $this = $(this);
+
+      // Prevent the usual navigation behavior.
+      event.preventDefault();
+
+      // Skip navigation if item disabled.
+      if ($this.hasClass('site-common-jqm-navigate-disabled')) {
+        return false;
       }
 
       // Get destination url.
@@ -105,20 +122,18 @@ site_common.jquery_mobile.attach = function ($context, settings) {
         href = $this.attr('href');
       }
 
-      // Prevent the usual navigation behavior.
-      event.preventDefault();
-
       // Ignore anchor and empty links.
       var url = qtools.parseUrl(href);
-      if (url.hash != '' || href == '') {
-        return;
+      if (!href || href == '' || url.hash != '' || url.path == '') {
+        qtools.log('SCJQM: non link clicked:', href);
+        return false;
       }
 
       // Direct navigate for excluded (admin?) links.
       var pattern = Drupal.settings.site_common.jquery_mobile.exclude;
-      if (url.href.match(pattern)) {
+      if (url.href.match(pattern) || $this.parents('#admin-menu').length > 0) {
         window.location.href = href;
-        return true;
+        return false;
       }
       else {
         qtools.log('SCJQM: check fails:', [url.href, pattern]);
@@ -190,7 +205,7 @@ site_common.jquery_mobile.init = function (event, data) {
     site_common.jquery_mobile._inited = true;
 
     // Save main page settings.
-    Drupal.settings._site_common_jquery_mobile_url = window.location.href;
+    Drupal.settings._site_common_jquery_mobile_url = window.location.href + '(default)';
     site_common.jquery_mobile._original_settings = Drupal.settings;
 
     // Save settings.
@@ -210,7 +225,42 @@ site_common.jquery_mobile.pagecontainerbeforeshow = function (event, data) {
   // Restore settings from page we navigating to.
   Drupal.settings = data.toPage[0]._drupalSettings;
   qtools.log('SCJQM: populate settings for:', Drupal.settings._site_common_jquery_mobile_url);
+
+  // Turn ON CKeditros that we flushed by us in pagecontainerbeforehide.
+  data.toPage.find('.site-common-jqm-cke-flushed').each(function () {
+    if (Drupal.ckeditorOn) {
+      var $this = $(this);
+      qtools.log('SCJQM: CKEditor On for :', $this.attr('id'));
+      Drupal.ckeditorOn($this.attr('id'));
+      $(this).removeClass('site-common-jqm-cke-flushed');
+    }
+  });
 }
+
+/**
+ * Handle beforehide event.
+ */
+site_common.jquery_mobile.pagecontainerbeforehide = function (event, data) {
+  // Fix CKeditor (turn off any enabled ckeditors).
+  data.prevPage.find('textarea.ckeditor-processed').each(function () {
+    if (Drupal.ckeditorOff) {
+      var $this = $(this);
+      qtools.log('SCJQM: CKEditor Off for :', $this.attr('id'));
+      Drupal.ckeditorOff($this.attr('id'));
+      $(this).addClass('site-common-jqm-cke-flushed');
+    }
+  });
+  data.prevPage[0]._drupalSettings = Drupal.settings;
+  qtools.log('SCJQM: update settings for:', Drupal.settings._site_common_jquery_mobile_url);
+}
+
+/**
+ * Handle hide event.
+ */
+site_common.jquery_mobile.pagecontainerhide = function (event, data) {
+  // Placeholder.
+}
+
 
 /**
  * Performs navigate.

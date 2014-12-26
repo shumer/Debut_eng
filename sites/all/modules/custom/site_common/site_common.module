@@ -5,11 +5,27 @@
  */
 
 define('SITE_COMMON_VAR_MOBILE_THRESHOLD', 925);
-define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)|(/admin_menu/)');
+define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)|(/admin_menu/)|(/node/\d*/edit)|(/user/\d*/edit)|(/user/logout)');
 
 // Load includes.
 module_load_include('inc', 'site_common');
 module_load_include('field.inc', 'site_common');
+
+/**
+ * Implements hook_form_alter().
+ */
+function site_common_form_image_style_add_form_alter(&$form, $form_state, $key) {
+  // Stupid size restrictions.
+  $form['name']['#maxlength'] = 255;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function site_common_form_image_style_form_alter(&$form, $form_state, $key) {
+  // Stupid size restrictions.
+  $form['name']['#maxlength'] = 255;
+}
 
 /**
  * Implements hook_site_common_preload_resources().
@@ -83,6 +99,9 @@ function site_common_preprocess_html(&$variables) {
 function site_common_form_alter(&$form, &$form_state, $form_id) {
   // Disable jQM ajax for forms.
   $list = explode(PHP_EOL, _site_common_settings('jquery_mobile', 'exclude_form'));
+  foreach ($list as &$item) {
+    $item = trim($item);
+  }
   if (in_array($form_id, $list)) {
     $form['#attributes']['data-ajax'] = 'false';
   }
@@ -100,7 +119,7 @@ function site_common_menu() {
     'page arguments' => array('site_common_admin_settings_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'site_common.admin.inc',
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -138,12 +157,12 @@ function site_common_ctools_plugin_directory($module, $plugin) {
 function site_common_menu_alter(&$items) {
 
   // This is never used.
-  if (!empty($items['admin/content/comment'])) {
+  /*if (!empty($items['admin/content/comment'])) {
     unset($items['admin/content/comment']);
   }
   if (!empty($items['admin/content/comment/approval'])) {
     unset($items['admin/content/comment/approval']);
-  }
+  }*/
 
   // Hide `rss.xml`.
   if (!empty($items['rss.xml'])) {
@@ -164,11 +183,6 @@ function site_common_menu_alter(&$items) {
   if (!empty($items['node'])) {
     unset($items['node']);
   }
-
-  // Close access to /taxonomy/term.
-  /*if (!empty($items['taxonomy/term/%taxonomy_term'])) {
-    unset($items['taxonomy/term/%taxonomy_term']);
-  }*/
 
   // We want to be able controll view modes tabs for ease of use
   // However entity_view_mode fails us badly few times, so no trust in it until it maintained.
@@ -193,8 +207,10 @@ function _site_common_field_ui_view_mode_menu_access($entity_type, $bundle, $vie
   if ($access) {
     $entity_info = entity_get_info($entity_type);
     $view_mode = ($view_mode == 'default') ? 'full' : $view_mode;
-    $mode_info = $entity_info['view modes'][$view_mode];
-    if (isset($mode_info['site_common_bundles'])) {
+    if (!empty($entity_info['view modes'][$view_mode])) {
+      $mode_info = $entity_info['view modes'][$view_mode];
+    }
+    if (!empty($mode_info) && isset($mode_info['site_common_bundles'])) {
       $bundle = field_extract_bundle($entity_type, $bundle);
       $access = in_array($bundle, $mode_info['site_common_bundles']);
     }
