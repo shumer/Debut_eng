@@ -853,3 +853,108 @@ function debut_preprocess_node__nobel_speech__listing(&$variables) {
     $_html['author'] = check_plain($auth_node->title);
   }
 }
+
+/**
+ * Preprocess view mode full for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_prize_person__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+
+  // Theme title and person image.
+  $_html['title'] = check_plain($node->title);
+
+  // Check if photo present.
+  if (!empty($content['field_person_image'])) {
+    $image_field = debut_get('field_person_image', $content);
+    $image = drupal_render($image_field);
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  $_html['image'] = $image;
+  $_html['image_legende'] = qtools_api__field_get_item('node', $node, 'field_person_image', 0, 'title');  
+
+  // Get person tags.
+  $tags_field = qtools_api__field_get_item('node', $node, 'field_person_tags');
+  foreach ($tags_field as $tag) {
+    $tag = taxonomy_term_load($tag['target_id']);
+    $_html['tags'][] = '<span class="tag">' . $tag->name . '</span>';
+  }
+  
+  // Get biography.
+  $_html['biography_short'] = debut_render($content, 'field_person_biography_short');
+  $_html['biography'] = debut_render($content, 'field_person_biography');
+  dpm($_html);
+  $node->_html['biography_button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => 'form-submit',
+      'onclick' => 'debut.show_detail("biography_full"); return false;',
+    ),
+  ));
+/*
+  // Get autocomment.
+  $node->_html['autocomment_short'] = $node->field_person_autocomment_short[0]['value'];
+  $node->_html['autocomment'] = $node->field_person_autocomment[0]['value'];
+  $node->_html['autocomment_button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => 'form-submit',
+      'onclick' => 'debut.show_detail("autocomment_full"); return false;',
+    ),
+  ));
+
+  // Get bibliography.
+  foreach ($node->field_person_biography_title as $id => $title) {
+    $text = debut_common_remove_double_quot($node->field_person_biography_text[$id]['value']);
+    $biography = debut_common_hide_item($text, 2);
+    $biography['title'] = $title['value'];
+    $biography['button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
+      'html' => TRUE,
+      'attributes' => array(
+        'class' => 'form-submit',
+        'onclick' => 'debut.show_detail("' . $biography['id'] . '"); return false;',
+      ),
+    ));
+    if (!empty($biography['title'])) {
+      $node->_html['bibliography'][] = $biography;
+    }
+  }
+
+  // Add Nobel speech item.
+  $result = views_get_view_result('debut_nobel_speech_by_author', 'default', $node->nid);
+  if (!empty($result)) {
+    $nobel = array();
+    $nobel['title'] = t('«Нобелевские речи»');
+    foreach ($result as $item) {
+      $n_node = debut_common_node_load($item->nid);
+      $nobel['short'] .= '<p>' . l($n_node->title, 'node/' . $n_node->nid) . '</p>';
+    }
+    $node->_html['bibliography'][] = $nobel;
+  }
+
+  // Help resources.
+  $node->_html['resources'] = debut_common_remove_double_quot($node->field_person_resources[0]['value']);
+
+  // Linked video.
+  if (!empty($node->field_person_linked_video[0]['nid'])) {
+    $video_node = debut_common_node_load($node->field_person_linked_video[0]['nid']);
+    if (!empty($video_node)) {
+      $video_node->build_mode = 'teaser';
+      $node->_html['video'] = theme('node', $video_node);
+    }
+  }*/
+}
