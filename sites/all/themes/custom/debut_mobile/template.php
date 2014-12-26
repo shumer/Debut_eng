@@ -82,8 +82,9 @@ function debut_mobile_preprocess_entity(&$variables) {
     : 0;
 
   // Run specific preprocess function.
-  $preprocess_exact = 'debut_mobile_preprocess_' . $entity_type . '__' . $entity->type . '__' . $view_mode;
-  $preprocess_all   = 'debut_mobile_preprocess_' . $entity_type . '__' . $entity->type;
+  $ids = entity_extract_ids($entity_type, $entity);
+  $preprocess_exact = 'debut_mobile_preprocess_' . $entity_type . '__' . $ids[2] . '__' . $view_mode;
+  $preprocess_all   = 'debut_mobile_preprocess_' . $entity_type . '__' . $ids[2];
 
   if (function_exists($preprocess_exact)) {
     $preprocess_exact($variables);
@@ -146,41 +147,6 @@ function debut_mobile_preprocess_node(&$variables) {
   // Add specific templates.
   foreach ($variables['theme_hook_suggestions'] as $theme_suggestion) {
     $variables['theme_hook_suggestions'][] = $theme_suggestion . '__' . $view_mode;
-  }
-}
-
-/**
- * Preprocess field.
- */
-function debut_mobile_preprocess_field(&$variables) {
-  $element = $variables['element'];
-
-  $preprocess_entity_loaded = &drupal_static('debut_mobile_preprocess_entity_loaded', FALSE);
-  // Load preprocess funtions file.
-  if (!$preprocess_entity_loaded) {
-    $preprocess_entity_loaded = TRUE;
-    $file = path_to_theme() . '/debut_mobile.preprocess_entity.inc';
-    if (is_file($file)) {
-      require_once $file;
-    }
-  }
-
-  if ($element['#field_type'] == 'field_collection') {
-    $view_mode = $element['#view_mode'];
-
-    // Run specific preprocess function.
-    $preprocess = 'debut_mobile_preprocess_field_collection_' . $element['#field_name'] . '__' . $view_mode;
-    if (function_exists($preprocess)) {
-      $preprocess($variables);
-    }
-    elseif (debut_common_developer()) {
-      dpm(t('preprocess: !preprocess expected but not found', array('!preprocess' => $preprocess)));
-    }
-
-    // Add specific templates.
-    foreach ($variables['theme_hook_suggestions'] as $theme_suggestion) {
-      $variables['theme_hook_suggestions'][] = $theme_suggestion . '__' . $view_mode;
-    }
   }
 }
 
