@@ -29,6 +29,7 @@
       <div class="header-search-button"></div>
       <div class="vertical-divider"></div>
       <div class="header-calendar-button"></div>
+      <div class="vertical-divider"></div>
     </div>
     <!-- Messages -->
     <?php print $_html['messages']; ?>

@@ -108,6 +108,12 @@ debut_mobile_custom.redirect = function ($url) {
 
 // Search form actions.
 debut_mobile_custom.attach_search_form = function($context, settings) {
+  $context.find('.header .header-search-button').once('debut-search', function () {
+    $(this).click(function() {
+      $('.search-block-target').toggle('slideDown');
+    });
+  });
+
   $context.find('.header .search-bar').once('search-page-form', function () {
     var $this = $(this);
 
