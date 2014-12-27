@@ -161,9 +161,7 @@ a, a.active, li a.active {
   text-shadow: 0 1px 0 #000;
   font-weight: bold;
 }
-.main-menu ul li.active-trail {
-  background: url("../images/sprite-a.png") no-repeat scroll -1px -22px / 1000px 1000px rgba(0, 0, 0, 0);
-}
+
 .header-placeholders-block,
 .banner {
   max-width: 640px;
@@ -171,6 +169,43 @@ a, a.active, li a.active {
 }
 .banner img {
   width: 100%;
+}
+.header .button-wrapper {
+  margin: 0 auto;
+  max-width: 640px;
+  top: 0px;
+}
+.header .header-search-button {
+  margin: 0 auto;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  display: inline-block;
+  padding: 16px 10px 9px 10px;
+  background: url('../images/sprite-a.png') no-repeat 10px -255px;
+  z-index: 99;
+}
+.header .vertical-divider {
+  margin: 0 auto;
+  display: inline-block;
+  margin-bottom: 15px;
+  top: 0px;
+  width: 2px;
+  height: 30px;
+  background: #fdc75c;
+  z-index: 99;
+}
+.header .header-calendar-button {
+  margin: 0 auto;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  display: inline-block;
+  padding: 16px 10px 9px 10px;
+  background: url('../images/sprite-a.png') no-repeat -45px -256px;
+  z-index: 99;
 }
 /*--footer-styles--*/
 

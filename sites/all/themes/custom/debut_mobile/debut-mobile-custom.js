@@ -25,7 +25,11 @@ debut_mobile_custom.attach = function ($context, settings) {
   if (!debut_mobile_custom._inited) {
     debut_mobile_custom.init();
   }
+
   debut_mobile_custom.attach_calendar($context, settings);
+
+  // Attach search form.
+  debut_mobile_custom.attach_search_form($context, settings);
 }
 
 // Init routine, will be called once.
@@ -41,6 +45,12 @@ debut_mobile_custom.init = function ($context, settings) {
  * Init calendar block.
  */
 debut_mobile_custom.attach_calendar = function ($context, settings) {
+
+  $context.find('.header .header-calendar-button').once('debut-calendar', function () {
+    $(this).click(function() {
+      $('.calendar-block-target').toggle('slideDown');
+    });
+  });
 
   var calendar = $context.find('.calendar-placeholder').html();
   $context.find('.calendar-block-target').html(calendar);
@@ -90,3 +100,25 @@ debut_mobile_custom.calendar_event_days = function(date) {
   }
   return [true, ''];
 }
+
+// Redirect actions.
+debut_mobile_custom.redirect = function ($url) {
+  window.location.href = $url;
+};
+
+// Search form actions.
+debut_mobile_custom.attach_search_form = function($context, settings) {
+  $context.find('.header .search-bar').once('search-page-form', function () {
+    var $this = $(this);
+
+    // Submit button.
+    $this.find('.search-form-submit').click(function () {
+      var search_value = encodeURIComponent($('.header .search-bar .search-form-text').val());
+      if (search_value) {
+       search_value = '/'+ search_value;
+      }
+      var url = settings.debut.page_url + search_value;
+      debut_mobile_custom.redirect(url);
+    });
+  });
+};
