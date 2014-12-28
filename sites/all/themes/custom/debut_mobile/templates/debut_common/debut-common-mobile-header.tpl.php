@@ -39,7 +39,7 @@
     <!-- Placeholder for calendar block -->
     <div class="calendar-block-target" style="display: none;"></div>
     <!-- Search bar block -->
-    <div class="search-block-target" style="display: none;">
+    <div class="search-block-target form-body" style="display: none;">
       <div class="search-bar">
         <div class="form-item form-type-textfield form-item-keys">
           <div class="form-text-wrap">

@@ -320,5 +320,18 @@ debut_custom.attach_search_form = function($context, settings) {
       var url = settings.debut.page_url + search_value;
       debut_custom.redirect(url);
     });
+
+    // Input.
+    $this.find('.search-form-text').keyup(function (event) {
+      if (event.keyCode == 13) {
+        var path = [];
+        var search_value = encodeURIComponent($(this).val());
+        if (search_value) {
+          search_value = '/'+ search_value;
+        }
+        var url = settings.debut.page_url + search_value ;
+        debut_custom.redirect(url);
+      }
+    });
   });
 };
