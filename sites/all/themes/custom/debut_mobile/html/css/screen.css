@@ -424,3 +424,39 @@ a, a.active, li a.active {
   margin-top: 20px;
 }
 /*------------end calendar styles---------------*/
+/*------------Form elements styles---------------*/
+.form-body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.form-body .form-item {
+  margin: 0;
+  padding: 0;
+}
+.form-body .form-type-textfield label {
+  line-height: 1.2;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 0 0 0.4em;
+  font-weight: normal;
+}
+.form-body .form-type-textfield input {
+  background: #ffdb79;
+  width: 100%;
+  padding: 12px 10px;
+  border: none;
+  color: #000;
+  border-radius: 0;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/*------------End Form elements styles---------------*/
+/*------------search form styles---------------*/
+.header .search-form-submit {
+  float: right;
+  top: 0px;
+}
+/*------------end search form styles---------------*/

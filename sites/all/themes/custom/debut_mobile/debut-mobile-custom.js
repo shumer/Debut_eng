@@ -49,6 +49,7 @@ debut_mobile_custom.attach_calendar = function ($context, settings) {
   $context.find('.header .header-calendar-button').once('debut-calendar', function () {
     $(this).click(function() {
       $('.calendar-block-target').toggle('slideDown');
+      $('.search-block-target').slideUp();
     });
   });
 
@@ -111,6 +112,7 @@ debut_mobile_custom.attach_search_form = function($context, settings) {
   $context.find('.header .header-search-button').once('debut-search', function () {
     $(this).click(function() {
       $('.search-block-target').toggle('slideDown');
+      $('.calendar-block-target').slideUp();
     });
   });
 
@@ -126,5 +128,20 @@ debut_mobile_custom.attach_search_form = function($context, settings) {
       var url = settings.debut.page_url + search_value;
       debut_mobile_custom.redirect(url);
     });
+
+    // Input.
+    $this.find('.search-form-text').keyup(function (event) {
+      if (event.keyCode == 13) {
+        var path = [];
+        var search_value = encodeURIComponent($(this).val());
+        if (search_value) {
+          search_value = '/'+ search_value;
+        }
+        var url = settings.debut.page_url + search_value ;
+        debut_mobile_custom.redirect(url);
+      }
+    });
+
+    $this.find('.search-form-text').watermark(Drupal.t('Search'));
   });
 };

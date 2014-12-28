@@ -16,6 +16,7 @@ scripts[] = html/js/behaviors/notesSlider.js
 scripts[] = html/js/behaviors/productsMenu.js
 scripts[] = html/js/behaviors/newsMainSlider.js
 scripts[] = html/js/jquery-ui.js
+scripts[] = html/js/jquery.watermark.js
 
 scripts[] = debut-mobile-custom.js
 
