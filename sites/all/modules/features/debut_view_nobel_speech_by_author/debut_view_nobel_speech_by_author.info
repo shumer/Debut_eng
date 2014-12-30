@@ -1,0 +1,11 @@
+name = Debut: View nobel speech by author
+description = Debut: View nobel speech by author
+core = 7.x
+package = Debut Views
+version = 7.x-0.01
+project = debut_view_nobel_speech_by_author
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = debut_view_nobel_speech_by_author
+features_exclude[dependencies][ctools] = ctools

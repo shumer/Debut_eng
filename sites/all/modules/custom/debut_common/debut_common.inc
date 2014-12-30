@@ -26,7 +26,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for Debut person.
     case DEBUT_COMMON_TYPE_PERSONS:
       $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
-      $letter = $node->field_person_surname[0]['value'];
+      $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
       $breadcrumb[] = $node->title;
@@ -35,7 +35,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for Debut jury.
     case DEBUT_COMMON_TYPE_JURY:
       $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
-      $letter = $node->field_person_surname[0]['value'];
+      $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_JURY. '/' . $letter);
       $breadcrumb[] = $node->title;
@@ -411,4 +411,13 @@ function debut_common_in_popup($set = NULL) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Remove double " from links.
+ */
+function debut_common_remove_double_quot($string = NULL) {
+  $result = str_replace(array('""', '"&quot;', '&quot;"', '&quot;&quot;'), '"', $string);
+
+  return $result;
 }

@@ -28,8 +28,8 @@
       <div id="biography_full" class="hidden">
         <?php print $_html['biography']; ?>
       </div>
-      <div id="biography_full_button" class="next form-buttons">
-        <?php print $_html['biography_button']; ?>
+      <div id="biography_full_button" data-class="biography_full" class="next form-buttons js-expand-button form-submit">
+        <?php print t('onward'); ?>
       </div>
     <?php endif; ?>
   </div>
@@ -45,8 +45,8 @@
           <div id="autocomment_full" class="hidden">
             <?php print $_html['autocomment']; ?>
           </div>
-          <div id="autocomment_full_button" class="next form-buttons">
-            <?php print $_html['autocomment_button']; ?>
+          <div id="autocomment_full_button" data-class="autocomment_full" class="next form-buttons js-expand-button form-submit">
+            <?php print t('onward'); ?>
           </div>
           <div class="clear"></div>
         <?php endif; ?>
@@ -57,23 +57,11 @@
   <?php if (!empty($_html['bibliography'])) : ?>
   <div class="part part-c bibliography">
     <h2><?php print t('Bibliography'); ?></h2>
-    <?php
-
-    foreach ($_html['bibliography'] as $bibliorgaphy) :
-      ?>
-      <h3><?php print $bibliorgaphy['title']; ?></h3>
-      <?php print $bibliorgaphy['short']; ?>
-      <?php if ($bibliorgaphy['hidden']) : ?>
-      <div id="<?php print $bibliorgaphy['id']; ?>" class="hidden">
-        <?php print $bibliorgaphy['hidden']; ?>
-        <div class="clear"></div>
-      </div>
-      <div id="<?php print $bibliorgaphy['id']; ?>_button" class="next form-buttons">
-        <?php print $bibliorgaphy['button']; ?>
-      </div>
-      <div class="clear"></div>
-      <?php endif; ?>
-      <?php endforeach; ?>
+    <?php print $_html['bibliography']; ?>
+    <?php foreach ($_data['nobel'] as $nobel) : ?>
+      <h3><?php print $nobel['title']; ?></h3>
+      <?php print $nobel['short']; ?>
+    <?php endforeach; ?>
   </div>
   <?php endif; ?>
   <?php if (!empty($_html['resources'])) : ?>

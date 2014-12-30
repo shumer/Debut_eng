@@ -275,6 +275,32 @@ function debut_preprocess_node__video__listing(&$variables) {
 }
 
 /**
+ * Preprocess video_listing.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_preprocess_node__video__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_embed_src($field);
+  $_data['src'] = $src;
+  $_data['id'] = $node->nid;
+
+  if (!empty($src)) {
+    $_html['player'] = theme('debut_common_embed_player', array('_data' => $_data));
+  }
+}
+
+/**
  * Preprocess video_full.
  *
  * Displayes playeble youtube iframe.
@@ -408,12 +434,8 @@ function debut_preprocess_node__books__full(&$variables) {
   $authors = array();
   
   // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = $image;
-  }
-
+  $_html['image'] = debut_render($content, 'field_book_image');
+  
   // Authors.
   $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
 
@@ -469,11 +491,8 @@ function debut_preprocess_node__books__listing(&$variables) {
   $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
 
   // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  }
+  $image = debut_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 
   // Publication.
   $_html['publication'] = debut_render($content, 'field_book_publication');
@@ -522,12 +541,9 @@ function debut_preprocess_node__books__compact(&$variables) {
     )
   ));
 
-  // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  }
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 }
 
 /**
@@ -548,12 +564,9 @@ function debut_preprocess_node__books__popup(&$variables) {
   // Caption.
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 
-  // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  }
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 
   // Publication.
   $_html['publication'] = debut_render($content, 'field_book_publication');
@@ -600,8 +613,7 @@ function debut_preprocess_node__debut_jury__frame($variables) {
   $_data = &$variables['_data'];
 
   if (!empty($content['field_jury_image'])) {
-    $image_field = debut_get('field_jury_image', $content);
-    $image = drupal_render($image_field);
+    $image = debut_render($content, 'field_jury_image');
   }
   else {
     $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
@@ -630,8 +642,7 @@ function debut_preprocess_node__debut_prize_person__frame($variables) {
   $_data = &$variables['_data'];
 
   if (!empty($content['field_person_image'])) {
-    $image_field = debut_get('field_person_image', $content);
-    $image = drupal_render($image_field);
+    $image = debut_render($content, 'field_person_image');
   }
   else {
     $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
@@ -664,12 +675,9 @@ function debut_preprocess_node__ibooks__full(&$variables) {
   // Caption.
   $_html['title'] = check_plain($node->title);
 
-  // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = $image;
-  }
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   
   // Publication.
   $_html['publication'] = debut_render($content, 'field_book_publication');
@@ -725,12 +733,9 @@ function debut_preprocess_node__ibooks__listing(&$variables) {
   // Caption.
   $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
 
-  // Check if photo present.
-  $book_image = debut_get('field_book_image', $content);
-  if (!empty($book_image)) {
-    $image = drupal_render($book_image[0]);
-    $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  }
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 
   // Publication.
   $_html['publication'] = debut_render($content, 'field_book_publication');
@@ -869,8 +874,7 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
 
   // Check if photo present.
   if (!empty($content['field_person_image'])) {
-    $image_field = debut_get('field_person_image', $content);
-    $image = drupal_render($image_field);
+    $image = debut_render($content, 'field_person_image');
   }
   else {
     $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
@@ -897,64 +901,125 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
   // Get biography.
   $_html['biography_short'] = debut_render($content, 'field_person_biography_short');
   $_html['biography'] = debut_render($content, 'field_person_biography');
-  dpm($_html);
-  $node->_html['biography_button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
-    'html' => TRUE,
-    'attributes' => array(
-      'class' => 'form-submit',
-      'onclick' => 'debut.show_detail("biography_full"); return false;',
-    ),
-  ));
-/*
+
   // Get autocomment.
-  $node->_html['autocomment_short'] = $node->field_person_autocomment_short[0]['value'];
-  $node->_html['autocomment'] = $node->field_person_autocomment[0]['value'];
-  $node->_html['autocomment_button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
-    'html' => TRUE,
-    'attributes' => array(
-      'class' => 'form-submit',
-      'onclick' => 'debut.show_detail("autocomment_full"); return false;',
-    ),
-  ));
+  $_html['autocomment_short'] = debut_render($content, 'field_person_autocomment_short');
+  $_html['autocomment'] = debut_render($content, 'field_person_autocomment'); 
 
   // Get bibliography.
-  foreach ($node->field_person_biography_title as $id => $title) {
-    $text = debut_common_remove_double_quot($node->field_person_biography_text[$id]['value']);
-    $biography = debut_common_hide_item($text, 2);
-    $biography['title'] = $title['value'];
-    $biography['button'] = l(t('onward') . '<span class="ico"></span>', '<front>', array(
-      'html' => TRUE,
-      'attributes' => array(
-        'class' => 'form-submit',
-        'onclick' => 'debut.show_detail("' . $biography['id'] . '"); return false;',
-      ),
-    ));
-    if (!empty($biography['title'])) {
-      $node->_html['bibliography'][] = $biography;
-    }
-  }
-
+  $_html['bibliography'] = debut_render($content, 'field_person_bibliography');
+  
   // Add Nobel speech item.
-  $result = views_get_view_result('debut_nobel_speech_by_author', 'default', $node->nid);
+  $result = views_get_view_result(DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR, 'default', $node->nid);
   if (!empty($result)) {
     $nobel = array();
     $nobel['title'] = t('«Нобелевские речи»');
+    $nobel['short'] = '';
     foreach ($result as $item) {
-      $n_node = debut_common_node_load($item->nid);
+      $n_node = cache_common_load_node($item->nid);
       $nobel['short'] .= '<p>' . l($n_node->title, 'node/' . $n_node->nid) . '</p>';
     }
-    $node->_html['bibliography'][] = $nobel;
+    $_data['nobel'][] = $nobel;
   }
 
   // Help resources.
-  $node->_html['resources'] = debut_common_remove_double_quot($node->field_person_resources[0]['value']);
+  $_html['resources'] = debut_render($content, 'field_person_resources');
 
   // Linked video.
-  if (!empty($node->field_person_linked_video[0]['nid'])) {
-    $video_node = debut_common_node_load($node->field_person_linked_video[0]['nid']);
-    if (!empty($video_node)) {
-      $video_node->build_mode = 'teaser';
-      $node->_html['video'] = theme('node', $video_node);
-    }
-  }*/
+  $_html['video'] = debut_render($content, 'field_person_linked_video');
+}
+
+/**
+ * Preprocess view mode teaser for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_prize_person__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode listing for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_prize_person_listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  // Title.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode compact for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_prize_person_compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Field collection field_person_bibliography preprocess full.
+ */
+function debut_preprocess_field_collection_item__field_person_bibliography__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_data['id'] = rand(0, 100500);
+  
+  $field = debut_get('field_person_biography_text', $content);
+  $value = $field['#items'][0]['safe_value'];
+  $text = debut_common_remove_double_quot($value);
+  
+  $biography = explode("\n", $text);
+
+  $_html['title'] = debut_render($content, 'field_person_biography_title');
+  $_html['short'] = implode("\n", array_splice($biography, 0, 2));
+  $_html['hidden'] = implode("\n", $biography);
 }

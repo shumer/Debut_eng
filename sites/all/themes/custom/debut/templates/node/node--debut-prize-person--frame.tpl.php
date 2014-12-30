@@ -11,4 +11,3 @@
     <?php print $_html['name']; ?>
   </figcaption>
 </figure>
-

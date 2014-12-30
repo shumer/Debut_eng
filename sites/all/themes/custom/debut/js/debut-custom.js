@@ -79,6 +79,9 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach search form.
   debut_custom.attach_search_form($context, settings);
+  
+  // Attach expand button.
+  debut_custom.attach_expand_button($context, settings);
 
   // Init.
   if (!debut_custom._inited) {
@@ -166,6 +169,17 @@ debut_custom.calendar_event_days = function(date) {
     }
   }
   return [true, ''];
+}
+
+  // Attach expandable button.
+debut_custom.attach_expand_button = function ($context, settings) {
+  $context.find('.js-expand-button').once('debut-js-expandable', function (delta) {
+    $(this).click(function() {
+      $(this).hide();
+      var target = '#' + $(this).attr('data-class');
+      $(target).show();
+    });
+  });
 }
 
 // Attach proxy.
@@ -262,7 +276,7 @@ debut_custom.attach_fancy = function ($context, settings) {
     $(this).fancybox({
       nextEffect  : 'none',
       prevEffect  : 'node'
-      });
+    });
   });
 
   if ($context.find(".popup .close.nojs").size() > 0) {

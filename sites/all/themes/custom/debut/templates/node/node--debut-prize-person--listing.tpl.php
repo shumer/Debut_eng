@@ -4,4 +4,4 @@
  * Template file.
  */
 ?>
-<b><?php print $node->_html['title']; ?></b>
+<b><?php print $_html['title']; ?></b>
