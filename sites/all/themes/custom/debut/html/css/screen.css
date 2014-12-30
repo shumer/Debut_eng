@@ -2145,6 +2145,10 @@ section article.prem_list ol a {
 
 .person-item .video {
   width: 80%;
+  height: 300px;
+}
+.person-item .video .player{
+  height: 80%;
 }
 
 .biography .form-buttons,
@@ -2157,9 +2161,9 @@ section article.prem_list ol a {
   margin-right: 40px;
 }
 
-.biography .form-buttons .form-submit,
-.bibliography .form-buttons .form-submit,
-.autocomment .form-buttons .form-submit {
+.biography .form-buttons.form-submit,
+.bibliography .form-buttons.form-submit,
+.autocomment .form-buttons.form-submit {
   background: url("../images/sprite-a.png") no-repeat scroll 0 -206px transparent;
   color: #FFFFFF;
   display: block;
@@ -2171,11 +2175,12 @@ section article.prem_list ol a {
   width: 60px;
   text-transform: none;
   padding-right: 0;
+  cursor: pointer;
 }
 
-.biography .form-buttons .form-submit .ico,
-.bibliography .form-buttons .form-submit .ico,
-.autocomment .form-buttons .form-submit  .ico {
+.biography .form-buttons.form-submit .ico,
+.bibliography .form-buttons.form-submit .ico,
+.autocomment .form-buttons.form-submit  .ico {
   background: url("../images/bgs/ico.png") no-repeat scroll left top transparent;
   display: inline-block;
   height: 5px;

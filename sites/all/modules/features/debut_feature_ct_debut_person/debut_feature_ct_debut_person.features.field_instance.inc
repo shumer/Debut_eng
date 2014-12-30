@@ -327,13 +327,9 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'label' => 'above',
         'module' => 'field_collection',
         'settings' => array(
-          'add' => 'Добавить',
-          'delete' => 'Удалить',
-          'description' => TRUE,
-          'edit' => 'Правка',
           'view_mode' => 'full',
         ),
-        'type' => 'field_collection_view',
+        'type' => 'field_collection_fields',
         'weight' => 13,
       ),
       'frame' => array(
@@ -536,8 +532,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'debut_person_alphabet_page',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -637,9 +637,10 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 10,
       ),
       'frame' => array(

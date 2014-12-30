@@ -653,7 +653,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'debut_content_3col_toped';
+  $display->layout = 'debut_content_2col_toped';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
