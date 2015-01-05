@@ -882,7 +882,7 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
       'path' => $path,
       'alt' => $node->title,
       'title' => $node->title,
-      'width' => '100px',
+      'width' => '200px',
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
@@ -895,7 +895,7 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
   $tags_field = qtools_api__field_get_item('node', $node, 'field_person_tags');
   foreach ($tags_field as $tag) {
     $tag = taxonomy_term_load($tag['target_id']);
-    $_html['tags'][] = '<span class="tag">' . $tag->name . '</span>';
+    $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
   }
   
   // Get biography.
@@ -1022,4 +1022,105 @@ function debut_preprocess_field_collection_item__field_person_bibliography__full
   $_html['title'] = debut_render($content, 'field_person_biography_title');
   $_html['short'] = implode("\n", array_splice($biography, 0, 2));
   $_html['hidden'] = implode("\n", $biography);
+}
+
+/**
+ * Preprocess view mode full for debut_jury node.
+ */
+function debut_preprocess_node__debut_jury__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and jury image.
+  $_html['title'] = check_plain($node->title);
+
+  // Check if photo present.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '200px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  $_html['image'] = $image;
+  
+  // Get jury tags.
+  $tags_field = qtools_api__field_get_item('node', $node, 'field_jury_tags');
+  foreach ($tags_field as $tag) {
+    $tag = taxonomy_term_load($tag['target_id']);
+    $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
+  }
+  
+  // Get profile.
+  $_html['profile_short'] = debut_render($content, 'field_jury_profile_short');
+  $_html['profile'] = debut_render($content, 'field_jury_body');
+
+  // Get jury_self.
+  $_html['jury_self_short'] = debut_render($content, 'field_jury_self_short');
+  $_html['jury_self'] = debut_render($content, 'field_jury_self_long');
+
+  // Help resources.
+  $_html['resources'] = debut_render($content, 'field_person_resources');
+}
+
+/**
+ * Preprocess view mode teaser for debut_jury node.
+ */
+function debut_preprocess_node__debut_jury__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);    
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  
+}
+
+/**
+ * Preprocess view mode listing for debut_jury node.
+ */
+function debut_preprocess_node__debut_jury__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  // Title.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+}
+
+/**
+ * Preprocess view mode search for debut_jury node.
+ */
+function debut_preprocess_node__debut_jury__search(&$vars, $hook) {
+  debut_preprocess_node__debut_jury__teaser($vars, $hook);
 }

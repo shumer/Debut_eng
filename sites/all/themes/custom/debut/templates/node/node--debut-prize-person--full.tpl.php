@@ -28,7 +28,7 @@
       <div id="biography_full" class="hidden">
         <?php print $_html['biography']; ?>
       </div>
-      <div id="biography_full_button" data-class="biography_full" class="next form-buttons js-expand-button form-submit">
+      <div id="biography_full_button" data-ref-id="biography_full" class="next form-buttons js-expand-button form-submit">
         <?php print t('onward'); ?>
       </div>
     <?php endif; ?>
@@ -45,7 +45,7 @@
           <div id="autocomment_full" class="hidden">
             <?php print $_html['autocomment']; ?>
           </div>
-          <div id="autocomment_full_button" data-class="autocomment_full" class="next form-buttons js-expand-button form-submit">
+          <div id="autocomment_full_button" data-ref-id="autocomment_full" class="next form-buttons js-expand-button form-submit">
             <?php print t('onward'); ?>
           </div>
           <div class="clear"></div>

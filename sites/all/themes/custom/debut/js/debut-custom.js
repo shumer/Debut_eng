@@ -176,7 +176,7 @@ debut_custom.attach_expand_button = function ($context, settings) {
   $context.find('.js-expand-button').once('debut-js-expandable', function (delta) {
     $(this).click(function() {
       $(this).hide();
-      var target = '#' + $(this).attr('data-class');
+      var target = '#' + $(this).attr('data-ref-id');
       $(target).show();
     });
   });

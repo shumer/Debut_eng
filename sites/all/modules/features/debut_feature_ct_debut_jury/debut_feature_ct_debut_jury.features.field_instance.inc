@@ -137,7 +137,7 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'debut_person_page_photo',
         ),
         'type' => 'image',
         'weight' => 2,
@@ -169,8 +169,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'debut_person_alphabet_page',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
