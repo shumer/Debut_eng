@@ -962,7 +962,7 @@ function debut_preprocess_node__debut_prize_person__teaser(&$variables) {
 /**
  * Preprocess view mode listing for debut_prize_person node.
  */
-function debut_preprocess_node__debut_prize_person_listing(&$variables) {
+function debut_preprocess_node__debut_prize_person__listing(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
   $_html = &$variables['_html'];
@@ -974,7 +974,7 @@ function debut_preprocess_node__debut_prize_person_listing(&$variables) {
 /**
  * Preprocess view mode compact for debut_prize_person node.
  */
-function debut_preprocess_node__debut_prize_person_compact(&$variables) {
+function debut_preprocess_node__debut_prize_person__compact(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
   $_html = &$variables['_html'];
@@ -1121,6 +1121,6 @@ function debut_preprocess_node__debut_jury__listing(&$variables) {
 /**
  * Preprocess view mode search for debut_jury node.
  */
-function debut_preprocess_node__debut_jury__search(&$vars, $hook) {
-  debut_preprocess_node__debut_jury__teaser($vars, $hook);
+function debut_preprocess_node__debut_jury__search(&$variables) {
+  debut_preprocess_node__debut_jury__teaser($variables);
 }

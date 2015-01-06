@@ -1470,7 +1470,8 @@ p.winners-links {
 }
 
 .block-alphabet.block-persons ul.listing li,
-.block-article .prize-persons ul.listing li {
+.block-article .prize-persons ul.listing li,
+.block-article .prize-persons .full .item {
   float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
@@ -1528,7 +1529,7 @@ section article.prem_list ol li {
   padding: 0 0 1px;
 }
 
-section article.prem_list ol a {
+section article.prem_list a {
   color: #333333;
 }
 /*------------end prize persons page styles---------------*/
