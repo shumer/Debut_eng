@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Query feature.
+ */
+
+include_once 'debut_feature_views_query.features.inc';

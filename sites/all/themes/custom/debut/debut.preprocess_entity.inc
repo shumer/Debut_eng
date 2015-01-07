@@ -5,6 +5,21 @@
  */
 
 /**
+ * Preprocess debut_prize_person__block.
+ */
+function debut_preprocess_node__debut_prize_person__block(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Text part.
+  $_html['title'] = l($node->title, 'node/' . $node->nid);
+  $_html['field_person_info'] = debut_render($content, 'field_person_info');
+  $_html['field_person_image'] = debut_render($content, 'field_person_image');
+}
+
+/**
  * Preprocess node__news__full.
  */
 function debut_preprocess_node__news__full(&$variables) {

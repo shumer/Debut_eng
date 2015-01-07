@@ -28,6 +28,10 @@ function debut_feature_view_modes_strongarm() {
         'label' => 'search',
         'custom settings' => 1,
       ),
+      'block' => array(
+        'label' => 'Block',
+        'custom settings' => 1,
+      ),
     ),
     'field_collection_item' => array(),
   );
