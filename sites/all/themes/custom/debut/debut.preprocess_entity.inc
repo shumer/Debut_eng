@@ -349,13 +349,13 @@ function debut_preprocess_node__photo_listing__listing(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $visible_image_count = 4;
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  
+
   $photo_field = debut_get('field_photo_listing_photo', $content);
-  
+
   foreach ($photo_field['#items'] as $i => $item) {
     if ($i >= $visible_image_count) {
       break;
@@ -432,10 +432,10 @@ function debut_preprocess_node__books__full(&$variables) {
   $_data = &$variables['_data'];
 
   $authors = array();
-  
+
   // Check if photo present.
   $_html['image'] = debut_render($content, 'field_book_image');
-  
+
   // Authors.
   $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
 
@@ -444,7 +444,7 @@ function debut_preprocess_node__books__full(&$variables) {
       $collection = field_collection_item_load($val['value']);
       $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
       $authnode = cache_common_load_node($nid);
-      
+
       $author = cache_common_entity_render('node', $authnode, 'frame');
 
       // Author stories.
@@ -463,7 +463,7 @@ function debut_preprocess_node__books__full(&$variables) {
   }
 
   $_html['authors'] = $authors;
-  
+
   // Prepare pdf link if we have it.
   $pdf_path = qtools_api__field_get_item('node', $node, 'field_book_pdf', 0, 'uri');
   if (!empty($pdf_path)) {
@@ -475,7 +475,7 @@ function debut_preprocess_node__books__full(&$variables) {
   $_html['title'] = check_plain($node->title);
   $_html['publication'] = debut_render($content, 'field_book_publication');
   $_html['stories_type'] = qtools_api__field_get_item('node', $node, 'field_book_stories_type', 0, 'value');
-  
+
 }
 
 /**
@@ -522,7 +522,7 @@ function debut_preprocess_node__books__listing(&$variables) {
   }
   else {
     $_html['authors'] = '';
-  }  
+  }
 }
 
 /**
@@ -555,7 +555,7 @@ function debut_preprocess_node__books__popup(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  
+
   $classes = &ctools_static('popup_1col_classes', array());
   $classes['popup'] = !empty($classes['popup'])
     ? $classes['popup'] . ' popup-b popup-commenter popup-video'
@@ -625,9 +625,9 @@ function debut_preprocess_node__debut_jury__frame($variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
-  
+
   $_html['image'] = $image;
   $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
@@ -654,9 +654,9 @@ function debut_preprocess_node__debut_prize_person__frame($variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
-  
+
   $_html['image'] = $image;
   $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
@@ -671,14 +671,14 @@ function debut_preprocess_node__ibooks__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   // Caption.
   $_html['title'] = check_plain($node->title);
 
   // Image render.
   $image = debut_render($content, 'field_book_image');
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  
+
   // Publication.
   $_html['publication'] = debut_render($content, 'field_book_publication');
 
@@ -698,7 +698,7 @@ function debut_preprocess_node__ibooks__full(&$variables) {
       $collection = field_collection_item_load($val['value']);
       $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
       $authnode = cache_common_load_node($nid);
-      
+
       $author = cache_common_entity_render('node', $authnode, 'frame');
 
       // Author stories.
@@ -714,10 +714,10 @@ function debut_preprocess_node__ibooks__full(&$variables) {
         )),
       );
     }
-    
+
     $_html['authors'] = $authors;
   }
-  
+
   $_html['stories_type'] = qtools_api__field_get_item('node', $node, 'field_book_stories_type', 0, 'value');
 }
 
@@ -811,7 +811,7 @@ function debut_preprocess_node__nobel_speech__full(&$variables) {
     if ($node->title != $auth_node->title) {
       $_html['title'] = check_plain($node->title);
     }
-    
+
     $uri = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'uri');
     if (!empty($uri)) {
       $image = theme('image_style', array(
@@ -819,7 +819,7 @@ function debut_preprocess_node__nobel_speech__full(&$variables) {
         'style_name' => 'debut_person_page_photo',
         'alt' => $auth_node->title,
         'title' => $auth_node->title,
-      ));    
+      ));
     }
     else {
       $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
@@ -831,9 +831,9 @@ function debut_preprocess_node__nobel_speech__full(&$variables) {
         'attributes' => array('class' => array('image-class')),
         'getsize' => FALSE,
       );
-      $image =  theme('image', $params);    
+      $image =  theme('image', $params);
     }
-    
+
     $_html['image_legende'] = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'title');
     $_html['image'] = $image;
     $_html['author'] = l($auth_node->title, 'node/' . $auth_node->nid);
@@ -886,10 +886,10 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
   $_html['image'] = $image;
-  $_html['image_legende'] = qtools_api__field_get_item('node', $node, 'field_person_image', 0, 'title');  
+  $_html['image_legende'] = qtools_api__field_get_item('node', $node, 'field_person_image', 0, 'title');
 
   // Get person tags.
   $tags_field = qtools_api__field_get_item('node', $node, 'field_person_tags');
@@ -897,20 +897,21 @@ function debut_preprocess_node__debut_prize_person__full(&$variables) {
     $tag = taxonomy_term_load($tag['target_id']);
     $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
   }
-  
+
   // Get biography.
   $_html['biography_short'] = debut_render($content, 'field_person_biography_short');
   $_html['biography'] = debut_render($content, 'field_person_biography');
 
   // Get autocomment.
   $_html['autocomment_short'] = debut_render($content, 'field_person_autocomment_short');
-  $_html['autocomment'] = debut_render($content, 'field_person_autocomment'); 
+  $_html['autocomment'] = debut_render($content, 'field_person_autocomment');
 
   // Get bibliography.
   $_html['bibliography'] = debut_render($content, 'field_person_bibliography');
-  
+
   // Add Nobel speech item.
   $result = views_get_view_result(DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR, 'default', $node->nid);
+  $_data['nobel'] = array();
   if (!empty($result)) {
     $nobel = array();
     $nobel['title'] = t('«Нобелевские речи»');
@@ -954,7 +955,7 @@ function debut_preprocess_node__debut_prize_person__teaser(&$variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 }
@@ -979,7 +980,7 @@ function debut_preprocess_node__debut_prize_person__compact(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   // Theme title and person image.
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 
@@ -997,7 +998,7 @@ function debut_preprocess_node__debut_prize_person__compact(&$variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 }
@@ -1012,11 +1013,11 @@ function debut_preprocess_field_collection_item__field_person_bibliography__full
   $_data = &$variables['_data'];
 
   $_data['id'] = rand(0, 100500);
-  
+
   $field = debut_get('field_person_biography_text', $content);
-  $value = $field['#items'][0]['safe_value'];
+  $value = $field['#items'][0]['value'];
   $text = debut_common_remove_double_quot($value);
-  
+
   $biography = explode("\n", $text);
 
   $_html['title'] = debut_render($content, 'field_person_biography_title');
@@ -1050,17 +1051,17 @@ function debut_preprocess_node__debut_jury__full(&$variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
   $_html['image'] = $image;
-  
+
   // Get jury tags.
   $tags_field = qtools_api__field_get_item('node', $node, 'field_jury_tags');
   foreach ($tags_field as $tag) {
     $tag = taxonomy_term_load($tag['target_id']);
     $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
   }
-  
+
   // Get profile.
   $_html['profile_short'] = debut_render($content, 'field_jury_profile_short');
   $_html['profile'] = debut_render($content, 'field_jury_body');
@@ -1099,10 +1100,10 @@ function debut_preprocess_node__debut_jury__teaser(&$variables) {
       'attributes' => array('class' => array('image-class')),
       'getsize' => FALSE,
     );
-    $image =  theme('image', $params);    
+    $image =  theme('image', $params);
   }
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-  
+
 }
 
 /**

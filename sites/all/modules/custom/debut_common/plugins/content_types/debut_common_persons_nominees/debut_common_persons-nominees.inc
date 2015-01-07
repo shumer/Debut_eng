@@ -35,12 +35,19 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
   $i = 0; // Counter.
   $interval = 3; // Count of grouping prizes.
   $prizes = array();
-  
+
   $vocabulary = taxonomy_get_tree($conf['terms']);
-  
+
+  // Show only first 2 years.
+  $max_count = 6;
+  $terms_count = count($vocabulary);
+
   foreach ($vocabulary as $term) {
+    if ($i >= $max_count) {
+      break;
+    }
     $row = floor($i/$interval);
-    
+
     $prizes[$row]['titles'][$term->tid] = $term->name;
     if ($i % $interval == 0) {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
@@ -51,8 +58,15 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
     $prizes[$row]['data'][$term->tid]['class'] = ($i % $interval == 0) ? 'full' : 'prem_list';
     $i++;
   }
-  
-  $data['_data'] = $prizes;
+
+  // Check if we need to show more button.
+  $_data['show_more'] = FALSE;
+  if ($terms_count > count($prizes)) {
+    $_data['show_more'] = TRUE;
+    $_data['show_more_url'] = url('debut_common/ajax/debut_common_persons_view_more/' . $max_count);
+  }
+  $_data['prizes'] = $prizes;
+  $data['_data'] = $_data;
 
   $block->content = theme('debut_common_persons_nominees', $data);
   return $block;
@@ -68,7 +82,7 @@ function debut_common_persons_nominees_content_type_edit_form($form, &$form_stat
   $form['conf'] = array(
     '#tree' => TRUE,
   );
-  
+
   $terms = array();
   $vocs = taxonomy_get_vocabularies();
   foreach ($vocs as $voc) {
@@ -81,7 +95,7 @@ function debut_common_persons_nominees_content_type_edit_form($form, &$form_stat
     '#options' => $terms,
     '#default_value' => (!empty($conf['terms'])) ? $conf['terms'] : '',
   );
-  
+
   return $form;
 }
 

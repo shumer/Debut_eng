@@ -79,9 +79,12 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach search form.
   debut_custom.attach_search_form($context, settings);
-  
+
   // Attach expand button.
   debut_custom.attach_expand_button($context, settings);
+
+  // Attach View more buttons.
+  debut_custom.attach_view_more($context, settings);
 
   // Init.
   if (!debut_custom._inited) {
@@ -331,7 +334,7 @@ debut_custom.attach_search_form = function($context, settings) {
       if (search_value) {
        search_value = '/'+ search_value;
       }
-      var url = settings.debut.page_url + search_value;
+      var url = settings.debut_common.search_page_url + search_value;
       debut_custom.redirect(url);
     });
 
@@ -343,9 +346,22 @@ debut_custom.attach_search_form = function($context, settings) {
         if (search_value) {
           search_value = '/'+ search_value;
         }
-        var url = settings.debut.page_url + search_value ;
+        var url = settings.debut_common.search_page_url + search_value ;
         debut_custom.redirect(url);
       }
+    });
+  });
+};
+
+debut_custom.attach_view_more = function($context, settings) {
+  $context.find('.persons-view-more-button').once('persons-view-more', function () {
+    var $this = $(this);
+    $this.click(function () {
+      var $this = $(this);
+      var name = 'persons-view-more';
+      var url = $this.attr('data-ajax-url');
+      qtools_ajax.ajax_call(name, url, [], 'get');
+      $this.remove();
     });
   });
 };

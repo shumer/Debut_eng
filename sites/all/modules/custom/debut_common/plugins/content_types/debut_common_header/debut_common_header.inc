@@ -137,8 +137,8 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
   // Prepare data for search form.
   $url_path = 'search';
   $page_url = url($url_path);
-  drupal_add_js(array('debut' => array(
-    'page_url' => $page_url,
+  drupal_add_js(array('debut_common' => array(
+    'search_page_url' => $page_url,
   )), 'setting');
 
   $data['_html'] = $_html;

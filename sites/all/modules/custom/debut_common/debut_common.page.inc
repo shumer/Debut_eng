@@ -105,3 +105,56 @@ function debut_common_page_js_parent_reload() {
   // Prevent anything else.
   die;
 }
+
+/**
+ * Callback on calendar ajax request..
+ */
+function debut_common_persons_view_more($shift = 0) {
+  global $user;
+  $commands = array();
+
+  $i = 0; // Counter.
+  $interval = 3; // Count of grouping prizes.
+  $prizes = array();
+  $voc = taxonomy_vocabulary_machine_name_load(DEBUT_COMMON_VOC_PERSON_PRIZES);
+  $vocabulary = taxonomy_get_tree($voc->vid);
+  $vocabulary = array_slice($vocabulary, $shift, 6);
+
+  // Show only first 2 years.
+  $max_count = 6;
+  $terms_count = count($vocabulary);
+
+  foreach ($vocabulary as $term) {
+    if ($i >= $max_count) {
+      break;
+    }
+    $row = floor($i/$interval);
+
+    $prizes[$row]['titles'][$term->tid] = $term->name;
+    if ($i % $interval == 0) {
+      $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
+    }
+    else {
+      $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
+    }
+    $prizes[$row]['data'][$term->tid]['class'] = ($i % $interval == 0) ? 'full' : 'prem_list';
+    $i++;
+  }
+
+  // Check if we need to show more button.
+  $_data['show_more'] = FALSE;
+  if ($terms_count > count($prizes)) {
+    $_data['show_more'] = TRUE;
+    $shift = $shift + $max_count;
+    $_data['show_more_url'] = url('debut_common/ajax/debut_common_persons_view_more/' . $shift);
+  }
+  $_data['prizes'] = $prizes;
+  $data['_data'] = $_data;
+
+  $html = theme('debut_common_persons_view_more', $data);
+  $commands[] = ajax_command_append('.persons-list .view-more-target', $html);
+
+  // Cleanup status messages.
+  $msgs = theme('status_messages');
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
