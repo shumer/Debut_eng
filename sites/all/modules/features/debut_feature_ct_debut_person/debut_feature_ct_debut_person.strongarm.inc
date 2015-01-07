@@ -95,6 +95,9 @@ function debut_feature_ct_debut_person_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'block' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

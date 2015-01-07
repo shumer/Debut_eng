@@ -58,6 +58,7 @@ define('DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING', 'debut_view_list_nobel_speach')
 define('DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR', 'debut_view_nobel_speech_by_author');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST', 'debut_view_persons_nominees_list');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER', 'debut_view_persons_nominees_list_teaser');
+define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_PERSON', 'debut_query_random_prize_person');
 
 define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 
