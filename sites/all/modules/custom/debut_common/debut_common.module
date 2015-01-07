@@ -59,6 +59,8 @@ define('DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR', 'debut_view_nobel_speech_
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST', 'debut_view_persons_nominees_list');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER', 'debut_view_persons_nominees_list_teaser');
 
+define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
+
 define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
 
 // Load includes.
@@ -103,6 +105,16 @@ function debut_common_menu() {
     'delivery callback' => 'ajax_deliver',
     'access arguments' => array('access content'),
     'page callback' => 'debut_common_page_ajax_newsletter_subscribe_callback',
+    'file' => 'debut_common.page.inc',
+  );
+
+  $menu['debut_common/ajax/debut_common_persons_view_more/%'] = array(
+    'type' => MENU_CALLBACK,
+    'theme callback' => 'ajax_base_page_theme',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('access content'),
+    'page arguments' => array(3),
+    'page callback' => 'debut_common_persons_view_more',
     'file' => 'debut_common.page.inc',
   );
 
@@ -209,6 +221,13 @@ function debut_common_theme() {
     'template' => 'debut-common-embed-player',
     'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
   );
+
+  $theme['debut_common_persons_view_more'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-persons-view-more',
+    'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
+  );
+
   return($theme);
 }
 

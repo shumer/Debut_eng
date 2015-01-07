@@ -4098,11 +4098,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   font-style: normal;
   padding: 0 0 2px;
 }
-  
-.content .nobel-speech-item .news-body {
-  font-family: Verdana,Arial,Helvetica,sans-serif;
-}
-  
+
 .content .nobel-speech-item h1 {
   line-height: 33px;
 }
@@ -4110,4 +4106,73 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 .content .news-body p {
   font-size: 16px;
   line-height: 22px;
-} 
+}
+/**-----------prixe persons-----------**/
+.text-throbber {
+  clear: both;
+  display: block;
+  font-size: 12px;
+  padding: 40px 0 0;
+  text-align: center;
+  width: 100%;
+}
+.text-throbber .button {
+  float: none;
+  display: inline-block;
+  margin: 0 0 20px;
+  vertical-align: top;
+}
+.text-throbber-hidden {
+  display: none;
+}
+.text-throbber .button:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+.text-throbber .button a {
+  display: block;
+  float: left;
+  text-decoration: none;
+}
+.text-throbber .button a span {
+  float: left;
+  display: block;
+  background: #000;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+.no-touch .text-throbber .button a:hover span,
+.no-js .text-throbber .button a:hover span {
+  background: #BD01B5;
+  color: #fff;
+  border: 1px solid #fff;
+  text-decoration: none;
+  -webkit-transition: 0.15s linear;
+  -moz-transition: 0.15s linear;
+  -o-transition: 0.15s linear;
+  transition: 0.15s linear;
+}
+.no-touch .text-throbber .button a:hover,
+.no-js .text-throbber .button a:hover {
+  text-decoration: none;
+}
+.text-throbber .button-c a span {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px 6px;
+}
+.ie9 .text-throbber .button-c a span, .ie10 .text-throbber .button-c a span {
+  line-height: 18px;
+  height: 16px;
+}
