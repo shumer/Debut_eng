@@ -5,6 +5,20 @@
  */
 
 /**
+ * Preprocess node__news__home_page.
+ */
+function debut_preprocess_node__news__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_news_annonce'] = debut_render($content, 'field_news_annonce');;
+  $_html['field_publication_date'] = debut_render($content, 'field_publication_date');
+}
+
+/**
  * Preprocess node__debut_jury__block.
  */
 function debut_preprocess_node__debut_jury__block(&$variables) {
