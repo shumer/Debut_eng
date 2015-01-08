@@ -89,8 +89,11 @@ function debut_feature_ct_news_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
-      'frame' => array(
+      'block' => array(
         'custom_settings' => FALSE,
+      ),
+      'home_page' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(

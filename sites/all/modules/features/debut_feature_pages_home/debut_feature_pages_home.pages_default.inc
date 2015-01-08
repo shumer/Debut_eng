@@ -61,6 +61,25 @@ function debut_feature_pages_home_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-2c397fcf-3263-4dab-b245-856b639a02d1';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_home_page_news';
+    $pane->subtype = 'debut_common_home_page_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2c397fcf-3263-4dab-b245-856b639a02d1';
+    $display->content['new-2c397fcf-3263-4dab-b245-856b639a02d1'] = $pane;
+    $display->panels['content_center'][0] = 'new-2c397fcf-3263-4dab-b245-856b639a02d1';
+    $pane = new stdClass();
     $pane->pid = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
