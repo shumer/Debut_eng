@@ -84,6 +84,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'file',
@@ -145,6 +151,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -203,6 +215,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -261,6 +279,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -323,6 +347,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'field_collection',
@@ -380,6 +410,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -438,6 +474,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -495,6 +537,19 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'hidden',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_person_image__block',
+        ),
+        'type' => 'site_common_image_field_default',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'image',
@@ -575,6 +630,13 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -633,6 +695,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -695,6 +763,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -753,6 +827,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -811,6 +891,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -869,6 +955,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',

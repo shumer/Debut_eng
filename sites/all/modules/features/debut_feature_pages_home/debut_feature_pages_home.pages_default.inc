@@ -85,7 +85,7 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $display->content['new-f1606c7d-a933-483e-8950-ac6baec77f29'] = $pane;
     $display->panels['content_left'][0] = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
     $pane = new stdClass();
-    $pane->pid = 'new-d4b020ac-308e-4dfe-9235-67e27aeaec7b';
+    $pane->pid = 'new-127be3fc-6a62-4191-87e3-0c503b4c8c84';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_site_calendar';
     $pane->subtype = 'debut_common_site_calendar';
@@ -93,7 +93,7 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+      'override_title_text' => 'Изменения на сайте',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -103,11 +103,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'd4b020ac-308e-4dfe-9235-67e27aeaec7b';
-    $display->content['new-d4b020ac-308e-4dfe-9235-67e27aeaec7b'] = $pane;
-    $display->panels['content_left'][1] = 'new-d4b020ac-308e-4dfe-9235-67e27aeaec7b';
+    $pane->uuid = '127be3fc-6a62-4191-87e3-0c503b4c8c84';
+    $display->content['new-127be3fc-6a62-4191-87e3-0c503b4c8c84'] = $pane;
+    $display->panels['content_left'][1] = 'new-127be3fc-6a62-4191-87e3-0c503b4c8c84';
     $pane = new stdClass();
-    $pane->pid = 'new-3eef58eb-154e-44f3-b154-82b0d205917f';
+    $pane->pid = 'new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_contact_us';
     $pane->subtype = 'debut_common_contact_us';
@@ -115,7 +115,7 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+      'override_title_text' => 'Связаться с нами',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -125,9 +125,51 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '3eef58eb-154e-44f3-b154-82b0d205917f';
-    $display->content['new-3eef58eb-154e-44f3-b154-82b0d205917f'] = $pane;
-    $display->panels['content_left'][2] = 'new-3eef58eb-154e-44f3-b154-82b0d205917f';
+    $pane->uuid = '070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
+    $display->content['new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65'] = $pane;
+    $display->panels['content_left'][2] = 'new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
+    $pane = new stdClass();
+    $pane->pid = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $display->content['new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32'] = $pane;
+    $display->panels['content_right'][0] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $pane = new stdClass();
+    $pane->pid = 'new-a3207211-1982-404c-86f1-fa939638f858';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_common_newsletter_block';
+    $pane->subtype = 'debut_common_newsletter_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'newsletters' => '980',
+      'override_title' => 1,
+      'override_title_text' => 'РАССЫЛКА',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'a3207211-1982-404c-86f1-fa939638f858';
+    $display->content['new-a3207211-1982-404c-86f1-fa939638f858'] = $pane;
+    $display->panels['content_right'][1] = 'new-a3207211-1982-404c-86f1-fa939638f858';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
   $handler->conf['display'] = $display;
