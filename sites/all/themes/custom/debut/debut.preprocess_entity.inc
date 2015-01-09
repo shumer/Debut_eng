@@ -7,6 +7,46 @@
 /**
  * Preprocess node__news__home_page.
  */
+function debut_preprocess_node__ibooks__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['field_book_image'] = $image;
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_preprocess_node__books__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_render($content, 'field_book_image');
+  $_html['field_book_image'] = $image;
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
 function debut_preprocess_node__news__home_page(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
@@ -578,27 +618,6 @@ function debut_preprocess_node__books__listing(&$variables) {
 }
 
 /**
- * Preprocess books_compact.
- */
-function debut_preprocess_node__books__compact(&$variables) {
-  $node = &$variables['node'];
-  $content = &$variables['content'];
-  $_html = &$variables['_html'];
-  $_data = &$variables['_data'];
-
-  // Link.
-  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
-    'attributes' => array(
-      'class' => 'show-popup-book',
-    )
-  ));
-
-  // Image render.
-  $image = debut_render($content, 'field_book_image');
-  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
-}
-
-/**
  * Preprocess books_popup.
  */
 function debut_preprocess_node__books__popup(&$variables) {
@@ -607,8 +626,7 @@ function debut_preprocess_node__books__popup(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-
-  $classes = &ctools_static('popup_1col_classes', array());
+  admin_menu_suppress();
   $classes['popup'] = !empty($classes['popup'])
     ? $classes['popup'] . ' popup-b popup-commenter popup-video'
     : 'popup-b popup-commenter popup-video';
@@ -818,13 +836,6 @@ function debut_preprocess_node__ibooks__listing(&$variables) {
   else {
     $_html['authors'] = '';
   }
-}
-
-/**
- * Preprocess books_compact.
- */
-function debut_preprocess_node__ibooks__compact(&$variables) {
-  debut_preprocess_node__books__compact($variables);
 }
 
 /**

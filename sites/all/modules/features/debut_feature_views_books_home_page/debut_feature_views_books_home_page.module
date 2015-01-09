@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Books Home page feature.
+ */
+
+include_once 'debut_feature_views_books_home_page.features.inc';

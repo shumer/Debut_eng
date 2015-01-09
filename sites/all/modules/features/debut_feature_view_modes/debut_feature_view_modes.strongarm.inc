@@ -40,8 +40,17 @@ function debut_feature_view_modes_strongarm() {
         'label' => 'Compact',
         'custom settings' => 1,
       ),
+      'popup' => array(
+        'label' => 'Popup',
+        'custom settings' => 1,
+      ),
     ),
-    'field_collection_item' => array(),
+    'field_collection_item' => array(
+      'book' => array(
+        'label' => 'book',
+        'custom settings' => 1,
+      ),
+    ),
   );
   $export['entity_view_modes'] = $strongarm;
 

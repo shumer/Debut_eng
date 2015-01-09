@@ -81,6 +81,29 @@ function debut_feature_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: node__field_book_image__home_page.
+  $styles['node__field_book_image__home_page'] = array(
+    'name' => 'node__field_book_image__home_page',
+    'label' => 'node__field_book_image__home_page',
+    'effects' => array(
+      3 => array(
+        'label' => 'Масштабирование и обрезка',
+        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 137,
+          'height' => 221,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: node__field_book_image__listing.
   $styles['node__field_book_image__listing'] = array(
     'name' => 'node__field_book_image__listing',
@@ -99,6 +122,29 @@ function debut_feature_image_styles_image_default_styles() {
           'width' => 140,
           'height' => '',
           'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: node__field_book_image__popup.
+  $styles['node__field_book_image__popup'] = array(
+    'name' => 'node__field_book_image__popup',
+    'label' => 'node__field_book_image__popup',
+    'effects' => array(
+      4 => array(
+        'label' => 'Масштабирование и обрезка',
+        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 140,
+          'height' => 229,
         ),
         'weight' => 1,
       ),

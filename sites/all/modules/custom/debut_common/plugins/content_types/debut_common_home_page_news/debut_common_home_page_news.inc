@@ -29,7 +29,6 @@ function debut_common_home_page_news_content_type_render($subtype, $conf, $panel
   $block = new stdClass();
   $block->title = NULL;
   $data = array();
-  $arguments = $conf;
   $_html = array();
 
   $_html['news'] = views_embed_view(DEBUT_COMMON_VIEW_NEWS_HOME_PAGE);
