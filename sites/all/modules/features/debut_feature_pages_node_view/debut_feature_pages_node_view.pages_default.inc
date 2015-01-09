@@ -898,7 +898,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'browser_menu' => 'management',
+      'browser_menu' => 'main-menu',
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),

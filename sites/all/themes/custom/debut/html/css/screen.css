@@ -1381,8 +1381,8 @@ li.hide-before-content:hover:before {
 /*------------end years list styles---------------*/
 /*------------alphabet header styles---------------*/
 .block-alphabet {
-  padding-top: 9px;
-  padding-bottom: 6px;
+  padding-top: 0px;
+  padding-bottom: 15px;
 }
 
 .block-alphabet h1 {
@@ -1446,6 +1446,7 @@ p.winners-links {
 .winners-links .winners:hover {
   color: #CC00CC;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .winners-links .list {
@@ -1460,53 +1461,69 @@ p.winners-links {
 }
 
 .block-alphabet.block-persons ul.listing,
-.block-article .prize-persons ul.listing {
+.block-article .prize-persons ul.listing,
+.block-article .prize-persons table {
   list-style: none outside none;
   margin: 0px;
   min-height: 1px;
   overflow: hidden;
   padding: 0 0 30px 8px;
   position: relative;
+  width: 100%;
+}
+
+.block-article .prize-persons .full {
+  margin-bottom: 20px;
 }
 
 .block-alphabet.block-persons ul.listing li,
 .block-article .prize-persons ul.listing li,
-.block-article .prize-persons .full .item {
+.block-article .prize-persons .item,
+.block-persons-list .item {
   float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
   width: 155px;
-  height: 200px;
+  height: 180px;
   padding: 0px;
   text-transform: uppercase;
   margin: 0 21px 20px 0;
 }
 
 .block-alphabet.block-persons ul.listing li.last,
-.block-article .prize-persons ul.listing li.last {
+.block-article .prize-persons ul.listing li.last,
+.block-article .prize-persons tr td:last-child .item {
   margin: 0 0 20px;
 }
 
 .block-persons ul.listing li .item,
-.block-article .prize-persons ul.listing li .item {
+.block-article .prize-persons ul.listing li .item,
+.block-article .prize-persons .item,
+.block-persons-list .item {
   text-align: center;
 }
 
 .block-persons ul.listing li .item .text a,
-.block-article .prize-persons ul.listing li .text a {
+.block-article .prize-persons ul.listing li .text a,
+.block-article .prize-persons .item .text a,
+.block-persons-list .item .text a {
   display: block;
   margin-top: 5px;
   color: #343434;
 }
 
 .block-persons ul.listing li .item .text a:hover,
-.block-article .prize-persons ul.listing li .text a:hover {
+.block-article .prize-persons ul.listing li .text a:hover,
+.block-article .prize-persons .item .text a:hover,
+.block-persons-list .item .text a:hover {
   color: #BD01B5;
 }
 
 section article.prem_list {
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   padding-left: 10px;
+  margin-top: -10px;
+  display: none;
 }
 
 section article.prem_list h3 {
@@ -1514,17 +1531,18 @@ section article.prem_list h3 {
   text-transform: uppercase;
 }
 
-section article.prem_list ol {
-  -moz-column-count: 2;
+section article.prem_list .prize-person-list-item {
+  /*-moz-column-count: 2;
   -moz-column-gap: 22px;
   -webkit-column-count: 2;
-  -webkit-column-gap: 22px;
-  margin: 0 0 0 20px;
+  -webkit-column-gap: 22px;*/
+  margin: 0 0 0 0px;
   padding: 0 0 14px;
   list-style-type: decimal;
 }
 
-section article.prem_list ol li {
+section article.prem_list ol li,
+section article.prem_list .prize-person-list-item a {
   color: #333333;
   padding: 0 0 1px;
 }

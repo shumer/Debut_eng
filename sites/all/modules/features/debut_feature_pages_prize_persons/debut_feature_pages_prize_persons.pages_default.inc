@@ -83,10 +83,31 @@ function debut_feature_pages_prize_persons_default_page_manager_pages() {
     $display->content['new-b9c55011-7446-4cd1-945c-1c2d6356cb8c'] = $pane;
     $display->panels['content_center'][0] = 'new-b9c55011-7446-4cd1-945c-1c2d6356cb8c';
     $pane = new stdClass();
-    $pane->pid = 'new-22c69e82-39cb-4c60-82c0-22131cbfbd94';
+    $pane->pid = 'new-67c7ac28-8e1a-4024-a856-ad80d9864db9';
     $pane->panel = 'content_center';
-    $pane->type = 'debut_common_persons-nominees';
-    $pane->subtype = 'debut_common_persons-nominees';
+    $pane->type = 'debut_common_alphabet_header';
+    $pane->subtype = 'debut_common_alphabet_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'alphabet' => '2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '67c7ac28-8e1a-4024-a856-ad80d9864db9';
+    $display->content['new-67c7ac28-8e1a-4024-a856-ad80d9864db9'] = $pane;
+    $display->panels['content_center'][1] = 'new-67c7ac28-8e1a-4024-a856-ad80d9864db9';
+    $pane = new stdClass();
+    $pane->pid = 'new-fa5b46aa-479c-470c-847a-dfed9286caf9';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_persons_nominees';
+    $pane->subtype = 'debut_common_persons_nominees';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -98,11 +119,11 @@ function debut_feature_pages_prize_persons_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '22c69e82-39cb-4c60-82c0-22131cbfbd94';
-    $display->content['new-22c69e82-39cb-4c60-82c0-22131cbfbd94'] = $pane;
-    $display->panels['content_center'][1] = 'new-22c69e82-39cb-4c60-82c0-22131cbfbd94';
+    $pane->uuid = 'fa5b46aa-479c-470c-847a-dfed9286caf9';
+    $display->content['new-fa5b46aa-479c-470c-847a-dfed9286caf9'] = $pane;
+    $display->panels['content_center'][2] = 'new-fa5b46aa-479c-470c-847a-dfed9286caf9';
     $pane = new stdClass();
     $pane->pid = 'new-a6572d71-3da1-4ab0-877c-3f4a5df21097';
     $pane->panel = 'content_left';

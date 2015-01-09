@@ -98,6 +98,9 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach expand button.
   debut_custom.attach_expand_button($context, settings);
+  
+  // Attach prizes toggle.
+  debut_custom.attach_prizes_show($context, settings);
 
   // Attach View more buttons.
   debut_custom.attach_view_more($context, settings);
@@ -193,7 +196,7 @@ debut_custom.calendar_event_days = function(date) {
   return [true, ''];
 }
 
-  // Attach expandable button.
+// Attach expandable button.
 debut_custom.attach_expand_button = function ($context, settings) {
   $context.find('.js-expand-button').once('debut-js-expandable', function (delta) {
     $(this).click(function() {
@@ -202,6 +205,22 @@ debut_custom.attach_expand_button = function ($context, settings) {
       $(target).show();
     });
   });
+}
+
+// Attach prizes toggle function.
+debut_custom.attach_prizes_show = function ($context, settings) {
+  $context.find('.js-prizes-show').once('debut-js-prizes-show', function (delta) {
+    $(this).click(function() {
+      debut_custom.hide_all_prizes();
+      var target = '#' + $(this).attr('data-ref-id');
+      $(target).show();
+    });
+  });
+}
+
+//Hide all prizes.
+debut_custom.hide_all_prizes = function () {
+  $('.prem_list').hide();
 }
 
 // Attach proxy.

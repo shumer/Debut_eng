@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Pages - Persons list feature.
+ */
+
+include_once 'debut_feature_pages_persons_list.features.inc';

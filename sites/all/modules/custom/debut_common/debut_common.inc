@@ -30,6 +30,10 @@ function debut_common_create_node_breadcrumbs($node) {
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
       $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
       break;
 
     // Make breadcrumb for Debut jury.
@@ -39,6 +43,10 @@ function debut_common_create_node_breadcrumbs($node) {
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_JURY. '/' . $letter);
       $breadcrumb[] = $node->title;
+      $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
+      if (!empty($edit_link)) {
+        $breadcrumb[] = $edit_link;
+      }
       break;
 
     // Make breadcrumb for documents node.
@@ -224,7 +232,7 @@ function debut_common_create_page_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;
-
+      
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();

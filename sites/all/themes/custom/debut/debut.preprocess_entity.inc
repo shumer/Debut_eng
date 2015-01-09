@@ -1020,7 +1020,7 @@ function debut_preprocess_node__debut_prize_person__listing(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
 
-  // Title.
+  $_html['num'] = $node->_delta + 1;
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
 
