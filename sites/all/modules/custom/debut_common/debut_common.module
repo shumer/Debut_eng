@@ -44,6 +44,7 @@ define('DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST', 'travels');
 define('DEBUT_COMMON_PAGE_VIDEO', 'video_list');
 define('DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST', 'master_class');
 define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
+define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
 
 // Define views name.
 define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
@@ -59,10 +60,12 @@ define('DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR', 'debut_view_nobel_speech_
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST', 'debut_view_persons_nominees_list');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER', 'debut_view_persons_nominees_list_teaser');
 define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_PERSON', 'debut_query_random_prize_person');
+define('DEBUT_COMMON_VIEW_GET_PERSONS_LIST_BY_LETTER', 'debut_view_persons_list');
 
 define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 
 define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
+define('DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW', 6); // 2 years (3 each year).
 
 // Load includes.
 module_load_include('inc', 'debut_common');
