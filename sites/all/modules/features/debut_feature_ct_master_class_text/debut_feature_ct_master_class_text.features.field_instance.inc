@@ -17,11 +17,23 @@ function debut_feature_ct_master_class_text_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'listing' => array(

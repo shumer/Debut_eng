@@ -92,6 +92,9 @@ function debut_feature_ct_travel_description_strongarm() {
       'frame' => array(
         'custom_settings' => FALSE,
       ),
+      'compact' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

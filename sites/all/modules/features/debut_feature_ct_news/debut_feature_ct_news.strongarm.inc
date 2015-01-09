@@ -95,6 +95,9 @@ function debut_feature_ct_news_strongarm() {
       'home_page' => array(
         'custom_settings' => TRUE,
       ),
+      'compact' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
