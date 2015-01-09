@@ -4,4 +4,6 @@
  * Template file.
  */
 ?>
-<b><?php print $_html['title']; ?></b>
+<div class="prize-person-list-item">
+  <?php print $_html['num']; ?>. <?php print $_html['title']; ?>
+</div>
