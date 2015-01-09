@@ -12,6 +12,22 @@ var debut_custom = debut_custom || {
   _windows: {},
 };
 
+
+// Attach proxy.
+debut_custom.attach_home_page = function ($context, settings) {
+
+  // Coda slider init for news block.
+  $context.find('.home-page-news-gallery').once('debut-home-page-news-gallery', function (delta) {
+    $(this).codaSlider({
+      autoHeight: true,
+      dynamicTabsPosition: "bottom",
+      autoSlide: true,
+      autoSlideInterval: 10000,
+      autoSlideStopWhenClicked: true
+    });
+  });
+};
+
 /**
  * Log function.
  */
@@ -24,7 +40,7 @@ debut_custom.log = function(text, data) {
       console.log(text);
     }
   }
-}
+};
 
 /**
  * Attach Ajax.
@@ -88,6 +104,9 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach View more buttons.
   debut_custom.attach_view_more($context, settings);
+
+  // Attach home page.
+  debut_custom.attach_home_page($context, settings);
 
   // Init.
   if (!debut_custom._inited) {

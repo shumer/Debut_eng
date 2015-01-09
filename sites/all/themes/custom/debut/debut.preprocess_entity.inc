@@ -5,6 +5,39 @@
  */
 
 /**
+ * Preprocess node__news__home_page.
+ */
+function debut_preprocess_node__news__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_news_annonce'] = debut_render($content, 'field_news_annonce');;
+  $_html['field_publication_date'] = debut_render($content, 'field_publication_date');
+}
+
+/**
+ * Preprocess node__debut_jury__block.
+ */
+function debut_preprocess_node__debut_jury__block(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Text part.
+  $_html['title'] = l($node->title, 'node/' . $node->nid);
+  $_html['field_jury_citation'] = debut_render($content, 'field_jury_citation');
+  $_html['field_jury_image'] = debut_render($content, 'field_jury_image');
+  if (empty($_html['field_jury_image'])) {
+    $image = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $_html['field_jury_image'] = theme('image', array('path' => $image));
+  }
+}
+
+/**
  * Preprocess debut_prize_person__block.
  */
 function debut_preprocess_node__debut_prize_person__block(&$variables) {
@@ -17,6 +50,10 @@ function debut_preprocess_node__debut_prize_person__block(&$variables) {
   $_html['title'] = l($node->title, 'node/' . $node->nid);
   $_html['field_person_info'] = debut_render($content, 'field_person_info');
   $_html['field_person_image'] = debut_render($content, 'field_person_image');
+  if (empty($_html['field_person_image'])) {
+    $image = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $_html['field_person_image'] = theme('image', array('path' => $image));
+  }
 }
 
 /**

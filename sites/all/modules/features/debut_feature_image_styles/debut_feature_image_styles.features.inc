@@ -105,6 +105,29 @@ function debut_feature_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: node__field_jury_image__block.
+  $styles['node__field_jury_image__block'] = array(
+    'name' => 'node__field_jury_image__block',
+    'label' => 'node__field_jury_image__block',
+    'effects' => array(
+      2 => array(
+        'label' => 'Масштабирование и обрезка',
+        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 148,
+          'height' => 148,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: node__field_jury_image__frame.
   $styles['node__field_jury_image__frame'] = array(
     'name' => 'node__field_jury_image__frame',
@@ -123,6 +146,29 @@ function debut_feature_image_styles_image_default_styles() {
           'width' => 100,
           'height' => '',
           'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: node__field_person_image__block.
+  $styles['node__field_person_image__block'] = array(
+    'name' => 'node__field_person_image__block',
+    'label' => 'node__field_person_image__block',
+    'effects' => array(
+      1 => array(
+        'label' => 'Масштабирование и обрезка',
+        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 148,
+          'height' => 148,
         ),
         'weight' => 1,
       ),

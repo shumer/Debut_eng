@@ -32,6 +32,10 @@ function debut_feature_view_modes_strongarm() {
         'label' => 'Block',
         'custom settings' => 1,
       ),
+      'home_page' => array(
+        'label' => 'Home page',
+        'custom settings' => 1,
+      ),
     ),
     'field_collection_item' => array(),
   );
