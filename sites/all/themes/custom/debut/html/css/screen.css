@@ -3135,7 +3135,7 @@ section.block-404 {
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
-#fancybox-loading {
+.page-home .fancybox-loading {
   position: fixed;
   top: 48%;
   left: 50%;
@@ -3149,7 +3149,7 @@ section.block-404 {
   display: none;
 }
 
-#fancybox-loading div {
+.page-home .fancybox-loading div {
   position: absolute;
   top: 0;
   left: 0;
@@ -4193,4 +4193,11 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 .ie9 .text-throbber .button-c a span, .ie10 .text-throbber .button-c a span {
   line-height: 18px;
   height: 16px;
+}
+
+.page-home .fancybox-skin {
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+	background: none;
 }

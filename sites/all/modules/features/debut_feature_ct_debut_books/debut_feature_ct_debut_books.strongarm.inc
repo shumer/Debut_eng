@@ -95,6 +95,9 @@ function debut_feature_ct_debut_books_strongarm() {
       'compact' => array(
         'custom_settings' => FALSE,
       ),
+      'popup' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

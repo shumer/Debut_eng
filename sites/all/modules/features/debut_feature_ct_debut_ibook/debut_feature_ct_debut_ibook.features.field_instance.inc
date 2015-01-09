@@ -32,6 +32,15 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'field_collection_fields',
         'weight' => 4,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_fields',
+        'weight' => 4,
+      ),
       'home_page' => array(
         'label' => 'above',
         'settings' => array(),
@@ -46,6 +55,12 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         ),
         'type' => 'field_collection_fields',
         'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'search' => array(
         'label' => 'above',
@@ -98,10 +113,27 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'image',
         'weight' => 2,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'node__field_book_image__full',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
       'home_page' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__home_page',
+        ),
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'listing' => array(
@@ -113,6 +145,19 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__popup',
+        ),
+        'type' => 'site_common_image_field_default',
+        'weight' => 2,
       ),
       'search' => array(
         'label' => 'above',
@@ -174,6 +219,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'home_page' => array(
         'label' => 'above',
         'settings' => array(),
@@ -181,6 +233,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
@@ -239,6 +298,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'home_page' => array(
         'label' => 'above',
         'settings' => array(),
@@ -251,6 +317,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
       ),
       'search' => array(
         'label' => 'above',
@@ -304,6 +377,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 3,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
       'home_page' => array(
         'label' => 'above',
         'settings' => array(),
@@ -316,6 +396,12 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'search' => array(
         'label' => 'above',
@@ -369,6 +455,13 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 5,
       ),
+      'full' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
       'home_page' => array(
         'label' => 'above',
         'settings' => array(),
@@ -381,6 +474,12 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'search' => array(
         'label' => 'above',
