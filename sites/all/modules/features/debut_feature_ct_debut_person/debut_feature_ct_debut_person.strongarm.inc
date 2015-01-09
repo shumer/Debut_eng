@@ -98,6 +98,9 @@ function debut_feature_ct_debut_person_strongarm() {
       'block' => array(
         'custom_settings' => TRUE,
       ),
+      'compact' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

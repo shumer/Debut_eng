@@ -107,6 +107,9 @@ function debut_feature_ct_debut_jury_strongarm() {
       'email_textalt' => array(
         'custom_settings' => FALSE,
       ),
+      'compact' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

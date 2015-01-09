@@ -16,6 +16,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'site_common',
@@ -27,6 +33,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
           'preset' => 'node__field_photo_listing_photo__full',
         ),
         'type' => 'site_common_image_field_default',
+        'weight' => 0,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'listing' => array(
@@ -88,6 +100,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'date',
@@ -100,6 +118,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 1,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',

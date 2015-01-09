@@ -23,6 +23,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -42,6 +49,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 5,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -95,6 +108,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -114,6 +134,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 3,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -172,6 +198,16 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'debut_person_page_photo',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'image',
@@ -204,6 +240,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 2,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -268,6 +310,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -287,6 +336,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -339,6 +394,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 7,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -358,6 +420,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 7,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -410,6 +478,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -429,6 +504,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 6,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -481,6 +562,15 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 10,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 9,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -504,6 +594,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 9,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -558,6 +654,15 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -581,6 +686,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 10,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -635,6 +746,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -653,6 +771,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'listing' => array(
@@ -706,6 +830,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -725,6 +856,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 8,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
@@ -777,6 +914,13 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'compact' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -796,6 +940,12 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'listing' => array(
         'label' => 'above',
