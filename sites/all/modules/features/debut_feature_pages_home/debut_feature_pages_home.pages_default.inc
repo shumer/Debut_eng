@@ -99,6 +99,25 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $display->content['new-eb1263bd-1f27-4b55-9d8b-64c03ced072f'] = $pane;
     $display->panels['content_center'][1] = 'new-eb1263bd-1f27-4b55-9d8b-64c03ced072f';
     $pane = new stdClass();
+    $pane->pid = 'new-e8411dc4-d2f0-40fc-9491-ab1c53febf76';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_home_page_video';
+    $pane->subtype = 'debut_common_home_page_video';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'e8411dc4-d2f0-40fc-9491-ab1c53febf76';
+    $display->content['new-e8411dc4-d2f0-40fc-9491-ab1c53febf76'] = $pane;
+    $display->panels['content_center'][2] = 'new-e8411dc4-d2f0-40fc-9491-ab1c53febf76';
+    $pane = new stdClass();
     $pane->pid = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';

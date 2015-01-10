@@ -5,7 +5,7 @@
  *   Template file.
  */
 ?>
-
+<?php print $_html['contextual_links']; ?>
 <div class="about">
   <span class="date"><?php print $_html['field_publication_date']; ?></span>
 

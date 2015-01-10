@@ -136,6 +136,12 @@ function debut_preprocess_node(&$variables) {
     ? $node->_delta
     : 0;
 
+  // Get contextual links from title_suffix array.
+  $ts = isset($variables['title_suffix']) ? $variables['title_suffix'] : array();
+
+  // Render contextual links if exists.
+  $_html['contextual_links'] = isset($ts['contextual_links']) ? debut_render($ts, 'contextual_links') : debut_render($variables['content'], 'links');
+
   // Run specific preprocess function.
   $preprocess = 'debut_preprocess_node__' . $node->type . '__' . $view_mode;
   if (function_exists($preprocess)) {
