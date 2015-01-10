@@ -47,6 +47,7 @@ define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
 define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
 
 // Define views name.
+define('DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE', 'debut_common_videos_home_page');
 define('DEBUT_COMMON_VIEW_BOOKS_HOME_PAGE', 'debut_common_books_home_page');
 define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
 define('DEBUT_COMMON_VIEW_TRAVELS_LISTING', 'debut_view_list_travels');

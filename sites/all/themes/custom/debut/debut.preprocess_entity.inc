@@ -5,6 +5,25 @@
  */
 
 /**
+ * Preprocess node__video__home_page.
+ */
+function debut_preprocess_node__video__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/' . $node->nid);
+
+  // Preview picture.
+  $image = debut_render($content, 'field_video_image');
+  $_html['field_video_image'] = l($image, 'node/' . $node->nid, array(
+    'html' => TRUE,
+  ));
+}
+
+/**
  * Preprocess node__news__home_page.
  */
 function debut_preprocess_node__ibooks__home_page(&$variables) {
