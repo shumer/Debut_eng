@@ -4,7 +4,8 @@
  * Node template.
  */
 ?>
-<div class="video video-full">
+<div class="video video-full contextual-links-region">
+  <?php print $_html['contextual_links']; ?>
   <h3><?php print $_html['title']; ?></h3>
   <div class="description">
     <?php print $_html['body']; ?>
