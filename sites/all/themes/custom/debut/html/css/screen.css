@@ -2893,7 +2893,7 @@ section article.prem_list a {
   padding: 0;
 }
 
-.video-shelf ul.video-list li {
+.video-shelf ul.video-list > li {
   float: left;
   height: 220px;
   padding-right: 20px;
@@ -3037,7 +3037,7 @@ section.block-404 {
   text-decoration: none;
 }
 
-.coda-slider-wrapper ul li {
+.coda-slider-wrapper .coda-nav ul li {
   background: url("../images/bgs/ic3.gif") no-repeat scroll 0 10px transparent;
   border-top: 1px dotted #CCCCCC;
   font-family: 'PT Sans', sans-serif;
@@ -3050,7 +3050,6 @@ section.block-404 {
   position: relative;
   width: 99%;
 }
-
 
 .gallery-a .about {
   float: left;

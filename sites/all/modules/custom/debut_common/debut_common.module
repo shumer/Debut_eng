@@ -76,6 +76,16 @@ module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
 
 /**
+ * Implements hook_node_view_alter().
+ */
+function debut_common_node_view_alter(&$build) {
+  $node = $build['#node'];
+  if (!empty($node->nid) && ! isset($build['#contextual_links'])) {
+    $build['#contextual_links']['node'] = array('node', array($node->nid));
+  }
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function debut_common_ctools_plugin_directory($module, $plugin) {
