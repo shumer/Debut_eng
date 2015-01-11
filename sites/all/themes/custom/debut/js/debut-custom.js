@@ -156,8 +156,25 @@ debut_custom.init = function ($context, settings) {
       'transitionIn' : 'none',
       'transitionOut' : 'none',
       'type' : 'iframe',
+      afterLoad: function () {
+        height = $('#popup-wraper').height();
+        parent.debut_fancy_resize(height);
+      },
+      afterShow: function () {
+        height = $('#popup-wraper').height();
+        parent.debut_fancy_resize(height);
+      },
       'href' : $(this).attr('href')
     });
+  });
+
+  // Change popup links actions.
+  $context.find('.popup a').click(function () {
+    var href = $(this).attr('href');
+    if ((self != top) && ($(this).attr('target') != '_blank') && (href.indexOf('javascript') == -1)) {
+      parent.location.href = href;
+      return false;
+    }
   });
 }
 
