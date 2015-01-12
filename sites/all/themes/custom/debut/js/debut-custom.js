@@ -235,6 +235,7 @@ debut_custom.attach_expand_button = function ($context, settings) {
     $(this).click(function() {
       $(this).hide();
       var target = '#' + $(this).attr('data-ref-id');
+      console.log(target);
       $(target).show();
     });
   });
@@ -341,7 +342,9 @@ debut_custom.attach_fancy = function ($context, settings) {
       scrolling: 'no',
       autoResize: false,
       autoCenter: false,
-      'type' : 'iframe'
+      'type' : 'iframe',
+      closeBtn : false,
+      title: null,
     });
   })
 

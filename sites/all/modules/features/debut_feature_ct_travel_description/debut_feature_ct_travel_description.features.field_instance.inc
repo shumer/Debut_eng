@@ -54,6 +54,12 @@ function debut_feature_ct_travel_description_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -121,6 +127,12 @@ function debut_feature_ct_travel_description_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
