@@ -43,6 +43,12 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -106,6 +112,12 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'search' => array(
@@ -173,6 +185,12 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -238,6 +256,12 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
           'trim_length' => 350,
         ),
         'type' => 'text_trimmed',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'search' => array(
@@ -314,6 +338,12 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'search' => array(

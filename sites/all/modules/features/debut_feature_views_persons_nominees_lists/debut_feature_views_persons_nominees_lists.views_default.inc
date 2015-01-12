@@ -33,6 +33,8 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
+  $handler->display->display_options['exposed_form']['options']['text_input_required'] = '';
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'grid';
@@ -80,7 +82,6 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
     t('Сортировать по'),
     t('По возрастанию'),
     t('По убыванию'),
-    t('Select any filter and click on Apply to see results'),
     t('Заголовок'),
     t('Nid'),
     t('Все'),
@@ -110,6 +111,8 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
+  $handler->display->display_options['exposed_form']['options']['text_input_required'] = '';
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'grid';
@@ -155,7 +158,6 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
     t('Сортировать по'),
     t('По возрастанию'),
     t('По убыванию'),
-    t('Select any filter and click on Apply to see results'),
     t('Заголовок'),
     t('Nid'),
     t('Все'),

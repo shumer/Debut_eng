@@ -54,6 +54,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
         'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -136,6 +142,12 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'search' => array(

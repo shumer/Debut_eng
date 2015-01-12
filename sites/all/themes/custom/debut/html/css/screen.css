@@ -1409,7 +1409,7 @@ li.hide-before-content:hover:before {
   float: left;
   font-size: 18px;
   margin: 0 5px 0 0;
-  padding: 0 6px 2px 0;
+  padding: 0 8px 2px 0;
   text-transform: uppercase;
 }
 
@@ -1510,6 +1510,7 @@ p.winners-links {
   display: block;
   margin-top: 5px;
   color: #343434;
+  font-size: 12px;
 }
 
 .block-persons ul.listing li .item .text a:hover,
@@ -3905,7 +3906,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 
 /**---------------------- Contact us popup -----------------------**/
 .fancybox-title {
-  display: none;
+  /*display: none;*/
 }
 
 .debut-popup .popup {
@@ -4051,7 +4052,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   height: 36px;
   cursor: pointer;
   z-index: 8040;
-  display: none;
+  /*display: none;*/
 }
 .debut-popup .popup .inside .close {
   color: #000;
