@@ -250,7 +250,7 @@ function debut_feature_image_styles_image_default_styles() {
     'name' => 'node__field_photo_listing_photo__full',
     'label' => 'node__field_photo_listing_photo__full',
     'effects' => array(
-      2 => array(
+      6 => array(
         'label' => 'Масштабирование и обрезка',
         'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -260,8 +260,8 @@ function debut_feature_image_styles_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 314,
-          'height' => 166,
+          'width' => 500,
+          'height' => 265,
         ),
         'weight' => 1,
       ),
