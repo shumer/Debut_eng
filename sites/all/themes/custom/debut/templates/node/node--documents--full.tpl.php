@@ -5,7 +5,8 @@
  *   Template file.
  */
 ?>
-<div class="documents node-item documents-item documents-item-full">
+<div class="documents node-item documents-item documents-item-full contextual-links-region">
+  <?php print $_html['contextual_links']; ?>
   <div class="documents-title">
     <?php print $_html['title']; ?>
   </div>

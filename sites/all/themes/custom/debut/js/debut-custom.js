@@ -98,7 +98,7 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach expand button.
   debut_custom.attach_expand_button($context, settings);
-  
+
   // Attach prizes toggle.
   debut_custom.attach_prizes_show($context, settings);
 
@@ -141,8 +141,41 @@ debut_custom.init = function ($context, settings) {
     $('#popup-wraper').css('float', 'left');
     height = $('#popup-wraper').height();
 
-    parent.debut_fancy_resize(width, height);
+    parent.debut_fancy_resize(height);
+    setTimeout('height = $("#popup-wraper").height(); parent.debut_fancy_resize(height);', 1000)
   }
+
+  $context.find('.show-popup-book').each(function () {
+    $(this).fancybox({
+      'width' : 772,
+      'height' : 500,
+      'padding' : 0,
+      'margin' : 0,
+      'scrolling' : 'no',
+      'autoScale' : true,
+      'transitionIn' : 'none',
+      'transitionOut' : 'none',
+      'type' : 'iframe',
+      afterLoad: function () {
+        height = $('#popup-wraper').height();
+        parent.debut_fancy_resize(height);
+      },
+      afterShow: function () {
+        height = $('#popup-wraper').height();
+        parent.debut_fancy_resize(height);
+      },
+      'href' : $(this).attr('href')
+    });
+  });
+
+  // Change popup links actions.
+  $context.find('.popup a').click(function () {
+    var href = $(this).attr('href');
+    if ((self != top) && ($(this).attr('target') != '_blank') && (href.indexOf('javascript') == -1)) {
+      parent.location.href = href;
+      return false;
+    }
+  });
 }
 
 /**
@@ -333,7 +366,7 @@ debut_custom.attach_fancy = function ($context, settings) {
 /**
  * Extend window object to support fancy resize.
  */
-window.debut_fancy_resize = function (fancy_width, fancy_height) {
+window.debut_fancy_resize = function (fancy_height) {
   $('.fancybox-inner').height(fancy_height);
   $('.fancybox-outer').height(fancy_height);
   $('.fancybox-wrap').height(fancy_height);

@@ -47,6 +47,8 @@ define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
 define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
 
 // Define views name.
+define('DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE', 'debut_common_videos_home_page');
+define('DEBUT_COMMON_VIEW_BOOKS_HOME_PAGE', 'debut_common_books_home_page');
 define('DEBUT_COMMON_VIEW_NEWS_LISTING', 'debut_view_list_news');
 define('DEBUT_COMMON_VIEW_TRAVELS_LISTING', 'debut_view_list_travels');
 define('DEBUT_COMMON_VIEW_DOCUMENTS_LISTING', 'debut_view_list_documents');
@@ -72,6 +74,16 @@ define('DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW', 6); // 2 years (3 each year).
 // Load includes.
 module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function debut_common_node_view_alter(&$build) {
+  $node = $build['#node'];
+  if (!empty($node->nid) && ! isset($build['#contextual_links'])) {
+    $build['#contextual_links']['node'] = array('node', array($node->nid));
+  }
+}
 
 /**
  * Implements hook_ctools_plugin_directory().

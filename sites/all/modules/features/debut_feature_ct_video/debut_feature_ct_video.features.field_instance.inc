@@ -183,8 +183,15 @@ function debut_feature_ct_video_field_default_field_instances() {
       ),
       'home_page' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_video_image__home_page',
+        ),
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'listing' => array(

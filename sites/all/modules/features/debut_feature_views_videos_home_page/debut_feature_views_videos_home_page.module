@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Videos Home page feature.
+ */
+
+include_once 'debut_feature_views_videos_home_page.features.inc';

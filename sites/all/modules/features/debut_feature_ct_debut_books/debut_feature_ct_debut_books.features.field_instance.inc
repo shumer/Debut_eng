@@ -17,6 +17,13 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'book' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -52,6 +59,13 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'book' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -116,6 +130,19 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'type' => 'field_collection_fields',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Добавить',
+          'delete' => 'Удалить',
+          'description' => 1,
+          'edit' => 'Правка',
+          'view_mode' => 'book',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -172,8 +199,15 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
       ),
       'home_page' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__home_page',
+        ),
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'listing' => array(
@@ -185,6 +219,19 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
           'image_style' => '',
           'nosize' => 1,
           'preset' => 'node__field_book_image__listing',
+        ),
+        'type' => 'site_common_image_field_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'module' => 'site_common',
+        'settings' => array(
+          'deltas' => '',
+          'image_link' => '',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__popup',
         ),
         'type' => 'site_common_image_field_default',
         'weight' => 0,
@@ -261,6 +308,12 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'type' => 'file_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -323,6 +376,13 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'weight' => 0,
       ),
       'listing' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
@@ -394,6 +454,13 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'popup' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'search' => array(
         'label' => 'above',
         'settings' => array(),
@@ -457,6 +524,12 @@ function debut_feature_ct_debut_books_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'search' => array(

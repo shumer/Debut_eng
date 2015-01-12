@@ -4,7 +4,8 @@
  * Template file.
  */
 ?>
-<div class="photo node-item photo-listing-item">
+<div class="photo node-item photo-listing-item contextual-links-region">
+  <?php print $_html['contextual_links']; ?>
   <div class="title">
     <?php print $_html['title']; ?>
   </div>

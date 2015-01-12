@@ -75,7 +75,7 @@ function debut_feature_ct_debut_ibook_strongarm() {
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -93,6 +93,27 @@ function debut_feature_ct_debut_ibook_strongarm() {
         'custom_settings' => FALSE,
       ),
       'compact' => array(
+        'custom_settings' => FALSE,
+      ),
+      'popup' => array(
+        'custom_settings' => TRUE,
+      ),
+      'search' => array(
+        'custom_settings' => TRUE,
+      ),
+      'block' => array(
+        'custom_settings' => TRUE,
+      ),
+      'home_page' => array(
+        'custom_settings' => TRUE,
+      ),
+      'email_plain' => array(
+        'custom_settings' => FALSE,
+      ),
+      'email_html' => array(
+        'custom_settings' => FALSE,
+      ),
+      'email_textalt' => array(
         'custom_settings' => FALSE,
       ),
     ),

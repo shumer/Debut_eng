@@ -5,7 +5,8 @@
  * Template file.
  */
 ?>
-<div class="news node-item books-item">
+<div class="news node-item books-item  contextual-links-region">
+  <?php print $_html['contextual_links']; ?>
   <?php if (!empty($_html['image'])) : ?>
     <div class="book-image">
       <?php print $_html['image']; ?>

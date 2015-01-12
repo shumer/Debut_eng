@@ -4,6 +4,7 @@
  * Template file.
  */
 ?>
+<?php print $_html['contextual_links']; ?>
 <figure class="person-photo">
   <?php print $_html['field_jury_image']; ?>
   <figcaption>
