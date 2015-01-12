@@ -9,8 +9,10 @@
   <div class="title">
     <?php print $_html['title']; ?>
   </div>
-  <?php foreach ($_html['images'] as $image) : ?>
-    <?php print $image; ?>
-  <?php endforeach; ?>
+  <div class="slider-wrapper">
+    <div class="flexslider">
+      <?php print $_html['images']; ?>
+    </div>
+  </div>
   <div class="separator"></div>
 </div>

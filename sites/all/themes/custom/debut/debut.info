@@ -15,9 +15,11 @@ plugins[panels][layouts] = layouts
 scripts[] = html/js/jquery-ui.js
 scripts[] = html/js/jquery.fileinput.js
 scripts[] = html/js/jquery.coda-slider.js
+scripts[] = html/js/jquery.flexslider.js
 
 scripts[] = js/debut-custom.js
 
 ; ======== fancybox
 scripts[] = "js/fancybox/jquery.fancybox.js"
 stylesheets[screen][] = "js/fancybox/jquery.fancybox.css"
+stylesheets[screen][] = "html/js/flexslider.css"

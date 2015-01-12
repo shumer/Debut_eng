@@ -494,19 +494,18 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
 
   $photo_field = debut_get('field_photo_listing_photo', $content);
 
+  $images = array();
   foreach ($photo_field['#items'] as $i => $item) {
     $class = ($i % 2) ? 'first' : 'last';
-    $image = drupal_render($photo_field[$i]);
-    $link = l($image, file_create_url($item['uri']), array(
-      'html' => TRUE,
-      'attributes' => array(
-        'class' => $class . ' gallery_elements',
-        'rel' => 'gallery',
-        'title' => $item['title']
-      ),
-    ));
-    $_html['images'][] = $link;
+    $images[] = drupal_render($photo_field[$i]);
   }
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
 }
 
 /**
