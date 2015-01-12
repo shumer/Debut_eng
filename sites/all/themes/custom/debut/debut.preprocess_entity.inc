@@ -1100,11 +1100,11 @@ function debut_preprocess_field_collection_item__field_person_bibliography__full
   $value = $field['#items'][0]['value'];
   $text = debut_common_remove_double_quot($value);
 
-  $biography = explode("\n", $text);
+  $biography = explode("</p>", rtrim($text));
 
   $_html['title'] = debut_render($content, 'field_person_biography_title');
-  $_html['short'] = implode("\n", array_splice($biography, 0, 2));
-  $_html['hidden'] = implode("\n", $biography);
+  $_html['short'] = implode("</p>", array_splice($biography, 0, 2));
+  $_html['hidden'] = implode("</p>", $biography);
 }
 
 /**

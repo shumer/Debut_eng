@@ -36,7 +36,7 @@ define('DEBUT_COMMON_PAGE_ALPHABET_JURY', 'alphabet_jury');
 define('DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT', 'press_list');
 define('DEBUT_COMMON_PAGE_NEWS_LIST', 'news_list');
 define('DEBUT_COMMON_PAGE_DOCUMENTS_LIST', 'documents_list');
-define('DEBUT_COMMON_PAGE_BOOKS_LIST', 'books');
+define('DEBUT_COMMON_PAGE_BOOKS_LIST', 'books_list');
 define('DEBUT_COMMON_PAGE_IBOOKS_LIST', 'ikniga');
 define('DEBUT_COMMON_PAGE_PHOTO_LIST', 'photo_listing');
 define('DEBUT_COMMON_PAGE_TRAVELS_LIST', 'travels');
