@@ -33,7 +33,8 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
     $type = $context[0]->data->type;
   }
   $browser_menu = menu_tree_all_data($menu);
-  $page = $_GET['q'];
+  $page = explode('/', $_GET['q']);
+  $page = $page[0];
   if (!empty($browser_menu)) {
     foreach ($browser_menu as $browser_menu_id => $item) {
       $class = '';
@@ -135,6 +136,12 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
           break;
         default:
           $class = '';
+      }
+      
+      switch ($page) {
+        case DEBUT_COMMON_PAGE_PERSONS_LIST:
+          $page = DEBUT_COMMON_PAGE_PRIZE_PERSONS;
+        break;
       }
       if (!empty($item['below'])) {
         $menu_links[] = array(

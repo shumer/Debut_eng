@@ -5,7 +5,8 @@
  *   Template file.
  */
 ?>
-<div class="travels-description-items">
+<div class="travels-description-items contextual-links-region">
+  <?php print $_html['contextual_links']; ?>    
   <div class="travels-description-link">
       <?php print $_html['title']; ?>
   </div>
