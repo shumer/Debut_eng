@@ -62,6 +62,88 @@ function debut_feature_pages_prize_jury_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-0c6bd498-0e0c-4fee-ab3f-d2f8dda1dfd5';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Жюри премии',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '0c6bd498-0e0c-4fee-ab3f-d2f8dda1dfd5';
+    $display->content['new-0c6bd498-0e0c-4fee-ab3f-d2f8dda1dfd5'] = $pane;
+    $display->panels['content_center'][0] = 'new-0c6bd498-0e0c-4fee-ab3f-d2f8dda1dfd5';
+    $pane = new stdClass();
+    $pane->pid = 'new-e0939e98-dfa4-4381-88b5-7359ea46129b';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_alphabet_header';
+    $pane->subtype = 'debut_common_alphabet_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'alphabet' => '2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'e0939e98-dfa4-4381-88b5-7359ea46129b';
+    $display->content['new-e0939e98-dfa4-4381-88b5-7359ea46129b'] = $pane;
+    $display->panels['content_center'][1] = 'new-e0939e98-dfa4-4381-88b5-7359ea46129b';
+    $pane = new stdClass();
+    $pane->pid = 'new-76553901-c19a-4529-87c4-bd7dacaf6387';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_jury_years_list';
+    $pane->subtype = 'debut_common_jury_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'voc' => '5',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '76553901-c19a-4529-87c4-bd7dacaf6387';
+    $display->content['new-76553901-c19a-4529-87c4-bd7dacaf6387'] = $pane;
+    $display->panels['content_center'][2] = 'new-76553901-c19a-4529-87c4-bd7dacaf6387';
+    $pane = new stdClass();
+    $pane->pid = 'new-62623494-c6c4-42bc-b97e-f081303d832f';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_jury_list';
+    $pane->subtype = 'debut_common_jury_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '62623494-c6c4-42bc-b97e-f081303d832f';
+    $display->content['new-62623494-c6c4-42bc-b97e-f081303d832f'] = $pane;
+    $display->panels['content_center'][3] = 'new-62623494-c6c4-42bc-b97e-f081303d832f';
+    $pane = new stdClass();
     $pane->pid = 'new-f18abd22-5a21-4581-b9df-86221bc61c11';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
@@ -129,6 +211,55 @@ function debut_feature_pages_prize_jury_default_page_manager_pages() {
     $pane->uuid = '4204ea79-8c7b-4582-af7c-eac7b27151ee';
     $display->content['new-4204ea79-8c7b-4582-af7c-eac7b27151ee'] = $pane;
     $display->panels['content_left'][2] = 'new-4204ea79-8c7b-4582-af7c-eac7b27151ee';
+    $pane = new stdClass();
+    $pane->pid = 'new-b034f0fd-b857-4e06-9a64-3704e65c5726';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Жюри премии|@arg0|1
+@arg1',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b034f0fd-b857-4e06-9a64-3704e65c5726';
+    $display->content['new-b034f0fd-b857-4e06-9a64-3704e65c5726'] = $pane;
+    $display->panels['top'][0] = 'new-b034f0fd-b857-4e06-9a64-3704e65c5726';
+    $pane = new stdClass();
+    $pane->pid = 'new-f7c125e5-03b7-4b9c-82a9-c4d0ba74d00c';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'f7c125e5-03b7-4b9c-82a9-c4d0ba74d00c';
+    $display->content['new-f7c125e5-03b7-4b9c-82a9-c4d0ba74d00c'] = $pane;
+    $display->panels['top'][1] = 'new-f7c125e5-03b7-4b9c-82a9-c4d0ba74d00c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
