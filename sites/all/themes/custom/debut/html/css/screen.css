@@ -4201,3 +4201,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 	box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
 	background: none;
 }
+.photo-listing-item .slider-wrapper {
+  width: 501px;
+  margin: 0 auto;
+}

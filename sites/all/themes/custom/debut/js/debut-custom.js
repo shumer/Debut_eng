@@ -12,6 +12,14 @@ var debut_custom = debut_custom || {
   _windows: {},
 };
 
+debut_custom.gallery_a = function($context, settings){
+console.log(111);
+  $context.find('.photo-listing-item').once('debut-gallery-a', function() {
+
+    var $this = $(this).find('.flexslider');
+    $this.flexslider();
+  });
+};
 
 // Attach proxy.
 debut_custom.attach_home_page = function ($context, settings) {
@@ -107,6 +115,9 @@ debut_custom.attach = function ($context, settings) {
 
   // Attach home page.
   debut_custom.attach_home_page($context, settings);
+
+  // Attach gallery a.
+  debut_custom.gallery_a($context, settings);
 
   // Init.
   if (!debut_custom._inited) {
