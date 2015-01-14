@@ -91,6 +91,7 @@ function debut_feature_pages_prize_jury_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'alphabet' => '2',
+      'page' => 'jury_list',
     );
     $pane->cache = array();
     $pane->style = array(
