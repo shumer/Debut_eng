@@ -83,7 +83,7 @@ function debut_feature_pages_prize_persons_default_page_manager_pages() {
     $display->content['new-b9c55011-7446-4cd1-945c-1c2d6356cb8c'] = $pane;
     $display->panels['content_center'][0] = 'new-b9c55011-7446-4cd1-945c-1c2d6356cb8c';
     $pane = new stdClass();
-    $pane->pid = 'new-67c7ac28-8e1a-4024-a856-ad80d9864db9';
+    $pane->pid = 'new-db65095d-141b-4ac3-b51f-227ff5757202';
     $pane->panel = 'content_center';
     $pane->type = 'debut_common_alphabet_header';
     $pane->subtype = 'debut_common_alphabet_header';
@@ -91,6 +91,7 @@ function debut_feature_pages_prize_persons_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'alphabet' => '2',
+      'page' => 'persons_list',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -100,9 +101,9 @@ function debut_feature_pages_prize_persons_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '67c7ac28-8e1a-4024-a856-ad80d9864db9';
-    $display->content['new-67c7ac28-8e1a-4024-a856-ad80d9864db9'] = $pane;
-    $display->panels['content_center'][1] = 'new-67c7ac28-8e1a-4024-a856-ad80d9864db9';
+    $pane->uuid = 'db65095d-141b-4ac3-b51f-227ff5757202';
+    $display->content['new-db65095d-141b-4ac3-b51f-227ff5757202'] = $pane;
+    $display->panels['content_center'][1] = 'new-db65095d-141b-4ac3-b51f-227ff5757202';
     $pane = new stdClass();
     $pane->pid = 'new-fa5b46aa-479c-470c-847a-dfed9286caf9';
     $pane->panel = 'content_center';

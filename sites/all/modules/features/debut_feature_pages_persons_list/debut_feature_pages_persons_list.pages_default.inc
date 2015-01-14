@@ -99,6 +99,7 @@ function debut_feature_pages_persons_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'alphabet' => '2',
+      'page' => 'persons_list',
     );
     $pane->cache = array();
     $pane->style = array(
