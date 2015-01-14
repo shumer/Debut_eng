@@ -65,6 +65,7 @@ define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_PERSON', 'debut_query_random_prize_
 define('DEBUT_COMMON_VIEW_QUERY_RANDOM_PRIZE_JURY', 'debut_query_random_prize_jury');
 define('DEBUT_COMMON_VIEW_NEWS_HOME_PAGE', 'debut_common_news_home_page');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_LIST_BY_LETTER', 'debut_view_persons_list');
+define('DEBUT_COMMON_VIEW_GET_JURY_LIST', 'debut_view_jury_prize_list');
 
 define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 

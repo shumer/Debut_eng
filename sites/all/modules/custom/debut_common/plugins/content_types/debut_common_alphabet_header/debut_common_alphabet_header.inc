@@ -44,7 +44,7 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
 
   $vocabulary = taxonomy_get_tree($conf['alphabet']);
   foreach ($vocabulary as $term) {
-    $alphabet[] = l($term->name, DEBUT_COMMON_PAGE_PERSONS_LIST . '/' . drupal_strtolower($term->name));
+    $alphabet[] = l($term->name, $conf['page'] . '/' . drupal_strtolower($term->name));
   }
   $_html['alphabet'] = theme_item_list(array(
     'items' => $alphabet,
@@ -80,6 +80,13 @@ function debut_common_alphabet_header_content_type_edit_form($form, &$form_state
     '#title' => t('Alphabet'),
     '#options' => $alphabet,
     '#default_value' => (!empty($conf['alphabet'])) ? $conf['alphabet'] : '',
+  );
+  
+  $form['conf']['page'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Page url'),
+    '#default_value' => (!empty($conf['page'])) ? $conf['page'] : '',
+    '#required' => true,
   );
 
   return $form;

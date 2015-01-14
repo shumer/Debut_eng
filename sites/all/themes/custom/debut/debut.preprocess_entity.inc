@@ -1197,7 +1197,6 @@ function debut_preprocess_node__debut_jury__listing(&$variables) {
 
   // Title.
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-
 }
 
 /**

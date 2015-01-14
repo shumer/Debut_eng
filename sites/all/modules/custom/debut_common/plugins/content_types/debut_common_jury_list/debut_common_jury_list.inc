@@ -32,16 +32,17 @@ function debut_common_jury_list_content_type_render($subtype, $conf, $panel_args
   $data = array();
   $_html = array();
   
-/*  $path = $_GET['q'];
-  $path = explode('/', $path);
-  if (!empty($path[1]) && (strlen($path[1]) < 3)) {
-    $_html['jury_list'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_LIST_BY_LETTER, 'default', addslashes($path[1]));
+  $path = $_GET['q'];
+
+  if (isset($_GET['field_jury_years_value']) && is_numeric($_GET['field_jury_years_value'])) {
+    $term_id = $_GET['field_jury_years_value'];
+    $_html['jury_list_teaser'] = views_embed_view(DEBUT_COMMON_VIEW_GET_JURY_LIST, 'default', $term_id);  
   }
   else {
-    $_html['jury_list'] = '';
+    $_html['jury_list_teaser'] = views_embed_view(DEBUT_COMMON_VIEW_GET_JURY_LIST, 'default');
+    $_html['jury_list_listing'] = views_embed_view(DEBUT_COMMON_VIEW_GET_JURY_LIST, 'listing_view_mode');
   }
-*/
-  dpm(11);
+
   $data['_html'] = $_html;
   $block->content = theme('debut_common_jury_list', $data);
   return $block;

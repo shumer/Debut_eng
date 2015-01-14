@@ -1492,7 +1492,8 @@ p.winners-links {
 
 .block-alphabet.block-persons ul.listing li.last,
 .block-article .prize-persons ul.listing li.last,
-.block-article .prize-persons tr td:last-child .item {
+.block-article .prize-persons tr td:last-child .item,
+.jury-list tr td:last-child .item {
   margin: 0 0 20px;
 }
 
@@ -1561,6 +1562,10 @@ section article.prem_list a {
   overflow: hidden;
   padding: 25px 0 50px;
   position: relative;
+}
+
+.block-persons-list.jury-list table {
+  width: 100%;
 }
 
 .content .block-persons .compact-listing li {
