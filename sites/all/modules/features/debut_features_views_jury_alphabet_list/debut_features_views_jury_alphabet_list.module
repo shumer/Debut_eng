@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Features: Views - Jury alphabet list feature.
+ */
+
+include_once 'debut_features_views_jury_alphabet_list.features.inc';

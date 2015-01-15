@@ -1493,6 +1493,7 @@ p.winners-links {
 .block-alphabet.block-persons ul.listing li.last,
 .block-article .prize-persons ul.listing li.last,
 .block-article .prize-persons tr td:last-child .item,
+.block-persons-alphabet-list tr td:last-child article,
 .jury-list tr td:last-child .item {
   margin: 0 0 20px;
 }

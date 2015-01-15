@@ -1,0 +1,12 @@
+name = Debut Features: Views - Jury alphabet list
+description = Get jury list by letter.
+core = 7.x
+package = Debut Views
+version = 7.x-0.01
+project = debut_features_views_jury_alphabet_list
+dependencies[] = entity
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = debut_view_jury_alphabet_list
+features_exclude[dependencies][ctools] = ctools

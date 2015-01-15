@@ -1200,6 +1200,37 @@ function debut_preprocess_node__debut_jury__listing(&$variables) {
 }
 
 /**
+ * Preprocess view mode compact for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_jury__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
  * Preprocess view mode search for debut_jury node.
  */
 function debut_preprocess_node__debut_jury__search(&$variables) {
