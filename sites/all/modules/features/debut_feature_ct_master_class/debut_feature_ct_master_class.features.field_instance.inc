@@ -17,6 +17,18 @@ function debut_feature_ct_master_class_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'compact' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -30,7 +42,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -44,8 +68,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
     ),
@@ -75,13 +100,26 @@ function debut_feature_ct_master_class_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'compact' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'compact',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 2,
       ),
       'frame' => array(
@@ -90,7 +128,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -104,8 +154,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
     ),
@@ -136,13 +187,26 @@ function debut_feature_ct_master_class_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'compact' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 1,
       ),
       'frame' => array(
@@ -151,7 +215,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -165,8 +241,12 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'teaser',
+        ),
+        'type' => 'entityreference_entity_view',
         'weight' => 0,
       ),
     ),
@@ -197,13 +277,23 @@ function debut_feature_ct_master_class_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'compact' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
         'weight' => 3,
       ),
       'frame' => array(
@@ -212,7 +302,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -226,8 +328,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
     ),
@@ -257,11 +360,23 @@ function debut_feature_ct_master_class_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'block' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'compact' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'debut_date_short',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -276,7 +391,19 @@ function debut_feature_ct_master_class_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'home_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'listing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'popup' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -290,8 +417,15 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'debut_date_short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
     ),
