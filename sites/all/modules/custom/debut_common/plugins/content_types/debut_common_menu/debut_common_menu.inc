@@ -142,6 +142,9 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
         case DEBUT_COMMON_PAGE_PERSONS_LIST:
           $page = DEBUT_COMMON_PAGE_PRIZE_PERSONS;
         break;
+        case DEBUT_COMMON_PAGE_JURY_ALPHABET_LIST:
+          $page = DEBUT_COMMON_PAGE_PRIZE_JURY;
+        break;
       }
       if (!empty($item['below'])) {
         $menu_links[] = array(

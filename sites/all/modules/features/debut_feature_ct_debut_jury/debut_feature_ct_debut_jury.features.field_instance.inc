@@ -215,7 +215,7 @@ function debut_feature_ct_debut_jury_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'debut_person_page_photo',
+          'image_style' => 'debut_person_alphabet_page',
         ),
         'type' => 'image',
         'weight' => 2,
