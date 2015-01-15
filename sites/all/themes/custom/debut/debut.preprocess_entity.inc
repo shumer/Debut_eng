@@ -250,6 +250,18 @@ function debut_preprocess_node__master_class_text__full(&$variables) {
 }
 
 /**
+ * Preprocess node__master_class_text__full.
+ */
+function debut_preprocess_node__master_class_text__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
  * Preprocess node__master_class_text__search.
  */
 function debut_preprocess_node__master_class_text__search(&$variables) {
@@ -1235,4 +1247,146 @@ function debut_preprocess_node__debut_jury__compact(&$variables) {
  */
 function debut_preprocess_node__debut_jury__search(&$variables) {
   debut_preprocess_node__debut_jury__teaser($variables);
+}
+
+/**
+ * Preprocess view mode full for documents node.
+ */
+function debut_preprocess_node__master_class__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
+  if (!empty($text_filed)) {
+    $texts = array();
+    foreach ($text_filed as $item) {
+      $textnode = cache_common_load_node($item['target_id']);
+      $text = cache_common_entity_render('node', $textnode, 'listing');
+      $texts[] = $text;
+    }
+    $_html['texts'] = theme('item_list', array(
+      'items' => $texts,
+      'type' => 'ul',
+      'attributes'=> array(
+        'class' => array('text-listing'),
+      ),
+    ));
+  }
+
+  $_html['master'] = debut_render($content, 'field_master_class_master');
+
+  // Theme interview.
+  $_html['interviews'] = debut_render($content, 'field_master_class_interview');
+
+  $_html['body'] = debut_render($content, 'field_master_class_description');
+}
+
+/**
+ * Preprocess master_class_section_search.
+ */
+function debut_preprocess_node__master_class__search(&$variables) {
+  debut_preprocess_node__master_class__teaser($variables);
+}
+
+/**
+ * Preprocess view mode full for documents node.
+ */
+function debut_preprocess_node__master_class__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  
+  $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
+  if (!empty($text_filed)) {
+    $texts = array();
+    foreach ($text_filed as $item) {
+      $textnode = cache_common_load_node($item['target_id']);
+      $text = cache_common_entity_render('node', $textnode, 'listing');
+      $texts[] = $text;
+    }
+    $_html['texts'] = theme('item_list', array(
+      'items' => $texts,
+      'type' => 'ul',
+      'attributes'=> array(
+        'class' => array('text-listing'),
+      ),
+    ));
+  }
+
+  // Theme Master node.
+  $_html['master'] = debut_render($content, 'field_master_class_master');
+  
+  // Theme interview.
+  /*if (!empty($node->field_interview_node[0]['nid'])) {
+    $interviews = array();
+    foreach ($node->field_interview_node as $item) {
+      $intnode = debut_common_node_load($item['nid']);
+      if (!empty($intnode)) {
+        $intnode->build_mode = DEBUT_COMMON_BM_LISTING;
+        $interviews[] = theme('node', $intnode);
+      }
+    }
+
+    $node->_html['interviews'] = theme('item_list', $interviews, NULL, 'ul', array('class' => 'listing'));
+  }*/
+
+}
+
+/**
+ * Preprocess view mode full for interview node.
+ */
+function debut_preprocess_node__interview__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+/*
+  if (!empty($node->field_interview_author[0]['nid'])) {
+    $authnode = debut_common_node_load($node->field_interview_author[0]['nid']);
+
+    // Check if photo present.
+    if (!empty($authnode->field_person_image[0])) {
+      $image = $authnode->field_person_image[0]['filepath'];
+    }
+    else {
+
+      // If not use default image.
+      $image = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    }
+    $node->_html['image'] = theme('imagecache', 'debut_interview_author_photo', $image, $authnode->field_person_image[0]['data']['alt']);
+    $node->_html['image'] = l($node->_html['image'], 'node/' . $authnode->nid, array('html' => TRUE));
+  }*/
+}
+
+/**
+ * Preprocess interview_search.
+ */
+function debut_preprocess_node__interview__search(&$variables) {
+  debut_preprocess_node__interview__compact($variables);
+}
+
+/**
+ * Preprocess view mode listing for interview node.
+ */
+function debut_preprocess_node__interview__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = debut_render($content, 'field_interview_author');
+}
+
+function debut_preprocess_node__interview__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['author'] = debut_render($content, 'field_interview_author');
 }
