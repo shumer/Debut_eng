@@ -5,6 +5,59 @@
  */
 
 /**
+ * Mobile status detection.
+ */
+function debut_common_is_mobile() {
+  global $theme_key;
+  $detect = mobile_detect_get_object();
+  $is_mobile = $detect->isMobile();
+  $is_mobile_theme = ($theme_key == DEBUT_COMMON_THEME_MOBILE) ? TRUE : FALSE;
+
+  $result = FALSE;
+  if ($is_mobile || $is_mobile_theme) {
+    $result = TRUE;
+  }
+
+  return $result;
+}
+
+/**
+ * Creates mobile breadcrumb for node.
+ */
+function debut_common_create_node_mobile_breadcrumbs($node) {
+  $breadcrumb = array();
+
+  switch ($node->type) {
+    // Make breadcrumb for news node.
+    case DEBUT_COMMON_TYPE_NEWS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+          array('attributes' =>
+            array(
+              'data-rel' => 'back',
+              'class' => array('back'),
+            ),
+            'html' => true,
+          )
+        );
+      $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
+      $year = t('News for !year year', array('!year' => date('Y', $date)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
+      break;
+
+    default:
+      // Make last non link.
+      $breadcrumb[] = !empty($node->field_title_short[0]['value'])
+        ? $node->field_title_short[0]['value']
+        : $node->title;
+      break;
+  }
+
+  return $breadcrumb;
+}
+
+/**
  * Generate search url.
  */
 function debut_common_search_url($keys, $absolute = TRUE) {
@@ -159,7 +212,7 @@ function debut_common_create_node_breadcrumbs($node) {
       break;
 
     // Make breadcrumb for nobel_speech node.
-    case DEBUT_COMMON_TYPE_NOBEL_SPEECH: 
+    case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Nobel speech'), DEBUT_COMMON_PAGE_NOBEL_SPEECH);
       $breadcrumb[] = $node->title;
@@ -168,7 +221,7 @@ function debut_common_create_node_breadcrumbs($node) {
         $breadcrumb[] = $edit_link;
       }
       break;
-      
+
     // Make breadcrumb for photoreporst node.
     case DEBUT_COMMON_TYPE_PHOTOS:
       $breadcrumb[] = l(t('Photoreports'), DEBUT_COMMON_PAGE_PHOTO_LIST);
@@ -232,7 +285,7 @@ function debut_common_create_page_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;
-      
+
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();

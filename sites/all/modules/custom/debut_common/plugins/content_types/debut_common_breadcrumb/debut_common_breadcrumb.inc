@@ -60,7 +60,13 @@ function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_arg
   elseif (!empty($context_node->data)) {
     $breadcrumb[] = l(t('Home'), '');
     $node = $context_node->data;
-    $breadcrumb = array_merge($breadcrumb, debut_common_create_node_breadcrumbs($node));
+    $is_mobile = debut_common_is_mobile();
+    if ($is_mobile) {
+      $breadcrumb = debut_common_create_node_mobile_breadcrumbs($node);
+    }
+    else {
+      $breadcrumb = array_merge($breadcrumb, debut_common_create_node_breadcrumbs($node));
+    }
   }
 
   // Special breadcrumb for pages.
