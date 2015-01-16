@@ -13,7 +13,7 @@ var debut_custom = debut_custom || {
 };
 
 debut_custom.gallery_a = function($context, settings){
-console.log(111);
+
   $context.find('.photo-listing-item').once('debut-gallery-a', function() {
 
     var $this = $(this).find('.flexslider');

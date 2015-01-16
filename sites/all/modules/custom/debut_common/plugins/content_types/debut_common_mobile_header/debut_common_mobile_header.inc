@@ -46,9 +46,13 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
 
   // Theme path for future use.
   $theme_path = drupal_get_path('theme', 'debut_mobile');
-  $_html['banner'] = theme('image', array(
-    'path' => $theme_path . '/html/images/bgs/header.png',
-  ));
+
+  $_html['banner'] = '';
+  if (drupal_is_front_page()) {
+    $_html['banner'] = theme('image', array(
+      'path' => $theme_path . '/html/images/bgs/header.png',
+    ));
+  }
 
   // Combine values.
   $data = array(

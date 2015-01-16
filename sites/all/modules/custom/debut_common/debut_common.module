@@ -3,6 +3,8 @@
  * @file
  * Module logic and API.
  */
+define('DEBUT_COMMON_THEME_MOBILE', 'debut_mobile');
+
 define('DEBUT_COMMON_MENU_ADMIN', 'admin/config/development/debut_config');
 define('DEBUT_COMMON_PERM_ADMIN', 'Administer Debut');
 define('DEBUT_COMMON_PERM_CM', 'Act as Content Manager');

@@ -22,7 +22,36 @@ ul, .block ul {
   overflow-x: hidden;
   overflow-y: visible;
 }
-
+.ui-content {
+ padding-bottom: 20px;
+}
+.page-top {
+  border-bottom: 1px solid #dcdcdc;
+  height: 18px;
+  padding: 20px 0 21px 45px;
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-top .back {
+  color: #333;
+  font-size: 16px;
+  height: 20px;
+  left: 0;
+  line-height: 20px;
+  padding: 19px 10px 20px 20px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
+}
+.page-top .back .ico {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+.page-top .back .ico.ico-home-c {
+  background:  url('../images/sprite-a.png') no-repeat -40px -309px rgba(0, 0, 0, 0);
+}
 /**=========================== header styles ======================**/
 .header {
   border: medium none;
@@ -221,15 +250,6 @@ a, a.active, li a.active {
   bottom: 0;
   left: 0;
   right: 0;
-
-  .footer-inner{
-    padding: 8px 25px 9px;
-    height: 28px;
-    max-width: 880px;
-    margin: 0 auto;
-    @include clearfix;
-  }
-
 }
 /*--end-footer-styles--*/
 
@@ -460,3 +480,36 @@ a, a.active, li a.active {
   top: 0px;
 }
 /*------------end search form styles---------------*/
+
+/*------------news node styles---------------*/
+.block-news {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-news h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-news h2 {
+  color: #333333;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.block-news h2.sub-title {
+  padding: 0 0 1.25em;
+  font-size: 0.75em;
+}
+.block-news p {
+  color: #999999;
+  line-height: 1.5;
+  padding: 0 0 1.5625em;
+}
+/*------------end news node styles---------------*/
+
+/*------------documents node styles---------------*/
+/*------------end documents node styles---------------*/
