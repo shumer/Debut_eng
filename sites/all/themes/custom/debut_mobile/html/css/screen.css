@@ -541,3 +541,31 @@ a, a.active, li a.active {
   line-height: 1.5;
 }
 /*------------end documents node styles---------------*/
+/*------------press node styles---------------*/
+.block-press {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-press h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-press h2 {
+  color: #333333;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.block-press h2.sub-title {
+  padding: 0 0 1.25em;
+  font-size: 0.75em;
+}
+.block-press p {
+  color: #999999;
+  line-height: 1.5;
+}
+/*------------end press node styles---------------*/

@@ -64,6 +64,24 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
       break;
 
+    // Make breadcrumb for press about prize node.
+    case DEBUT_COMMON_TYPE_PRESS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
+      $year = date('Y', $date);
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date[value][year]=' . $year)));
+      break;
+
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
@@ -136,7 +154,7 @@ function debut_common_create_node_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('ield_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date[value][year]=' . $year)));
       $breadcrumb[] = $node->title;
       $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
       if (!empty($edit_link)) {
