@@ -510,6 +510,34 @@ a, a.active, li a.active {
   padding: 0 0 1.5625em;
 }
 /*------------end news node styles---------------*/
-
+.ui-content {
+  padding-bottom: 62px;
+}
 /*------------documents node styles---------------*/
+.block-document {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-document h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-document h2 {
+  color: #333333;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.block-document h2.sub-title {
+  padding: 0 0 1.25em;
+  font-size: 0.75em;
+}
+.block-document p {
+  color: #999999;
+  line-height: 1.5;
+}
 /*------------end documents node styles---------------*/
