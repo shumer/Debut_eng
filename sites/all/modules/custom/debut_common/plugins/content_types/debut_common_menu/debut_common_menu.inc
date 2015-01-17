@@ -49,6 +49,11 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
                 $subclass = 'active';
              }
             break;
+            case DEBUT_COMMON_TYPE_INTERVIEW:
+             if ($subitem['link']['href'] == DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST) {
+                $subclass = 'active';
+             }
+            break;
             case DEBUT_COMMON_TYPE_TRAVELS:
              if ($subitem['link']['href'] == DEBUT_COMMON_PAGE_TRAVEL_DESCRIPTION_LIST) {
                $subclass = 'active';

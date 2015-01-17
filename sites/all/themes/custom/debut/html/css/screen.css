@@ -2351,9 +2351,19 @@ section article.prem_list a {
   padding: 0 0 10px 6px;
 }
 
-
 .view-master-class .master-class-section h3 {
   padding: 0 0 10px 0px;
+}
+
+.master-class-section .interview .item {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.master-class-section .interview .item .text {
+  margin-top: 4px;   
 }
 /*------------end master class section styles---------------*/
 /*------------interview page styles---------------*/
@@ -2362,6 +2372,10 @@ section article.prem_list a {
   float: left;
   margin: 10px 20px 20px 0;
   padding: 20px;
+}
+
+.interview-photo span.text {
+  display: none;
 }
 
 .node .interview-item-full {

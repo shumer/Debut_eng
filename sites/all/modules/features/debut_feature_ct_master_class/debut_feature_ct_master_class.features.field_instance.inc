@@ -155,8 +155,11 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       'teaser' => array(
         'label' => 'above',
         'module' => 'entityreference',
-        'settings' => array(),
-        'type' => 'entityreference_entity_id',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'listing',
+        ),
+        'type' => 'entityreference_entity_view',
         'weight' => 0,
       ),
     ),
