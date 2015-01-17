@@ -279,6 +279,28 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     $display->content['new-eed7df26-2d4f-4fbc-8861-24d73680a374'] = $pane;
     $display->panels['footer'][0] = 'new-eed7df26-2d4f-4fbc-8861-24d73680a374';
     $pane = new stdClass();
+    $pane->pid = 'new-377daca5-3f4d-45d1-b7f4-30cd150736fd';
+    $pane->panel = 'footer';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '377daca5-3f4d-45d1-b7f4-30cd150736fd';
+    $display->content['new-377daca5-3f4d-45d1-b7f4-30cd150736fd'] = $pane;
+    $display->panels['footer'][1] = 'new-377daca5-3f4d-45d1-b7f4-30cd150736fd';
+    $pane = new stdClass();
     $pane->pid = 'new-62e7feef-407d-4bfe-8086-0a3fd3b31ae7';
     $pane->panel = 'header';
     $pane->type = 'debut_common_mobile_header';
