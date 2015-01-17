@@ -102,7 +102,7 @@ em, i {
 /*------------end clearing divs---------------*/
 /*------------page styles---------------*/
 #page{
-  background: url("../images/bgs/bg_page.png") no-repeat fixed center top #F09015;
+  //background: url("../images/bgs/bg_page.png") no-repeat fixed center top #F09015;
   min-height: 100%;
   overflow: hidden;
   width: 100%;
@@ -2217,7 +2217,7 @@ section article.prem_list a {
 /*------------end person page styles---------------*/
 /*------------master class section styles---------------*/
 .master-class-section .master-class-texts {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .master-class-section .text-listing {
@@ -2294,12 +2294,12 @@ section article.prem_list a {
   text-align: center;
 }
 
-.view-master-class .master-class-section .master,
-.view-master-class .master-class-section .interview ul {
+.view-content .master-class-section .master,
+.view-content .master-class-section .interview ul {
   padding-left: 10px;
 }
 
-.view-master-class .master-class-section .interview ul li {
+.view-content .master-class-section .interview ul li {
   text-align: left;
 }
 
@@ -2337,6 +2337,7 @@ section article.prem_list a {
   padding: 4px 0 0 15px;
   text-transform: none;
   font-weight: normal;
+  text-align: left;
 }
 
 .master-class-section .author .interview .listing li {
@@ -2351,7 +2352,7 @@ section article.prem_list a {
   padding: 0 0 10px 6px;
 }
 
-.view-master-class .master-class-section h3 {
+.view-content .master-class-section h3 {
   padding: 0 0 10px 0px;
 }
 

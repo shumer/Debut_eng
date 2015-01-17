@@ -223,7 +223,7 @@ function debut_common_create_node_breadcrumbs($node) {
     // Make breadcrumb for master class section node.
     case DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION:
       $breadcrumb[] = l(t('Letopis Debuta'), DEBUT_COMMON_PAGE_NEWS_LIST);
-      $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
       $breadcrumb[] = $node->title;
       break;
 
@@ -231,7 +231,7 @@ function debut_common_create_node_breadcrumbs($node) {
     case DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
-      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'master_text', $node->nid);
+      $view = views_get_view_result(DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS, 'default', $node->nid);
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       $breadcrumb[] = $node->title;
@@ -241,7 +241,7 @@ function debut_common_create_node_breadcrumbs($node) {
     case DEBUT_COMMON_TYPE_INTERVIEW:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
-      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'interview', $node->nid);
+      $view = views_get_view_result(DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS, 'interview', $node->nid);
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       $breadcrumb[] = t('Interview');
