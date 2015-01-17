@@ -32,7 +32,7 @@ function debut_feature_pages_home_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -41,6 +41,18 @@ function debut_feature_pages_home_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -248,6 +260,98 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $display->panels['content_right'][2] = 'new-a3207211-1982-404c-86f1-fa939638f858';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_home_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'home';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '5361d65f-0bba-411a-9fd6-c96a229bf1d4';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7ed86190-d384-42cc-a3d4-e52911605ccc';
+    $display->content['new-7ed86190-d384-42cc-a3d4-e52911605ccc'] = $pane;
+    $display->panels['content'][0] = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
+    $pane = new stdClass();
+    $pane->pid = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $display->content['new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32'] = $pane;
+    $display->panels['content'][1] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['home'] = $page;
