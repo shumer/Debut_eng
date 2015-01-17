@@ -505,7 +505,6 @@ a, a.active, li a.active {
   font-size: 0.75em;
 }
 .block-news p {
-  color: #999999;
   line-height: 1.5;
   padding: 0 0 1.5625em;
 }
@@ -537,7 +536,6 @@ a, a.active, li a.active {
   font-size: 0.75em;
 }
 .block-document p {
-  color: #999999;
   line-height: 1.5;
 }
 /*------------end documents node styles---------------*/
@@ -565,7 +563,30 @@ a, a.active, li a.active {
   font-size: 0.75em;
 }
 .block-press p {
-  color: #999999;
   line-height: 1.5;
 }
 /*------------end press node styles---------------*/
+.block-prize-person .block-content h4.block-title {
+  border-bottom: 1px solid #333333;
+  color: #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin: 0 25px 1.5em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.block-prize-person .block-content .block-content-wrapper {
+  margin: 0 25px 1.875em 25px;
+}
+.block-prize-person .person-photo {
+  border: 2px solid #faab22;
+  float: left;
+  margin: 0 1.25em 0 0;
+  height:  148px;
+  width: 148px;
+}
+.block-prize-person .block-content h5 a {
+  font-size: 18px;
+  color: #f47400;
+  font-weight: lighter;
+}
