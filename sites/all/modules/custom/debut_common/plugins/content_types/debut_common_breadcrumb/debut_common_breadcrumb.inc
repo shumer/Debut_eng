@@ -33,6 +33,7 @@ function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_arg
   $_html = array();
   $_data = array();
   $context_node = $context[0];
+  $is_mobile = debut_common_is_mobile();
 
   // Check for custom BC.
   if (drupal_strlen(trim($conf['custombc'])) > 0) {
@@ -60,7 +61,7 @@ function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_arg
   elseif (!empty($context_node->data)) {
     $breadcrumb[] = l(t('Home'), '');
     $node = $context_node->data;
-    $is_mobile = debut_common_is_mobile();
+
     if ($is_mobile) {
       $breadcrumb = debut_common_create_node_mobile_breadcrumbs($node);
     }
@@ -72,7 +73,12 @@ function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_arg
   // Special breadcrumb for pages.
   else {
     $breadcrumb[] = l(t('Home'), '');
-    $breadcrumb = array_merge($breadcrumb, debut_common_create_page_breadcrumbs());
+    if ($is_mobile) {
+      $breadcrumb = debut_common_create_page_mobile_breadcrumbs();
+    }
+    else {
+      $breadcrumb = array_merge($breadcrumb, debut_common_create_page_breadcrumbs());
+    }
   }
 
   $_data['breadcrumbs'] = $breadcrumb;

@@ -25,13 +25,15 @@ ul, .block ul {
 .ui-content {
  padding-bottom: 20px;
 }
-.page-top {
+body .page .ui-content .block .page-top {
   border-bottom: 1px solid #dcdcdc;
   height: 18px;
-  padding: 20px 0 21px 45px;
+  padding: 10px 0 21px 45px;
   position: relative;
   text-align: left;
   text-transform: uppercase;
+  font-weight: normal;
+  font-size: 18px;
 }
 .page-top .back {
   color: #333;
@@ -39,10 +41,10 @@ ul, .block ul {
   height: 20px;
   left: 0;
   line-height: 20px;
-  padding: 19px 10px 20px 20px;
+  padding: 10px 10px 20px 20px;
   position: absolute;
   text-transform: uppercase;
-  top: 0;
+  top: 2px;
 }
 .page-top .back .ico {
   display: inline-block;
@@ -51,6 +53,10 @@ ul, .block ul {
 }
 .page-top .back .ico.ico-home-c {
   background:  url('../images/sprite-a.png') no-repeat -40px -309px rgba(0, 0, 0, 0);
+}
+body .page .ui-content .block .page-top a {
+  font-weight: normal;
+  font-size: 18px;
 }
 /**=========================== header styles ======================**/
 .header {
@@ -622,4 +628,65 @@ a, a.active, li a.active {
   position: absolute;
   top: 50%;
   width: 13px;
+}
+/*------------years header styles---------------*/
+.years-title {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 5px 25px 0px 25px;
+}
+.years-title h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form-body .years-select-wrapper {
+  padding: 0px 25px;
+}
+.form-body .form-selectmenu label {
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+  text-transform: uppercase;
+}
+.form-body .years-select-wrapper .form-selectmenu label {
+  float: left;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+.form-body .years-select-wrapper .form-selectmenu select {
+  width: 100px;
+  color: #bd01b5;
+  font-weight: normal;
+  text-align: center;
+}
+/*------------press listing styles---------------*/
+.block-press.listing {
+  border-bottom: 2px dotted #dcdcdc;
+}
+.block-press.listing h1 {
+  font-size: 1em;
+}
+.block-press.listing .press-body {
+  margin-bottom: 10px;
+}
+.link-press {
+  background: url("../images/press-link.jpg") no-repeat scroll 0 7px transparent;
+  padding-left: 18px;
+}
+.link-press a {
+  color: #e89a16;
+  font-size: 14px;
+  line-height: 16px;
+}
+.author-press {
+  background: url("../images/content/author-small.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  color: #666666;
+  font-size: 14px;
+  margin: 4px 0;
+  padding-left: 18px;
 }

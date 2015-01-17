@@ -5,6 +5,44 @@
  */
 
 /**
+ * Construct BC for pages.
+ */
+function debut_common_create_page_mobile_breadcrumbs() {
+  $breadcrumb = array();
+  $path = $_GET['q'];
+
+  switch ($path) {
+
+
+    // Bc for press page.
+    case DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
+      if (!empty($current_year)) {
+        $current_year = $current_year['value']['year'];
+        $breadcrumb[] = $current_year;
+      }
+      break;
+
+    default:
+      // Get default breadcrumb.
+      $breadcrumb = drupal_get_breadcrumb();
+      break;
+  }
+
+  return $breadcrumb;
+}
+
+/**
  * Mobile status detection.
  */
 function debut_common_is_mobile() {
@@ -232,7 +270,7 @@ function debut_common_create_node_breadcrumbs($node) {
         $breadcrumb[] = $edit_link;
       }
       break;
-      
+
     // Make breadcrumb for travel description node.
     case DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
