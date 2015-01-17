@@ -5,7 +5,7 @@
  *   Template file.
  */
 ?>
-<article class="block-press listing">
+<article class="block-press listing <?php print $_data['class']; ?>">
   <h1><?php print $_html['title']; ?></h1>
   <div class="press-body">
     <?php print $_html['field_press_text']; ?>

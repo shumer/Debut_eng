@@ -668,6 +668,9 @@ a, a.active, li a.active {
 .block-press.listing {
   border-bottom: 2px dotted #dcdcdc;
 }
+.block-press.listing.last {
+  border-bottom: none;
+}
 .block-press.listing h1 {
   font-size: 1em;
 }
