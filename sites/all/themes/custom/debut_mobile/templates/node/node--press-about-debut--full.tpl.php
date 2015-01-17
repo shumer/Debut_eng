@@ -31,4 +31,8 @@
       <?php print $_html['author']; ?>
     </div>
   <?php endif; ?>
+  <div class="block-share">
+    <span><?php print t('Share article'); ?></span>
+  </div>
+  <?php print $_html['social_links']; ?>
 </article>
