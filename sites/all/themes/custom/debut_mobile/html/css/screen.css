@@ -693,3 +693,35 @@ a, a.active, li a.active {
   margin: 4px 0;
   padding-left: 18px;
 }
+.pager_container .pager li:before {
+  content: "-";
+}
+.pager_container .pager li.last:before {
+  content: "";
+}
+.pager_container .pager li.first:before {
+  content: "";
+}
+.pager_container {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  text-align: center;
+}
+.pager_container:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.pager_container .pager li {
+  color: #969696;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 120%;
+}
+.pager_container .pager li a,
+.pager_container .pager li span {
+  margin-left: 3px;
+}
