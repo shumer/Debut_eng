@@ -223,11 +223,12 @@ function debut_feature_dashboards_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'nid' => 'nid',
     'title' => 'title',
-    'field_publication_date' => 'field_publication_date',
+    'status' => 'status',
+    'field_news_publication_date' => 'field_news_publication_date',
     'timestamp' => 'timestamp',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_publication_date';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'nid' => array(
       'sortable' => 1,
@@ -243,9 +244,16 @@ function debut_feature_dashboards_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_publication_date' => array(
+    'status' => array(
       'sortable' => 1,
-      'default_sort_order' => 'desc',
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_news_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -1809,11 +1817,12 @@ function debut_feature_dashboards_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'nid' => 'nid',
     'title' => 'title',
-    'field_publication_date' => 'field_publication_date',
+    'status' => 'status',
+    'field_news_publication_date' => 'field_news_publication_date',
     'timestamp' => 'timestamp',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'field_publication_date';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'nid' => array(
       'sortable' => 1,
@@ -1829,9 +1838,16 @@ function debut_feature_dashboards_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_publication_date' => array(
+    'status' => array(
       'sortable' => 1,
-      'default_sort_order' => 'desc',
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_news_publication_date' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
