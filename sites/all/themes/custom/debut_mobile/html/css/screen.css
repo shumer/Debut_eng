@@ -590,3 +590,36 @@ a, a.active, li a.active {
   color: #f47400;
   font-weight: lighter;
 }
+/*------------social links styles---------------*/
+.social-buttons {
+  border-bottom: 1px solid #dcdcdc;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+.block-share {
+  border-top: 1px solid #dcdcdc;
+  color: #333;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-share span {
+  display: inline-block;
+  padding: 1.0625em 0 1.0625em 30px;
+  position: relative;
+}
+.block-share span:before {
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -354px  rgba(0, 0, 0, 0);
+  content: " ";
+  display: block;
+  height: 13px;
+  left: 0;
+  margin: -6px 0 0;
+  position: absolute;
+  top: 50%;
+  width: 13px;
+}

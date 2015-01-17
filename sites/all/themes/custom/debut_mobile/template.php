@@ -254,6 +254,17 @@ function debut_mobile_theme($existing, $type, $theme, $path) {
 
   $theme_path = drupal_get_path('theme', 'debut_mobile');
 
+  // Social links.
+  $hooks['debut_mobile_social_links'] = array(
+    'path' => $theme_path . '/templates/debut_mobile',
+    'template' => 'debut-mobile-social-links',
+    'variables' => array(
+      '_data' => array(
+        'social_links' => array(),
+      )
+    ),
+  );
+
   // Meta theme for all site forms.
   $hooks['debut_mobile_form'] = array(
     'render element' => 'form',

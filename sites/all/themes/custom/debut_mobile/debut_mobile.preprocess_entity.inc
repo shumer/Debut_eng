@@ -19,7 +19,8 @@ function debut_mobile_preprocess_node__news__full(&$variables) {
 
   // Publication date.
   $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
-  $_html['news_date'] = $published;
+  $_html['field_publication_date'] = $published;
+  $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
 /**
@@ -35,6 +36,7 @@ function debut_mobile_preprocess_node__documents__full(&$variables) {
   $_html['field_document_body'] = debut_mobile_render($content, 'field_document_body');
   $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
   $_html['field_publication_date'] = $published;
+  $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
 /**
@@ -68,6 +70,8 @@ function debut_mobile_preprocess_node__press_about_debut__full(&$variables) {
   if (!empty($author)) {
     $_html['author'] = $author;
   }
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
 /**
