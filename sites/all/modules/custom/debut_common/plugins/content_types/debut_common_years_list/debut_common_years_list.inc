@@ -102,14 +102,18 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
 
   $select = array(
     '#title' => 'Select a year:',
+    '#name' => 'years-select',
+    '#id' => 'years-select',
     '#type' => 'select',
     '#options' => $options,
     '#value' => $current_year,
     '#attributes' => array(
       'class' => array('years-select'),
+      'data-role' => 'none',
     ),
   );
   $_html['options'] = drupal_render($select);
+  $_data['options'] = $options;
   $_html['years'] = theme('item_list', array(
     'items' => $years,
     'title' => NULL,
@@ -118,6 +122,7 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
   ));
 
   $data['_html'] = $_html;
+  $data['_data'] = $_data;
   $block->content = theme('debut_common_years_list', $data, $conf);
 
   return $block;

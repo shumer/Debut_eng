@@ -30,6 +30,9 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach search form.
   debut_mobile_custom.attach_search_form($context, settings);
+
+  // Attach selects.
+  debut_mobile_custom.attach_selects($context, settings);
 }
 
 // Init routine, will be called once.
@@ -143,5 +146,19 @@ debut_mobile_custom.attach_search_form = function($context, settings) {
     });
 
     $this.find('.search-form-text').watermark(Drupal.t('Search'));
+  });
+};
+
+// Attach selects.
+debut_mobile_custom.attach_selects = function ($context, settings) {
+
+  $context.find('.form-selectmenu').once('debut_selects-1', function(){
+
+    // Years list select.
+    $(this).find('.years-select').on('change', function () {
+      var year = $(this).val();console.log(111);
+      var url = settings.debut_common.years_list[year];
+      debut_mobile_custom.redirect(url);
+    });
   });
 };
