@@ -62,6 +62,46 @@ function debut_feature_pages_master_class_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-119fbddc-972d-4202-bf20-7545d5255d6c';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Мастер-классы',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '119fbddc-972d-4202-bf20-7545d5255d6c';
+    $display->content['new-119fbddc-972d-4202-bf20-7545d5255d6c'] = $pane;
+    $display->panels['content_center'][0] = 'new-119fbddc-972d-4202-bf20-7545d5255d6c';
+    $pane = new stdClass();
+    $pane->pid = 'new-49d048fd-0296-4e80-9375-286308a46c94';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_master_class_list';
+    $pane->subtype = 'debut_common_master_class_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '49d048fd-0296-4e80-9375-286308a46c94';
+    $display->content['new-49d048fd-0296-4e80-9375-286308a46c94'] = $pane;
+    $display->panels['content_center'][1] = 'new-49d048fd-0296-4e80-9375-286308a46c94';
+    $pane = new stdClass();
     $pane->pid = 'new-7359132c-b573-4fd3-9dc6-339e04237084';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_menu';
@@ -129,6 +169,54 @@ function debut_feature_pages_master_class_default_page_manager_pages() {
     $pane->uuid = 'fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
     $display->content['new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc'] = $pane;
     $display->panels['content_left'][2] = 'new-fc4b1cb1-e49c-4ca3-b13b-57bebf7d21cc';
+    $pane = new stdClass();
+    $pane->pid = 'new-d89d0b9b-e9ef-41c2-87d2-97882c0e47a5';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Мастер-классы',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd89d0b9b-e9ef-41c2-87d2-97882c0e47a5';
+    $display->content['new-d89d0b9b-e9ef-41c2-87d2-97882c0e47a5'] = $pane;
+    $display->panels['top'][0] = 'new-d89d0b9b-e9ef-41c2-87d2-97882c0e47a5';
+    $pane = new stdClass();
+    $pane->pid = 'new-0bdf978b-ed82-4926-b733-ef4ce697d4b4';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0bdf978b-ed82-4926-b733-ef4ce697d4b4';
+    $display->content['new-0bdf978b-ed82-4926-b733-ef4ce697d4b4'] = $pane;
+    $display->panels['top'][1] = 'new-0bdf978b-ed82-4926-b733-ef4ce697d4b4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

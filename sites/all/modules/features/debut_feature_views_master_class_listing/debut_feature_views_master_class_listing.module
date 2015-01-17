@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Views - Master class listing feature.
+ */
+
+include_once 'debut_feature_views_master_class_listing.features.inc';

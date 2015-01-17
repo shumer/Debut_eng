@@ -23,7 +23,7 @@ define('DEBUT_COMMON_TYPE_BOOKS', 'books');
 define('DEBUT_COMMON_TYPE_PHOTOS', 'photo_listing');
 define('DEBUT_COMMON_TYPE_VIDEO', 'video');
 define('DEBUT_COMMON_TYPE_IBOOKS', 'ibooks');
-define('DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION', 'master_class_section');
+define('DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION', 'master_class');
 define('DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT', 'master_class_text');
 define('DEBUT_COMMON_TYPE_INTERVIEW', 'interview');
 define('DEBUT_COMMON_TYPE_TRAVELS', 'travel');
@@ -70,6 +70,8 @@ define('DEBUT_COMMON_VIEW_NEWS_HOME_PAGE', 'debut_common_news_home_page');
 define('DEBUT_COMMON_VIEW_GET_PERSONS_LIST_BY_LETTER', 'debut_view_persons_list');
 define('DEBUT_COMMON_VIEW_GET_JURY_LIST_BY_LETTER', 'debut_view_jury_alphabet_list');
 define('DEBUT_COMMON_VIEW_GET_JURY_LIST', 'debut_view_jury_prize_list');
+define('DEBUT_COMMON_VIEW_MASTER_CLASS', 'debut_view_list_master_class');
+define('DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS', 'debut_view_get_master_class_by_params');
 
 define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 

@@ -1,0 +1,14 @@
+name = Debut Feature: Views - Master class listing
+description = Debut Feature: Views - Master class listing
+core = 7.x
+package = Debut Views
+version = 7.x-0.01
+project = debut_feature_views_master_class_listing
+dependencies[] = entity
+dependencies[] = views
+dependencies[] = views_content
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = debut_view_get_master_class_by_params
+features[views_view][] = debut_view_list_master_class
+features_exclude[dependencies][ctools] = ctools

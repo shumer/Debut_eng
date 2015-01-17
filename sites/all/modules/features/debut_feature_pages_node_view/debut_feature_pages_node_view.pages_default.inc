@@ -1345,7 +1345,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Мастер-классы',
+      'custombc' => '',
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),
@@ -2595,6 +2595,31 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $display->content['new-11f01d38-b646-41b5-932d-652f3c26541e'] = $pane;
     $display->panels['content_left'][2] = 'new-11f01d38-b646-41b5-932d-652f3c26541e';
     $pane = new stdClass();
+    $pane->pid = 'new-a11a287e-888a-4a0a-ba6f-9a129f7f1f6d';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a11a287e-888a-4a0a-ba6f-9a129f7f1f6d';
+    $display->content['new-a11a287e-888a-4a0a-ba6f-9a129f7f1f6d'] = $pane;
+    $display->panels['top'][0] = 'new-a11a287e-888a-4a0a-ba6f-9a129f7f1f6d';
+    $pane = new stdClass();
     $pane->pid = 'new-4c7cbd9c-602c-4a22-bd69-473bccece2ed';
     $pane->panel = 'top';
     $pane->type = 'debut_common_social_links';
@@ -2612,11 +2637,11 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '4c7cbd9c-602c-4a22-bd69-473bccece2ed';
     $display->content['new-4c7cbd9c-602c-4a22-bd69-473bccece2ed'] = $pane;
-    $display->panels['top'][0] = 'new-4c7cbd9c-602c-4a22-bd69-473bccece2ed';
+    $display->panels['top'][1] = 'new-4c7cbd9c-602c-4a22-bd69-473bccece2ed';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

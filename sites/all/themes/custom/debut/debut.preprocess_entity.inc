@@ -1320,7 +1320,12 @@ function debut_preprocess_node__master_class__teaser(&$variables) {
   }
 
   // Theme Master node.
-  $_html['master'] = debut_render($content, 'field_master_class_master');
+  $auth_field = qtools_api__field_get_item('node', $node, 'field_master_class_master', 0, 'target_id');
+  if (!empty($auth_field)) {
+    $auth_node = cache_common_load_node($auth_field);
+    $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
+  }
+  //$_html['master'] = debut_render($content, 'field_master_class_master');
   
   // Theme interview.
   /*if (!empty($node->field_interview_node[0]['nid'])) {
@@ -1335,6 +1340,7 @@ function debut_preprocess_node__master_class__teaser(&$variables) {
 
     $node->_html['interviews'] = theme('item_list', $interviews, NULL, 'ul', array('class' => 'listing'));
   }*/
+  $_html['interviews'] = debut_render($content, 'field_master_class_interview');
 
 }
 
@@ -1368,7 +1374,7 @@ function debut_preprocess_node__interview__listing(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  $_html['title'] = debut_render($content, 'field_interview_author');
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
 
 function debut_preprocess_node__interview__compact(&$variables) {
@@ -1384,7 +1390,6 @@ function debut_preprocess_node__interview__compact(&$variables) {
     $auth_node = cache_common_load_node($auth_field);
     $uri = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'uri');
   }
-  
   if (!empty($uri)) {
     $image = theme('image_style', array(
       'path' => $uri,
