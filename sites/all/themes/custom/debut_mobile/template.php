@@ -252,7 +252,7 @@ function debut_mobile_form_alter(&$form, $form_state, $form_key) {
  */
 function debut_mobile_theme($existing, $type, $theme, $path) {
 
-  $theme_path = drupal_get_path('theme', 'debut');
+  $theme_path = drupal_get_path('theme', 'debut_mobile');
 
   // Meta theme for all site forms.
   $hooks['debut_mobile_form'] = array(
@@ -568,4 +568,14 @@ function debut_mobile_textfield(&$variables) {
   $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
 
   return $output . $extra;
+}
+
+/**
+ * Preprocess debut_common_breadcrumb.
+ */
+function debut_mobile_preprocess_debut_common_breadcrumb(&$variables) {
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['breadcrumbs'] = implode('<span class="divider"> < </span>', $_data['breadcrumbs']);
 }
