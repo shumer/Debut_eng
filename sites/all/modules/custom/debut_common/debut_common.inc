@@ -81,7 +81,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = t('News for !year year', array('!year' => date('Y', $date)));
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date_value[value][year]' => $year)));
       break;
 
     // Make breadcrumb for documents node.
@@ -99,7 +99,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date_value[value][year]' => $year)));
       break;
 
     // Make breadcrumb for press about prize node.
@@ -117,7 +117,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date_value[value][year]' => $year)));
       break;
 
     default:
