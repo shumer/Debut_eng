@@ -5,7 +5,6 @@
  */
 ?>
 <article class="item">
-  <?php if (!empty($_html['author'])) : ?>
-    <?php print $_html['author']; ?>
-  <?php endif; ?>
+  <div class="image"><?php print $_html['image']; ?></div>
+  <div class="text"><?php print $_html['title']; ?></div>
 </article>

@@ -1250,7 +1250,7 @@ function debut_preprocess_node__debut_jury__search(&$variables) {
 }
 
 /**
- * Preprocess view mode full for documents node.
+ * Preprocess view mode full for master class node.
  */
 function debut_preprocess_node__master_class__full(&$variables) {
   $node = &$variables['node'];
@@ -1281,6 +1281,7 @@ function debut_preprocess_node__master_class__full(&$variables) {
   $_html['interviews'] = debut_render($content, 'field_master_class_interview');
 
   $_html['body'] = debut_render($content, 'field_master_class_description');
+  $_html['title'] = check_plain($node->title);
 }
 
 /**
@@ -1345,22 +1346,10 @@ function debut_preprocess_node__interview__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-/*
-  if (!empty($node->field_interview_author[0]['nid'])) {
-    $authnode = debut_common_node_load($node->field_interview_author[0]['nid']);
-
-    // Check if photo present.
-    if (!empty($authnode->field_person_image[0])) {
-      $image = $authnode->field_person_image[0]['filepath'];
-    }
-    else {
-
-      // If not use default image.
-      $image = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
-    }
-    $node->_html['image'] = theme('imagecache', 'debut_interview_author_photo', $image, $authnode->field_person_image[0]['data']['alt']);
-    $node->_html['image'] = l($node->_html['image'], 'node/' . $authnode->nid, array('html' => TRUE));
-  }*/
+  
+  $_html['title'] = check_plain($node->title);
+  $_html['author'] = debut_render($content, 'field_interview_author');
+  $_html['body'] = debut_render($content, 'field_interview_body');
 }
 
 /**
@@ -1387,6 +1376,36 @@ function debut_preprocess_node__interview__compact(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
+  
+  $uri = '';
 
-  $_html['author'] = debut_render($content, 'field_interview_author');
+  $auth_field = qtools_api__field_get_item('node', $node, 'field_interview_author', 0, 'target_id');
+  if (!empty($auth_field)) {
+    $auth_node = cache_common_load_node($auth_field);
+    $uri = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'uri');
+  }
+  
+  if (!empty($uri)) {
+    $image = theme('image_style', array(
+      'path' => $uri,
+      'style_name' => 'debut_person_alphabet_page',
+      'alt' => $auth_node->title,
+      'title' => $auth_node->title,
+    ));
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+    
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
