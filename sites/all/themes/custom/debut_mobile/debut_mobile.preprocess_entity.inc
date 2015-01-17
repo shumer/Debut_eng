@@ -142,4 +142,20 @@ function debut_mobile_preprocess_node__press_about_debut__listing(&$variables) {
   if (!empty($author)) {
     $_html['author'] = $author;
   }
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess views debut_view_list_press_about_debut__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_press_about_debut__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
 }

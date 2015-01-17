@@ -102,7 +102,7 @@ em, i {
 /*------------end clearing divs---------------*/
 /*------------page styles---------------*/
 #page{
-  //background: url("../images/bgs/bg_page.png") no-repeat fixed center top #F09015;
+  background: url("../images/bgs/bg_page.png") no-repeat fixed center top #F09015;
   min-height: 100%;
   overflow: hidden;
   width: 100%;
@@ -2364,7 +2364,7 @@ section article.prem_list a {
 }
 
 .master-class-section .interview .item .text {
-  margin-top: 4px;   
+  margin-top: 4px;
 }
 /*------------end master class section styles---------------*/
 /*------------interview page styles---------------*/
