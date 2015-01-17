@@ -55,7 +55,7 @@ function debut_feature_dashboards_views_default_views() {
     'field_publication_date' => 'field_publication_date',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = 'changed';
+  $handler->display->display_options['style_options']['default'] = 'field_publication_date';
   $handler->display->display_options['style_options']['info'] = array(
     'nid' => array(
       'sortable' => 1,
@@ -87,7 +87,7 @@ function debut_feature_dashboards_views_default_views() {
     ),
     'field_publication_date' => array(
       'sortable' => 1,
-      'default_sort_order' => 'asc',
+      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -223,12 +223,11 @@ function debut_feature_dashboards_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'nid' => 'nid',
     'title' => 'title',
-    'status' => 'status',
-    'field_news_publication_date' => 'field_news_publication_date',
+    'field_publication_date' => 'field_publication_date',
     'timestamp' => 'timestamp',
     'edit_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['default'] = 'field_publication_date';
   $handler->display->display_options['style_options']['info'] = array(
     'nid' => array(
       'sortable' => 1,
@@ -244,16 +243,9 @@ function debut_feature_dashboards_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'status' => array(
+    'field_publication_date' => array(
       'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_news_publication_date' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
+      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -279,6 +271,12 @@ function debut_feature_dashboards_views_default_views() {
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
+  /* Поле: Редакции материала: Дата обновления */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
   /* Поле: Содержимое: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'field_data_field_publication_date';
@@ -290,12 +288,6 @@ function debut_feature_dashboards_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Поле: Редакции материала: Дата обновления */
-  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
-  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
-  $handler->display->display_options['fields']['timestamp']['date_format'] = 'short';
-  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
   /* Поле: Содержимое: Ссылка на редактирование */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -342,8 +334,8 @@ function debut_feature_dashboards_views_default_views() {
     t('последняя »'),
     t('Nid'),
     t('Заголовок'),
-    t('Publication date'),
     t('Дата обновления'),
+    t('Publication date'),
     t('Ссылка на редактирование'),
     t('Страница'),
     t('ещё'),
