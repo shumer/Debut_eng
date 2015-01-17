@@ -26,20 +26,18 @@ function debut_feature_ct_interview_field_default_field_instances() {
       'compact' => array(
         'label' => 'above',
         'module' => 'entityreference',
-        'settings' => array(
-          'links' => 0,
-          'view_mode' => 'teaser',
-        ),
-        'type' => 'entityreference_entity_view',
+        'settings' => array(),
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
+        'type' => 'entityreference_entity_view',
         'weight' => 2,
       ),
       'frame' => array(

@@ -193,7 +193,7 @@ function debut_common_create_node_breadcrumbs($node) {
     case DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
-      $view = site_common_views_get_view_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'master_text', $node->nid);
+      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'master_text', $node->nid);
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       $breadcrumb[] = $node->title;
@@ -203,7 +203,7 @@ function debut_common_create_node_breadcrumbs($node) {
     case DEBUT_COMMON_TYPE_INTERVIEW:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
-      $view = site_common_views_get_view_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'interview', $node->nid);
+      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_MASTER_CLASS, 'interview', $node->nid);
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       $breadcrumb[] = t('Interview');
@@ -232,12 +232,12 @@ function debut_common_create_node_breadcrumbs($node) {
         $breadcrumb[] = $edit_link;
       }
       break;
-
+      
     // Make breadcrumb for travel description node.
     case DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION:
       $breadcrumb[] = l(t('Letopis Debuta'), '');
       $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
-      $view = site_common_views_get_view_result(DEBUT_COMMON_VIEW_TRAVELS_LISTING, $node->nid);
+      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_TRAVELS_LISTING, $node->nid);
       $travel_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($travel_node->title, 'node/' . $travel_node->nid);
       $breadcrumb[] = $node->title;

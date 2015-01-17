@@ -7,7 +7,7 @@
 ?>
 <div class="documents node-item documents-item-full master-class-section">
   <div class="documents-title">
-    <?php print $node->title; ?>
+    <?php print $_html['title']; ?>
   </div>
   <div class="documents-body">
     <?php print $_html['body']; ?>
