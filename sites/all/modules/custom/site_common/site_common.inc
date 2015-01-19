@@ -200,13 +200,10 @@ function site_common_ajax_command($type, $key, $data = array(), $name = '', $met
 
 /**
  * Ajax command to print data to console.
+ * // DEPRECATED.
  */
 function site_common_ajax_command_log($title, $data) {
-  return array(
-    'command' => 'site_common_log',
-    'title' => $title,
-    'data' => $data,
-  );
+  return qtools_api__ajax_command_log($title, $data);
 }
 
 /**

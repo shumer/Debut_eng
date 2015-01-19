@@ -20,7 +20,7 @@ function _site_common_field_formatter_image_field_default_preset($instance, $vie
  * Helper function to generate default alt
  */
 function _site_common_field_formatter_image_field_default_alt() {
-  return 'abc';
+  return variable_get('site_name', '');
 }
 
 /**
@@ -160,6 +160,12 @@ function site_common_field_formatter_view($entity_type, $entity, $field, $instan
 
     // Render required deltas.
     foreach ($deltas as $key) {
+
+      // Fix for empty items.
+      if (empty($items[$key]['uri'])) {
+        $items[$key]['uri'] = 'public://image_not_found.png';
+      }
+
       // Pass nosize further, this will be processed by site_common_image_style().
       if (!empty($settings['nosize'])) {
         $items[$key]['attributes']['#nosize'] = TRUE;

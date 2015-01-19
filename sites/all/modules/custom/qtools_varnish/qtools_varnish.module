@@ -523,6 +523,24 @@ function qtools_varnish_get_signature($esi_type, $esi_id, $params = array()) {
 }
 
 /**
+ * Store if this page can not be cached.
+ */
+function qtools_varnish_page_not_cacheable($not_cacheable = NULL) {
+  $_not_cacheable = &drupal_static(__FUNCTION__);
+  if ($not_cacheable && !$_not_cacheable) {
+    // Save value.
+    $_not_cacheable = $not_cacheable;
+
+    // Set current TTL to -2;
+    drupal_add_http_header(QTOOLS_VARNISH_HEADER_TTL, -2);
+  }
+
+  // Return cacheable status.
+  return $_not_cacheable && ($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'HEAD')
+    && !drupal_is_cli();
+}
+
+/**
  * Set desired TTL and cache tags for current page.
  *
  * @param $ttl
@@ -535,8 +553,9 @@ function qtools_varnish_get_signature($esi_type, $esi_id, $params = array()) {
 function qtools_varnish_set_page_ttl($ttl = 0, $cache_tags = array(), $grace = NULL) {
   global $user;
 
-  // POST request will not be cached anyway.
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // Check if page is cachable.
+  if (qtools_varnish_page_not_cacheable()) {
+    drupal_add_http_header(QTOOLS_VARNISH_HEADER_TTL, -2);
     return;
   }
 
@@ -1251,4 +1270,51 @@ function qtools_varnish_user_logout() {
   $params = session_get_cookie_params();
   setcookie(QTOOLS_VARNISH_COOKIE_BIN, '', REQUEST_TIME - 3600, $params['path'], $params['domain']);
   setcookie(QTOOLS_VARNISH_COOKIE_INF, '', REQUEST_TIME - 3600, $params['path'], $params['domain']);
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function qtools_varnish_theme_registry_alter(&$theme_registry) {
+
+  // Replace panels vevrywhere theming by our function.
+  if (isset($theme_registry['panels_everywhere_page'])) {
+    $theme_registry['panels_everywhere_page']['function'] = '_qtools_varnish_theme_panels_everywhere_page';
+  }
+}
+
+/**
+ * Override for theme_panels_everywhere_page().
+ */
+function _qtools_varnish_theme_panels_everywhere_page(&$vars) {
+
+  // Call original theming function.
+  $result = theme_panels_everywhere_page($vars);
+
+  if (qtools_varnish_enabled()) {
+    // Page cache tags.
+    $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
+
+    // Add few headers (those configured through panels).
+    if ($settings = qtools_option(QTOOLS_VARNISH_OPTION_CACHE_PAGE)) {
+      if (isset($settings['ttl'])) {
+        // Only set page TTL if we are not redirecting anywhere, if we do - see goto_alter
+        // To set proper ttl.
+        $add_ttl = TRUE;
+        $headers = headers_list();
+        foreach ($headers as $line) {
+          if (strpos($line, 'Location') !== FALSE) {
+            $add_ttl = FALSE;
+          }
+        }
+        if ($add_ttl) {
+          $tags = qtools_api__cache_tags_prepare(qtools_api__cache_tag('page', $settings['handler_id']));
+          qtools_varnish_set_page_ttl($settings['ttl'], array_merge($tags, $cache_tags));
+        }
+      }
+    }
+  }
+
+  // Return rendered page.
+  return $result;
 }

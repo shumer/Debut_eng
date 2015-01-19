@@ -31,7 +31,13 @@ function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
   }
 
   // Wrap content and add inline JS to make shure JS is present if this block is present.
+  $debug = _qtools_varnish_settings('general', 'debug', FALSE);
+
   $content[] = '<script type="text/javascript">
+  var _qtools_varnish_debug = ' . $debug . ';
+  if (_qtools_varnish_debug) {
+    qtools.log("QTV:user_blocks", jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock-item"));
+  }
   jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock-item").each(function () {
     var $this = jQuery(this);
     jQuery($this.attr("data-target")).replaceWith($this.html());
@@ -179,6 +185,18 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
  */
 function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
 
+  // Log incoming ESI request.
+  $debug = _qtools_varnish_settings('general', 'debug', FALSE);
+  if ($debug) {
+    if (_qtools_varnish_settings('general', 'logging', FALSE)) {
+      watchdog('qtools_varnish:ESI', '(@esi_type, @esi_id, @signature)', array(
+        '@esi_type' => $esi_type,
+        '@esi_id' => $esi_id,
+        '@signature' => $signature,
+      ));
+    }
+  }
+
   $content = '';
 
   // Reference to debug content.
@@ -234,11 +252,16 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
     $content = '<!-- ' . $error . ' -->';
   }
 
-  // Add debug content.
-  // NOT CACHE MESSAGES!.
+  // Add messages to debug content.
   $debug_content[] = theme('status_messages');
+  array_filter($debug_content);
+
+  // Add debug content.
+  if (!empty($debug) && !empty($debug_content)) {
+    $content = implode("\r\n<br>", $debug_content) . $content;
+  }
 
   // Print content end exit.
-  print implode("\r\n<br>", $debug_content) . $content;
+  print $content;
   die;
 }

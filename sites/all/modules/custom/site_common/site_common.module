@@ -11,6 +11,20 @@ define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)|(/admin_menu/)|(/node
 module_load_include('inc', 'site_common');
 module_load_include('field.inc', 'site_common');
 
+
+/**
+ * Implements hook_drupal_goto_alter().
+ */
+function site_common_drupal_goto_alter(&$path, &$options, &$http_response_code) {
+  // If this request comes from ajax and we are about to redirect
+  // We need to mark this request as redirected, so on target page
+  // We can add real url header.
+  // The 'Location' HTTP header must be absolute.
+  if (_site_common_settings('jquery_mobile', 'enabled') && site_common_is_xmlhttp()) {
+    $options['query']['site_common_redirect'] = TRUE;
+  }
+}
+
 /**
  * Implements hook_form_alter().
  */
@@ -39,12 +53,24 @@ function site_common_site_common_preload_resources() {
 
   // Add ajax.
   site_common_js_add('ajax');
+
+  // Add asynk.
+  site_common_js_add('asynk');
 }
 
 /**
  * Implements hooks_init().
  */
 function site_common_init() {
+
+  // Add page path as header to track redirects.
+  $path = drupal_is_front_page() ? '' : $_GET['q'];
+  if (!empty($_REQUEST['site_common_redirect'])) {
+    drupal_add_http_header('X-Site-Common-Location', url($path, array('absolute' => TRUE)));
+    unset($_REQUEST['site_common_redirect']);
+    unset($_GET['site_common_redirect']);
+  }
+
   // Hard stop if environment nor reconfigured.
   $current_env = variable_get('site_common_current_environment');
   $local_env = variable_get('site_common_local_environment');
@@ -80,7 +106,7 @@ function site_common_preprocess_html(&$variables) {
   $asynk_list = array();
   foreach ($js_list as $key => $info) {
     if (!empty($info['asynk']) && $info['type'] == 'file') {
-      $asynk_list[] = $info['data'];
+      $asynk_list[] = url($info['data'], array('absolute' => TRUE));
       unset($js_list[$key]);
     }
   }
@@ -102,7 +128,7 @@ function site_common_form_alter(&$form, &$form_state, $form_id) {
   foreach ($list as &$item) {
     $item = trim($item);
   }
-  if (in_array($form_id, $list)) {
+  if (in_array($form_id, $list) || in_array('*', $list)) {
     $form['#attributes']['data-ajax'] = 'false';
   }
 }
