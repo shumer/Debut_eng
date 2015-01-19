@@ -741,8 +741,12 @@ function debut_feature_ct_debut_person_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'debut_person_alphabet_page',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
       'teaser' => array(

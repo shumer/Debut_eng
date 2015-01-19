@@ -70,8 +70,9 @@ function debut_feature_ct_interview_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -154,8 +155,9 @@ function debut_feature_ct_interview_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(

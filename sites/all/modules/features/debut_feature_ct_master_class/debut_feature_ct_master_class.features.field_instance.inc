@@ -62,8 +62,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -148,8 +149,12 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'view_mode' => 'listing',
+        ),
+        'type' => 'entityreference_entity_view',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -238,8 +243,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -322,8 +328,9 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'entityreference',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'entityreference_entity_id',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -411,8 +418,15 @@ function debut_feature_ct_master_class_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'debut_date_short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
       'teaser' => array(
