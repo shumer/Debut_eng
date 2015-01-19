@@ -36,15 +36,6 @@ function debut_feature_theme_key_strongarm() {
       'fit' => 12,
     ),
     2 => array(
-      'path' => 'comment/reply/#',
-      'callbacks' => array(),
-      'wildcards' => array(
-        2 => 'node:nid',
-      ),
-      'weight' => 1,
-      'fit' => 6,
-    ),
-    3 => array(
       'path' => 'taxonomy/term/#',
       'callbacks' => array(),
       'wildcards' => array(
@@ -53,16 +44,16 @@ function debut_feature_theme_key_strongarm() {
       'weight' => 1,
       'fit' => 6,
     ),
-    4 => array(
-      'path' => 'user/#/edit',
+    3 => array(
+      'path' => 'comment/reply/#',
       'callbacks' => array(),
       'wildcards' => array(
-        1 => 'profile:uid',
+        2 => 'node:nid',
       ),
-      'weight' => 2,
-      'fit' => 5,
+      'weight' => 1,
+      'fit' => 6,
     ),
-    5 => array(
+    4 => array(
       'path' => 'comment/#/edit',
       'callbacks' => array(),
       'wildcards' => array(
@@ -71,7 +62,7 @@ function debut_feature_theme_key_strongarm() {
       'weight' => 2,
       'fit' => 5,
     ),
-    6 => array(
+    5 => array(
       'path' => 'comment/#/delete',
       'callbacks' => array(),
       'wildcards' => array(
@@ -80,20 +71,29 @@ function debut_feature_theme_key_strongarm() {
       'weight' => 2,
       'fit' => 5,
     ),
-    7 => array(
-      'path' => 'node/#',
+    6 => array(
+      'path' => 'user/#/edit',
       'callbacks' => array(),
       'wildcards' => array(
-        1 => 'node:nid',
+        1 => 'profile:uid',
+      ),
+      'weight' => 2,
+      'fit' => 5,
+    ),
+    7 => array(
+      'path' => 'user/#',
+      'callbacks' => array(),
+      'wildcards' => array(
+        1 => 'profile:uid',
       ),
       'weight' => 1,
       'fit' => 2,
     ),
     8 => array(
-      'path' => 'user/#',
+      'path' => 'node/#',
       'callbacks' => array(),
       'wildcards' => array(
-        1 => 'profile:uid',
+        1 => 'node:nid',
       ),
       'weight' => 1,
       'fit' => 2,

@@ -8,7 +8,7 @@
   }
 
   .panel-3col .panel-col {
-    width: 540px;
+    width: 530px;
   }
 
   .footer .inner,
@@ -32,4 +32,33 @@
     font-family: "PT Sans",sans-serif;
     width: 330px;
   }  
+  
+  .books-item .book-content .book-author .text .listing {
+    overflow: auto;
+    float: none;
+  }
+  
+  .block-persons-list .item {
+    margin: 0px 0px 20px 0px;
+  }
+
+  /*home page slider styles */
+  .coda-slider-wrapper {
+    width: 542px;
+  }
+  .coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {
+    width: 542px;
+    background: none repeat scroll 0 0 #FEF7ED;
+    overflow: hidden;
+  }
+  .coda-slider, .coda-slider .panel {
+    width: 300px;
+  }
+  .coda-nav ul {
+    width: 500px !important;
+  }
+  .gallery-wrapper .span {
+    margin-right: -12px;
+  }
+  /*---*/
 }
