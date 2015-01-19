@@ -142,9 +142,24 @@ function debut_preprocess_node__news__listing(&$variables) {
   $_data = &$variables['_data'];
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  $_html['text'] = debut_render($content, 'field_news_annonce');;
+  $_html['text'] = debut_render($content, 'field_news_annonce');
   $_html['news_date'] = debut_render($content, 'field_publication_date');
 }
+
+/**
+ * Preprocess view mode search for news node.
+ */
+function debut_preprocess_node__news__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['text'] = debut_render($content, 'field_news_annonce');
+  $_html['news_date'] = debut_render($content, 'field_publication_date');
+}
+
 
 /**
  * Preprocess node__documents__full.
@@ -169,6 +184,17 @@ function debut_preprocess_node__documents__listing(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode search for documents node.
+ */
+function debut_preprocess_node__documents__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
 
@@ -237,6 +263,39 @@ function debut_preprocess_node__press_about_debut__listing(&$variables) {
 }
 
 /**
+ * Preprocess view mode search for press_about_debut node.
+ */
+function debut_preprocess_node__press_about_debut__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['body'] = debut_render($content, 'field_press_text');
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['press_date'] = debut_render($content, 'field_publication_date');
+  
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
+  $author = debut_render($content, 'field_press_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+}
+
+/**
  * Preprocess node__master_class_text__full.
  */
 function debut_preprocess_node__master_class_text__full(&$variables) {
@@ -271,7 +330,7 @@ function debut_preprocess_node__master_class_text__search(&$variables) {
   $_data = &$variables['_data'];
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  $_html['text'] = debut_common_trim(strip_tags(debut_render($content, 'field_master_class_text_body')), 150);
+  $_html['text'] = debut_render($content, 'field_master_class_text_body');
 }
 
 /**
@@ -1066,6 +1125,13 @@ function debut_preprocess_node__debut_prize_person__listing(&$variables) {
 }
 
 /**
+ * Preprocess view mode search for debut_prize_person node.
+ */
+function debut_preprocess_node__debut_prize_person__search(&$variables) {
+  debut_preprocess_node__debut_prize_person__teaser($variables);
+}
+
+/**
  * Preprocess view mode compact for debut_prize_person node.
  */
 function debut_preprocess_node__debut_prize_person__compact(&$variables) {
@@ -1325,21 +1391,8 @@ function debut_preprocess_node__master_class__teaser(&$variables) {
     $auth_node = cache_common_load_node($auth_field);
     $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
   }
-  //$_html['master'] = debut_render($content, 'field_master_class_master');
   
   // Theme interview.
-  /*if (!empty($node->field_interview_node[0]['nid'])) {
-    $interviews = array();
-    foreach ($node->field_interview_node as $item) {
-      $intnode = debut_common_node_load($item['nid']);
-      if (!empty($intnode)) {
-        $intnode->build_mode = DEBUT_COMMON_BM_LISTING;
-        $interviews[] = theme('node', $intnode);
-      }
-    }
-
-    $node->_html['interviews'] = theme('item_list', $interviews, NULL, 'ul', array('class' => 'listing'));
-  }*/
   $_html['interviews'] = debut_render($content, 'field_master_class_interview');
 
 }
