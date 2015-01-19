@@ -36,7 +36,10 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach addthis.
   debut_mobile_custom.attach_addthis($context, settings);
-}
+
+  // Attach view more button.
+  debut_mobile_custom.attach_view_more($context, settings);
+};
 
 // Init routine, will be called once.
 debut_mobile_custom.init = function ($context, settings) {
@@ -44,7 +47,7 @@ debut_mobile_custom.init = function ($context, settings) {
 
   // Mark this as inited.
   debut_mobile_custom._inited = true;
-
+  document.addEventListener("touchstart", function(){}, true);
 }
 
 /**
@@ -180,5 +183,18 @@ debut_mobile_custom.attach_addthis = function ($context, settings) {
   }
   $.getScript(script, function() {
     addthis.init();
+  });
+};
+
+// Attach view more.
+debut_mobile_custom.attach_view_more = function ($context, settings) {
+  $context.find('.block-button-more').once('debut_view_more', function(){
+    var $this = $(this);
+    $this.click(function () {
+      var $this = $(this);
+      var $target = $('.' + $this.attr('data-target'));console.log($this.attr('data-target'));
+      $this.remove();
+      $target.fadeIn();
+    });
   });
 };
