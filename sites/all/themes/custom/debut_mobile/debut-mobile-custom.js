@@ -33,6 +33,9 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach selects.
   debut_mobile_custom.attach_selects($context, settings);
+
+  // Attach addthis.
+  debut_mobile_custom.attach_addthis($context, settings);
 }
 
 // Init routine, will be called once.
@@ -156,9 +159,26 @@ debut_mobile_custom.attach_selects = function ($context, settings) {
 
     // Years list select.
     $(this).find('.years-select').on('change', function () {
-      var year = $(this).val();console.log(111);
+      var year = $(this).val();
       var url = settings.debut_common.years_list[year];
       debut_mobile_custom.redirect(url);
     });
+  });
+};
+
+// Attach addthis.
+debut_mobile_custom.attach_addthis = function ($context, settings) {
+  var script = '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-525d1ec751799799#domready=1';
+  if (window.addthis) {
+    window.addthis = null;
+    window._adr = null;
+    window._atc = null;
+    window._atd = null;
+    window._ate = null;
+    window._atr = null;
+    window._atw = null;
+  }
+  $.getScript(script, function() {
+    addthis.init();
   });
 };
