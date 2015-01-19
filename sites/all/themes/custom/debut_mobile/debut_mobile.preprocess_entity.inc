@@ -159,3 +159,56 @@ function debut_mobile_preprocess_views_debut_view_list_press_about_debut__defaul
 
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
+
+/**
+ * Preprocess view mode full for debut_jury node.
+ */
+function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and jury image.
+  $_html['title'] = check_plain($node->title);
+
+  // Check if photo present.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_mobile_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '200px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = $image;
+
+  // Get jury tags.
+  $tags_field = qtools_api__field_get_item('node', $node, 'field_jury_tags');
+  foreach ($tags_field as $tag) {
+    $tag = taxonomy_term_load($tag['target_id']);
+    $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
+  }
+
+  // Get profile.
+  $_html['field_jury_profile_short'] = debut_mobile_render($content, 'field_jury_profile_short');
+  $_html['field_jury_body'] = debut_mobile_render($content, 'field_jury_body');
+
+  // Get jury_self.
+  $_html['jury_self_short'] = debut_mobile_render($content, 'field_jury_self_short');
+  $_html['jury_self'] = debut_mobile_render($content, 'field_jury_self_long');
+
+  // Help resources.
+  $_html['resources'] = debut_mobile_render($content, 'field_person_resources');
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+
+  $_data['nid'] = $node->nid;
+}
