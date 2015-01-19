@@ -20,9 +20,9 @@ var site_common = site_common || {};
   Drupal.behaviors.site_common_asynk = {
     attach: function ($context, settings) {
       // Create JS elements.
-      if (settings.site_common && settings.site_common.asynk) {
-        for (i in settings.site_common.asynk) {
-          site_common.asynk.add_js(settings.site_common.asynk[i]);
+      if (settings.site_common && settings.site_common.asynk && settings.site_common.asynk.js) {
+        for (i in settings.site_common.asynk.js) {
+          site_common.asynk.add_js(settings.site_common.asynk.js[i]);
         }
       }
     }
@@ -41,7 +41,7 @@ var site_common = site_common || {};
       s.parentNode.insertBefore(p, s);
 
       // Log action and prevent dublicate.
-      qtools.log('SCAS:', name);
+      qtools.log('SCASL:', name);
       site_common.asynk._added[name] = true;
     }
   }

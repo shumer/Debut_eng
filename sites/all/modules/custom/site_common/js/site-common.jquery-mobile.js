@@ -11,7 +11,8 @@ var site_common = site_common || {};
 
 // Init main object.
 site_common.jquery_mobile = site_common.jquery_mobile || {
-  _inited: false
+  _inited: false,
+  _redirect: '',
 };
 
 // Overrige drupal attach behaviors.
@@ -19,6 +20,19 @@ site_common.jquery_mobile.DrupalAttachBehaviors = Drupal.attachBehaviors;
 Drupal.attachBehaviors = function (context, settings) {
   site_common.jquery_mobile.attachBehaviors(context, settings);
 }
+
+// On ajax complete we ned to check for redirects.
+/*$(document).ajaxSuccess(function(event, xhr, settings) {
+  var responce_header = xhr.getResponseHeader('X-Site-Common-URL');
+  if (responce_header && responce_header.length > 0) {
+    console.log(settings);
+  }
+});*/
+
+// On before navigate.
+$(window).on('beforenavigate', function(event) {
+  site_common.jquery_mobile.beforenavigate(event);
+});
 
 // On page create, replace all links actions with navigate event.
 $(window).on('pagecreate', function (event, data) {
@@ -45,10 +59,25 @@ $(window).on('pagecontainerload', function (event, data) {
 
   // Get context and settings.
   var $context = data.toPage;
+  $context[0]._drupalSettings = {};
 
   // Getting settings a bit harder.
-  var response_text = data.xhr.responseText;
-  response_text = response_text.match(/jQuery\.extend\(Drupal\.settings\,(.*)/)[1];
+  var response_text = '';
+  var find_settings = data.xhr.responseText.match(/jQuery\.extend\(Drupal\.settings\,(.*)/);
+  if (find_settings && find_settings.length > 0) {
+    response_text = find_settings[1];
+  }
+
+  // Looking for a redirect.
+  var find_redirect = data.xhr.getResponseHeader('X-Site-Common-Location');
+  if (find_redirect) {
+    data.absUrl = find_redirect;
+    qtools.log('SCJQM: redirect found: ', find_redirect);
+    site_common.jquery_mobile._redirect = find_redirect;
+    $.mobile.navigate(find_redirect, {});
+  }
+
+  // At this point we know we not redirecting.
   if (response_text && response_text != '') {
     var eval_text = 'var site_common_drupal_settings = (' + response_text;
     eval(eval_text);
@@ -150,7 +179,7 @@ site_common.jquery_mobile.attach = function ($context, settings) {
       }
 
       // Pass to internal naviagtion function.
-      site_common.jquery_mobile.naviagte(href, params);
+      site_common.jquery_mobile.navigate(href, params);
     });
   });
 }
@@ -219,6 +248,18 @@ site_common.jquery_mobile.init = function (event, data) {
 }
 
 /**
+ * Handle before navigate event.
+ */
+site_common.jquery_mobile.beforenavigate = function (event) {
+  // If this is due to redirect, we prevent actual Ajax request.
+  if (site_common.jquery_mobile._redirect != '') {
+    qtools.log('SCJQM: redirect suppressed: ', site_common.jquery_mobile._redirect);
+    site_common.jquery_mobile._redirect = '';
+    event.preventDefault();
+  }
+}
+
+/**
  * Handle before show event.
  */
 site_common.jquery_mobile.pagecontainerbeforeshow = function (event, data) {
@@ -265,7 +306,7 @@ site_common.jquery_mobile.pagecontainerhide = function (event, data) {
 /**
  * Performs navigate.
  */
-site_common.jquery_mobile.naviagte = function (href, params) {
+site_common.jquery_mobile.navigate = function (href, params) {
   // Alter the url according to the given params.
   $.mobile.navigate(href, params);
   qtools.log('SCJQM: navigate to:', href);

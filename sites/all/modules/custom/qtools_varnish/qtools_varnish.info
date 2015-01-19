@@ -6,6 +6,6 @@ configure = admin/config/development/qtools_varnish
 
 core = 7.x
 php = 5.x
-version = "7.x-2.03"
+version = "7.x-2.04"
 
 dependencies[] = qtools

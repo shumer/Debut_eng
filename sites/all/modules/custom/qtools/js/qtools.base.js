@@ -17,6 +17,70 @@ if(typeof String.prototype.trim !== 'function') {
 }
 
 /**
+ * Local storage Get.
+ */
+qtools.localStorageGet = function (bin, key, def_value, type) {
+  var value = def_value;
+  var lskey = bin + '-' + key;
+  if ('localStorage' in window) {
+    if (typeof(window.localStorage[lskey]) != 'undefined') {
+      value = window.localStorage[lskey];
+
+      // Set proper type.
+      if (type == 'i') {
+        value = parseInt(value);
+      }
+      else if (type == 'f') {
+        value = parseFloat(value);
+      }
+    }
+  }
+
+  // Return value.
+  return value;
+}
+
+/**
+ * Local storage Set.
+ */
+qtools.localStorageSet = function (bin, key, value) {
+  var lskey = bin + '-' + key;
+  if ('localStorage' in window) {
+    window.localStorage[lskey] = value;
+    return true;
+  }
+  // Return false if storage not available.
+  return false;
+}
+
+/**
+ * Local storage Remove.
+ */
+qtools.localStorageRemove = function (bin, key) {
+  var lskey = bin + '-' + key;
+  if ('localStorage' in window) {
+    window.localStorage.removeItem(lskey);
+  }
+}
+
+/**
+ * Local storage List.
+ */
+qtools.localStorageList = function (bin) {
+  var result = [];
+  if ('localStorage' in window) {
+    for (i in window.localStorage) {
+      if (i.indexOf(bin) == 0) {
+        // Remove bin from index.
+        var key = i.replace(bin + '-', '');
+        result.push(key);
+      }
+    }
+  }
+  return result;
+}
+
+/**
  * Url parser.
  */
 qtools.parseUrl = function (href) {
