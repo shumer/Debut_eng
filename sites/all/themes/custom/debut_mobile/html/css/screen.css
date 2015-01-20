@@ -739,8 +739,10 @@ a, a.active, li a.active {
   text-align: center;
   text-transform: uppercase;
 }
-.block-jury figure {
-  text-align: center;
+.block-jury .jury-photo {
+  float: left;
+  margin-top: 0px;
+  width: 180px;
 }
 .block-jury h2.sub-title {
   color: #f09015;
@@ -771,5 +773,31 @@ a, a.active, li a.active {
   display: inline-block;
   padding: 1.0625em 0 1.0625em 0px;
   position: relative;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  height: 1%;
+}
+.block-jury .tags {
+  color: #c164bd;
+  font-size: 16px;
+  margin: 0 0 37px;
+  padding: 0 0 5px 22px;
+  text-transform: none;
+  vertical-align: middle;
+}
+.block-jury .tags .ico {
+  background: url("../images/sprite-a.png") no-repeat scroll 0 -54px transparent;
+  display: block;
+  float: left;
+  height: 20px;
+  margin-right: 3px;
+  width: 20px;
 }
 /*------------end jury node styles---------------*/

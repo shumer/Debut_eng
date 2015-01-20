@@ -7,9 +7,18 @@
 ?>
 <article class="block-jury">
   <h1><?php print $_html['title']; ?></h1>
-  <figure>
-    <?php print $_html['image']; ?>
-  </figure>
+  <div class="jury-head-wrapper">
+    <div class="jury-photo">
+      <?php print $_html['image']; ?>
+    </div>
+    <div class="tags">
+      <?php if (count($_html['tags'])): ?>
+        <span class="ico"></span>
+      <?php endif; ?>
+      <?php print implode(', ', $_html['tags']); ?>
+    </div>
+  </div>
+  <div class="clearfix"></div>
   <h2 class="sub-title"><?php print t('Profile'); ?></h2>
   <div class="profile-short">
     <?php print $_html['field_jury_profile_short'] ; ?>
