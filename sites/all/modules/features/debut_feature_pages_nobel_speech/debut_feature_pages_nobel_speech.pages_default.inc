@@ -39,7 +39,15 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Expose Year Filter context',
+        'keyword' => 'year_filter',
+        'name' => 'year_filter_context',
+        'view' => 'debut_view_list_nobel_speach',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
   );
   $display = new panels_display();
@@ -110,7 +118,9 @@ function debut_feature_pages_nobel_speech_default_page_manager_pages() {
     $pane->subtype = 'debut_common_nobel_listing';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'context' => 'context_year_filter_contexts_1',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
