@@ -20,7 +20,7 @@ $plugin = array(
   'category' => t('Debut', array(), array('context' => 'Debut: admin area')),
   'icon' => NULL,
   'no title override' => TRUE,
-  'required context' => FALSE,
+  'required context'  => new ctools_context_required('Year Filter exposed', array('year_filter_context')),
 );
 
 /**
@@ -32,7 +32,13 @@ function debut_common_nobel_speech_listing_content_type_render($subtype, $conf, 
   $data = array();
   $_html = array();
 
-  $_html['nobel_listing'] = views_embed_view(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING);
+  if (empty($_GET['field_publication_date_value'])) {
+    $_html['nobel_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING, 'default', array(), $context->data, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
+  }
+  else {
+    $_html['nobel_listing'] = views_embed_view(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING);
+  }
+  
   $data['_html'] = $_html;
 
   $block->content = theme('debut_common_nobel_speech_listing', $data);
