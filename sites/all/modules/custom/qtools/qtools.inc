@@ -527,7 +527,7 @@ function _qtools_api__views_execute_view($view, $display_id) {
  *
  * // TODO: document.
  */
-function qtools_api__views_get_result($name, $display_id = 'default', $args = array(), $exposed = array(), $items_per_page = FALSE, $mode = FALSE) {
+function qtools_api__views_get_result($name, $display_id = 'default', $args = array(), $exposed = array(), $items_per_page = FALSE, $mode = FALSE, &$raw_results = FALSE) {
 
   $result = ($mode != QTOOLS_VIEWS_MODE_PREVIEW) ? array() : '';
 
@@ -571,6 +571,11 @@ function qtools_api__views_get_result($name, $display_id = 'default', $args = ar
       // QTOOLS_VIEWS_MODE_VALUES execute will load all entities which is huge performance hit.
       _qtools_api__views_execute_view($view, $display_id);
       $result = $view->result;
+    }
+
+    // Save raw result if array was passed.
+    if (is_array($raw_results)) {
+      $raw_results = $view->result;
     }
 
     // Clean up.

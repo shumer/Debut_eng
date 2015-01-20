@@ -725,3 +725,51 @@ a, a.active, li a.active {
 .pager_container .pager li span {
   margin-left: 3px;
 }
+/*------------jury node styles---------------*/
+.block-jury {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-jury h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-jury figure {
+  text-align: center;
+}
+.block-jury h2.sub-title {
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+.block-jury p {
+  line-height: 1.5;
+}
+.block-button-more {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  color: #f09015;
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0 25px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-button-more:hover {
+  background: #ffebcd;
+}
+.block-button-more span {
+  display: inline-block;
+  padding: 1.0625em 0 1.0625em 0px;
+  position: relative;
+}
+/*------------end jury node styles---------------*/

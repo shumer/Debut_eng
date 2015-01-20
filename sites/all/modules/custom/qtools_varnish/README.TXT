@@ -1,4 +1,7 @@
 7.x-2.03
+- Support for Panels everywhere added.
+
+7.x-2.03
 - Support for Views GET method switch added.
 - Support for site_common environment restoration feature
 - Avaialbility settings moved to settings page (like enabled for https)

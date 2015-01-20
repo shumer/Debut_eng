@@ -120,6 +120,23 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date_value[value][year]' => $year)));
       break;
 
+    // Make breadcrumb for Debut jury.
+    case DEBUT_COMMON_TYPE_JURY:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
+      $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
+      $letter = drupal_substr($letter, 0, 1);
+      $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_JURY. '/' . $letter);
+      break;
+
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
