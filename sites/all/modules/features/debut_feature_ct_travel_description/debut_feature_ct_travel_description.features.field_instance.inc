@@ -62,8 +62,15 @@ function debut_feature_ct_travel_description_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'debut_date_short',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -140,8 +147,9 @@ function debut_feature_ct_travel_description_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
