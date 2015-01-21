@@ -202,11 +202,11 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
   $_html['field_jury_body'] = debut_mobile_render($content, 'field_jury_body');
 
   // Get jury_self.
-  $_html['jury_self_short'] = debut_mobile_render($content, 'field_jury_self_short');
-  $_html['jury_self'] = debut_mobile_render($content, 'field_jury_self_long');
+  $_html['field_jury_self_short'] = debut_mobile_render($content, 'field_jury_self_short');
+  $_html['field_jury_self_long'] = debut_mobile_render($content, 'field_jury_self_long');
 
   // Help resources.
-  $_html['resources'] = debut_mobile_render($content, 'field_person_resources');
+  $_html['field_person_resources'] = debut_mobile_render($content, 'field_person_resources');
 
   $_html['social_links'] = theme('debut_mobile_social_links');
 
