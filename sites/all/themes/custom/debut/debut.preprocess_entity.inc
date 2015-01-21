@@ -483,6 +483,33 @@ function debut_preprocess_node__video__teaser(&$variables) {
 }
 
 /**
+ * Preprocess video_search.
+ */
+function debut_preprocess_node__video__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
+  $_html['body'] = debut_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_image_src('http://youtube.com/' . $field);
+
+  $params = array(
+    'path' => $src,
+    'alt' => $node->title,
+    'title' => $node->title,
+    'attributes' => NULL,
+    'getsize' => FALSE,
+  );
+  $image = theme('image', $params);
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
  * Preprocess video_full.
  *
  * Displayes playeble youtube iframe.
@@ -582,8 +609,8 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
 /**
  * Preprocess photo_listing_search.
  */
-function debut_preprocess_node__photo_listing_search(&$variables) {
-  debut_preprocess_node__photo_listing_listing($variables);
+function debut_preprocess_node__photo_listing__search(&$variables) {
+  debut_preprocess_node__photo_listing__listing($variables);
 }
 
 /**

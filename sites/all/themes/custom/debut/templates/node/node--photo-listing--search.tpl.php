@@ -6,9 +6,9 @@
 ?>
 <div class="photo node-item photo-listing-item">
   <div class="title">
-    <?php print $node->_html['title']; ?>
+    <?php print $_html['title']; ?>
   </div>
-  <?php foreach ($node->_html['images'] as $image) : ?>
+  <?php foreach ($_html['images'] as $image) : ?>
     <?php print $image; ?>
   <?php endforeach; ?>
   <div class="separator"></div>
