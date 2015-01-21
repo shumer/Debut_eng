@@ -208,6 +208,7 @@ function cache_common_entity_render($entity_type, $entity, $view_mode = 'full', 
     $view_mode,
     implode('_', array_keys($user->roles)),
     ($langcode ? $langcode : $language->language),
+    $theme,
   ));
 
   // Start performance timer.
