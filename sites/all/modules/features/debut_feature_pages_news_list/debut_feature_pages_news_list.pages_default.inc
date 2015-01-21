@@ -120,7 +120,9 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->subtype = 'debut_common_news_listing';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'context' => 'context_year_filter_context_1',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
