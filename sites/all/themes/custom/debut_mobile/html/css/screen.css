@@ -257,6 +257,22 @@ a, a.active, li a.active {
   left: 0;
   right: 0;
 }
+.footer .footer-inner .contact {
+  border-bottom: 1px solid #faab22;
+  display: block;
+  float: none;
+  height: auto;
+}
+.footer .footer-inner .contact a {
+  color: #fff;
+  display: block;
+  padding: 23px 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.footer .footer-inner .copyright {
+  padding: 23px 20px;
+}
 /*--end-footer-styles--*/
 
 .block.center-block {
@@ -516,7 +532,7 @@ a, a.active, li a.active {
 }
 /*------------end news node styles---------------*/
 .ui-content {
-  padding-bottom: 62px;
+  padding-bottom: 170px;
 }
 /*------------documents node styles---------------*/
 .block-document {
@@ -814,3 +830,71 @@ a, a.active, li a.active {
   padding: 0 0 0 25px;
 }
 /*------------end jury node styles---------------*/
+/*------------contact us styles---------------*/
+.debut-contact-form {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 25px;
+}
+.debut-contact-form h3 {
+  margin-top: 0px;
+}
+.debut-contact-form p {
+  color: #999999;
+  font-size: 0.875em;
+  line-height: 1.4;
+}
+.debut-contact-form .form-header {
+  border-bottom: 1px solid #f09015;
+}
+.debut-contact-form .form-body {
+  margin-top: 10px;
+}
+.debut-contact-form .form-body:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.debut-contact-form .recaptcha_only_if_image,
+.debut-contact-form .form-body label {
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+  text-transform: uppercase;
+}
+.debut-contact-form .form-item {
+  margin: 0 0 1.625em;
+  float: none;
+  width: auto;
+  outline: 0 none;
+}
+.debut-contact-form .form-body .form-item .form-text {
+  border: 1px solid #f09015;
+  font-size: 0.875em;
+  padding: 12px 10px;
+  vertical-align: top;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+.debut-contact-form .form-body .form-item .form-textarea {
+  border: 1px solid #f09015;
+  font-size: 1em;
+  padding: 12px 10px;
+  vertical-align: top;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: auto;
+  min-height: 130px !important;
+  height: 130px !important;
+  line-height: 1.5em;
+  transition: height 200ms linear 0s;
+  resize: none;
+}
+.debut-contact-form .form-body #recaptcha_image,
+.debut-contact-form .form-body #recaptcha_challenge_image {
+  width: 100% !important;
+}
+/*------------end contact us styles---------------*/

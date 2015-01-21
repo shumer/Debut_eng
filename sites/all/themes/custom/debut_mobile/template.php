@@ -5,6 +5,15 @@
  */
 
 /**
+ * Preprocess debut_mobile_form, threat forms like enteties.
+ */
+function debut_mobile_preprocess_debut_common_footer(&$variables) {
+  $_html = &$variables['_html'];
+
+  $_html['contact_us'] = l(t('Contact us'), DEBUT_COMMON_PAGE_CONTACT);
+}
+
+/**
  * Implements theme_form.
  */
 function debut_mobile_form($variables) {
@@ -709,4 +718,21 @@ function debut_mobile_pager($variables) {
       'attributes' => array('class' => array('pager')),
     ));
   }
+}
+
+/**
+ * Theme function: creates the custom themed recaptcha widget.
+ */
+function debut_mobile_recaptcha_custom_widget() {
+  $recaptcha_only_if_incorrect_sol = t('Попробуйте еще раз');
+  $recaptcha_only_if_image_enter = t('Введите текст с картинки:');
+  $recaptcha_get_another_captcha = t('Обновить изображение');
+  $help = t('Help');
+  return <<<EOT
+    <div id="recaptcha_image" class="recaptcha_image"></div>
+    <div class="recaptcha_only_if_incorrect_sol" style="color:red">$recaptcha_only_if_incorrect_sol</div>
+    <span class="recaptcha_only_if_image">$recaptcha_only_if_image_enter</span>
+    <div class="form-text-wrap"><div class="form-text-wrap-inner"><input type="text" id="recaptcha_response_field" name="recaptcha_response_field" class="form-text" /></div></div>
+    <div class="recaptcha_get_another_captcha"><a class="captcha-reload-link" href="javascript:Recaptcha.reload()">$recaptcha_get_another_captcha</a></div>
+EOT;
 }

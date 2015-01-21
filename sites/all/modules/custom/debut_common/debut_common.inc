@@ -13,6 +13,19 @@ function debut_common_create_page_mobile_breadcrumbs() {
 
   switch ($path) {
 
+    // Bc for contact us page.
+    case DEBUT_COMMON_PAGE_CONTACT:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Contact us');
+      break;
 
     // Bc for press page.
     case DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT:
