@@ -32,9 +32,9 @@ define('DEBUT_COMMON_TYPE_NOBEL_SPEECH', 'nobel_speech');
 
 // Define site pages.
 define('DEBUT_COMMON_PAGE_PRIZE_PERSONS', 'prize_persons');
-define('DEBUT_COMMON_PAGE_ALPHABET_PERSONS', 'alphabet_persons');
+define('DEBUT_COMMON_PAGE_ALPHABET_PERSONS', 'persons_list');
 define('DEBUT_COMMON_PAGE_PRIZE_JURY', 'prize_jury');
-define('DEBUT_COMMON_PAGE_ALPHABET_JURY', 'alphabet_jury');
+define('DEBUT_COMMON_PAGE_ALPHABET_JURY', 'jury_list');
 define('DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT', 'press_list');
 define('DEBUT_COMMON_PAGE_NEWS_LIST', 'news_list');
 define('DEBUT_COMMON_PAGE_DOCUMENTS_LIST', 'documents_list');

@@ -981,7 +981,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Жюри премии',
+      'custombc' => '',
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),
