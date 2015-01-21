@@ -394,7 +394,7 @@ debut_custom.attach_selects = function ($context, settings) {
     // Years list select.
     $(this).find('select.years-select').selectmenu({
       style: 'dropdown',
-      change: function( event, ui ) {
+      select: function( event, ui ) {
         var year = $(this).val();
         var url = settings.debut_common.years_list[year];
         debut_custom.redirect(url);

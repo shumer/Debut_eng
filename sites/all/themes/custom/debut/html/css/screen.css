@@ -1831,6 +1831,7 @@ section article.prem_list a {
 .content .block-news-listing {
   float: left;
   font-family: 'PT Sans', sans-serif;
+  width: 100%;
 }
 /*------------end news list styles---------------*/
 /*------------book list styles---------------*/
