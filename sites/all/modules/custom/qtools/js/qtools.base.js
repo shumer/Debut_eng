@@ -226,12 +226,15 @@ qtools.cookie_enabled = function () {
  * Log function.
  */
 qtools.log = function(text, data) {
-  if (typeof console == "object" && typeof console.log == "function")  {
-    if (data) {
-      console.log(text, data);
-    }
-    else {
-      console.log(text);
+  // Check if log disabled.
+  if (qtools_settings && qtools_settings.base && qtools_settings.base.log) {
+    if (typeof console == "object" && typeof console.log == "function")  {
+      if (data) {
+        console.log(text, data);
+      }
+      else {
+        console.log(text);
+      }
     }
   }
 }

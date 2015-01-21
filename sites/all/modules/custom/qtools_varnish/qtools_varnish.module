@@ -436,7 +436,7 @@ function qtools_varnish_site_common_preload_resources() {
   // Add JS if configured.
   if (_qtools_varnish_settings('views', 'enabled') && $theme != variable_get('admin_theme', 0)) {
     $js_file = drupal_get_path('module', 'qtools_varnish') . '/js/qtools_varnish.views.js';
-    site_common_add_asynk_js($js_file);
+    site_common_add_async_js($js_file);
   }
 }
 

@@ -49,9 +49,6 @@ debut_mobile_custom.init = function ($context, settings) {
   debut_mobile_custom._inited = true;
   document.addEventListener("touchstart", function(){}, true);
 
-  $context.find('.captcha-reload-link').click(function(){
-    Recaptcha.reload();
-  });
 };
 
 /**

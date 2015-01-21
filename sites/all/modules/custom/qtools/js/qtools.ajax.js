@@ -8,7 +8,7 @@ var qtools_ajax = qtools_ajax || {
   _fingerprints: {},
   _antispam: {},
   _queue: {},
-  _windows: {},
+  _windows: {}
 };
 
 // jQuery sign.
@@ -249,7 +249,7 @@ qtools_ajax.queue_process = function (_fingerid, _fingerprint, info, msg) {
   if (_fingerid && info) {
     qtools_ajax._queue[_fingerid] = {
       '_fingerprint': _fingerprint,
-      'info': info,
+      'info': info
     };
 
     // Log spam.

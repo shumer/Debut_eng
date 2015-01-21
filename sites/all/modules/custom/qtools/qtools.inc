@@ -4,6 +4,9 @@
  * Basic api for qtools.
  */
 
+global $qtools_request_cookie;
+$qtools_request_cookie = $_COOKIE;
+
 /**
  * Parse single tag selector.
  */
@@ -62,6 +65,16 @@ function qtools_api__js_add($name = '', $force = FALSE) {
       drupal_add_library('system', 'drupal.autocomplete');
     }
     elseif ($name == 'base') {
+
+      // Add settings.
+      $settings = variable_get('qtools_api__js_add_base_settings', array(
+        'base' => array(
+          'log' => TRUE,
+        ),
+      ));
+      $js = 'var qtools_settings = ' . drupal_json_encode($settings) . ';';
+      drupal_add_js($js, 'inline');
+
       // If file is added it is present on every page.
       $options['every_page'] = TRUE;
     }

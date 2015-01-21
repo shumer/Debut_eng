@@ -44,6 +44,7 @@ function debut_common_contact_us_form($form, $form_state) {
   );
 
   $form['#validate'][] = 'debut_common_contact_us_form_validate';
+  $form['#after_build'][] = 'debut_common_contact_us_form_after_build';
 
   return $form;
 }
@@ -200,4 +201,15 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
 
   $mail = drupal_mail('debut_common', $mail_conf['message_manuscript'], $mail_conf['manuscript_email'], $language, $params, 'noreply@pokolenie-debut.ru');
   drupal_set_message(t('Ваше сообщение было успешно отправлено'));
+}
+
+/**
+ * After build contact us form.
+ */
+function debut_common_contact_us_form_after_build($form, &$form_state) {
+  $is_mobile = debut_common_is_mobile();
+  if ($is_mobile) {
+    unset($form['captcha']);
+  }
+  return $form;
 }

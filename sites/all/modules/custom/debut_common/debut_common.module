@@ -199,7 +199,7 @@ function debut_common_init() {
 /**
  * Implements hook_node_presave().
  */
-function debut_node_presave($node) {
+function debut_common_node_presave($node) {
 
   $supported_types = array(
     DEBUT_COMMON_TYPE_NEWS,
@@ -213,7 +213,7 @@ function debut_node_presave($node) {
     return;
   }
 
-  // Clear cahce for year list data.
+  // Clear cache for year list data.
   $cache_var = variable_get('debut_common_cache_data', array());
   foreach ($cache_var as $item) {
     cache_clear_all($item, 'cache');

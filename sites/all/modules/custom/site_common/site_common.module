@@ -4,13 +4,12 @@
  * Module logic and API.
  */
 
-define('SITE_COMMON_VAR_MOBILE_THRESHOLD', 925);
+define('SITE_COMMON_VAR_DEFAULT_MOBILE_THRESHOLD', 925);
 define('SITE_COMMON_VAR_JQM_EXCLUDE', '(/admin/)|(/devel/)|(/admin_menu/)|(/node/\d*/edit)|(/user/\d*/edit)|(/user/logout)');
 
 // Load includes.
 module_load_include('inc', 'site_common');
 module_load_include('field.inc', 'site_common');
-
 
 /**
  * Implements hook_drupal_goto_alter().
@@ -54,8 +53,8 @@ function site_common_site_common_preload_resources() {
   // Add ajax.
   site_common_js_add('ajax');
 
-  // Add asynk.
-  site_common_js_add('asynk');
+  // Add async.
+  site_common_js_add('async');
 }
 
 /**
@@ -101,20 +100,37 @@ function site_common_preprocess_html(&$variables) {
 
   // This runs before theme preproces.
   $js_list = &drupal_static('drupal_add_js', array());
+  $js_source = $js_list;
 
-  // Exclude all asynk items to be loaded after.
-  $asynk_list = array();
+  // Support minify module.
+  if (module_exists('minify')) {
+    minify_js_alter($js_source);
+  }
+
+  // Exclude all async items to be loaded after.
+  $query_string = variable_get('css_js_query_string', '0');
+  $async_list = array();
+  $synk_list = array();
+  foreach ($js_source as $key => $info) {
+    if (!empty($info['async']) && $info['type'] == 'file') {
+      $async_list[] = url($info['data'], array('absolute' => TRUE, 'query' => array('v' => $query_string)));
+    }
+    else {
+      $synk_list[] = $key;
+    }
+  }
+
+  // Strip from js list all except synk list.
   foreach ($js_list as $key => $info) {
-    if (!empty($info['asynk']) && $info['type'] == 'file') {
-      $asynk_list[] = url($info['data'], array('absolute' => TRUE));
+    if (!in_array($key, $synk_list)) {
       unset($js_list[$key]);
     }
   }
 
-  // Add asynk script list to the page.
-  if (!empty($asynk_list)) {
-    site_common_js_add('asynk', FALSE, array(
-      'js' => $asynk_list,
+  // Add async script list to the page.
+  if (!empty($async_list)) {
+    site_common_js_add('async', FALSE, array(
+      'js' => $async_list,
     ));
   }
 }
@@ -258,17 +274,18 @@ function _site_common_autocomplete_access() {
 
 /**
  * Implements hook_theme_registry_alter().
+ *
+ * If you want to remove this functionality you should unset
+ * this implementation in hook registry.
  */
 function site_common_theme_registry_alter(&$theme_registry) {
   // Remove stored function.
   variable_del('site_common_image_style_function');
 
   // Swap function and save original.
-  if (_site_common_settings('lazy_load', 'enabled', FALSE)) {
-    if (!empty($theme_registry['image_style'])) {
-      variable_set('site_common_image_style_function', $theme_registry['image_style']['function']);
-      $theme_registry['image_style']['function'] = 'site_common_image_style';
-    }
+  if (!empty($theme_registry['image_style'])) {
+    variable_set('site_common_image_style_function', $theme_registry['image_style']['function']);
+    $theme_registry['image_style']['function'] = 'site_common_image_style';
   }
 }
 
@@ -294,19 +311,19 @@ function site_common_image_style($variables) {
     }
     // Add lazyload JS.
     site_common_js_add('lazy_load', FALSE, array(
-      'threshold' => _site_common_settings('lazy_load', 'threshold', SITE_COMMON_VAR_MOBILE_THRESHOLD),
+      'threshold' => _site_common_settings('lazy_load', 'threshold', SITE_COMMON_VAR_DEFAULT_MOBILE_THRESHOLD),
     ));
   }
   else {
     $lazy_load = FALSE;
   }
-  $no_size = !empty($variables['attributes']['no_size']) || $lazy_load;
+  $nosize = !empty($variables['attributes']['nosize']) || $lazy_load;
 
   // Add tracking class.
   if ($lazy_load) {
     $variables['attributes']['class'][] = 'img-lazy-load';
   }
-  if ($no_size) {
+  if ($nosize) {
     // If no size supplied we should remove those.
     $variables['width'] = NULL;
     $variables['height'] = NULL;
@@ -316,7 +333,7 @@ function site_common_image_style($variables) {
   $image = $image_style_function($variables);
 
   // For just in case we remove image size.
-  if ($no_size) {
+  if ($nosize) {
     $image = preg_replace(array('/width="[^"]*"/', '/height="[^"]*"/'), array('', ''), $image);
   }
 
