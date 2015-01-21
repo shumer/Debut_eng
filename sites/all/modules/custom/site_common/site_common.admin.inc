@@ -41,14 +41,14 @@ function site_common_admin_settings_form() {
   $form['site_common_settings']['lazy_load']['enabled'] = array(
     '#title' => t('Enable images lazy load', array(), array('context' => 'COMMON: admin area')),
     '#type' => 'checkbox',
-    '#description' => t('!IMPORTANT! You must clear theme registry after changing this value.', array(), array('context' => 'COMMON: admin area')),
+    '#description' => t('If disabled, settings below will have no effect.', array(), array('context' => 'COMMON: admin area')),
     '#default_value' => _site_common_settings('lazy_load', 'enabled'),
   );
   $form['site_common_settings']['lazy_load']['threshold'] = array(
     '#title' => t('Mobile treshold', array(), array('context' => 'COMMON: admin area')),
     '#type' => 'textfield',
     '#description' => t('This is max width in which mobile images will be loaded (if available).', array(), array('context' => 'COMMON: admin area')),
-    '#default_value' => _site_common_settings('lazy_load', 'threshold', SITE_COMMON_VAR_MOBILE_THRESHOLD),
+    '#default_value' => _site_common_settings('lazy_load', 'threshold', SITE_COMMON_VAR_DEFAULT_MOBILE_THRESHOLD),
     '#element_validate' => array('element_validate_integer'),
     '#required' => TRUE,
   );

@@ -1,3 +1,6 @@
+7.x-0.06
+- Async load and JQM scripts improvements (@see file site-common.async-example.js for async example)
+
 7.x-0.5
 - jQuery Mobile integration script added
 

@@ -4,7 +4,7 @@ core = 7.x
 package = QTools
 configure = admin/config/development/site_common
 
-version = "7.x-0.5"
+version = "7.x-0.06"
 core = "7.x"
 
 dependencies[] = qtools

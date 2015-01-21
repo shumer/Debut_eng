@@ -168,7 +168,7 @@ function site_common_field_formatter_view($entity_type, $entity, $field, $instan
 
       // Pass nosize further, this will be processed by site_common_image_style().
       if (!empty($settings['nosize'])) {
-        $items[$key]['attributes']['#nosize'] = TRUE;
+        $items[$key]['attributes']['nosize'] = TRUE;
       }
 
       // Set default ALT.

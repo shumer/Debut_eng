@@ -96,7 +96,7 @@ var site_common = site_common || {};
         $this.submit(function (event) {
 
           // Save all CKEditor info to the apropriate textareas.
-          if (CKEDITOR && CKEDITOR.instances) {
+          if (typeof(CKEDITOR) != 'undefined' && CKEDITOR.instances) {
             $this.find('textarea.ckeditor-processed').each(function () {
               var textarea_id = $(this).attr('id');
               if (typeof(CKEDITOR.instances[textarea_id]) != 'undefined') {

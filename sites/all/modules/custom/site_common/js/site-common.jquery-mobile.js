@@ -12,16 +12,16 @@ var site_common = site_common || {};
 // Init main object.
 site_common.jquery_mobile = site_common.jquery_mobile || {
   _inited: false,
-  _redirect: '',
+  _redirect: ''
 };
 
 // Overrige drupal attach behaviors.
 site_common.jquery_mobile.DrupalAttachBehaviors = Drupal.attachBehaviors;
-Drupal.attachBehaviors = function (context, settings) {
-  site_common.jquery_mobile.attachBehaviors(context, settings);
+Drupal.attachBehaviors = function (context, settings, event) {
+  site_common.jquery_mobile.attachBehaviors(context, settings, event);
 }
 
-// On ajax complete we ned to check for redirects.
+// On ajax complete we need to check for redirects.
 /*$(document).ajaxSuccess(function(event, xhr, settings) {
   var responce_header = xhr.getResponseHeader('X-Site-Common-URL');
   if (responce_header && responce_header.length > 0) {
@@ -35,23 +35,40 @@ $(window).on('beforenavigate', function(event) {
 });
 
 // On page create, replace all links actions with navigate event.
-$(window).on('pagecreate', function (event, data) {
-  site_common.jquery_mobile.init(event, data);
+$(window).on('pagecreate', function (event) {
+  site_common.jquery_mobile.init(event);
 });
 
 // On page before show - replace Drupal.settings with settings for this page.
 $(window).on('pagecontainerbeforeshow', function(event, data) {
-  site_common.jquery_mobile.pagecontainerbeforeshow(event, data);
+  // Only triggers on page transitions.
+  if (data.toPage.hasClass('page') && (data.prevPage.length == 0 || data.prevPage.hasClass('page'))) {
+    site_common.jquery_mobile.pagecontainerbeforeshow(event, data);
+  }
+});
+
+// On page show - trigger behavirs that listen to this event.
+$(window).on('pagecontainershow', function(event, data) {
+  // Only triggers on page transitions.
+  if (data.toPage.hasClass('page') && (data.prevPage.length == 0 || data.prevPage.hasClass('page'))) {
+    site_common.jquery_mobile.pagecontainershow(event, data);
+  }
 });
 
 // On page beforehide - update Drupal.settings in container if they were changed.
 $(window).on('pagecontainerbeforehide', function(event, data) {
-  site_common.jquery_mobile.pagecontainerbeforehide(event, data);
+  // Only triggers on page transitions.
+  if (data.toPage.hasClass('page') && (data.prevPage.length == 0 || data.prevPage.hasClass('page'))) {
+    site_common.jquery_mobile.pagecontainerbeforehide(event, data);
+  }
 });
 
 // On page hide - update Drupal.settings in container if they were changed.
 $(window).on('pagecontainerhide', function(event, data) {
-  site_common.jquery_mobile.pagecontainerhide(event, data);
+  // Only triggers on page transitions.
+  if (data.toPage.hasClass('page') && (data.prevPage.length == 0 || data.prevPage.hasClass('page'))) {
+    site_common.jquery_mobile.pagecontainerhide(event, data);
+  }
 });
 
 // On page load reattach behaviors.
@@ -93,10 +110,9 @@ $(window).on('pagecontainerload', function (event, data) {
   }
 
   // Attach Behaviors to new page.
-  // We use timeout to offload behaviors from current thread as contain is not yet in DOM
+  // We use timeout to offload behaviors from current thread as content is not yet in DOM
   // despite JQM says otherwise.
   setTimeout(function () {
-    $context._skipCreate = true;
     Drupal.attachBehaviors($context, Drupal.settings);
   }, 0);
 });
@@ -117,7 +133,6 @@ Drupal.admin = Drupal.admin || {};
 Drupal.admin.behaviors = Drupal.admin.behaviors || {};
 Drupal.admin.behaviors.site_common_jquery_mobile = function (context, settings) {
   var $context = $(context);
-  $context._skipCreate = true;
   site_common.jquery_mobile.attach($context, settings);
 };
 
@@ -127,13 +142,13 @@ Drupal.admin.behaviors.site_common_jquery_mobile = function (context, settings) 
 site_common.jquery_mobile.attach = function ($context, settings) {
 
   // Enhance content if it wasn't page load.
-  if (!$context._skipCreate) {
+  if (!$context._noEnhance) {
     qtools.log('SCJQM: enhance:', $context);
     $context.trigger("create");
   }
 
   // Define a click binding for all links in the page.
-  $context.find('a, .site-common-jqm-navigate').not('.site-common-jqm-navigate-ignored, .ui-btn, [href^="#"]').once('site-common-jqm-navigate', function () {
+  $context.find('a[href], .site-common-jqm-navigate').not('.site-common-jqm-navigate-ignored, .ui-btn, [href^="#"]').once('site-common-jqm-navigate', function () {
     $(this).click(function(event) {
       var $this = $(this);
 
@@ -197,10 +212,37 @@ site_common.jquery_mobile.getPageContext = function () {
 
 /**
  * Attach behaviors replacement.
+ *
+ * Supported events are: pagecontainerbeforeshow, pagecontainershow, pagecontainerload.
  */
-site_common.jquery_mobile.attachBehaviors = function (context, settings) {
+site_common.jquery_mobile.attachBehaviors = function (context, settings, event) {
   // Do nothing if not inited.
   if (!site_common.jquery_mobile._inited) {
+    return;
+  }
+
+  // Default event is pagecontainerload.
+  if (!event) {
+    event = 'pagecontainerload';
+  }
+
+  // Get list of behaviors we need to attach on this events.
+  var behaviorList = [];
+  $.each(Drupal.behaviors, function (index) {
+    if ($.isFunction(this.attach)) {
+      // Check for event restrictions.
+      var behaviorEvent = this.event || 'pagecontainerload';
+      if (event == behaviorEvent) {
+        behaviorList.push(index);
+      }
+    }
+  });
+
+  // Log behaviors list.
+  qtools.log('SCJQM: attachBehaviors [' + event + ']:', behaviorList);
+
+  // If list empty - exit.
+  if (behaviorList.length == 0) {
     return;
   }
 
@@ -208,24 +250,31 @@ site_common.jquery_mobile.attachBehaviors = function (context, settings) {
   if (!context) {
     $context = site_common.jquery_mobile.getPageContext();
   }
-  else if (!context._skipCreate) {
+  else {
+    // Make sure jQuery as context.
     $context = $(context);
   }
-  else {
-    $context = context;
+
+  // Get apropriate settings.
+  if (!settings) {
+    settings = Drupal.settings;
   }
 
   // Log action.
-  qtools.log('SCJQM: attachBehaviors to:', $context);
+  qtools.log('SCJQM: attachBehaviors [' + event + '] to:', $context);
 
-  // Attach drupal behaviors, selecting apropriate context.
-  site_common.jquery_mobile.DrupalAttachBehaviors($context, settings);
+  // Attach selected behaviors.
+  // See Drupal.attachBehaviors().
+  for (var i = 0; i < behaviorList.length; i++) {
+    var index = behaviorList[i];
+    Drupal.behaviors[index].attach(context, settings);
+  }
 }
 
 /**
  * Perform initialisation, you may override this.
  */
-site_common.jquery_mobile.init = function (event, data) {
+site_common.jquery_mobile.init = function (event) {
 
   // Only init once.
   if (!site_common.jquery_mobile._inited) {
@@ -242,7 +291,9 @@ site_common.jquery_mobile.init = function (event, data) {
 
     // Attach behaviors to whole doc at first load.
     var $context = $(document);
-    $context._skipCreate = true;
+
+    // Content is already enhanced.
+    $context._noEnhance = true;
     Drupal.attachBehaviors($context, Drupal.settings);
   }
 }
@@ -263,6 +314,7 @@ site_common.jquery_mobile.beforenavigate = function (event) {
  * Handle before show event.
  */
 site_common.jquery_mobile.pagecontainerbeforeshow = function (event, data) {
+
   // Restore settings from page we navigating to.
   Drupal.settings = data.toPage[0]._drupalSettings;
   qtools.log('SCJQM: populate settings for:', Drupal.settings._site_common_jquery_mobile_url);
@@ -276,12 +328,25 @@ site_common.jquery_mobile.pagecontainerbeforeshow = function (event, data) {
       $(this).removeClass('site-common-jqm-cke-flushed');
     }
   });
+
+  // Attach behaviors to this events.
+  Drupal.attachBehaviors(data.toPage, false, 'pagecontainerbeforeshow');
 }
+
+/**
+ * Handle show event.
+ */
+site_common.jquery_mobile.pagecontainershow = function (event, data) {
+  // Attach behaviors to this events.
+  Drupal.attachBehaviors(data.toPage, false, 'pagecontainershow');
+}
+
 
 /**
  * Handle beforehide event.
  */
 site_common.jquery_mobile.pagecontainerbeforehide = function (event, data) {
+
   // Fix CKeditor (turn off any enabled ckeditors).
   data.prevPage.find('textarea.ckeditor-processed').each(function () {
     if (Drupal.ckeditorOff) {

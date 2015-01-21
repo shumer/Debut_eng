@@ -15,7 +15,6 @@ function debut_mobile_preprocess_form__debut_common_contact_us_form(&$variables)
   $_html['name'] = debut_mobile_render($form, 'contact_form_name');
   $_html['email'] = debut_mobile_render($form, 'contact_form_email');
   $_html['message'] = debut_mobile_render($form, 'contact_form_message');
-  $_html['captcha'] = debut_mobile_render($form, 'captcha');
 
   $_html['form'] = drupal_render_children($form);
 }

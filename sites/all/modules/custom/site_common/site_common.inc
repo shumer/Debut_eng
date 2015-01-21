@@ -54,18 +54,18 @@ function site_common_ajax_elment($group, $path, $attributes = array(), $method =
 }
 
 /**
- * Add asynk js if it is not already added.
+ * Add async js if it is not already added.
  *
  * If script is already added, nothing ill be changed.
  */
-function site_common_add_asynk_js($js_file) {
+function site_common_add_async_js($js_file) {
   $js_list = drupal_add_js();
 
-  // If this file is not yet added we add it as asynk load.
+  // If this file is not yet added we add it as async load.
   // @see site_common_preprocess_html().
   if (empty($js_list[$js_file])) {
     $js_file = url($js_file, array('absolute' => TRUE));
-    drupal_add_js($js_file, array('asynk' => TRUE));
+    drupal_add_js($js_file, array('async' => TRUE));
   }
 }
 
@@ -98,6 +98,7 @@ function _site_common_settings($block, $setting, $default = NULL) {
  *   (string) jquery_mobile
  */
 function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
+  global $theme;
 
   // Get path and added scripts list.
   $options = NULL;
@@ -119,6 +120,12 @@ function site_common_js_add($name = '', $force = FALSE, $settings = array()) {
 
       // Invoke resource preload hook.
       module_invoke_all('site_common_preload_resources');
+
+      // Invoke theme preload resources.
+      $theme_hook = $theme . '_site_common_preload_resources';
+      if (function_exists($theme_hook)) {
+        $theme_hook();
+      }
     }
 
     // Add Ajax requirements.
