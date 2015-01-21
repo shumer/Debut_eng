@@ -14,4 +14,5 @@
     </h4>
     <div class="block-content-wrapper"><?php print $_html['node']; ?></div>
   </div>
+  <div class="clearfix"></div>
 </div>
