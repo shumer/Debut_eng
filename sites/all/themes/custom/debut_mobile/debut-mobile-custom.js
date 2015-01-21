@@ -48,7 +48,11 @@ debut_mobile_custom.init = function ($context, settings) {
   // Mark this as inited.
   debut_mobile_custom._inited = true;
   document.addEventListener("touchstart", function(){}, true);
-}
+
+  $context.find('.captcha-reload-link').click(function(){
+    Recaptcha.reload();
+  });
+};
 
 /**
  * Init calendar block.
@@ -96,7 +100,7 @@ debut_mobile_custom.attach_calendar = function ($context, settings) {
     var date = Drupal.settings.debut_common_site_calendar.selected_date;
     $this.datepicker('setDate' , date);
   });
-}
+};
 
 /**
  * Highlite day when one or more events present.
@@ -109,7 +113,7 @@ debut_mobile_custom.calendar_event_days = function(date) {
     }
   }
   return [true, ''];
-}
+};
 
 // Redirect actions.
 debut_mobile_custom.redirect = function ($url) {
@@ -192,7 +196,7 @@ debut_mobile_custom.attach_view_more = function ($context, settings) {
     var $this = $(this);
     $this.click(function () {
       var $this = $(this);
-      var $target = $('.' + $this.attr('data-target'));console.log($this.attr('data-target'));
+      var $target = $('.' + $this.attr('data-target'));
       $this.remove();
       $target.fadeIn();
     });

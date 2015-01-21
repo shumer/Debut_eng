@@ -62,7 +62,7 @@ function debut_common_contact_us_content_type_render($subtype, $_conf, $panel_ar
   $_html['title'] = $title;
 
   $_html['text'] = t('If you have some questions, or whish to say your opinion, please use this link:');
-  $_html['contact_link_popup'] = l('<span>' . t('left the message') . '</span>', 'nofollow/nofollow/contact', array(
+  $_html['contact_link_popup'] = l('<span>' . t('left the message') . '</span>', 'nofollow/contact', array(
     'attributes' => array(
       'class' => 'fancy-call',
       'rel' => 'nofollow',

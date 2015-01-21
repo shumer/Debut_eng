@@ -5,6 +5,22 @@
  */
 
 /**
+ * Preprocess debut_common_contact_us_form.
+ */
+function debut_mobile_preprocess_form__debut_common_contact_us_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['name'] = debut_mobile_render($form, 'contact_form_name');
+  $_html['email'] = debut_mobile_render($form, 'contact_form_email');
+  $_html['message'] = debut_mobile_render($form, 'contact_form_message');
+  $_html['captcha'] = debut_mobile_render($form, 'captcha');
+
+  $_html['form'] = drupal_render_children($form);
+}
+
+/**
  * Preprocess node__press_about_debut__listing.
  */
 function debut_mobile_preprocess_node__news__full(&$variables) {
