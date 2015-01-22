@@ -49,6 +49,7 @@ define('DEBUT_COMMON_PAGE_NOBEL_SPEECH', 'nobel_speech');
 define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
 define('DEBUT_COMMON_PAGE_JURY_ALPHABET_LIST', 'jury_list');
 define('DEBUT_COMMON_PAGE_CONTACT', 'nofollow/contact');
+define('DEBUT_COMMON_PAGE_CONTACT_SUBMIT', 'contact_us/submitted');
 
 // Define views name.
 define('DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE', 'debut_common_videos_home_page');
