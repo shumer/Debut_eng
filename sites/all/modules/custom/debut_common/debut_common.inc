@@ -15,6 +15,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
 
     // Bc for contact us page.
     case DEBUT_COMMON_PAGE_CONTACT:
+    case DEBUT_COMMON_PAGE_CONTACT_SUBMIT:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
           array(

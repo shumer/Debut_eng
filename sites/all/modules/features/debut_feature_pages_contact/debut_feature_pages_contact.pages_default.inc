@@ -220,7 +220,7 @@ function debut_feature_pages_contact_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Panel',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -230,6 +230,18 @@ function debut_feature_pages_contact_default_page_manager_pages() {
     'contexts' => array(),
     'relationships' => array(),
     'panels_everywhere_site_template' => 'site_template_panel_context_2',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'onecol';
@@ -302,6 +314,107 @@ setTimeout( function () {
     $pane->uuid = '07b2bb73-c346-41ec-80af-2deec9a27778';
     $display->content['new-07b2bb73-c346-41ec-80af-2deec9a27778'] = $pane;
     $display->panels['middle'][1] = 'new-07b2bb73-c346-41ec-80af-2deec9a27778';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_contact_us_submitted_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'contact_us_submitted';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => 'popup-body',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'panels_everywhere_site_template' => '',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'content_pre' => NULL,
+      'content' => NULL,
+      'content_after' => NULL,
+      'middle' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'a2d46e7d-8dde-41e8-ab76-effe493d5153';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-85c686b1-f418-43a0-9b84-295368ccfafb';
+    $pane->panel = 'middle';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '85c686b1-f418-43a0-9b84-295368ccfafb';
+    $display->content['new-85c686b1-f418-43a0-9b84-295368ccfafb'] = $pane;
+    $display->panels['middle'][0] = 'new-85c686b1-f418-43a0-9b84-295368ccfafb';
+    $pane = new stdClass();
+    $pane->pid = 'new-b0be1c2c-43f5-4736-b114-84b80dc623bf';
+    $pane->panel = 'middle';
+    $pane->type = 'debut_common_contact_submitted';
+    $pane->subtype = 'debut_common_contact_submitted';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'confirm_text' => 'You message has been sent. We contact to you shortly. Thank you.',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'b0be1c2c-43f5-4736-b114-84b80dc623bf';
+    $display->content['new-b0be1c2c-43f5-4736-b114-84b80dc623bf'] = $pane;
+    $display->panels['middle'][1] = 'new-b0be1c2c-43f5-4736-b114-84b80dc623bf';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
