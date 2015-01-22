@@ -85,8 +85,13 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
 
   $mail = drupal_mail('debut_common', $mail_conf['message_contact_us'], $mail_conf['contact_us_email'], $language, $params, 'noreply@pokolenie-debut.ru');
 
+  $is_mobile = debut_common_is_mobile();
+
   // Redirect depending on popup state.
   if (debut_common_in_popup()) {
+    $form_state['redirect'] = 'contact_us/submitted';
+  }
+  elseif ($is_mobile) {
     $form_state['redirect'] = 'contact_us/submitted';
   }
   else {

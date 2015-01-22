@@ -16,8 +16,8 @@
     <div class="line-separator"></div>
     <div class="buttons">
       <div class="button button-e">
-        <a class="debut-proxy-click comment-submit" data-proxy-target="#debut-common-contact-us-form .form-submit" href="javascript: void(0)">
-          <span><?php print t('Submit'); ?></span>
+        <a class="debut-proxy-click comment-submit" ontouchstart="return true;" data-proxy-target="#debut-common-contact-us-form .form-submit" href="javascript: void(0)">
+          <span ontouchstart="return true;"><?php print t('Submit'); ?></span>
         </a>
       </div>
     </div>
