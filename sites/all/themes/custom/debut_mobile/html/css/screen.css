@@ -683,17 +683,22 @@ a, a.active, li a.active {
   font-weight: normal;
   text-align: center;
 }
-/*------------press listing styles---------------*/
-.block-press.listing {
+/*------------press, news, docs listing styles---------------*/
+.block-press.listing,
+.block-news.listing {
   border-bottom: 2px dotted #dcdcdc;
 }
-.block-press.listing.last {
+.block-press.listing.last,
+.block-news.listing.last {
   border-bottom: none;
 }
-.block-press.listing h1 {
+.block-press.listing h1,
+.block-news.listing h1,
+.block-documents.listing h1 {
   font-size: 1em;
 }
-.block-press.listing .press-body {
+.block-press.listing .press-body,
+.block-news.listing .news-body {
   margin-bottom: 10px;
 }
 .link-press {

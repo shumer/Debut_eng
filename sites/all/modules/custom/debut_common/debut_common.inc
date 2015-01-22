@@ -46,6 +46,44 @@ function debut_common_create_page_mobile_breadcrumbs() {
       }
       break;
 
+    // Bc for news page.
+    case DEBUT_COMMON_PAGE_NEWS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
+      if (!empty($current_year)) {
+        $current_year = $current_year['value']['year'];
+        $breadcrumb[] = $current_year;
+      }
+      break;
+
+    // Bc for docs page.
+    case DEBUT_COMMON_PAGE_DOCUMENTS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
+      if (!empty($current_year)) {
+        $current_year = $current_year['value']['year'];
+        $breadcrumb[] = $current_year;
+      }
+      break;
+      
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -94,7 +132,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = t('News for !year year', array('!year' => date('Y', $date)));
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date_value[value][year]' => $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date_value[value][year]' => date('Y', $date))));
       break;
 
     // Make breadcrumb for documents node.
@@ -111,8 +149,8 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l(t('Documents'), DEBUT_COMMON_PAGE_DOCUMENTS_LIST);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
-      $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date_value[value][year]' => $year)));
+      $year = t('Documents for !year year', array('!year' => date('Y', $date)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date_value[value][year]' => date('Y', $date))));
       break;
 
     // Make breadcrumb for press about prize node.
