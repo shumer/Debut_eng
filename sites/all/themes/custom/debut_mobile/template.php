@@ -354,6 +354,11 @@ function debut_mobile_process_html(&$variables) {
     $settings = !empty($js_list['settings']) ? $js_list['settings'] : array();
     $js_list = array('settings' => $settings);
   }
+  if (!empty($js_list['sites/all/modules/contrib/captcha/captcha.js'])) {
+    unset($js_list['sites/all/modules/contrib/captcha/captcha.js']);
+    unset($js_list['sites/all/modules/contrib/recaptcha/recaptcha.js']);
+    unset($js_list['https://www.google.com/recaptcha/api/js/recaptcha_ajax.js']);
+  }
   $variables['scripts'] = drupal_get_js('header', $js_list);
 
   // Exclude css from ajax pages to reduce size.

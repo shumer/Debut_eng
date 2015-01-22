@@ -39,6 +39,9 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach view more button.
   debut_mobile_custom.attach_view_more($context, settings);
+
+  // Attach proxy.
+  debut_mobile_custom.attach_proxy($context, settings);
 };
 
 // Init routine, will be called once.
@@ -196,6 +199,46 @@ debut_mobile_custom.attach_view_more = function ($context, settings) {
       var $target = $('.' + $this.attr('data-target'));
       $this.remove();
       $target.fadeIn();
+    });
+  });
+};
+
+// Attach proxy.
+debut_mobile_custom.attach_proxy = function ($context, settings) {
+
+  // Proxy clicks.
+  $context.find('.debut-proxy-click').once('debut-proxy-click', function (delta) {
+    $(this).click(function () {
+      var target = $(this).attr('data-proxy-target');
+      $(target).click();
+    });
+  });
+
+  // Proxy mousedown.
+  $context.find('.debut-proxy-mousedown').once('debut-proxy-mousedown', function (delta) {
+    $(this).mousedown(function () {
+      var target = $(this).attr('data-proxy-target');
+      $(target).mousedown();
+    });
+  });
+
+  // Proxy form submit.
+  $context.find('.debut-proxy-submit').once('debut-proxy-submit', function (delta) {
+    $(this).mousedown(function () {
+      var target = $(this).attr('data-proxy-target');
+      var op = $(target).last().val();
+      var $form = $(target).parents('form');
+      $form.append('<input type="hidden" name="op" value="' + op + '"/>');
+      $(target).remove();
+      $form.submit();
+    });
+  });
+
+  // Proxy change.
+  $context.find('.debut-proxy-change').once('debut-proxy-change', function (delta) {
+    $(this).change(function () {
+      var target = $(this).attr('data-proxy-target');
+      var op = $(target).val($(this).val());
     });
   });
 };

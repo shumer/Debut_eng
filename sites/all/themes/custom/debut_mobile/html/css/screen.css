@@ -1,3 +1,6 @@
+.hidden {
+  display: none;
+}
 ol, ul {
   list-style: outside none none;
 }
@@ -897,4 +900,59 @@ a, a.active, li a.active {
 .debut-contact-form .form-body #recaptcha_challenge_image {
   width: 100% !important;
 }
+.debut-contact-form .form-body .buttons:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.debut-contact-form .form-body .buttons .button {
+  margin: 0;
+  width: 100%;
+}
+.debut-contact-form .form-body .button-e a span {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 10px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+.debut-contact-form .form-body .button-e a span:active {
+  background: #bd01b5;
+  color: #fff;
+  border: 1px solid #bd01b5;
+}
 /*------------end contact us styles---------------*/
+/*------------messages styles---------------*/
+div.messages {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+  border: medium none;
+  font-size: 0.875em;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 0 1.78571em;
+}
+div.messages ul {
+  margin: 0;
+}
+div.messages.error {
+  color: #cc0000;
+}
+div.messages.warning {
+  color: #ce6328;
+}
+div.messages.status, div.messages.ok {
+  color: #008000;
+}
+div.messages ul li {
+  list-style-image: none;
+}
+/*------------end messages styles---------------*/
