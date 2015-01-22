@@ -32,7 +32,7 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -49,6 +49,18 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
       ),
     ),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -313,6 +325,189 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $display->panels['top'][1] = 'new-e6c83764-d6e2-4b3f-81d9-dc10421e1097';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_news_list_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'news_list';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Expose Year Filter context',
+        'keyword' => 'year_filter',
+        'name' => 'year_filter_context',
+        'view' => 'debut_view_list_news',
+        'id' => 1,
+      ),
+    ),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '80d899d2-647e-46b1-8b3b-b2670c3a2e1b';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-287e1a77-280f-4e0f-9665-9b14a445a42a';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '287e1a77-280f-4e0f-9665-9b14a445a42a';
+    $display->content['new-287e1a77-280f-4e0f-9665-9b14a445a42a'] = $pane;
+    $display->panels['content'][0] = 'new-287e1a77-280f-4e0f-9665-9b14a445a42a';
+    $pane = new stdClass();
+    $pane->pid = 'new-1736c2a4-adf2-4ef2-88fe-50fa1c645f6a';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Новости',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '1736c2a4-adf2-4ef2-88fe-50fa1c645f6a';
+    $display->content['new-1736c2a4-adf2-4ef2-88fe-50fa1c645f6a'] = $pane;
+    $display->panels['content'][1] = 'new-1736c2a4-adf2-4ef2-88fe-50fa1c645f6a';
+    $pane = new stdClass();
+    $pane->pid = 'new-e4171d7f-1406-4c87-b61d-29febe30d1e1';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_years_list';
+    $pane->subtype = 'debut_common_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view' => 'debut_view_list_news',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'e4171d7f-1406-4c87-b61d-29febe30d1e1';
+    $display->content['new-e4171d7f-1406-4c87-b61d-29febe30d1e1'] = $pane;
+    $display->panels['content'][2] = 'new-e4171d7f-1406-4c87-b61d-29febe30d1e1';
+    $pane = new stdClass();
+    $pane->pid = 'new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_news_listing';
+    $pane->subtype = 'debut_common_news_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'context_year_filter_context_1',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '89b0b0d4-32f0-42d9-b8ba-f17b3ea72884';
+    $display->content['new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884'] = $pane;
+    $display->panels['content'][3] = 'new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884';
+    $pane = new stdClass();
+    $pane->pid = 'new-aec57407-8857-4f36-868f-65299e070f78';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'aec57407-8857-4f36-868f-65299e070f78';
+    $display->content['new-aec57407-8857-4f36-868f-65299e070f78'] = $pane;
+    $display->panels['content'][4] = 'new-aec57407-8857-4f36-868f-65299e070f78';
+    $pane = new stdClass();
+    $pane->pid = 'new-f84c147f-527a-437f-a588-dc919632587f';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = 'f84c147f-527a-437f-a588-dc919632587f';
+    $display->content['new-f84c147f-527a-437f-a588-dc919632587f'] = $pane;
+    $display->panels['content'][5] = 'new-f84c147f-527a-437f-a588-dc919632587f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-287e1a77-280f-4e0f-9665-9b14a445a42a';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['news_list'] = $page;

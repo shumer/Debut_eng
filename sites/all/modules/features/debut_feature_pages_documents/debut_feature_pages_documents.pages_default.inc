@@ -32,7 +32,7 @@ function debut_feature_pages_documents_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -41,6 +41,18 @@ function debut_feature_pages_documents_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -344,6 +356,217 @@ return FALSE;',
     $display->panels['top'][1] = 'new-bbd438c7-7ad9-4518-8073-62dcf1ae32f6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_documents_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'documents';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '8b9dd30f-d8c8-4e72-b707-abdc79ffb96f';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-c88bdb86-e75c-4e43-80ac-d8ed16749075';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c88bdb86-e75c-4e43-80ac-d8ed16749075';
+    $display->content['new-c88bdb86-e75c-4e43-80ac-d8ed16749075'] = $pane;
+    $display->panels['content'][0] = 'new-c88bdb86-e75c-4e43-80ac-d8ed16749075';
+    $pane = new stdClass();
+    $pane->pid = 'new-23836f86-ca2d-47e1-bd48-7055e789e68e';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Документы',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '23836f86-ca2d-47e1-bd48-7055e789e68e';
+    $display->content['new-23836f86-ca2d-47e1-bd48-7055e789e68e'] = $pane;
+    $display->panels['content'][1] = 'new-23836f86-ca2d-47e1-bd48-7055e789e68e';
+    $pane = new stdClass();
+    $pane->pid = 'new-b8d43389-6e34-40bf-804d-eb6132cd00c3';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_years_list';
+    $pane->subtype = 'debut_common_years_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view' => 'debut_view_list_documents',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'b8d43389-6e34-40bf-804d-eb6132cd00c3';
+    $display->content['new-b8d43389-6e34-40bf-804d-eb6132cd00c3'] = $pane;
+    $display->panels['content'][2] = 'new-b8d43389-6e34-40bf-804d-eb6132cd00c3';
+    $pane = new stdClass();
+    $pane->pid = 'new-fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_documents_listing';
+    $pane->subtype = 'debut_common_documents_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a';
+    $display->content['new-fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a'] = $pane;
+    $display->panels['content'][3] = 'new-fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a';
+    $pane = new stdClass();
+    $pane->pid = 'new-99090060-b3be-4260-9324-1e3a76ddb218';
+    $pane->panel = 'content';
+    $pane->type = 'content';
+    $pane->subtype = 'content';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'Hide if no result',
+            'php' => 'if (empty($_GET[\'field_publication_date_value\'])) {
+  return TRUE;
+}
+return FALSE;',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'bundle' => 'manuscript_page',
+      'view_mode' => 'full',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = '99090060-b3be-4260-9324-1e3a76ddb218';
+    $display->content['new-99090060-b3be-4260-9324-1e3a76ddb218'] = $pane;
+    $display->panels['content'][4] = 'new-99090060-b3be-4260-9324-1e3a76ddb218';
+    $pane = new stdClass();
+    $pane->pid = 'new-22a75b73-616f-447c-8fad-78887e21e6f7';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = '22a75b73-616f-447c-8fad-78887e21e6f7';
+    $display->content['new-22a75b73-616f-447c-8fad-78887e21e6f7'] = $pane;
+    $display->panels['content'][5] = 'new-22a75b73-616f-447c-8fad-78887e21e6f7';
+    $pane = new stdClass();
+    $pane->pid = 'new-98bc7696-acf2-4013-b766-ff5e50ed6285';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $pane->locks = array();
+    $pane->uuid = '98bc7696-acf2-4013-b766-ff5e50ed6285';
+    $display->content['new-98bc7696-acf2-4013-b766-ff5e50ed6285'] = $pane;
+    $display->panels['content'][6] = 'new-98bc7696-acf2-4013-b766-ff5e50ed6285';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-23836f86-ca2d-47e1-bd48-7055e789e68e';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['documents'] = $page;

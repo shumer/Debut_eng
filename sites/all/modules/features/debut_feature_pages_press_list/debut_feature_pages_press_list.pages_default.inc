@@ -343,7 +343,15 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Expose Year Filter context',
+        'keyword' => 'year_filter',
+        'name' => 'year_filter_context',
+        'view' => 'debut_view_list_press_about_debut',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
     'access' => array(
       'plugins' => array(
@@ -454,7 +462,9 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
     $pane->subtype = 'debut_common_press_listing';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'context' => 'context_year_filter_context_1',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
