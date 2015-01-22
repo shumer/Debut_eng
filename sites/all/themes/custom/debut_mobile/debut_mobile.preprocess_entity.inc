@@ -39,6 +39,25 @@ function debut_mobile_preprocess_node__news__full(&$variables) {
 }
 
 /**
+ * Preprocess node__news__listing.
+ */
+function debut_mobile_preprocess_node__news__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['text'] = debut_mobile_render($content, 'field_news_annonce');
+  $_html['news_date'] = debut_mobile_render($content, 'field_publication_date');
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
  * Preprocess node__documents__full.
  */
 function debut_mobile_preprocess_node__documents__full(&$variables) {
@@ -52,6 +71,37 @@ function debut_mobile_preprocess_node__documents__full(&$variables) {
   $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
   $_html['field_publication_date'] = $published;
   $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess node__documents__listing.
+ */
+function debut_mobile_preprocess_node__documents__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+  
+}
+
+/**
+ * Preprocess config_page__manuscript_page__full.
+ */
+function debut_mobile_preprocess_config_pages__manuscript_page__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Text part.
+  $_html['text'] = debut_mobile_render($content, 'field_manuscript_text');
 }
 
 /**

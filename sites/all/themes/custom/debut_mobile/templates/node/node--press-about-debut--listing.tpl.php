@@ -20,4 +20,5 @@
       <?php print $_html['author']; ?>
     </div>
   <?php endif; ?>
+  <span class="publish-date"><?php print $_html['field_publication_date']; ?></span>
 </article>
