@@ -61,3 +61,9 @@ node|video|home_page|600
 node|video|listing|600
 node|video|search|600
 node|video|teaser|600
+
+# Default rules.
+node|*|*|3600
+comment|*|*|3600
+taxonomy_term|*|*|3600
+asset|*|*|3600

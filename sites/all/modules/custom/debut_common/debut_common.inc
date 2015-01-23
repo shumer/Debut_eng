@@ -84,7 +84,26 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;
-      
+
+    // Bc for docs page.
+    case DEBUT_COMMON_PAGE_NOBEL_SPEECH:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Nobel speech'), DEBUT_COMMON_PAGE_NOBEL_SPEECH);
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
+      if (!empty($current_year)) {
+        $current_year = $current_year['value']['year'];
+        $breadcrumb[] = $current_year;
+      }
+      break;      
+
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -187,6 +206,21 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_JURY. '/' . $letter);
+      break;
+
+    // Make breadcrumb for nobel_speech node.
+    case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Letopis Debuta');
+      $breadcrumb[] = l(t('Nobel speech'), DEBUT_COMMON_PAGE_NOBEL_SPEECH);
       break;
 
     default:
