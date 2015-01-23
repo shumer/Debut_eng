@@ -7,9 +7,19 @@
   padding: 0 0 2px;
 }
 
-.block-documents.listing.last {
+.full .publish-date {
+  float: right;
+  color: #999999;
+  display: block;
+  font-size: 12px;
+  font-style: normal;
+  padding: 0 0 2px;
+}
+
+.block-documents.listing.last,
+.block-nobel-speech.listing.last {
   border-bottom: none;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 .block-documents.listing {
   border-bottom: 2px dotted #dcdcdc;
@@ -23,3 +33,69 @@
   float: left;
   margin-right: 5px;
 }
+
+/*------------- nobel speech ------------*/
+.block-nobel-speech .part {
+  clear: both;
+  padding: 0 0 50px;
+}
+.block-nobel-speech .part.part-a {
+  height: 180px;
+}
+.block-nobel-speech .part p a, .person-item .part ul a {
+  color: #BD01B5;
+}
+.block-nobel-speech .part .clear{
+  margin-bottom: 5px;
+}
+.block-nobel-speech .part-a .pic {
+  float: left;
+  padding: 3px 20px 5px 0;
+}
+.block-nobel-speech .part-a .pic .pic-inner {
+    padding: 3px 0 0;
+    position: relative;
+}
+.block-nobel-speech .part-a .pic .caption {
+  bottom: 3px;
+  color: #C6C6C6;
+  display: block;
+  font-size: 8px;
+  left: 7px;
+  position: absolute;
+}
+.block-nobel-speech .part-a .pic .legende {
+  color: #7C7E82;
+  display: block;
+  float: left;
+  font-size: 10px;
+  line-height: 12px;
+  padding: 5px 0;
+}
+.block-nobel-speech {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-nobel-speech h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.block-nobel-speech h2 {
+  color: #333333;
+  line-height: 1.5;
+}
+.block-nobel-speech h2.sub-title {
+  padding: 0 0 1.25em;
+  font-size: 0.75em;
+  text-transform: uppercase;
+}
+.block-nobel-speech .news-body {
+  line-height: 1.5;
+  padding: 0 0 1.5625em;
+}
+/*---------- end nobel speech -----------*/

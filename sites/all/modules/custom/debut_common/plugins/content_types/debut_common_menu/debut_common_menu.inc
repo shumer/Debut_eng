@@ -138,6 +138,7 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
           if ($path == DEBUT_COMMON_PAGE_NOBEL_SPEECH) {
             $class = 'active';
           }
+          break;
         case DEBUT_COMMON_TYPE_VIDEO:
           if ($path == DEBUT_COMMON_PAGE_VIDEO) {
             $class = 'active';
