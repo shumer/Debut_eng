@@ -99,3 +99,7 @@
   padding: 0 0 1.5625em;
 }
 /*---------- end nobel speech -----------*/
+
+.block .block-prize-person {
+  clear: left;
+}
