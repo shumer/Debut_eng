@@ -277,3 +277,81 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
 
   $_data['nid'] = $node->nid;
 }
+
+/**
+ * Preprocess view mode full for nobel_speech node.
+ */
+function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = '';
+
+  $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
+  $_html['press_date'] = $published;
+  $_html['body'] = debut_mobile_render($content, 'field_nobel_speech_body');
+
+  // Author.
+  $nid = qtools_api__field_get_item('node', $node, 'field_nobel_speech_author', 0, 'target_id');
+  if (!empty($nid)) {
+    $auth_node = cache_common_load_node($nid);
+
+    if ($node->title != $auth_node->title) {
+      $_html['title'] = check_plain($node->title);
+    }
+
+    $uri = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'uri');
+    if (!empty($uri)) {
+      $image = theme('image_style', array(
+        'path' => $uri,
+        'style_name' => 'debut_person_page_photo',
+        'alt' => $auth_node->title,
+        'title' => $auth_node->title,
+      ));
+    }
+    else {
+      $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+      $params = array(
+        'path' => $path,
+        'alt' => $node->title,
+        'title' => $node->title,
+        'width' => '200px',
+        'attributes' => array('class' => array('image-class')),
+        'getsize' => FALSE,
+      );
+      $image =  theme('image', $params);
+    }
+
+    $_html['image_legende'] = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'title');
+    $_html['image'] = $image;
+    $_html['author'] = l($auth_node->title, 'node/' . $auth_node->nid);
+  }
+  
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess view mode listing for nobel_speech_listing node.
+ */
+function debut_mobile_preprocess_node__nobel_speech__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['press_date'] = debut_mobile_render($content, 'field_publication_date');
+
+  $nid = qtools_api__field_get_item('node', $node, 'field_nobel_speech_author', 0, 'target_id');
+  if (!empty($nid)) {
+    $auth_node = cache_common_load_node($nid);
+    $_html['author'] = check_plain($auth_node->title);
+  }
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}

@@ -689,7 +689,8 @@ a, a.active, li a.active {
 }
 /*------------press, news, docs listing styles---------------*/
 .block-press.listing,
-.block-news.listing {
+.block-news.listing,
+.block-nobel-speech.listing {
   border-bottom: 2px dotted #dcdcdc;
 }
 .block-press.listing.last,
@@ -698,7 +699,8 @@ a, a.active, li a.active {
 }
 .block-press.listing h1,
 .block-news.listing h1,
-.block-documents.listing h1 {
+.block-documents.listing h1,
+.block-nobel-speech.listing h1 {
   font-size: 1em;
 }
 .block-press.listing .press-body,
