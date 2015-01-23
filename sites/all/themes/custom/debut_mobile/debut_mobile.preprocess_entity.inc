@@ -306,7 +306,7 @@ function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
     if (!empty($uri)) {
       $image = theme('image_style', array(
         'path' => $uri,
-        'style_name' => 'debut_person_page_photo',
+        'style_name' => 'debut_person_page_photo_mobile',
         'alt' => $auth_node->title,
         'title' => $auth_node->title,
       ));
@@ -317,7 +317,7 @@ function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
         'path' => $path,
         'alt' => $node->title,
         'title' => $node->title,
-        'width' => '200px',
+        'width' => '100px',
         'attributes' => array('class' => array('image-class')),
         'getsize' => FALSE,
       );
