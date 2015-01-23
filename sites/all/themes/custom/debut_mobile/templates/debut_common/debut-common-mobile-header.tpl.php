@@ -48,7 +48,6 @@
             </div>
           </div>
         </div>
-        <input type="submit" id="edit-submit--2" name="op" value="Ok" class="form-submit search-form-submit" />
       </div>
     </div>
   </div>
