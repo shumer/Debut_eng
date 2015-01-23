@@ -37,10 +37,10 @@
 /*------------- nobel speech ------------*/
 .block-nobel-speech .part {
   clear: both;
-  padding: 0 0 50px;
+  padding: 0 0 30px;
 }
 .block-nobel-speech .part.part-a {
-  height: 180px;
+  /*height: 120px;*/
 }
 .block-nobel-speech .part p a, .person-item .part ul a {
   color: #BD01B5;
@@ -49,7 +49,7 @@
   margin-bottom: 5px;
 }
 .block-nobel-speech .part-a .pic {
-  float: left;
+  float: none;
   padding: 3px 20px 5px 0;
 }
 .block-nobel-speech .part-a .pic .pic-inner {
@@ -82,12 +82,16 @@
   font-size: 1.5em;
   line-height: 1.1;
   padding: 0 0 0.78125em;
-  text-align: left;
+  text-align: center;
   text-transform: uppercase;
+}
+.block-nobel-speech.listing h1 {
+  text-align: left;  
 }
 .block-nobel-speech h2 {
   color: #333333;
   line-height: 1.5;
+  font-size: 1em;
 }
 .block-nobel-speech h2.sub-title {
   padding: 0 0 1.25em;
