@@ -285,7 +285,7 @@ function debut_common_create_node_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_DOCUMENTS_LIST, array('query' => array('field_publication_date[value][year]' => $year)));
       $breadcrumb[] = $node->title;
       break;
 
@@ -295,7 +295,7 @@ function debut_common_create_node_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT, array('query' => array('field_publication_date[value][year]' => $year)));
       $breadcrumb[] = $node->title;
       $edit_link = debut_common_create_node_edit_link_breadcrumbs($node);
       if (!empty($edit_link)) {
@@ -309,7 +309,7 @@ function debut_common_create_node_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST, array('query' => array('field_publication_date[value][year]' => $year)));
       $breadcrumb[] = $node->title;
       break;
 
@@ -319,7 +319,7 @@ function debut_common_create_node_breadcrumbs($node) {
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
-      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO, array('query' => array('field_publication_date[value][year]=' . $year)));
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO, array('query' => array('field_publication_date[value][year]' => $year)));
       $breadcrumb[] = $node->title;
       break;
 
