@@ -57,6 +57,14 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
   $_html['banner'] = theme('image', array(
     'path' => $theme_path . $banner_path,
   ));
+
+  // Prepare data for search form.
+  $url_path = 'search';
+  $page_url = url($url_path);
+  drupal_add_js(array('debut_common' => array(
+    'search_page_url' => $page_url,
+  )), 'setting');
+
   // Combine values.
   $data = array(
     '_html' => $_html,

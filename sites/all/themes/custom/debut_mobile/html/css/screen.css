@@ -289,35 +289,38 @@ a, a.active, li a.active {
 .page .calendar-block .calendar-run .ui-widget{
   border: 0px;
 }
-
-.page .calendar-block .calendar-run .ui-datepicker-header{
+.page .calendar-block .calendar-run .ui-datepicker-header {
 	display: block;
 	position: relative;
-	font-size: 12px;
+	font-size: 16px;
 	color: #7f7f7f;
 	font-weight: normal;
 	text-align: center;
-	padding: 0 0 4px;
+	padding: 5px 0 5px;
   background: #fff;
   border: 0px;
+  margin: 0 auto;
+  width: 300px;
 }
-
-.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev{
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev {
 	display: block;
 	position: absolute;
 	left: 0;
 	top: 0;
+	margin: 8px 0 5px;
 }
-
-.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next{
+.page .calendar-block .calendar-run thead {
+  font-size: 16px;
+}
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next {
 	display: block;
 	position: absolute;
 	right: 0;
 	top: 0;
+	margin: 8px 0 5px;
 }
-
 .page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-prev span,
-.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next span{
+.page .calendar-block .calendar-run .ui-datepicker-header .ui-datepicker-next span {
 	height: 12px;
 	width: 12px;
 	background: url(../images/sprite-a.png) -535px -55px no-repeat;
@@ -341,10 +344,11 @@ a, a.active, li a.active {
 	border-radius: 3px;
 }
 
-.page .calendar-block .calendar-run table{
+.page .calendar-block .calendar-run table {
+  font-size: 16px;
 	margin: 0 auto;
-  width: 220px;
-  height: 160px;
+  width: 300px;
+  height: 210px;
 }
 
 .page .calendar-block .calendar-run .ui-datepicker-title .ui-datepicker-month {
@@ -354,7 +358,7 @@ a, a.active, li a.active {
 .page .calendar-block .calendar-run table th{
 	border-bottom: 1px solid #ffdfac;
 	color: #7f7f7f;
-	font-size: 11px;
+	font-size: 16px;
 	font-weight: 700;
 	text-transform: uppercase;
 	text-align: center;
@@ -397,7 +401,7 @@ a, a.active, li a.active {
 .page .calendar-block .calendar-run table td a{
 	font-family: 'PT Sans', sans-serif;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 16px;
 	color: #7f7f7f;
 	padding: 2px 0 3px;
 	display: block;
@@ -430,10 +434,11 @@ a, a.active, li a.active {
 .page .calendar-block .debut_site_changes_text {
   margin: 0 auto;
   text-align: center;
+  width: 300px;
 }
 .page .calendar-block .debut_site_changes_text ul {
   color: #593302;
-  font-size: 11px;
+  font-size: 16px;
   list-style: none outside none;
   margin: 20px 0 0;
   padding: 0;
@@ -451,7 +456,7 @@ a, a.active, li a.active {
 }
 
 .page .calendar-block .debut_site_changes_text ul li {
-  background: url("../images/bgs/strl.gif") no-repeat scroll 10px -1px transparent;
+  background: url("../images/bgs/strl.gif") no-repeat scroll 10px 5px transparent;
   border: 0 solid #EA750C;
   float: none;
   margin: 0 0 10px;
@@ -459,13 +464,13 @@ a, a.active, li a.active {
 }
 
 .page .calendar-block .debut_site_changes_text .empty_day {
-  background: url("../images/bgs/strl.gif") no-repeat scroll 10px 0px transparent;
+  background: url("../images/bgs/strl.gif") no-repeat scroll 10px 5px transparent;
   border: 0 solid #EA750C;
   float: none;
   margin: 0 0 10px;
   padding: 0 15px 0 25px;
   color: #593302;
-  font-size: 11px;
+  font-size: 16px;
   margin-top: 20px;
 }
 /*------------end calendar styles---------------*/

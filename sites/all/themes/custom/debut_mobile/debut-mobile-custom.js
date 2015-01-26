@@ -129,28 +129,18 @@ debut_mobile_custom.attach_search_form = function($context, settings) {
     });
   });
 
-  $context.find('.header .search-bar').once('search-page-form', function () {
+  $context.find('.header .search-bar').once('header-search-form', function () {
     var $this = $(this);
 
-    // Submit button.
-    $this.find('.search-form-submit').click(function () {
-      var search_value = encodeURIComponent($('.header .search-bar .search-form-text').val());
-      if (search_value) {
-       search_value = '/'+ search_value;
-      }
-      var url = settings.debut.page_url + search_value;
-      debut_mobile_custom.redirect(url);
-    });
-
     // Input.
-    $this.find('.search-form-text').keyup(function (event) {
+    $this.find('.search-form-text').addClass('search-processed').keydown(function (event) {
       if (event.keyCode == 13) {
         var path = [];
         var search_value = encodeURIComponent($(this).val());
         if (search_value) {
           search_value = '/'+ search_value;
         }
-        var url = settings.debut.page_url + search_value ;
+        var url = settings.debut_common.search_page_url + search_value ;
         debut_mobile_custom.redirect(url);
       }
     });
