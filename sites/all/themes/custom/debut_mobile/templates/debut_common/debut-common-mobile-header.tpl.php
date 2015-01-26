@@ -8,6 +8,11 @@
 <?php if (!empty($_html['main_menu'])) : ?>
   <div data-role="panel" data-display="push" class="main-menu" id="main-menu">
     <div class="ui-panel-inner">
+    <ul class="menu menu-header">
+      <li class="first leaf">
+        <span class="menu-header"><?php print t('Menu'); ?></span>
+      </li>
+    </ul>
       <?php print $_html['main_menu']; ?>
     </div>
   </div>
@@ -29,6 +34,8 @@
       <div class="header-search-button"></div>
       <div class="vertical-divider"></div>
       <div class="header-calendar-button"></div>
+      <div class="vertical-divider"></div>
+      <div class="header-newsletter-button"></div>
       <div class="vertical-divider"></div>
     </div>
     <!-- Messages -->
