@@ -50,11 +50,14 @@
 }
 .block-nobel-speech .part-a .pic {
   float: none;
-  padding: 3px 20px 5px 0;
+  padding: 3px 0px 5px 0px;
 }
 .block-nobel-speech .part-a .pic .pic-inner {
     padding: 3px 0 0;
     position: relative;
+}
+.block-nobel-speech .part-a .pic .pic-inner img {
+  width: 100%;
 }
 .block-nobel-speech .part-a .pic .caption {
   bottom: 3px;

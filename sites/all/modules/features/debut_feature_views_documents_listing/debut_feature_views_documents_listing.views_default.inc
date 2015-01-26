@@ -28,14 +28,12 @@ function debut_feature_views_documents_listing_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'input_required';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Применить';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Сбросить';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Сортировать по';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'По возрастанию';
   $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'По убыванию';
-  $handler->display->display_options['exposed_form']['options']['text_input_required'] = '';
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -53,11 +51,6 @@ function debut_feature_views_documents_listing_views_default_views() {
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'listing';
-  /* Поведение при отсутствии результатов: Глобальный: Нефильтруемый текст */
-  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
-  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
-  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   /* Критерий сортировки: Содержимое: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
@@ -65,6 +58,19 @@ function debut_feature_views_documents_listing_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['sorts']['field_publication_date_value']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['field_publication_date_value']['expose']['label'] = 'Publication date (field_publication_date)';
+  /* Контекстный фильтр: Содержимое: Publication date (field_publication_date) */
+  $handler->display->display_options['arguments']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_publication_date_value']['exception']['title'] = 'Все';
+  $handler->display->display_options['arguments']['field_publication_date_value']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_publication_date_value']['year_range'] = '-100:+100';
+  $handler->display->display_options['arguments']['field_publication_date_value']['granularity'] = 'year';
+  $handler->display->display_options['arguments']['field_publication_date_value']['use_fromto'] = 'no';
   /* Критерий фильтра: Содержимое: Тип */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -76,22 +82,6 @@ function debut_feature_views_documents_listing_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
-  /* Критерий фильтра: Содержимое: Publication date (field_publication_date) */
-  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
-  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'Publication date (field_publication_date)';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'year';
-  $handler->display->display_options['filters']['field_publication_date_value']['year_range'] = '-100:+100';
 
   /* Display: year_list */
   $handler = $view->new_display('panel_pane', 'year_list', 'year_list');
@@ -123,6 +113,19 @@ function debut_feature_views_documents_listing_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Контекстный фильтр: Содержимое: Publication date (field_publication_date) */
+  $handler->display->display_options['arguments']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['exception']['title'] = 'Все';
+  $handler->display->display_options['arguments']['field_publication_date_value']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_publication_date_value']['year_range'] = '-100:+100';
+  $handler->display->display_options['arguments']['field_publication_date_value']['granularity'] = 'year';
+  $handler->display->display_options['arguments']['field_publication_date_value']['use_fromto'] = 'no';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Критерий фильтра: Содержимое: Тип */
@@ -153,6 +156,7 @@ function debut_feature_views_documents_listing_views_default_views() {
     t('следующая ›'),
     t('последняя »'),
     t('Publication date (field_publication_date)'),
+    t('Все'),
     t('year_list'),
     t('ещё'),
     t('Publication date'),

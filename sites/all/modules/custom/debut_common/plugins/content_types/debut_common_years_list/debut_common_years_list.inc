@@ -71,24 +71,19 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
   }
 
   $path = $_GET['q'];
-  $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : NULL;
-  if (!empty($current_year)) {
-    $current_year = $current_year['value']['year'];
-  }
-  elseif ($path != DEBUT_COMMON_PAGE_DOCUMENTS_LIST) {
-    $current_year = date('Y', time('now'));
-  }
+  $current_page = explode('/', $path);
+  $current_year = isset($panel_args[0]) ? $panel_args[0] : NULL;
 
   $years_list = array();
   foreach ($years as &$year) {
     $year_title = $year;
 
     $query = array(
-      'field_publication_date_value[value][year]' => $year,
+      /*'field_publication_date_value[value][year]' => $year,*/
       'sort_by' => 'field_publication_date_value',
       'sort_order' => ($year == $current_year) ? 'DESC' : 'ASC',
     );
-    $link = url($path, array(
+    $link = url($current_page[0] . '/' . $year, array(
       'query' => $query)
     );
     $options[$year] = $year;

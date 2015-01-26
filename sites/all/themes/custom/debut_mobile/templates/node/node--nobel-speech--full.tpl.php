@@ -6,6 +6,7 @@
  */
 ?>
 <article class="block-nobel-speech full">
+  <h1><?php print $_html['title']; ?></h1>
   <div class="part part-a">
     <div class="pic">
       <div class="pic-inner">
@@ -14,7 +15,6 @@
       <span class="legende"><?php print $_html['image_legende']; ?></span>
     </div>
   </div>
-  <h1><?php print $_html['title']; ?></h1>
   <?php if (!empty($_html['title'])): ?>
     <!--h1><?php print $_html['title']; ?></h1>
     <h2><?php print $_html['author']; ?></h2-->

@@ -32,7 +32,15 @@ function debut_common_video_listing_content_type_render($subtype, $conf, $panel_
   $data = array();
   $_html = array();
 
-  $_html['video_listing'] = views_embed_view(DEBUT_COMMON_VIEW_VIDEO_LISTING);
+  if (!empty($panel_args)) {
+    $args = array($panel_args[0]);
+    $query = $_GET;
+  }
+  else {
+    $query = $args = array();
+  }
+  
+  $_html['video_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_VIDEO_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   $data['_html'] = $_html;
 
   $block->content = theme('debut_common_video_listing', $data);

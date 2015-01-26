@@ -1713,8 +1713,8 @@ section article.prem_list a {
 }
 
 .pager_container ul {
-	margin: auto;
-	width: 210px !important;
+  margin: auto;
+  width: 230px !important;
   padding-top: 15px;
   padding-bottom: 30px;
 }

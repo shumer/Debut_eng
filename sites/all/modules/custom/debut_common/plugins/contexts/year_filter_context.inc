@@ -43,18 +43,21 @@ function debut_common_year_filter_context_create($empty, $data = NULL, $conf = F
   $year = array_shift($years);
   
   $query = array(
-    'field_publication_date_value' => array(
-      'value' => array(
-        'year' => $year
-    )),
     'sort_by' => 'field_publication_date_value',
     'sort_order' => 'ASC'
+  );
+
+  $args = array($year);
+  
+  $data = array(
+    'query' => $query,
+    'args' => $args,
   );
   
   $context = new ctools_context('year_filter_context');
   $context->plugin = 'year_filter_context';
 
-  $context->data = $query;
+  $context->data = $data;
 
   return $context;
 }
