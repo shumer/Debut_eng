@@ -32,13 +32,17 @@ function debut_common_news_listing_content_type_render($subtype, $conf, $panel_a
   $data = array();
   $_html = array();
 
-  if (empty($_GET['field_publication_date_value'])) {
-    $_html['news_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NEWS_LISTING, 'default', array(), $context->data, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
+  if (!empty($panel_args)) {
+    $args = array($panel_args[0]);
+    $query = $_GET;
   }
   else {
-    $_html['news_listing'] = views_embed_view(DEBUT_COMMON_VIEW_NEWS_LISTING);
-  }
-  
+    $default_data = $context->data;
+    $args = $default_data['args'];
+    $query = $default_data['query'];
+  }  
+
+  $_html['news_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NEWS_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   $data['_html'] = $_html;
 
   $block->content = theme('debut_common_news_listing', $data);

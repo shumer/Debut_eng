@@ -68,6 +68,18 @@ function debut_feature_views_travels_listing_views_default_views() {
   $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
   $handler->display->display_options['sorts']['field_publication_date_value']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['field_publication_date_value']['expose']['label'] = 'Publication date (field_publication_date)';
+  /* Контекстный фильтр: Содержимое: Publication date (field_publication_date) */
+  $handler->display->display_options['arguments']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['exception']['title'] = 'Все';
+  $handler->display->display_options['arguments']['field_publication_date_value']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_publication_date_value']['year_range'] = '-100:+100';
+  $handler->display->display_options['arguments']['field_publication_date_value']['granularity'] = 'year';
+  $handler->display->display_options['arguments']['field_publication_date_value']['use_fromto'] = 'no';
   /* Критерий фильтра: Содержимое: Тип */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -81,24 +93,6 @@ function debut_feature_views_travels_listing_views_default_views() {
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
   $handler->display->display_options['filters']['status_extra']['field'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['group'] = 1;
-  /* Критерий фильтра: Содержимое: Publication date (field_publication_date) */
-  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
-  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_publication_date_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator_id'] = 'field_publication_date_value_op';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['label'] = 'Publication date (field_publication_date)';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['operator'] = 'field_publication_date_value_op';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['identifier'] = 'field_publication_date_value';
-  $handler->display->display_options['filters']['field_publication_date_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'year';
-  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = '[+-]?[0-9]+';
-  $handler->display->display_options['filters']['field_publication_date_value']['year_range'] = '-100:+100';
 
   /* Display: year_list */
   $handler = $view->new_display('panel_pane', 'year_list', 'year_list');
@@ -115,6 +109,19 @@ function debut_feature_views_travels_listing_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Контекстный фильтр: Содержимое: Publication date (field_publication_date) */
+  $handler->display->display_options['arguments']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['arguments']['field_publication_date_value']['exception']['title'] = 'Все';
+  $handler->display->display_options['arguments']['field_publication_date_value']['default_argument_type'] = 'date';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_publication_date_value']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_publication_date_value']['year_range'] = '-100:+100';
+  $handler->display->display_options['arguments']['field_publication_date_value']['granularity'] = 'year';
+  $handler->display->display_options['arguments']['field_publication_date_value']['use_fromto'] = 'no';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Критерий фильтра: Содержимое: Тип */
@@ -147,6 +154,7 @@ function debut_feature_views_travels_listing_views_default_views() {
     t('последняя »'),
     t('Publication date'),
     t('Publication date (field_publication_date)'),
+    t('Все'),
     t('year_list'),
     t('Представления-Фрагменты'),
   );

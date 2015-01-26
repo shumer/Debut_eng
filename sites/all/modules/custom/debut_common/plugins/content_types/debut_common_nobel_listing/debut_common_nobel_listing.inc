@@ -32,11 +32,13 @@ function debut_common_nobel_speech_listing_content_type_render($subtype, $conf, 
   $data = array();
   $_html = array();
 
-  if (empty($_GET['field_publication_date_value'])) {
-    $_html['nobel_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING, 'default', array(), $context->data, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
+  if (!empty($panel_args)) {
+    $year = $panel_args[0];
+    $_html['nobel_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING, 'default', array($year), $_GET, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   }
   else {
-    $_html['nobel_listing'] = views_embed_view(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING);
+    $default_data = $context->data;
+    $_html['nobel_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NOBEL_SPEECH_LISTING, 'default', $default_data['args'], $default_data['query'], FALSE, QTOOLS_VIEWS_MODE_PREVIEW);    
   }
   
   $data['_html'] = $_html;

@@ -148,7 +148,7 @@ function debut_feature_pages_documents_default_page_manager_pages() {
           'name' => 'php',
           'settings' => array(
             'description' => 'Hide if no result',
-            'php' => 'if (empty($_GET[\'field_publication_date_value\'])) {
+            'php' => 'if (empty($_GET[\'sort_by\'])) {
   return TRUE;
 }
 return FALSE;',
@@ -501,7 +501,7 @@ return FALSE;',
           'name' => 'php',
           'settings' => array(
             'description' => 'Hide if no result',
-            'php' => 'if (empty($_GET[\'field_publication_date_value\'])) {
+            'php' => 'if (empty($_GET[\'sort_by\'])) {
   return TRUE;
 }
 return FALSE;',
