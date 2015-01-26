@@ -797,7 +797,7 @@ a, a.active, li a.active {
 .block-jury .jury-photo {
   float: left;
   margin-top: 0px;
-  width: 180px;
+  margin-right: 10px;
 }
 .block-jury h2.sub-title {
   color: #f09015;
