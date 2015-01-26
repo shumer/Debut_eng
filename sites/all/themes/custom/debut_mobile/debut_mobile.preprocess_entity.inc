@@ -50,7 +50,7 @@ function debut_mobile_preprocess_node__news__listing(&$variables) {
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['text'] = debut_mobile_render($content, 'field_news_annonce');
   $_html['news_date'] = debut_mobile_render($content, 'field_publication_date');
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';
@@ -88,7 +88,7 @@ function debut_mobile_preprocess_node__documents__listing(&$variables) {
   if ($node->_last) {
     $_data['class'] = 'last';
   }
-  
+
 }
 
 /**
@@ -151,11 +151,12 @@ function debut_mobile_preprocess_node__debut_jury__block(&$variables) {
   // Text part.
   $_html['title'] = l($node->title, 'node/' . $node->nid);
   $_html['field_jury_citation'] = debut_mobile_render($content, 'field_jury_citation');
-  $_html['field_jury_image'] = debut_mobile_render($content, 'field_jury_image');
-  if (empty($_html['field_jury_image'])) {
+  $image = debut_mobile_render($content, 'field_jury_image');
+  if (empty($image)) {
     $image = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo_block.jpg';
-    $_html['field_jury_image'] = theme('image', array('path' => $image));
+    $image = theme('image', array('path' => $image));
   }
+  $_html['field_jury_image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 }
 
 /**
@@ -170,11 +171,12 @@ function debut_mobile_preprocess_node__debut_prize_person__block(&$variables) {
   // Text part.
   $_html['title'] = l($node->title, 'node/' . $node->nid);
   $_html['field_person_info'] = debut_mobile_render($content, 'field_person_info');
-  $_html['field_person_image'] = debut_mobile_render($content, 'field_person_image');
-  if (empty($_html['field_person_image'])) {
+  $image = debut_mobile_render($content, 'field_person_image');
+  if (empty($image)) {
     $image = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo_block.jpg';
-    $_html['field_person_image'] = theme('image', array('path' => $image));
+    $image = theme('image', array('path' => $image));
   }
+  $_html['field_person_image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
 }
 
 /**
@@ -257,6 +259,7 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
 
   // Get jury tags.
   $tags_field = qtools_api__field_get_item('node', $node, 'field_jury_tags');
+  $_html['tags'] = array();
   foreach ($tags_field as $tag) {
     $tag = taxonomy_term_load($tag['target_id']);
     $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
@@ -328,7 +331,7 @@ function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
     $_html['image'] = $image;
     $_html['author'] = l($auth_node->title, 'node/' . $auth_node->nid);
   }
-  
+
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
@@ -349,7 +352,7 @@ function debut_mobile_preprocess_node__nobel_speech__listing(&$variables) {
     $auth_node = cache_common_load_node($nid);
     $_html['author'] = check_plain($auth_node->title);
   }
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';
