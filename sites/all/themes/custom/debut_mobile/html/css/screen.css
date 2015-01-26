@@ -199,7 +199,20 @@ a, a.active, li a.active {
   text-shadow: 0 1px 0 #000;
   font-weight: bold;
 }
-
+.main-menu .menu-header li span {
+  border-bottom: 1px dotted #c2c1c0;
+  color: #feefd4;
+  display: block;
+  font-weight: normal;
+  padding: 23px 20px 22px 60px;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.main-menu .menu-header li {
+  background: url("../images/content/menu-header-back.png") 0 0 no-repeat;
+  height: 60px;
+}
 .header-placeholders-block,
 .banner {
   max-width: 640px;
@@ -243,6 +256,17 @@ a, a.active, li a.active {
   display: inline-block;
   padding: 16px 10px 9px 10px;
   background: url('../images/sprite-a.png') no-repeat -45px -256px;
+  z-index: 99;
+}
+.header .header-newsletter-button {
+  margin: 0 auto;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  top: 0px;
+  display: inline-block;
+  padding: 16px 10px 9px 10px;
+  background: url('../images/sprite-a.png') no-repeat -93px -256px;
   z-index: 99;
 }
 /*--footer-styles--*/
