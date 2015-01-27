@@ -16,8 +16,8 @@
     <div class="tags">
       <?php if (count($_html['tags'])): ?>
         <span class="ico"></span>
+        <?php print implode(', ', $_html['tags']); ?>
       <?php endif; ?>
-      <?php print implode(', ', $_html['tags']); ?>
     </div>
   </div>
   <div class="clearfix"></div>

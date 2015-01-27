@@ -195,6 +195,11 @@ function debut_common_init() {
 
   // Force front end to have ajax libs.
   drupal_add_library('system', 'drupal.ajax');
+
+  $is_mobile = debut_common_is_mobile();
+  if ($is_mobile) {
+    admin_menu_suppress();
+  }
 }
 
 /**
