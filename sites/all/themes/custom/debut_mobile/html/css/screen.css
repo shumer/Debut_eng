@@ -715,17 +715,20 @@ a, a.active, li a.active {
 /*------------press, news, docs listing styles---------------*/
 .block-press.listing,
 .block-news.listing,
-.block-nobel-speech.listing {
+.block-nobel-speech.listing,
+.block-travels.listing {
   border-bottom: 2px dotted #dcdcdc;
 }
 .block-press.listing.last,
-.block-news.listing.last {
+.block-news.listing.last,
+.block-travels.listing.last {
   border-bottom: none;
 }
 .block-press.listing h1,
 .block-news.listing h1,
 .block-documents.listing h1,
-.block-nobel-speech.listing h1 {
+.block-nobel-speech.listing h1,
+.block-travels.listing h1 {
   font-size: 1em;
 }
 .block-press.listing .press-body,

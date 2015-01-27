@@ -358,3 +358,93 @@ function debut_mobile_preprocess_node__nobel_speech__listing(&$variables) {
     $_data['class'] = 'last';
   }
 }
+
+/**
+ * Preprocess view mode full for travel description node.
+ */
+function debut_mobile_preprocess_node__travel_description__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_mobile_render($content, 'field_travels_description_body');
+  
+  $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
+  $_html['field_publication_date'] = $published;
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess view mode listing for travel description node.
+ */
+function debut_mobile_preprocess_node__travel_description__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
+  $_html['field_publication_date'] = $published;
+}
+
+/**
+ * Preprocess travel_description_search.
+ */
+function debut_mobile_preprocess_node__travel_description__search(&$variables) {
+  debut_mobile_preprocess_node__travel_description__listing($variables);
+}
+
+/**
+ * Preprocess view mode full for travel node.
+ */
+function debut_mobile_preprocess_node__travel__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['content'] = debut_mobile_render($content, 'field_travel_travels');
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess view mode teaser for travel node.
+ */
+function debut_mobile_preprocess_node__travel__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['content'] = debut_mobile_render($content, 'field_travel_travels');
+}
+
+/**
+ * Preprocess view mode listing for travel  node.
+ */
+function debut_mobile_preprocess_node__travel__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
+  $_html['date'] = $published;
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess travel_search.
+ */
+function debut_mobile_preprocess_node__travel__search(&$variables) {
+  debut_mobile_preprocess_node__travel__teaser($variables);
+}
