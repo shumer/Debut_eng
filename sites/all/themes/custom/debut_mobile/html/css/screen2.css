@@ -110,3 +110,25 @@
 .block .block-prize-person {
   clear: left;
 }
+
+@media screen and (min-width: 480px) {
+  .block-nobel-speech .part-a .pic .pic-inner img {
+    width: auto;
+  }
+  .block-nobel-speech .part-a .pic {
+    float: left;
+    padding: 3px 20px 3px 0px;
+  }
+  .block-nobel-speech .part {
+    clear: both;
+    padding: 1px 0px 0px;
+  }  
+  .block-nobel-speech h1 {
+    color: #333333;
+    font-size: 1.5em;
+    line-height: 1.1;
+    padding: 0 0 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}    
