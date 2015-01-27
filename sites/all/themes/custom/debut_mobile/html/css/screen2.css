@@ -88,7 +88,8 @@
   text-align: center;
   text-transform: uppercase;
 }
-.block-nobel-speech.listing h1 {
+.block-nobel-speech.listing h1,
+.block-travels.listing h1 {
   text-align: left;  
 }
 .block-nobel-speech h2 {
@@ -132,3 +133,58 @@
     text-transform: uppercase;
   }
 }    
+
+/*---------- travels --------------*/
+.block-travel-description h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-travels h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-travel-description.listing a,
+.block-travels.listing a {
+  font-weight: bold;
+  color: #666666;
+  /*font-size: 16px;*/
+}
+.block-travel-description.listing a:hover,
+.block-travels.listing a:hover {
+  color: #BD01B5;
+  text-decoration: underline;
+}
+.block-travel-description.listing .date,
+.block-travels.listing .date {
+  font-size: 12px;
+  margin-top: 5px;
+  padding: 1px 0 3px 0;
+}
+.block-travel-description.listing,
+.block-travels.listing {
+  margin-bottom: 20px;
+  border-bottom: 1px dashed #c0c0c0;
+}
+.block-travel-description h2.sub-title {
+  padding: 0px 0px 1.25em;
+  font-size: 0.75em;
+  text-transform: uppercase;
+}
+.travels-description-list :last-child {
+  border-bottom: none;
+}
+.block-travels.listing,
+.block-travel-description.listing,
+.block-travel-description {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}

@@ -104,6 +104,25 @@ function debut_common_create_page_mobile_breadcrumbs() {
       }
       break;      
 
+    // Bc for travels page.
+    case DEBUT_COMMON_PAGE_TRAVELS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
+      $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
+      if (!empty($current_year)) {
+        $current_year = $current_year['value']['year'];
+        $breadcrumb[] = $current_year;
+      }
+      break;      
+      
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -223,6 +242,39 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l(t('Nobel speech'), DEBUT_COMMON_PAGE_NOBEL_SPEECH);
       break;
 
+    // Make breadcrumb for travels node.
+    case DEBUT_COMMON_TYPE_TRAVELS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Letopis Debuta');
+      $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
+      break;
+
+    // Make breadcrumb for travels node.
+    case DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Letopis Debuta');
+      $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
+      $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_TRAVELS_LISTING, $node->nid);
+      $travel_node = cache_common_load_node($view[0]->nid);
+      $breadcrumb[] = l($travel_node->title, 'node/' . $travel_node->nid);
+      break;
+    
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
