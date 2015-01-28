@@ -5,6 +5,20 @@
  */
 
 /**
+ * Preprocess simplenews_confirm_add_form.
+ */
+function debut_mobile_preprocess_form__simplenews_confirm_add_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['question'] = debut_mobile_render($form, 'question');
+  $_html['description'] = debut_mobile_render($form, 'description');
+
+  $_html['form'] = drupal_render_children($form);
+}
+
+/**
  * Preprocess debut_common_contact_us_form.
  */
 function debut_mobile_preprocess_form__debut_common_contact_us_form(&$variables) {
@@ -370,7 +384,7 @@ function debut_mobile_preprocess_node__travel_description__full(&$variables) {
 
   $_html['title'] = check_plain($node->title);
   $_html['body'] = debut_mobile_render($content, 'field_travels_description_body');
-  
+
   $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
   $_html['field_publication_date'] = $published;
   $_html['social_links'] = theme('debut_mobile_social_links');
@@ -435,7 +449,7 @@ function debut_mobile_preprocess_node__travel__listing(&$variables) {
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $published = t('Published !date', array('!date' => debut_mobile_render($content, 'field_publication_date')));
   $_html['date'] = $published;
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';
@@ -457,11 +471,11 @@ function debut_mobile_preprocess_node__interview__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $_html['title'] = check_plain($node->title);
   $_html['author'] = debut_mobile_render($content, 'field_interview_author');
   $_html['body'] = debut_mobile_render($content, 'field_interview_body');
-  
+
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
@@ -489,7 +503,7 @@ function debut_mobile_preprocess_node__interview__compact(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $uri = '';
 
   $auth_field = qtools_api__field_get_item('node', $node, 'field_interview_author', 0, 'target_id');
@@ -517,7 +531,7 @@ function debut_mobile_preprocess_node__interview__compact(&$variables) {
     );
     $image =  theme('image', $params);
   }
-    
+
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
