@@ -521,3 +521,42 @@ function debut_mobile_preprocess_node__interview__compact(&$variables) {
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
+
+/**
+ * Preprocess node__master_class_text__full.
+ */
+function debut_mobile_preprocess_node__master_class_text__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['text']  = debut_mobile_render($content, 'field_master_class_text_body');
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess node__master_class_text__full.
+ */
+function debut_mobile_preprocess_node__master_class_text__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess node__master_class_text__search.
+ */
+function debut_mobile_preprocess_node__master_class_text__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['text'] = debut_mobile_render($content, 'field_master_class_text_body');
+}
