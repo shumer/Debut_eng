@@ -38,8 +38,6 @@
       <div class="header-newsletter-button"></div>
       <div class="vertical-divider"></div>
     </div>
-    <!-- Messages -->
-    <?php print $_html['messages']; ?>
   </div>
   <!-- Placeholders -->
   <div class="header-placeholders-block">
@@ -57,10 +55,31 @@
         </div>
       </div>
     </div>
+    <!-- Newsletter subscribe bar block -->
+    <div class="newsletter-block-target form-body" style="display: none;">
+      <div class="newsletter-bar">
+        <div class="form-item form-type-textfield form-item-keys">
+          <div class="form-text-wrap">
+            <div class="form-text-wrap-inner">
+              <input data-ajax-url=<?php print $_data['newsletters_url']; ?> type="text" name="keys" value="" size="60" maxlength="128" class="form-text newsletter-form-text" />
+            </div>
+          </div>
+        </div>
+        <div class="newsletter-messages-target"></div>
+        <div class="hidden">
+          <div id="newsletter-messages" class="newsletter-messages"></div>
+          <div class="messages error"><?php print t('Email address is incorrect.'); ?></div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Header banner -->
   <section class="banner">
     <?php print $_html['banner']; ?>
   </section>
+  <!-- Messages -->
+  <div class="messages-container">
+    <?php print $_html['messages']; ?>
+  </div>
 </header>
 
