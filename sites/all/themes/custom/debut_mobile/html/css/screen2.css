@@ -112,28 +112,6 @@
   clear: left;
 }
 
-@media screen and (min-width: 480px) {
-  .block-nobel-speech .part-a .pic .pic-inner img {
-    width: auto;
-  }
-  .block-nobel-speech .part-a .pic {
-    float: left;
-    padding: 3px 20px 3px 0px;
-  }
-  .block-nobel-speech .part {
-    clear: both;
-    padding: 1px 0px 0px;
-  }  
-  .block-nobel-speech h1 {
-    color: #333333;
-    font-size: 1.5em;
-    line-height: 1.1;
-    padding: 0 0 0.1em;
-    text-align: center;
-    text-transform: uppercase;
-  }
-}    
-
 /*---------- travels --------------*/
 .block-travel-description h1 {
   color: #333333;
@@ -188,3 +166,61 @@
   max-width: 880px;
   padding: 16px 25px 16px 25px;
 }
+
+/*----------- inteview ------------*/
+.block-interview {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-interview h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-interview p {
+  line-height: 1.5;
+}
+.block-interview .interview-photo {
+  margin: 0;
+}
+.block-interview .interview-photo img {
+  width: 100%;
+  padding: 3px 0px 5px 0px;
+}
+.block-interview .interview-photo span.text {
+  display: none;
+}
+
+/*--------- portrait orientation -----------*/
+@media screen and (min-width: 480px) {
+  .block-nobel-speech .part-a .pic .pic-inner img {
+    width: auto;
+  }
+  .block-nobel-speech .part-a .pic {
+    float: left;
+    padding: 3px 20px 3px 0px;
+  }
+  .block-nobel-speech .part {
+    clear: both;
+    padding: 1px 0px 0px;
+  }  
+  .block-nobel-speech h1 {
+    color: #333333;
+    font-size: 1.5em;
+    line-height: 1.1;
+    padding: 0 0 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .block-interview .interview-photo img {
+    float: left;
+    width: auto;
+    padding: 3px 20px 3px 0px;
+  }
+
+}    

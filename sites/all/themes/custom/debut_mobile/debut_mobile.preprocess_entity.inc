@@ -448,3 +448,76 @@ function debut_mobile_preprocess_node__travel__listing(&$variables) {
 function debut_mobile_preprocess_node__travel__search(&$variables) {
   debut_mobile_preprocess_node__travel__teaser($variables);
 }
+
+/**
+ * Preprocess view mode full for interview node.
+ */
+function debut_mobile_preprocess_node__interview__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $_html['title'] = check_plain($node->title);
+  $_html['author'] = debut_mobile_render($content, 'field_interview_author');
+  $_html['body'] = debut_mobile_render($content, 'field_interview_body');
+  
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess interview_search.
+ */
+function debut_mobile_preprocess_node__interview__search(&$variables) {
+  debut_mobile_preprocess_node__interview__compact($variables);
+}
+
+/**
+ * Preprocess view mode listing for interview node.
+ */
+function debut_mobile_preprocess_node__interview__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+function debut_mobile_preprocess_node__interview__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $uri = '';
+
+  $auth_field = qtools_api__field_get_item('node', $node, 'field_interview_author', 0, 'target_id');
+  if (!empty($auth_field)) {
+    $auth_node = cache_common_load_node($auth_field);
+    $uri = qtools_api__field_get_item('node', $auth_node, 'field_person_image', 0, 'uri');
+  }
+  if (!empty($uri)) {
+    $image = theme('image_style', array(
+      'path' => $uri,
+      'style_name' => 'debut_person_alphabet_page_mobile',
+      'alt' => $auth_node->title,
+      'title' => $auth_node->title,
+    ));
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+    
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
