@@ -34,8 +34,18 @@ function debut_common_page_ajax_newsletter_subscribe_callback() {
   if (isset($_POST['email'])) {
     $email = $_POST['email'];
     if (valid_email_address($email)) {
-      simplenews_subscribe_user($mail, DEBUT_COMMON_TID_NEWSLETTERS, TRUE, 'newsleeter form');
-      drupal_set_message(t('You was subscribed successfully. Confirmation message sended to your email address.'));
+      $result = simplenews_subscriber_load_by_mail($email);
+      $subscribed = FALSE;
+      if (!empty($result)) {
+        if (!empty($result->tids)) {
+          drupal_set_message(t('You already subscribed!'), 'warning');
+          $subscribed = TRUE;
+        }
+      }
+      if (!$subscribed) {
+        simplenews_subscribe_user($email, DEBUT_COMMON_TID_NEWSLETTERS, TRUE, 'newsletter form');
+        drupal_set_message(t('You was subscribed successfully. Confirmation message sended to your email address.'));
+      }
     }
   }
 
@@ -127,31 +137,31 @@ function debut_common_persons_view_more($shift = 0) {
     if ($counter >= $max_count) {
       break;
     }
-    
+
     $row = floor($counter/$interval);
 
     if ($counter % $interval == 0) {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'full';
       $prizes[$row]['data'][$term->tid]['id'] = '';
-      
+
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       $prizes[$row]['captions'][$term->tid]['ref-id'] = '';
       $prizes[$row]['captions'][$term->tid]['class'] = '';
     }
     else {
       $key = md5(uniqid(rand(),1));
-      
+
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;
       $prizes[$row]['data'][$term->tid]['id'] = $key;
-      
+
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
       $prizes[$row]['captions'][$term->tid]['class'] = 'js-prizes-show';
     }
-    
+
     $counter++;
   }
 

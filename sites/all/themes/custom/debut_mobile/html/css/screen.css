@@ -1041,3 +1041,21 @@ div.messages ul li {
   position: absolute;
 }
 /*------------end loading overlay styles---------------*/
+/*------------Newsletter styles---------------*/
+.newsletter-block-target .messages {
+  padding-left: 50px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.header .messages-container {
+  margin: 0 auto;
+  max-width: 640px;
+}
+.header .messages-container .messages {
+  padding-left: 50px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+/*------------end newsletter styles---------------*/

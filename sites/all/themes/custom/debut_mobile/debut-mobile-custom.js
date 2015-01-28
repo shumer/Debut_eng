@@ -42,6 +42,9 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach proxy.
   debut_mobile_custom.attach_proxy($context, settings);
+
+  // Attach newsletters.
+  debut_mobile_custom.attach_newsletters($context, settings);
 };
 
 // Init routine, will be called once.
@@ -62,7 +65,8 @@ debut_mobile_custom.attach_calendar = function ($context, settings) {
   $context.find('.header .header-calendar-button').once('debut-calendar', function () {
     $(this).click(function() {
       $('.calendar-block-target').toggle('slideDown');
-      $('.search-block-target').slideUp();
+      $('.search-block-target').hide();
+      $('.newsletter-block-target').hide();
     });
   });
 
@@ -125,7 +129,8 @@ debut_mobile_custom.attach_search_form = function($context, settings) {
   $context.find('.header .header-search-button').once('debut-search', function () {
     $(this).click(function() {
       $('.search-block-target').toggle('slideDown');
-      $('.calendar-block-target').slideUp();
+      $('.calendar-block-target').hide();
+      $('.newsletter-block-target').hide();
     });
   });
 
@@ -231,4 +236,58 @@ debut_mobile_custom.attach_proxy = function ($context, settings) {
       var op = $(target).val($(this).val());
     });
   });
+};
+
+// Attach newsletters.
+debut_mobile_custom.attach_newsletters = function ($context, settings) {
+  $context.find('.header .header-newsletter-button').once('debut-newsletters', function () {
+    $(this).click(function() {
+      $('.newsletter-block-target').toggle('slideDown');
+      $('.calendar-block-target').hide();
+      $('.search-block-target').hide();
+    });
+  });
+
+  $context.find('.newsletter-bar .newsletter-form-text').once('debut-newsletters-block', function (delta) {
+    $(this).keydown(function (event) {
+      if (event.keyCode == 13) {
+        var $this = $(this);
+        var email = $('.newsletter-bar .newsletter-form-text').val();
+        if (!debut_mobile_custom.is_email(email)) {
+          var $messages = $('.newsletter-bar .messages').clone();
+          $('.newsletter-messages-target').html($messages);
+        }
+        else {
+          $('.messages-container').html('');
+          $('.newsletter-messages-target').hide();
+          var name = 'newsletter-subscribe';
+          var url = $this.attr('data-ajax-url');
+          var data = {'email': email};
+          qtools_ajax.ajax_call(name, url, data);
+          debut_mobile_custom.hide_keyboard($(this));
+          $('.newsletter-block-target').toggle('slideUp');
+        }
+      }
+    });
+    $(this).watermark(Drupal.t('Subcribe for newsletters here'));
+  });
+};
+
+// Check email address.
+debut_mobile_custom.is_email = function (email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+};
+
+// Hide phone keyboard. element with current focus required.
+debut_mobile_custom.hide_keyboard = function(element) {
+  element.attr('readonly', 'readonly');
+  element.attr('disabled', 'true');
+  setTimeout(function() {
+    element.blur();
+
+    // Remove readonly attribute after keyboard is hidden.
+    element.removeAttr('readonly');
+    element.removeAttr('disabled');
+  }, 100);
 };
