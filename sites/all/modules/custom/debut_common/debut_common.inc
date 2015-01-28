@@ -287,6 +287,23 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       break;
+
+    // Make breadcrumb for master_class_text node.
+    case DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
+      $view = views_get_view_result(DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS, 'default', $node->nid);
+      $master_node = cache_common_load_node($view[0]->nid);
+      $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
+      break;
     
     default:
       // Make last non link.

@@ -40,7 +40,7 @@ function debut_common_documents_listing_content_type_render($subtype, $conf, $pa
     $query = $args = array();
   }
   
-  $_html['documents_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NEWS_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
+  $_html['documents_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_DOCUMENTS_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   $data['_html'] = $_html;
 
   $block->content = theme('debut_common_documents_listing', $data);

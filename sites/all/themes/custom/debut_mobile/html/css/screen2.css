@@ -16,14 +16,24 @@
   padding: 0 0 2px;
 }
 
-.block-documents.listing.last,
+.block-document.listing.last,
 .block-nobel-speech.listing.last {
   border-bottom: none;
   padding-bottom: 30px;
 }
-.block-documents.listing {
+.block-document.listing {
   border-bottom: 2px dotted #dcdcdc;
   padding-bottom: 10px;
+}
+.block-document.listing a {
+  color: #1C1C1C;
+  display: block;
+  min-height: 34px;
+  padding: 2px 0 0 41px;
+  text-decoration: none;
+  font-weight: normal;
+  text-align: left;
+  text-transform: none;
 }
 
 .documents-image {
@@ -32,6 +42,10 @@
   background: url("../images/sprite-a.png") -570px -1px no-repeat;
   float: left;
   margin-right: 5px;
+}
+.block-document .document-body p {
+  line-height: 1.5;
+  width: auto;
 }
 
 /*------------- nobel speech ------------*/
