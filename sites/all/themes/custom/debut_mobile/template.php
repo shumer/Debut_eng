@@ -3,6 +3,47 @@
  * @file
  * Theme functions for debut theme.
  */
+/**
+ * Preprocess main-template.
+ */
+function debut_mobile_preprocess_mimemail_message(&$variables) {
+  $_data = &$variables['_data'];
+  $_html = &$variables['_html'];
+
+  // Text parts.
+  $_html['mail_title'] = $variables['subject'];
+  $_html['body'] = $variables['body'];
+  $_html['footer_text'] = t('Наш адрес: 111141, г. Москва, Зеленый проспект, д. 5/12, стр. 2 Электронная почта: info@pokolenie-debut.ru Данное письмо является официальным письмом сайта премии "Дебют" . Все права защищены ®');
+  $_data['url']['site_link'] = url('');
+
+  // Load preprocess funtions file.
+  $preprocess_entity_loaded = &drupal_static('debut_mobile_preprocess_entity_loaded', FALSE);
+  if (!$preprocess_entity_loaded) {
+    $preprocess_entity_loaded = TRUE;
+    $file = path_to_theme() . '/debut_mobile.preprocess_entity.inc';
+    if (is_file($file)) {
+      require_once $file;
+    }
+  }
+
+  // Run specific preprocess function.
+  $preprocess = 'debut_mobile_preprocess__mail__' . str_replace('-', '_', $variables['key']);
+  if (function_exists($preprocess)) {
+    $preprocess($variables);
+  }
+
+  $theme = mailsystem_get_mail_theme();
+  $themepath = drupal_get_path('theme', $theme);
+
+  $sitestyle = variable_get('mimemail_sitestyle', 1);
+
+  // Set template alternatives.
+  $variables['theme_hook_suggestions'][] = 'mimemail_message__' . str_replace('-', '_', $variables['key']);
+
+  // Process identifiers to be proper CSS classes.
+  $variables['module'] = str_replace('_', '-', $variables['module']);
+  $variables['key'] = str_replace('_', '-', $variables['key']);
+}
 
 /**
  * Preprocess debut_mobile_form, threat forms like enteties.

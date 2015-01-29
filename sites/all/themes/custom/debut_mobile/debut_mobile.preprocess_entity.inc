@@ -3,6 +3,19 @@
  * @file
  * Preprocess functions.
  */
+/**
+ * Preprocess simplenews_confirm_removal_form.
+ */
+function debut_mobile_preprocess_form__simplenews_confirm_removal_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['question'] = debut_mobile_render($form, 'question');
+  $_html['description'] = debut_mobile_render($form, 'description');
+
+  $_html['form'] = drupal_render_children($form);
+}
 
 /**
  * Preprocess simplenews_confirm_add_form.
