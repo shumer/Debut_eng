@@ -587,3 +587,91 @@ function debut_mobile_preprocess_node__master_class_text__search(&$variables) {
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['text'] = debut_mobile_render($content, 'field_master_class_text_body');
 }
+
+/**
+ * Preprocess view mode full for master class node.
+ */
+function debut_mobile_preprocess_node__master_class__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  
+  $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
+  if (!empty($text_filed)) {
+    $texts = array();
+    foreach ($text_filed as $item) {
+      $textnode = cache_common_load_node($item['target_id']);
+      $text = cache_common_entity_render('node', $textnode, 'listing');
+      $texts[] = $text;
+    }
+    $_html['texts'] = theme('item_list', array(
+      'items' => $texts,
+      'type' => 'ul',
+      'attributes'=> array(
+        'class' => array('text-listing'),
+      ),
+    ));
+  }
+
+  $_html['master'] = debut_mobile_render($content, 'field_master_class_master');
+
+  // Theme interview.
+  $_html['interviews'] = debut_mobile_render($content, 'field_master_class_interview');
+
+  $_html['body'] = debut_mobile_render($content, 'field_master_class_description');
+  $_html['title'] = check_plain($node->title);
+  
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess master_class_section_search.
+ */
+function debut_mobile_preprocess_node__master_class__search(&$variables) {
+  debut_mobile_preprocess_node__master_class__teaser($variables);
+}
+
+/**
+ * Preprocess view mode full for documents node.
+ */
+function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  
+  $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
+  if (!empty($text_filed)) {
+    $texts = array();
+    foreach ($text_filed as $item) {
+      $textnode = cache_common_load_node($item['target_id']);
+      $text = cache_common_entity_render('node', $textnode, 'listing');
+      $texts[] = $text;
+    }
+    $_html['texts'] = theme('item_list', array(
+      'items' => $texts,
+      'type' => 'ul',
+      'attributes'=> array(
+        'class' => array('text-listing'),
+      ),
+    ));
+  }
+
+  // Theme Master node.
+  $auth_field = qtools_api__field_get_item('node', $node, 'field_master_class_master', 0, 'target_id');
+  if (!empty($auth_field)) {
+    $auth_node = cache_common_load_node($auth_field);
+    $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
+  }
+  
+  // Theme interview.
+  $_html['interviews'] = debut_mobile_render($content, 'field_master_class_interview');
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}

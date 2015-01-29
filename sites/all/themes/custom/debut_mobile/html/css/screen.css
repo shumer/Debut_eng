@@ -660,6 +660,7 @@ a, a.active, li a.active {
   padding: 0 25px;
   text-align: center;
   text-transform: uppercase;
+  clear: left;
 }
 .block-share span {
   display: inline-block;
