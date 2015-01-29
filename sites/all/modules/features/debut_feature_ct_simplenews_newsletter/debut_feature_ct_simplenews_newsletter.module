@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: CT - Simplenews newsletter feature.
+ */
+
+include_once 'debut_feature_ct_simplenews_newsletter.features.inc';
