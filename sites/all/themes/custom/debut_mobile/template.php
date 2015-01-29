@@ -90,7 +90,7 @@ function debut_mobile_get($index, $array, $default = array()) {
 function debut_mobile_preprocess_entity(&$variables) {
 
   // Only handle supported types.
-  if (!in_array($variables['entity_type'], array('commerce_product', 'config_pages'))) {
+  if (!in_array($variables['entity_type'], array('commerce_product', 'config_pages', 'field_collection_item'))) {
     return;
   }
 
