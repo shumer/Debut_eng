@@ -786,3 +786,99 @@ function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
     $_data['class'] = 'last';
   }
 }
+
+/**
+ * Field collection field_person_bibliography preprocess full.
+ */
+function debut_mobile_preprocess_field_collection_item__field_person_bibliography__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_data['id'] = rand(0, 100500);
+
+  $field = debut_mobile_get('field_person_biography_text', $content);
+  $value = $field['#items'][0]['value'];
+  $text = debut_common_remove_double_quot($value);
+
+  $biography = explode("</p>", rtrim($text));
+
+  $_html['title'] = debut_mobile_render($content, 'field_person_biography_title');
+  $_html['short'] = implode("</p>", array_splice($biography, 0, 2));
+  $_html['hidden'] = implode("</p>", $biography);
+}
+
+/**
+ * Preprocess view mode full for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+
+  // Theme title and person image.
+  $_html['title'] = check_plain($node->title);
+
+  // Check if photo present.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '200px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = $image;
+  $_html['image_legende'] = qtools_api__field_get_item('node', $node, 'field_person_image', 0, 'title');
+
+  // Get person tags.
+  $tags_field = qtools_api__field_get_item('node', $node, 'field_person_tags');
+  foreach ($tags_field as $tag) {
+    $tag = taxonomy_term_load($tag['target_id']);
+    $_html['tags'][] = '<span class="tag">' . strtolower($tag->name) . '</span>';
+  }
+
+  // Get biography.
+  $_html['biography_short'] = debut_mobile_render($content, 'field_person_biography_short');
+  $_html['biography'] = debut_mobile_render($content, 'field_person_biography');
+
+  // Get autocomment.
+  $_html['autocomment_short'] = debut_mobile_render($content, 'field_person_autocomment_short');
+  $_html['autocomment'] = debut_mobile_render($content, 'field_person_autocomment');
+
+  // Get bibliography.
+  $_html['bibliography'] = debut_mobile_render($content, 'field_person_bibliography');
+
+  // Add Nobel speech item.
+  $result = views_get_view_result(DEBUT_COMMON_VIEW_GET_NOBEL_SPEECH_BY_AUTHOR, 'default', $node->nid);
+  $_data['nobel'] = array();
+  if (!empty($result)) {
+    $nobel = array();
+    $nobel['title'] = t('«Нобелевские речи»');
+    $nobel['short'] = '';
+    foreach ($result as $item) {
+      $n_node = cache_common_load_node($item->nid);
+      $nobel['short'] .= '<p>' . l($n_node->title, 'node/' . $n_node->nid) . '</p>';
+    }
+    $_data['nobel'][] = $nobel;
+  }
+
+  // Help resources.
+  $_html['resources'] = debut_mobile_render($content, 'field_person_resources');
+
+  // Linked video.
+  $_html['video'] = debut_mobile_render($content, 'field_person_linked_video');
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+  $_data['nid'] = $node->nid;
+}
