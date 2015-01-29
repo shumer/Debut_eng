@@ -43,7 +43,7 @@
 			<tr>
 				<!-- main content -->
 				<td width="25"></td>
-				<td style="text-align: center; color: #999999; max-width: 640px;">
+				<td style="text-align: center; color: #000; max-width: 640px;">
 					<div class="center" style="max-width: 640px; margin: 0 auto 1em;">
             <?php print $_html['body']; ?>
 					</div>
@@ -53,47 +53,6 @@
 			<tr>
 				<td colspan="3">
 					<!-- footer -->
-						<!-- mobile footer -->
-					<!--[if !mso]><!-->
-					<div class="show" style="display: none; max-height: 0; overflow: hidden;">
-						<table cellpadding="0" cellspacing="0" bg-color="#363739" style=" width: 100%; background-color: #363739; text-align: center; text-transform: uppercase;">
-							<tbody>
-								<tr>
-									<td>
-										<table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-											<tbody>
-												<tr><td colspan="9" height="16"></td></tr>
-												<tr>
-                          <?php foreach ($_data['social_links'] as $social_link): ?>
-                            <td><?php print $social_link; ?></td>
-                            <td width="9"></td>
-                          <?php endforeach; ?>
-												<tr><td colspan="9" height="16"></td></tr>
-											</tbody>
-										</table>
-									</td>
-								</tr>
-                  <?php $counter = 1; ?>
-                  <?php $items_count = count($_data['footer_mobile_menu_links']); ?>
-                  <?php foreach ($_data['footer_mobile_menu_links'] as $footer_menu_link): ?>
-                    <tr>
-                    <?php if ($counter != $items_count): ?>
-										  <td colspan="9" style="border-top: 1px solid #505153; border-bottom: 1px solid #505153;">
-										    <?php print $footer_menu_link; ?>
-                      </td>
-                    <?php else: ?>
-										  <td colspan="9">
-										    <?php print $footer_menu_link; ?>
-                      </td>
-                    <?php endif; ?>
-                    <?php $counter++; ?>
-                    </tr>
-                  <?php endforeach; ?>
-							</tbody>
-						</table>
-					</div>
-					<!--<![endif]-->
-						<!-- tablet footer -->
 					<div class="hide">
 						<table cellpadding="0" cellspacing="0" height="45" bg-color="#fb7700" style="width: 100%; background-color: #fb7700;">
 							<tbody>
