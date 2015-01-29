@@ -209,6 +209,179 @@
   display: none;
 }
 
+/*------------master class section styles---------------*/
+.block-master-class {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+
+.block-master-class .master-class-texts {
+  margin-bottom: 5px;
+}
+.block-master-class .text-listing {
+  list-style: none outside none;
+  margin: 0;
+  min-height: 1px;
+  overflow: hidden;
+  padding: 0;
+}
+.block-master-class .text-listing li {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: url("../images/bgs/mass_p.jpg") no-repeat scroll 0 0 transparent;
+  border-color: #EEEEEE;
+  border-style: none none solid;
+  border-width: 0 0 1px;
+  margin: 0;
+  padding: 7px 0 7px 35px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+}
+.block-master-class .text-listing li strong {
+  display: block;
+  font-size: 12px;
+  line-height: normal;
+  padding: 0 0 4px;
+}
+.block-master-class .text-listing li strong a {
+  font-weight: normal;
+  background: url("") repeat scroll 0 0 transparent;
+  font-size: 12px;
+  list-style-type: none;
+  padding: 0px;
+  color: #1C1C1C;
+}
+.block-master-class .text-listing li strong a:hover {
+  color: #BE01B6;
+  text-decoration: underline;
+}
+.block-master-class .master,
+.block-master-class .interview {
+  display: block;
+  float: left;
+  margin-top: 20px;
+  margin-right: 20px;
+  min-height: 1px;
+  overflow: hidden;
+  padding: 0 0 20px;
+  width: 165px;
+}
+.block-master-class .master .item {
+  text-align: center;
+}
+.block-master-class .master .text,
+.block-master-class .interview .listing li {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 14px;
+}
+.block-master-class .interview ul li,
+.block-master-class .author .interview {
+  text-align: center;
+}
+.view-content .block-master-class .master {
+  padding-left: 10px;
+}
+.view-content .block-master-class .interview ul li {
+  text-align: left;
+}
+.block-master-class .interview .listing li {
+  margin-bottom: 15px;
+}
+.block-master-class .master-class-title a {
+  background: url("../images/bgs/pen.gif") no-repeat scroll 0 0 transparent;
+  color: #BD01B5;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.3em;
+  margin-bottom: 0.667em;
+  margin-top: 0.667em;
+  display: block;
+  height: 25px;
+  padding: 0 0 0 35px;
+}
+.block-master-class .author {
+  background: url("../images/bgs/bg_gray_vertical.jpg") repeat-x scroll 0 0 #EFEFEF;
+  display: block;
+  min-height: 1px;
+  overflow: hidden;
+}
+.block-master-class .author a {
+  background: url("../images/sprite-a.png") no-repeat scroll 0 -89px transparent;
+  color: #BD01B5;
+  display: block;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 4px 0 0 15px;
+  text-transform: none;
+  font-weight: normal;
+  text-align: left;
+}
+.block-master-class .author .interview .listing li {
+  margin-bottom: 0px;
+}
+.block-master-class h3 {
+  color: #1C1C1C;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0 0 10px 6px;
+}
+.view-content .block-master-class h3 {
+  padding: 0 0 10px 0px;
+  margin-bottom: 5px;
+}
+.block-master-class .interview .interview-item {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+.block-master-class h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-master-class.listing h1 a {
+  background: url("../images/bgs/pen.gif") no-repeat scroll 0 0 transparent;
+  color: #BD01B5;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.3em;
+/*  margin-bottom: 0.667em;
+  margin-top: 0.667em;*/
+  display: block;
+  height: 25px;
+  padding: 0 0 0 35px;
+  text-align: left;
+  text-transform: none;
+}
+.block-master-class.listing {
+  padding: 0;
+  margin: 0;
+}
+.block-master-class-listing {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-master-class.listing h1 {
+  padding: 0;
+}
+.block-master-class.listing .author .interview {
+  padding-left: 10px;
+}
+/*------------end master class section styles---------------*/
+
 /*--------- portrait orientation -----------*/
 @media screen and (min-width: 480px) {
   .block-nobel-speech .part-a .pic .pic-inner img {
@@ -236,5 +409,10 @@
     width: auto;
     padding: 3px 20px 3px 0px;
   }
-
 }    
+/*--------- landscape orientation -----------*/
+@media screen and (max-width: 480px) {
+  .block-master-class.listing .author .interview {
+    margin-top: 0px;
+  }
+}

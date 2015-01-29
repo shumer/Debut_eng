@@ -118,6 +118,20 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;      
+
+    // Bc for travels page.
+    case DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Letopis Debuta');
+      break;      
       
     default:
       // Get default breadcrumb.
@@ -303,6 +317,20 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $view = views_get_view_result(DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS, 'default', $node->nid);
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
+      break;
+    
+    case DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Letopis Debuta');
+      $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
       break;
     
     default:
