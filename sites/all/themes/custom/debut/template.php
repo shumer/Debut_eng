@@ -5,6 +5,37 @@
  */
 
 /**
+ * Preprocess debut_mobile_form, threat forms like enteties.
+ */
+function debut_preprocess_confirm_form(&$variables) {
+
+  $preprocess_entity_loaded = &drupal_static('debut_preprocess_entity_loaded', FALSE);
+
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+  $_data['path_to_theme'] = path_to_theme();
+
+  // Load preprocess funtions file.
+  if (!$preprocess_entity_loaded) {
+    $preprocess_entity_loaded = TRUE;
+    $file = path_to_theme() . '/debut.preprocess_entity.inc';
+    if (is_file($file)) {
+      require_once $file;
+    }
+  }
+
+  // Add specific templates.
+  $variables['theme_hook_suggestions'][] = 'debut_form__' . $form['#form_id'];
+
+  // Run specific preprocess function.
+  $preprocess = 'debut_preprocess_form__' . $form['#form_id'];
+  if (function_exists($preprocess)) {
+    $preprocess($variables);
+  }
+}
+
+/**
  * Implements theme_form.
  */
 function debut_form($variables) {
