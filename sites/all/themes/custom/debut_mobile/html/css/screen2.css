@@ -380,6 +380,9 @@
 .block-master-class.listing .author .interview {
   padding-left: 10px;
 }
+.block-master-class .interview .interview-item .text {
+  margin-top: 4px;
+}
 /*------------end master class section styles---------------*/
 
 /*--------- portrait orientation -----------*/
