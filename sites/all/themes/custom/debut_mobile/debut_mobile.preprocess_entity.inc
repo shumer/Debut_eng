@@ -309,6 +309,117 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
 }
 
 /**
+ * Preprocess debut_jury at frame view.
+ */
+function debut_mobile_preprocess_node__debut_jury__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_mobile_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode teaser for debut_jury node.
+ */
+function debut_mobile_preprocess_node__debut_jury__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_mobile_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+}
+
+/**
+ * Preprocess view mode listing for debut_jury node.
+ */
+function debut_mobile_preprocess_node__debut_jury__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  // Title.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode compact for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_jury__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_jury_image'])) {
+    $image = debut_mobile_render($content, 'field_jury_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode search for debut_jury node.
+ */
+function debut_mobile_preprocess_node__debut_jury__search(&$variables) {
+  debut_mobile_preprocess_node__debut_jury__teaser($variables);
+}
+
+/**
  * Preprocess view mode full for nobel_speech node.
  */
 function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {

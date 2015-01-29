@@ -59,7 +59,6 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
   ));
 
   // Newsletter settings.
-  variable_set('debut_common_newsletter_block_tid', $conf['newsletters']);
   $_data['newsletters_url'] = url('debut_common/ajax/debut_common_newsletter_subscribe');
 
   // Prepare data for search form.
