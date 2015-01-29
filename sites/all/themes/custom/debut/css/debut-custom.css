@@ -497,3 +497,54 @@ body.no-admin-menu #admin-toolbar {
   padding: 5px 10px 0;
 }
 
+
+/*------------Newsletter styles---------------*/
+.newsletter-confirmation {
+  margin: 0 auto;
+  max-width: 640px;
+}
+.newsletter-confirmation h4.block-title {
+  border-bottom: 1px solid #333333;
+  color: #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin: 10px 25px 1.5em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.newsletter-confirmation .form-items {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 25px 1.5em;
+}
+.newsletter-confirmation .form-items .buttons:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.newsletter-confirmation .form-items .buttons .button {
+  margin: 0;
+  width: 100%;
+}
+.newsletter-confirmation .form-items .button-e a span {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 10px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+.newsletter-confirmation .form-items .button-e a span:active {
+  background: #bd01b5;
+  color: #fff;
+  border: 1px solid #bd01b5;
+}
+/*------------end newsletter styles---------------*/
