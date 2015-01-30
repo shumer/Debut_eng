@@ -65,8 +65,10 @@
     <h2 class="sub-title"><?php print t('Bibliography'); ?></h2>
     <?php print $_html['bibliography']; ?>
     <?php foreach ($_data['nobel'] as $nobel) : ?>
-      <h3><?php print $nobel['title']; ?></h3>
-      <?php print $nobel['short']; ?>
+      <div class="bibliography-item">
+        <h3 class="sub-title"><?php print $nobel['title']; ?></h3>
+        <?php print $nobel['short']; ?>
+      </div>
     <?php endforeach; ?>
   <?php endif; ?>
   <!-- end bibliography block -->
