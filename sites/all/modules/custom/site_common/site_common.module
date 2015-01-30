@@ -136,6 +136,14 @@ function site_common_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements hook_form_ID_alter().
+ */
+function site_common_form_features_export_form_alter(&$form, &$form_state, $form_id) {
+  // Disallow recreation of the feature directly on the environment.
+  $form['advanced']['generate']['#disabled'] = 'disabled';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function site_common_form_alter(&$form, &$form_state, $form_id) {

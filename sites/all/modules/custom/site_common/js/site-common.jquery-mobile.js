@@ -73,48 +73,7 @@ $(window).on('pagecontainerhide', function(event, data) {
 
 // On page load reattach behaviors.
 $(window).on('pagecontainerload', function (event, data) {
-
-  // Get context and settings.
-  var $context = data.toPage;
-  $context[0]._drupalSettings = {};
-
-  // Getting settings a bit harder.
-  var response_text = '';
-  var find_settings = data.xhr.responseText.match(/jQuery\.extend\(Drupal\.settings\,(.*)/);
-  if (find_settings && find_settings.length > 0) {
-    response_text = find_settings[1];
-  }
-
-  // Looking for a redirect.
-  var find_redirect = data.xhr.getResponseHeader('X-Site-Common-Location');
-  if (find_redirect) {
-    data.absUrl = find_redirect;
-    qtools.log('SCJQM: redirect found: ', find_redirect);
-    site_common.jquery_mobile._redirect = find_redirect;
-    $.mobile.navigate(find_redirect, {});
-  }
-
-  // At this point we know we not redirecting.
-  if (response_text && response_text != '') {
-    var eval_text = 'var site_common_drupal_settings = (' + response_text;
-    eval(eval_text);
-    if (site_common_drupal_settings) {
-      // Save data to DOM element.
-      site_common_drupal_settings._site_common_jquery_mobile_url = data.absUrl;
-      $context[0]._drupalSettings = site_common_drupal_settings;
-    }
-    else {
-      // Fallback to default settings.
-      $context[0]._drupalSettings = site_common.jquery_mobile._original_settings;
-    }
-  }
-
-  // Attach Behaviors to new page.
-  // We use timeout to offload behaviors from current thread as content is not yet in DOM
-  // despite JQM says otherwise.
-  setTimeout(function () {
-    Drupal.attachBehaviors($context, Drupal.settings);
-  }, 0);
+  site_common.jquery_mobile.pagecontainerload(event, data);
 });
 
 /**
@@ -147,8 +106,12 @@ site_common.jquery_mobile.attach = function ($context, settings) {
     $context.trigger("create");
   }
 
+  var current_url = qtools.parseUrl(window.location.href);
+  var l_selector = 'a[href^="http://' + current_url.host +'"], a[href^="https://' + current_url.host +'"], a:not([href*=":"]), .site-common-jqm-navigate';
+  var l_ignored = '.site-common-jqm-navigate-ignored, .ui-btn, [href^="#"], [rel="external"], [target], [data-ajax="false"]';
+
   // Define a click binding for all links in the page.
-  $context.find('a[href], .site-common-jqm-navigate').not('.site-common-jqm-navigate-ignored, .ui-btn, [href^="#"]').once('site-common-jqm-navigate', function () {
+  $context.find(l_selector).not($context.find(l_ignored)).once('site-common-jqm-navigate', function () {
     $(this).click(function(event) {
       var $this = $(this);
 
@@ -296,6 +259,54 @@ site_common.jquery_mobile.init = function (event) {
     $context._noEnhance = true;
     Drupal.attachBehaviors($context, Drupal.settings);
   }
+}
+
+/**
+ * Handle pagecontainerload.
+ */
+site_common.jquery_mobile.pagecontainerload = function (event, data) {
+
+  // Get context and settings.
+  var $context = data.toPage;
+  $context[0]._drupalSettings = {};
+
+  // Getting settings a bit harder.
+  var response_text = '';
+  var find_settings = data.xhr.responseText.match(/jQuery\.extend\(Drupal\.settings\,(.*)/);
+  if (find_settings && find_settings.length > 0) {
+    response_text = find_settings[1];
+  }
+
+  // Looking for a redirect.
+  var find_redirect = data.xhr.getResponseHeader('X-Site-Common-Location');
+  if (find_redirect) {
+    data.absUrl = find_redirect;
+    qtools.log('SCJQM: redirect found: ', find_redirect);
+    site_common.jquery_mobile._redirect = find_redirect;
+    $.mobile.navigate(find_redirect, {});
+  }
+
+  // At this point we know we not redirecting.
+  if (response_text && response_text != '') {
+    var eval_text = 'var site_common_drupal_settings = (' + response_text;
+    eval(eval_text);
+    if (site_common_drupal_settings) {
+      // Save data to DOM element.
+      site_common_drupal_settings._site_common_jquery_mobile_url = data.absUrl;
+      $context[0]._drupalSettings = site_common_drupal_settings;
+    }
+    else {
+      // Fallback to default settings.
+      $context[0]._drupalSettings = site_common.jquery_mobile._original_settings;
+    }
+  }
+
+  // Attach Behaviors to new page.
+  // We use timeout to offload behaviors from current thread as content is not yet in DOM
+  // despite JQM says otherwise.
+  setTimeout(function () {
+    Drupal.attachBehaviors($context, Drupal.settings);
+  }, 0);
 }
 
 /**
