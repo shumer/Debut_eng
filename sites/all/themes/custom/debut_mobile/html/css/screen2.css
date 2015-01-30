@@ -203,6 +203,7 @@
 }
 .block-interview .interview-photo img {
   width: 100%;
+  height: auto;
   padding: 3px 0px 5px 0px;
 }
 .block-interview .interview-photo span.text {
@@ -531,7 +532,12 @@
   .block-interview .interview-photo img {
     float: left;
     width: auto;
-    padding: 3px 20px 3px 0px;
+  }
+  .block-interview .interview-photo {
+    background: none repeat scroll 0px 0px #EEE;
+    float: left;
+    margin: 10px 20px 20px 0px;
+    padding: 20px;
   }
   
   .block-person .person-photo,
