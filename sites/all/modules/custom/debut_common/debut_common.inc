@@ -99,7 +99,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
       }
-      break;      
+      break;
 
     // Bc for travels page.
     case DEBUT_COMMON_PAGE_TRAVELS_LIST:
@@ -117,7 +117,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
       }
-      break;      
+      break;
 
     // Bc for travels page.
     case DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST:
@@ -131,8 +131,8 @@ function debut_common_create_page_mobile_breadcrumbs() {
         )
       );
       $breadcrumb[] = t('Letopis Debuta');
-      break;      
-      
+      break;
+
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -253,7 +253,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
       break;
-    
+
     // Make breadcrumb for nobel_speech node.
     case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
@@ -335,7 +335,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $master_node = cache_common_load_node($view[0]->nid);
       $breadcrumb[] = l($master_node->title, 'node/' . $master_node->nid);
       break;
-    
+
     case DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -349,7 +349,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = t('Letopis Debuta');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
       break;
-    
+
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
