@@ -237,6 +237,23 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_JURY. '/' . $letter);
       break;
 
+    // Make breadcrumb for Debut Person.
+    case DEBUT_COMMON_TYPE_PERSONS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
+      $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
+      $letter = drupal_substr($letter, 0, 1);
+      $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
+      break;
+    
     // Make breadcrumb for nobel_speech node.
     case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
