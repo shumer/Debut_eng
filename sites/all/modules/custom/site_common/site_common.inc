@@ -206,6 +206,22 @@ function site_common_ajax_command($type, $key, $data = array(), $name = '', $met
 }
 
 /**
+ * Build command to load js to the page.
+ */
+function site_common_ajax_command_async_js($js_src) {
+
+  // Add slash if path is relative.
+  if (strpos($js_src, 'http') === FALSE && strpos($js_src, '/') != 0) {
+    $js_src = '/' . $js_src;
+  }
+
+  return array(
+    'command' => 'site_common_async_js',
+    'js_src' => $js_src,
+  );
+}
+
+/**
  * Ajax command to print data to console.
  * // DEPRECATED.
  */

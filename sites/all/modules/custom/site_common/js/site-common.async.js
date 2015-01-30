@@ -16,6 +16,16 @@ var site_common = site_common || {};
   };
 
   /**
+   * Custom command that load async js.
+   */
+  Drupal.ajax.prototype.commands.site_common_async_js = function (ajax, command, status) {
+    // Load async js.
+    if (command.js_src) {
+      site_common.async.add_js(command.js_src);
+    }
+  }
+
+  /**
    * Default async load, can be overriden in your theme!
    */
   Drupal.behaviors.site_common_async = {
