@@ -222,7 +222,7 @@ function debut_preprocess_node__documents__search(&$variables) {
   $node = &$variables['node'];
   $content = &$variables['content'];
   $_html = &$variables['_html'];
-  
+
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
 
@@ -303,7 +303,7 @@ function debut_preprocess_node__press_about_debut__search(&$variables) {
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   $_html['press_date'] = debut_render($content, 'field_publication_date');
-  
+
   $publication_link = qtools_api__field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
   $publication_text = qtools_api__field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
   $author = debut_render($content, 'field_press_author');
@@ -685,7 +685,12 @@ function debut_preprocess_node__books__full(&$variables) {
 
       // Author stories.
       $stories = explode("\n", qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author_texts', 0, 'value'));
-
+      foreach ($stories as $key => $item) {
+        $item = trim($item);
+        if (empty($item)) {
+          unset($stories[$key]);
+        }
+      }
       $authors[] = array(
         'author' => $author,
         'stories' => theme_item_list(array(
@@ -917,7 +922,12 @@ function debut_preprocess_node__ibooks__full(&$variables) {
 
       // Author stories.
       $stories = explode("\n", qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author_texts', 0, 'value'));
-
+      foreach ($stories as $key => $item) {
+        $item = trim($item);
+        if (empty($item)) {
+          unset($stories[$key]);
+        }
+      }
       $authors[] = array(
         'author' => $author,
         'stories' => theme_item_list(array(
@@ -1378,7 +1388,7 @@ function debut_preprocess_node__master_class__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -1422,7 +1432,7 @@ function debut_preprocess_node__master_class__teaser(&$variables) {
   $_data = &$variables['_data'];
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -1446,7 +1456,7 @@ function debut_preprocess_node__master_class__teaser(&$variables) {
     $auth_node = cache_common_load_node($auth_field);
     $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
   }
-  
+
   // Theme interview.
   $_html['interviews'] = debut_render($content, 'field_master_class_interview');
 
@@ -1460,7 +1470,7 @@ function debut_preprocess_node__interview__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $_html['title'] = check_plain($node->title);
   $_html['author'] = debut_render($content, 'field_interview_author');
   $_html['body'] = debut_render($content, 'field_interview_body');
@@ -1490,7 +1500,7 @@ function debut_preprocess_node__interview__compact(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $uri = '';
 
   $auth_field = qtools_api__field_get_item('node', $node, 'field_interview_author', 0, 'target_id');
@@ -1518,7 +1528,7 @@ function debut_preprocess_node__interview__compact(&$variables) {
     );
     $image =  theme('image', $params);
   }
-    
+
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
