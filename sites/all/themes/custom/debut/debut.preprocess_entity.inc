@@ -389,7 +389,7 @@ function debut_preprocess_node__travel_description__listing(&$variables) {
 }
 
 /**
- * Preprocess travel_description_search(.
+ * Preprocess travel_description_search.
  */
 function debut_preprocess_node__travel_description__search(&$variables) {
   debut_preprocess_node__travel_description__listing($variables);

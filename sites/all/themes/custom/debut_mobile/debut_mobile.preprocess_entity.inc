@@ -882,3 +882,112 @@ function debut_mobile_preprocess_node__debut_prize_person__full(&$variables) {
   $_html['social_links'] = theme('debut_mobile_social_links');
   $_data['nid'] = $node->nid;
 }
+
+/**
+ * Preprocess debut_prize_person at frame view.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode teaser for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode listing for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  $_html['num'] = $node->_delta + 1;
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode search for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__search(&$variables) {
+  debut_mobile_preprocess_node__debut_prize_person__teaser($variables);
+}
+
+/**
+ * Preprocess view mode compact for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
