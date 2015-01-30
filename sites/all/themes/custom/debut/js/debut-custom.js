@@ -116,6 +116,9 @@ debut_custom.attach = function ($context, settings) {
   // Attach home page.
   debut_custom.attach_home_page($context, settings);
 
+  // Attach home page.
+  debut_custom.attach_fb_plugin_show($context, settings);
+
   // Attach gallery a.
   debut_custom.gallery_a($context, settings);
 
@@ -336,6 +339,31 @@ debut_custom.attach_newsletters = function ($context, settings) {
     });
   });
 };
+
+// Attach Facebook plugin show.
+debut_custom.attach_fb_plugin_show = function ($context, settings) {
+  $context.find('.facebook-plugin-block .fb-plugin-button').once('fb-plugin-click', function (delta) {
+    var $panel = $('#facebook-plugin-block');
+    
+    $(this).click(function(e) {
+      e.preventDefault();
+      if ($panel.hasClass('visible')) {
+        $panel.animate({
+            right: '-=400',
+        }, 100, function() {
+            $(this).removeClass('visible');
+        });
+      }
+      else {
+        $panel.animate({
+            right: '+=400',
+        }, 100, function() {
+            $(this).addClass('visible');
+        });
+      }
+    });
+  });
+}
 
 // Attach fancybo call.
 debut_custom.attach_fancy = function ($context, settings) {

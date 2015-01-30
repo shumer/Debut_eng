@@ -4231,6 +4231,30 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   margin: 0 auto;
 }
 
+/*-------- facebook plugin block ---------*/
+.facebook-plugin-block {
+  position: fixed;
+  top: 250px;
+  right: -400px;
+  height: 590px;
+  z-index: 200;
+}
+.facebook-plugin-block .fb-plugin-button {
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -781px transparent;    
+  position: relative;
+  height: 139px;
+  width: 29px;  
+  float: left;
+}
+.facebook-plugin-block .fb-plugin-content {
+  background-color: #fff;
+  width: 400px;
+  height: 590px;
+  float: left;
+}
+
+/*-------- end facebook plugin block -----------*/
+
 /** Responsive table **/
 @media screen and (min-width: 1200px) {
     .view-debut-view-persons-list.view-display-id-default .view-content .views-row,
