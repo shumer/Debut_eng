@@ -129,6 +129,11 @@ function debut_feature_views_query_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'debut_prize_person' => 'debut_prize_person',
   );
+  /* Критерий фильтра: Содержимое: Visit card info (field_person_info) */
+  $handler->display->display_options['filters']['field_person_info_value']['id'] = 'field_person_info_value';
+  $handler->display->display_options['filters']['field_person_info_value']['table'] = 'field_data_field_person_info';
+  $handler->display->display_options['filters']['field_person_info_value']['field'] = 'field_person_info_value';
+  $handler->display->display_options['filters']['field_person_info_value']['operator'] = 'not empty';
   $translatables['debut_query_random_prize_person'] = array(
     t('Master'),
     t('ещё'),

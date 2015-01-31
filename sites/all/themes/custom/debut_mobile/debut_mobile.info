@@ -9,7 +9,6 @@ scripts[] = html/js/modernizr.custom.js
 scripts[] = html/js/jquery.mobile.js
 scripts[] = html/js/jquery.once.js
 scripts[] = html/js/libs/jquery.flexslider.js
-scripts[] = html/js/behaviors/userMenu.js
 scripts[] = html/js/behaviors/mainMenuFold.js
 scripts[] = html/js/behaviors/newsMainSlider.js
 scripts[] = html/js/behaviors/notesSlider.js

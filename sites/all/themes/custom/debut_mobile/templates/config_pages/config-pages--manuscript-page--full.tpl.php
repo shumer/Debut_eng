@@ -5,6 +5,6 @@
  * Template file.
  */
 ?>
-<div class="documents-body">
+<div class="documents-body rules-text">
   <?php print $_html['text']; ?>
 </div>

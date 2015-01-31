@@ -15,7 +15,9 @@
   font-style: normal;
   padding: 0 0 2px;
 }
-
+.rules-text {
+  padding: 16px 25px;
+}
 .block-document.listing.last,
 .block-nobel-speech.listing.last {
   border-bottom: none;
@@ -104,7 +106,7 @@
 }
 .block-nobel-speech.listing h1,
 .block-travels.listing h1 {
-  text-align: left;  
+  text-align: left;
 }
 .block-nobel-speech h2 {
   color: #333333;
@@ -519,7 +521,7 @@
   .block-nobel-speech .part {
     clear: both;
     padding: 1px 0px 0px;
-  }  
+  }
   .block-nobel-speech h1 {
     color: #333333;
     font-size: 1.5em;
@@ -528,7 +530,7 @@
     text-align: center;
     text-transform: uppercase;
   }
-  
+
   .block-interview .interview-photo img {
     float: left;
     width: auto;
@@ -539,7 +541,7 @@
     margin: 10px 20px 20px 0px;
     padding: 20px;
   }
-  
+
   .block-person .person-photo,
   .block-person .person-photo img {
     width: auto;
@@ -548,7 +550,7 @@
     padding: 0px 0px 5px 22px;
     margin: 0px 0px 37px;
   }
-}    
+}
 /*--------- portrait orientation -----------*/
 @media screen and (max-width: 480px) {
   .block-master-class.listing .author .interview {
