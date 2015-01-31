@@ -1097,3 +1097,94 @@ div.messages ul li {
   border: 1px solid #bd01b5;
 }
 /*------------end newsletter styles---------------*/
+/*------------send manuscript styles---------------*/
+.page-send-manuscript .rules-text {
+  padding-bottom: 0px;
+}
+.panel-send-manuscript {
+  padding: 0px 25px 16px 25px;
+}
+.panel-send-manuscript .champs {
+  text-transform: uppercase;
+}
+.panel-send-manuscript .label h3 {
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+.panel-send-manuscript .form-wrapper .form-item {
+  float: none;
+  margin: 0 0 1.625em;
+  outline: 0 none;
+  width: auto;
+}
+.panel-send-manuscript .form-wrapper .form-item label {
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+  text-transform: uppercase;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-text {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 0.875em;
+  padding: 12px 10px;
+  vertical-align: top;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-textarea {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  height: 130px !important;
+  line-height: 1.5em;
+  min-height: 130px !important;
+  overflow: auto;
+  padding: 12px 10px;
+  resize: none;
+  transition: height 200ms linear 0s;
+  vertical-align: top;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .buttons:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.panel-send-manuscript .form-wrapper .button {
+  margin: 0;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .button span {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  margin-bottom: 15px;
+  padding: 12px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-file {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 0.875em;
+  padding: 12px 10px;
+  vertical-align: top;
+  width: 100%;
+  cursor:  pointer;
+}
+/*------------end send manuscript styles---------------*/
