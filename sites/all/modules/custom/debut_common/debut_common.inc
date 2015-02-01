@@ -15,6 +15,20 @@ function debut_common_create_page_mobile_breadcrumbs() {
   switch ($path) {
 
     // Bc for contact us page.
+    case DEBUT_COMMON_PAGE_SEND_MANUSCRIPT:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Send manuscript');
+      break;
+
+    // Bc for contact us page.
     case DEBUT_COMMON_PAGE_CONTACT:
     case DEBUT_COMMON_PAGE_CONTACT_SUBMIT:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
@@ -348,6 +362,19 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       );
       $breadcrumb[] = t('Letopis Debuta');
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
+      break;
+
+    case DEBUT_COMMON_TYPE_PHOTOS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = t('Photo reports');
       break;
 
     default:

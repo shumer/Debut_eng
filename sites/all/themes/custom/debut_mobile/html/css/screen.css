@@ -1188,3 +1188,30 @@ div.messages ul li {
   cursor:  pointer;
 }
 /*------------end send manuscript styles---------------*/
+/*------------photo node styles---------------*/
+.node-photo-item {
+  padding: 0px 25px 16px 25px;
+}
+.node-photo-item h1 {
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+@media screen and (min-width: 480px) {
+  .node-photo-item .slider-wrapper,
+  .node-photo-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 590px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .node-photo-item .slider-wrapper,
+  .node-photo-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 310px;
+  }
+}
+/*------------end photo node styles---------------*/
