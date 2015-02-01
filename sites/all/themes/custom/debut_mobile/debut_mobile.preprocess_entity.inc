@@ -3,6 +3,34 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess view mode full for press_photo_listing node.
+ */
+function debut_mobile_preprocess_node__photo_listing__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+
+  $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
+
+  $images = array();
+  foreach ($photo_field['#items'] as $i => $item) {
+    $class = ($i % 2) ? 'first' : 'last';
+    $images[] = drupal_render($photo_field[$i]);
+  }
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
+}
+
 /**
  * Preprocess simplenews_confirm_removal_form.
  */
