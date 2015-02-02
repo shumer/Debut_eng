@@ -45,6 +45,12 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach newsletters.
   debut_mobile_custom.attach_newsletters($context, settings);
+
+  // Attach sliders.
+  debut_mobile_custom.attach_sliders($context, settings);
+
+  // Attach main menu.
+  debut_mobile_custom.main_menu_fold($context, settings);
 };
 
 // Init routine, will be called once.
@@ -291,3 +297,36 @@ debut_mobile_custom.hide_keyboard = function(element) {
     element.removeAttr('disabled');
   }, 100);
 };
+
+// Attach sliders.
+debut_mobile_custom.attach_sliders = function ($context, settings) {
+
+  // SLider on photo node.
+  $('.node-photo-item', $context).once('debut-photo-main-slider', function () {
+
+    var $this = $(this);
+
+    $this.find('.flexslider').flexslider({
+      animation: 'slide',
+      directionNav: true,
+      controlNav: true,
+      animationLoop: false,
+      prevText: ' ',
+      nextText: ' ',
+      slideshow: false,
+      controlsContainer: '.photo-main-control-wrap'
+    });
+  });
+};
+
+debut_mobile_custom.main_menu_fold = function(context, settings) {
+
+  $('#main-menu', context).once('debut-main-menu-fold', function () {
+
+    $(this).on('click', '.foldable > a', function(event) {
+      event.preventDefault();
+      $(this).parent().toggleClass('active');
+    });
+
+  });
+}
