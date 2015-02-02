@@ -183,8 +183,14 @@ html .ui-alt-icon .ui-radio-off:after {
 }
 /* Loader */
 .ui-icon-loading {
-	background: url("images/ajax-loader.gif");
-	background-size: 2.875em 2.875em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+	background: url("../images/ajax-loader.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  margin-top: -50px;
+  margin-left: -50px;
 }
 /* Swatches */
 /* A

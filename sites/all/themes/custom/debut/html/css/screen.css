@@ -1895,29 +1895,34 @@ section article.prem_list a {
   float: left;
   margin: 0px;
   width: 105px;
+  margin-right: 35px;
 }
 
 .books-item .book-content .book-author .pic a {
   color: #BD01B5;
   outline-style: none;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .books-item .book-content .book-author .text .listing {
-  float: left;
   text-align: left;
-  padding-left: 7px;
 }
 
 .books-item .book-content .book-author .text .listing li {
-  background: url("../images/sprite-a.png") no-repeat scroll 0 -129px transparent;
   font-size: 14px;
   line-height: 20px;
   margin: 0 0 6px 0;
   padding: 0 0 0 20px;
 }
-
+.books-item .book-content .book-author .text .listing li:before {
+  background: url("../images/sprite-a.png") no-repeat scroll 0 -129px transparent;
+  content: "";
+  height: 21px;
+  float: left;
+  margin-left: -20px;
+  width: 13px;
+}
 .book .books-item .book-image {
   float: left;
   width: 145px;
@@ -1972,15 +1977,24 @@ section article.prem_list a {
   padding: 0 0 24px;
   text-transform: uppercase;
 }
-
+.books-item .books-ilink a {
+  vertical-align: middle;
+  padding-bottom: 5px;
+}
 .books-item .books-ilink {
   margin: 5px 0;
+  height: 32px;
+  line-height: 32px;
 }
-
+.books-item .books-ilink .ebook:before {
+  background: url("../images/content/ibooks.png") no-repeat #FFFFFF;
+  content: "";
+  height: 32px;
+  float: left;
+  width: 32px;
+}
 .books-item .books-ilink .ebook {
-  background: url("../images/sprite-a.png") no-repeat scroll 0 -943px #FFFFFF;
-  height: 19px;
-  padding: 5px 0 2px 24px;
+  text-transform: uppercase;
 }
 
 .books-item .books-ilink a {
@@ -4240,10 +4254,10 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
   z-index: 200;
 }
 .facebook-plugin-block .fb-plugin-button {
-  background: url("../images/sprite-a.png") no-repeat scroll 0px -781px transparent;    
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -781px transparent;
   position: relative;
   height: 139px;
-  width: 29px;  
+  width: 29px;
   float: left;
 }
 .facebook-plugin-block .fb-plugin-content {

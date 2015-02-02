@@ -3,6 +3,34 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess view mode full for press_photo_listing node.
+ */
+function debut_mobile_preprocess_node__photo_listing__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+
+  $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
+
+  $images = array();
+  foreach ($photo_field['#items'] as $i => $item) {
+    $class = ($i % 2) ? 'first' : 'last';
+    $images[] = drupal_render($photo_field[$i]);
+  }
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
+}
+
 /**
  * Preprocess simplenews_confirm_removal_form.
  */
@@ -27,6 +55,24 @@ function debut_mobile_preprocess_form__simplenews_confirm_add_form(&$variables) 
 
   $_html['question'] = debut_mobile_render($form, 'question');
   $_html['description'] = debut_mobile_render($form, 'description');
+
+  $_html['form'] = drupal_render_children($form);
+}
+
+/**
+ * Preprocess debut_common_send_manuscript_form.
+ */
+function debut_mobile_preprocess_form__debut_common_send_manuscript_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['name'] = debut_mobile_render($form, 'name');
+  $_html['email'] = debut_mobile_render($form, 'email');
+  $_html['message'] = debut_mobile_render($form, 'comment');
+  $_html['file_upload'] = debut_mobile_render($form, 'file_upload');
+
+  $_html['messages'] = theme('status_messages');
 
   $_html['form'] = drupal_render_children($form);
 }
@@ -707,7 +753,7 @@ function debut_mobile_preprocess_node__master_class__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -732,7 +778,7 @@ function debut_mobile_preprocess_node__master_class__full(&$variables) {
 
   $_html['body'] = debut_mobile_render($content, 'field_master_class_description');
   $_html['title'] = check_plain($node->title);
-  
+
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
@@ -753,7 +799,7 @@ function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
   $_data = &$variables['_data'];
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -777,7 +823,7 @@ function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
     $auth_node = cache_common_load_node($auth_field);
     $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
   }
-  
+
   // Theme interview.
   $_html['interviews'] = debut_mobile_render($content, 'field_master_class_interview');
 
