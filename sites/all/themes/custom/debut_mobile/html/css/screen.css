@@ -37,6 +37,9 @@ body .page .ui-content .block .page-top {
   text-transform: uppercase;
   font-weight: normal;
   font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;  
 }
 .page-top .back {
   color: #333;

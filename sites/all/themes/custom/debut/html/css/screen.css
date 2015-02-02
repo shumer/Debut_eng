@@ -1895,7 +1895,7 @@ section article.prem_list a {
   float: left;
   margin: 0px;
   width: 105px;
-  margin-right: 35px;
+  margin-right: 10px;
 }
 
 .books-item .book-content .book-author .pic a {
@@ -1907,6 +1907,7 @@ section article.prem_list a {
 
 .books-item .book-content .book-author .text .listing {
   text-align: left;
+  float: left;
 }
 
 .books-item .book-content .book-author .text .listing li {
@@ -2141,7 +2142,14 @@ section article.prem_list a {
   line-height: 22px;
   margin: 6px 0 0 0;
   padding: 0 0 0 20px;
-  background: url("../images/sprite-a.png") no-repeat scroll 0 -129px transparent;
+}
+.person-item .part-c p:before {
+  width: 13px;
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -129px transparent;
+  content: "";
+  height: 21px;
+  float: left;
+  margin-left: -20px;
 }
 
 .person-item .part-b, .person-item .part-c {
@@ -4248,7 +4256,7 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
 /*-------- facebook plugin block ---------*/
 .facebook-plugin-block {
   position: fixed;
-  top: 250px;
+  top: 149px;
   right: -400px;
   height: 590px;
   z-index: 200;
