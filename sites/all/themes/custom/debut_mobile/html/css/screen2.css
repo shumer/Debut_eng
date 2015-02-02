@@ -523,7 +523,8 @@
   max-width: 880px;
   padding: 16px 25px 16px 25px;
 }
-.block-video .debut_common_video {
+.block-video .debut_common_video,
+.block-video-teaser .debut_common_video {
   height: 250px;
 }
 .block-video p {
@@ -532,7 +533,18 @@
 .block-video .player {
   margin: 20px 0px 20px;
 }
-
+.block-video.listing .player {
+  text-align: center;
+}
+.block-video.listing .player img {
+  width: 220px;   
+}
+.block-video-teaser .title {
+  padding-bottom: 5px;
+}
+.block-video-teaser {
+  margin-bottom: 40px;
+}
 /*--------- landscape orientation -----------*/
 @media screen and (min-width: 480px) {
   .block-nobel-speech .part-a .pic .pic-inner img {

@@ -147,6 +147,24 @@ function debut_common_create_page_mobile_breadcrumbs() {
       $breadcrumb[] = t('Letopis Debuta');
       break;
 
+    // Bc for news page.
+    case DEBUT_COMMON_PAGE_VIDEO:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $current_year = (is_numeric($argument)) ? $argument : '';
+      if (!empty($current_year)) {
+        $breadcrumb[] = $current_year;
+      }
+      break;
+    
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
