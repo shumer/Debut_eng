@@ -317,7 +317,7 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -367,7 +367,7 @@ function debut_mobile_preprocess_node__debut_jury__frame($variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -400,7 +400,7 @@ function debut_mobile_preprocess_node__debut_jury__teaser(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -444,7 +444,7 @@ function debut_mobile_preprocess_node__debut_jury__compact(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -499,7 +499,7 @@ function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
       ));
     }
     else {
-      $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+      $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
       $params = array(
         'path' => $path,
         'alt' => $node->title,
@@ -690,7 +690,7 @@ function debut_mobile_preprocess_node__interview__compact(&$variables) {
     ));
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -873,7 +873,7 @@ function debut_mobile_preprocess_node__debut_prize_person__full(&$variables) {
     $image = debut_mobile_render($content, 'field_person_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -942,7 +942,7 @@ function debut_mobile_preprocess_node__debut_prize_person__frame($variables) {
     $image = debut_mobile_render($content, 'field_person_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -974,7 +974,7 @@ function debut_mobile_preprocess_node__debut_prize_person__teaser(&$variables) {
     $image = debut_mobile_render($content, 'field_person_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -1024,7 +1024,7 @@ function debut_mobile_preprocess_node__debut_prize_person__compact(&$variables) 
     $image = debut_mobile_render($content, 'field_person_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,

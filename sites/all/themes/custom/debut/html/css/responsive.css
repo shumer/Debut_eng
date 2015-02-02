@@ -36,7 +36,7 @@
 
   .books-item .book-content .book-author .text .listing {
     overflow: auto;
-    float: left;
+    float: none;
   }
 
   .block-persons-list .item {

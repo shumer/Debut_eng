@@ -309,7 +309,6 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = t('Letopis Debuta');
       $breadcrumb[] = l(t('Travels'), DEBUT_COMMON_PAGE_TRAVELS_LIST);
       $view = qtools_api__views_get_result(DEBUT_COMMON_VIEW_TRAVELS_LISTING, $node->nid);
       $travel_node = cache_common_load_node($view[0]->nid);
