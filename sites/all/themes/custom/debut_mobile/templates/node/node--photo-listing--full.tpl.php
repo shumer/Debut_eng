@@ -14,4 +14,6 @@
     </div>
   </div>
   <div class="separator"></div>
+  <div class="photo-main-control-wrap"></div>
 </div>
+<div class="clearfix"></div>

@@ -19,9 +19,11 @@ function debut_mobile_preprocess_node__photo_listing__full(&$variables) {
 
   $images = array();
   foreach ($photo_field['#items'] as $i => $item) {
+    $title = check_plain($item['title']);
     $class = ($i % 2) ? 'first' : 'last';
-    $images[] = drupal_render($photo_field[$i]);
+    $images[] = drupal_render($photo_field[$i]) . '<div class="image-title">' . $title . '</div>';
   }
+
   $_html['images'] = theme('item_list', array(
     'items' => $images,
     'type' => 'ul',
