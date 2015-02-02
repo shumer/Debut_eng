@@ -4,7 +4,7 @@
  * Node template.
  */
 ?>
-<article class="block-video listing">
+<article class="block-video listing <?php print $_data['class']; ?>">
   <div class="video-listing">
     <h1><?php print $_html['title']; ?></h1>
     <div class="player">

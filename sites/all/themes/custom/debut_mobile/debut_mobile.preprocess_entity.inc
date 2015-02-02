@@ -1149,4 +1149,9 @@ function debut_mobile_preprocess_node__video__listing(&$variables) {
   $image = theme('image', $params);
 
   $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
 }
