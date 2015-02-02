@@ -4198,6 +4198,158 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_view_panel_context_30';
+  $handler->task = 'node_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -17;
+  $handler->conf = array(
+    'title' => 'Video (mobile)',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'video' => 'video',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '29dc1eb7-2de3-4296-9245-12b3d0aea5d2';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-2f26c4fe-12ba-4de9-8117-2444d31b53b2';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2f26c4fe-12ba-4de9-8117-2444d31b53b2';
+    $display->content['new-2f26c4fe-12ba-4de9-8117-2444d31b53b2'] = $pane;
+    $display->panels['content'][0] = 'new-2f26c4fe-12ba-4de9-8117-2444d31b53b2';
+    $pane = new stdClass();
+    $pane->pid = 'new-665aab50-606e-4dc2-b65c-bb8e8fdfcb93';
+    $pane->panel = 'content';
+    $pane->type = 'cache_node_content';
+    $pane->subtype = 'cache_node_content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'build_mode' => 'full',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '665aab50-606e-4dc2-b65c-bb8e8fdfcb93';
+    $display->content['new-665aab50-606e-4dc2-b65c-bb8e8fdfcb93'] = $pane;
+    $display->panels['content'][1] = 'new-665aab50-606e-4dc2-b65c-bb8e8fdfcb93';
+    $pane = new stdClass();
+    $pane->pid = 'new-7977ee46-e479-45ee-8375-76e501ec01bf';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '7977ee46-e479-45ee-8375-76e501ec01bf';
+    $display->content['new-7977ee46-e479-45ee-8375-76e501ec01bf'] = $pane;
+    $display->panels['content'][2] = 'new-7977ee46-e479-45ee-8375-76e501ec01bf';
+    $pane = new stdClass();
+    $pane->pid = 'new-44241359-a5e8-43d3-a397-0a5a052f019b';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '44241359-a5e8-43d3-a397-0a5a052f019b';
+    $display->content['new-44241359-a5e8-43d3-a397-0a5a052f019b'] = $pane;
+    $display->panels['content'][3] = 'new-44241359-a5e8-43d3-a397-0a5a052f019b';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-2f26c4fe-12ba-4de9-8117-2444d31b53b2';
+  $handler->conf['display'] = $display;
+  $export['node_view_panel_context_30'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'node_view_panel_context_4';
   $handler->task = 'node_view';
   $handler->subtask = '';
@@ -5000,6 +5152,13 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
             ),
           ),
           'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
           'not' => FALSE,
         ),
       ),

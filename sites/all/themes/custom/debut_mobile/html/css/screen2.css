@@ -509,6 +509,30 @@
 }
 /*------------end person node styles---------------*/
 
+/*------------ video block -------------------*/
+.block-video h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-video {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-video .debut_common_video {
+  height: 250px;
+}
+.block-video p {
+  line-height: 1.5;
+}
+.block-video .player {
+  margin: 20px 0px 20px;
+}
+
 /*--------- landscape orientation -----------*/
 @media screen and (min-width: 480px) {
   .block-nobel-speech .part-a .pic .pic-inner img {

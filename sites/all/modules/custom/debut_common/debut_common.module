@@ -255,6 +255,12 @@ function debut_common_theme() {
     'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
   );
 
+  $theme['debut_mobile_common_embed_player'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-embed-player',
+    'path' => drupal_get_path('theme', 'debut_mobile') . '/templates/debut_common',
+  );
+  
   $theme['debut_common_persons_view_more'] = array(
     'variables' => array('params' => array()),
     'template' => 'debut-common-persons-view-more',
