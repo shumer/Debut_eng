@@ -3,6 +3,45 @@
  * @file
  * Preprocess functions.
  */
+/**
+ * Preprocess view mode teaser for press_photo__listing node.
+ */
+function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $visible_image_count = 4;
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
+
+  $images = array();
+  $_data['class'] = '';
+  $_data['wrapper_class'] = '';
+  foreach ($photo_field['#items'] as $i => $item) {
+    if ($i >= $visible_image_count) {
+      break;
+    }
+    $title = check_plain($item['title']);
+    $image = drupal_render($photo_field[$i]) . '<div class="image-title">' . $title . '</div>';
+    $images[] = $image;
+  }
+  if (count($images) > 1) {
+    $_data['class'] = 'flexslider';
+    $_data['wrapper_class'] = $node->nid;
+  }
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
+  $_html['node_page_link'] = l(t('View more'), 'node/' . $node->nid);
+}
 
 /**
  * Preprocess view mode full for press_photo_listing node.
@@ -1063,7 +1102,7 @@ function debut_mobile_preprocess_node__video__full(&$variables) {
   if (!empty($src)) {
     $_html['player'] = theme('debut_mobile_common_embed_player', array('_data' => $_data));
   }
-  
+
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
@@ -1149,7 +1188,7 @@ function debut_mobile_preprocess_node__video__listing(&$variables) {
   $image = theme('image', $params);
 
   $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';
@@ -1263,7 +1302,7 @@ function debut_mobile_preprocess_node__books__listing(&$variables) {
   else {
     $_html['authors'] = '';
   }
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';

@@ -32,7 +32,7 @@ function debut_feature_pages_photo_listing_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -41,6 +41,18 @@ function debut_feature_pages_photo_listing_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_2col_toped';
@@ -196,6 +208,143 @@ function debut_feature_pages_photo_listing_default_page_manager_pages() {
     $pane->uuid = 'a99437f7-2ff4-4c07-b967-6fce7adec3b7';
     $display->content['new-a99437f7-2ff4-4c07-b967-6fce7adec3b7'] = $pane;
     $display->panels['top'][1] = 'new-a99437f7-2ff4-4c07-b967-6fce7adec3b7';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_photo_listing_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'photo_listing';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '20b01d75-d479-4d1f-b8a0-7599a06d2a00';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-491c47c9-9631-4bad-8380-a37acd7cd98e';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Фоторепортажи',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '491c47c9-9631-4bad-8380-a37acd7cd98e';
+    $display->content['new-491c47c9-9631-4bad-8380-a37acd7cd98e'] = $pane;
+    $display->panels['content'][0] = 'new-491c47c9-9631-4bad-8380-a37acd7cd98e';
+    $pane = new stdClass();
+    $pane->pid = 'new-65038aef-c4ad-46e7-92de-d43f4880e0a9';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_photo_listing';
+    $pane->subtype = 'debut_common_photo_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '65038aef-c4ad-46e7-92de-d43f4880e0a9';
+    $display->content['new-65038aef-c4ad-46e7-92de-d43f4880e0a9'] = $pane;
+    $display->panels['content'][1] = 'new-65038aef-c4ad-46e7-92de-d43f4880e0a9';
+    $pane = new stdClass();
+    $pane->pid = 'new-41cfde4b-7df7-4c7d-bba4-f6eb923d0995';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '41cfde4b-7df7-4c7d-bba4-f6eb923d0995';
+    $display->content['new-41cfde4b-7df7-4c7d-bba4-f6eb923d0995'] = $pane;
+    $display->panels['content'][2] = 'new-41cfde4b-7df7-4c7d-bba4-f6eb923d0995';
+    $pane = new stdClass();
+    $pane->pid = 'new-28131526-3e0b-492f-b236-77f544576057';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '28131526-3e0b-492f-b236-77f544576057';
+    $display->content['new-28131526-3e0b-492f-b236-77f544576057'] = $pane;
+    $display->panels['content'][3] = 'new-28131526-3e0b-492f-b236-77f544576057';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

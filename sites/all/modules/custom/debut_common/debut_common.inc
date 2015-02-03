@@ -164,7 +164,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;
-    
+
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -397,7 +397,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO . '/' . $year);
       break;
-    
+
     case DEBUT_COMMON_TYPE_PHOTOS:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -408,7 +408,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = t('Photo reports');
+      $breadcrumb[] = l(t('Photo reports'), DEBUT_COMMON_TYPE_PHOTOS);
       break;
 
     case DEBUT_COMMON_TYPE_BOOKS:
@@ -423,7 +423,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       );
       $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
       break;
-    
+
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])

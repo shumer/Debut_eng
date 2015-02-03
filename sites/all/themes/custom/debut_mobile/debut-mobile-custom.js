@@ -317,6 +317,23 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       controlsContainer: '.photo-main-control-wrap'
     });
   });
+
+  // SLider on photo node.
+  $('.photo-listing-item', $context).once('debut-photo-main-slider', function () {
+
+    var $this = $(this);
+    var wrapper_class = $this.find('.flexslider').attr('data-wrapper-class');
+    $this.find('.flexslider').flexslider({
+      animation: 'slide',
+      directionNav: true,
+      controlNav: true,
+      animationLoop: false,
+      prevText: ' ',
+      nextText: ' ',
+      slideshow: false,
+      controlsContainer: '.' + wrapper_class
+    });
+  });
 };
 
 debut_mobile_custom.main_menu_fold = function(context, settings) {
