@@ -84,6 +84,7 @@
   
   <!-- video block -->
   <?php if (!empty($_html['video'])) : ?>
+    <h2 class="sub-title"><?php print t('Video'); ?></h2>
     <div class="separator"></div>
     <section class="video">
       <?php print $_html['video']; ?>

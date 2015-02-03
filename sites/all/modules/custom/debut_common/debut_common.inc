@@ -147,6 +147,24 @@ function debut_common_create_page_mobile_breadcrumbs() {
       $breadcrumb[] = t('Letopis Debuta');
       break;
 
+    // Bc for news page.
+    case DEBUT_COMMON_PAGE_VIDEO:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $current_year = (is_numeric($argument)) ? $argument : '';
+      if (!empty($current_year)) {
+        $breadcrumb[] = $current_year;
+      }
+      break;
+    
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -363,6 +381,23 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = l(t('Master classes'), DEBUT_COMMON_PAGE_MASTER_CLASS_SECTION_LIST);
       break;
 
+    case DEBUT_COMMON_TYPE_VIDEO:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
+      $date = strtotime($publication_date);
+      $year = date('Y', $date);
+      $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO . '/' . $year);
+      break;
+    
     case DEBUT_COMMON_TYPE_PHOTOS:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -376,6 +411,19 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = t('Photo reports');
       break;
 
+    case DEBUT_COMMON_TYPE_BOOKS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+    
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
