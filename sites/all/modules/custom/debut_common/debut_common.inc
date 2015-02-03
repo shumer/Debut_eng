@@ -411,6 +411,19 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $breadcrumb[] = t('Photo reports');
       break;
 
+    case DEBUT_COMMON_TYPE_BOOKS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+    
     default:
       // Make last non link.
       $breadcrumb[] = !empty($node->field_title_short[0]['value'])
