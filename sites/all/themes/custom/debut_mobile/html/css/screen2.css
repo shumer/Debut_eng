@@ -700,6 +700,38 @@
   font-weight: normal;
   margin-bottom: 15px;
 }
+.block-books.listing .authors .listing a {
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -89px transparent;
+  display: block;
+  font-family: "PT Sans",sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 4px 0px 0px 15px;
+  font-weight: none;
+}
+.block-books-listing .block-books.listing .publication {
+  background: none repeat scroll 0 0 #EEEEEE;
+  padding: 5px;
+  color: #666666;
+  font-size: 11px;
+  margin: 15px 0 0;
+}
+.block-books-listing .block-books.listing  .item-list ul li {
+  padding: 0px;
+  margin: 0px 0px 0.25em 0em;  
+}
+.block-books-listing .block-books.listing h2.sub-title {
+  font-size: 0.9em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+.block-books.listing .book-description p {
+  line-height: 1.5;
+  width: auto;
+}
+
 /*--------- end book block ----------*/
 /*--------- landscape orientation -----------*/
 @media screen and (min-width: 400px) {
@@ -744,6 +776,12 @@
   }
   .block-books .book-image {
     width: 200px;
+  }
+  .block-books.listing .book-image {
+    padding-right: 10px;
+  }
+  .block-books-listing .block-books.listing .book-image {
+    float: left;
   }
 }
 /*--------- portrait orientation -----------*/
