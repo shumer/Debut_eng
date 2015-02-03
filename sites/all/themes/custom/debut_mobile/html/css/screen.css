@@ -1271,6 +1271,10 @@ div.messages ul li {
   text-align: left;
   text-transform: uppercase;
 }
+.block-photo-listing .photo-listing-item {
+  border-bottom: 2px dotted #dcdcdc;
+  padding-bottom: 16px;
+}
 .block-photo-listing .photo-listing-item h3 a {
   color: #f09015;
 }
@@ -1334,5 +1338,16 @@ div.messages ul li {
   padding: 12px 10px;
   text-align: center;
   text-transform: uppercase;
+}
+.block-photo-listing .photo-listing-item .publish-date {
+  color: #999999;
+  display: block;
+  float: right;
+  font-size: 12px;
+  font-style: normal;
+  padding: 0 0 2px;
+}
+.block-photo-listing .single .image-title {
+  padding-bottom: 10px;
 }
 /*------------end photo listing styles---------------*/
