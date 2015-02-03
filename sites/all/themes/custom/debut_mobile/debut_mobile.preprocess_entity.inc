@@ -4,6 +4,17 @@
  * Preprocess functions.
  */
 /**
+ * Preprocess views debut_view_list_photos__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_photos__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
  * Preprocess view mode teaser for press_photo__listing node.
  */
 function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
@@ -19,6 +30,7 @@ function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
   $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
 
   $images = array();
+  $_data['node_class'] = 'single';
   $_data['class'] = '';
   $_data['wrapper_class'] = '';
   foreach ($photo_field['#items'] as $i => $item) {
@@ -32,6 +44,7 @@ function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
   if (count($images) > 1) {
     $_data['class'] = 'flexslider';
     $_data['wrapper_class'] = $node->nid;
+    $_data['node_class'] = 'multiply';
   }
   $_html['images'] = theme('item_list', array(
     'items' => $images,
@@ -41,6 +54,9 @@ function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
     ),
   ));
   $_html['node_page_link'] = l(t('View more'), 'node/' . $node->nid);
+
+  // Publication date.
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');;
 }
 
 /**
@@ -70,6 +86,8 @@ function debut_mobile_preprocess_node__photo_listing__full(&$variables) {
       'class' => array('slides'),
     ),
   ));
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
 /**
