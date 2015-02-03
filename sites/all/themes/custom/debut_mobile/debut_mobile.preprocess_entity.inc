@@ -1217,3 +1217,111 @@ function debut_mobile_preprocess_node__books__full(&$variables) {
 
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
+
+/**
+ * Preprocess books_listing.
+ */
+function debut_mobile_preprocess_node__books__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
+
+  // Check if photo present.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+
+  // Authors.
+  $authors = array();
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      $authors[] = l($authnode->title, 'node/' . $authnode->nid);
+    }
+  }
+
+  if (!empty($authors)) {
+    $_html['authors'] = theme_item_list(array(
+      'items' => $authors,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'listing'),
+    ));
+  }
+  else {
+    $_html['authors'] = '';
+  }
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess books_search.
+ */
+function debut_mobile_preprocess_node__books__search(&$variables) {
+  debut_mobile_preprocess_node__books__listing($variables);
+}
+
+/**
+ * Preprocess books_popup.
+ */
+function debut_mobile_preprocess_node__books__popup(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  admin_menu_suppress();
+  $classes['popup'] = !empty($classes['popup'])
+    ? $classes['popup'] . ' popup-b popup-commenter popup-video'
+    : 'popup-b popup-commenter popup-video';
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+
+  // Authors.
+  $authors = array();
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      $authors[] = l($authnode->title, 'node/' . $authnode->nid);
+    }
+  }
+
+  if (!empty($authors)) {
+    $_html['authors'] = theme_item_list(array(
+      'items' => $authors,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'listing'),
+    ));
+  }
+}
