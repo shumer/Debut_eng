@@ -15,7 +15,9 @@
   font-style: normal;
   padding: 0 0 2px;
 }
-
+.rules-text {
+  padding: 16px 25px;
+}
 .block-document.listing.last,
 .block-nobel-speech.listing.last {
   border-bottom: none;
@@ -104,7 +106,7 @@
 }
 .block-nobel-speech.listing h1,
 .block-travels.listing h1 {
-  text-align: left;  
+  text-align: left;
 }
 .block-nobel-speech h2 {
   color: #333333;
@@ -203,6 +205,7 @@
 }
 .block-interview .interview-photo img {
   width: 100%;
+  height: auto;
   padding: 3px 0px 5px 0px;
 }
 .block-interview .interview-photo span.text {
@@ -447,8 +450,8 @@
 .block-person .tags {
   color: #c164bd;
   font-size: 16px;
-  margin: 0 0 37px;
-  padding: 0 0 5px 22px;
+  margin: 0 0 20px;
+  padding: 0 0 5px 0px;
   text-transform: none;
   vertical-align: middle;
 }
@@ -490,12 +493,59 @@
   line-height: 22px;
   margin: 6px 0 0 0;
   padding: 0 0 0 20px;
-  background: url("../images/sprite-a.png") no-repeat scroll 0 -129px transparent;
 }
-
+.block-person .bibliography-item p:before {
+  width: 13px;
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -129px transparent;
+  content: "";
+  height: 21px;
+  float: left;
+  margin-left: -20px;
+}
+.block-person .person-photo,
+.block-person .person-photo img {
+  width: 100%;
+  height: auto;
+}
 /*------------end person node styles---------------*/
 
-/*--------- portrait orientation -----------*/
+/*------------ video block -------------------*/
+.block-video h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  padding: 0 0 0.78125em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-video {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-video .debut_common_video,
+.block-video-teaser .debut_common_video {
+  height: 250px;
+}
+.block-video p {
+  line-height: 1.5;
+}
+.block-video .player {
+  margin: 20px 0px 20px;
+}
+.block-video.listing .player {
+  text-align: center;
+}
+.block-video.listing .player img {
+  width: 220px;   
+}
+.block-video-teaser .title {
+  padding-bottom: 5px;
+}
+.block-video-teaser {
+  margin-bottom: 40px;
+}
+/*--------- landscape orientation -----------*/
 @media screen and (min-width: 480px) {
   .block-nobel-speech .part-a .pic .pic-inner img {
     width: auto;
@@ -507,7 +557,7 @@
   .block-nobel-speech .part {
     clear: both;
     padding: 1px 0px 0px;
-  }  
+  }
   .block-nobel-speech h1 {
     color: #333333;
     font-size: 1.5em;
@@ -516,14 +566,28 @@
     text-align: center;
     text-transform: uppercase;
   }
-  
+
   .block-interview .interview-photo img {
     float: left;
     width: auto;
-    padding: 3px 20px 3px 0px;
   }
-}    
-/*--------- landscape orientation -----------*/
+  .block-interview .interview-photo {
+    background: none repeat scroll 0px 0px #EEE;
+    float: left;
+    margin: 10px 20px 20px 0px;
+    padding: 20px;
+  }
+
+  .block-person .person-photo,
+  .block-person .person-photo img {
+    width: auto;
+  }
+  .block-person .tags {
+    padding: 0px 0px 5px 22px;
+    margin: 0px 0px 37px;
+  }
+}
+/*--------- portrait orientation -----------*/
 @media screen and (max-width: 480px) {
   .block-master-class.listing .author .interview {
     margin-top: 0px;

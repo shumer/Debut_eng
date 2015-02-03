@@ -136,6 +136,7 @@ function debut_common_send_manuscript_form($form, $form_state) {
   $form['file_upload'] = array(
     '#type' => 'file',
     '#title' => t('Select the file'),
+    '#required' => TRUE,
     '#description' => t('Select the file with extension .doc or .rtf')
   );
 
@@ -144,6 +145,8 @@ function debut_common_send_manuscript_form($form, $form_state) {
     '#attributes' => array('class' => array('button')),
     '#value' => 'Send'
   );
+
+  $form['#after_build'][] = 'debut_common_send_manuscript_form_after_build';
 
   return $form;
 }
@@ -212,6 +215,17 @@ function debut_common_send_manuscript_form_submit($form, &$form_state) {
  * After build contact us form.
  */
 function debut_common_contact_us_form_after_build($form, &$form_state) {
+  $is_mobile = debut_common_is_mobile();
+  if ($is_mobile) {
+    unset($form['captcha']);
+  }
+  return $form;
+}
+
+/**
+ * After build contact us form.
+ */
+function debut_common_send_manuscript_form_after_build($form, &$form_state) {
   $is_mobile = debut_common_is_mobile();
   if ($is_mobile) {
     unset($form['captcha']);

@@ -50,6 +50,7 @@ define('DEBUT_COMMON_PAGE_PERSONS_LIST', 'persons_list');
 define('DEBUT_COMMON_PAGE_JURY_ALPHABET_LIST', 'jury_list');
 define('DEBUT_COMMON_PAGE_CONTACT', 'nofollow/contact');
 define('DEBUT_COMMON_PAGE_CONTACT_SUBMIT', 'contact_us/submitted');
+define('DEBUT_COMMON_PAGE_SEND_MANUSCRIPT', 'send_manuscript');
 
 // Define views name.
 define('DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE', 'debut_common_videos_home_page');
@@ -254,6 +255,12 @@ function debut_common_theme() {
     'path' => drupal_get_path('theme', 'debut') . '/templates/debut_common',
   );
 
+  $theme['debut_mobile_common_embed_player'] = array(
+    'variables' => array('params' => array()),
+    'template' => 'debut-common-embed-player',
+    'path' => drupal_get_path('theme', 'debut_mobile') . '/templates/debut_common',
+  );
+  
   $theme['debut_common_persons_view_more'] = array(
     'variables' => array('params' => array()),
     'template' => 'debut-common-persons-view-more',

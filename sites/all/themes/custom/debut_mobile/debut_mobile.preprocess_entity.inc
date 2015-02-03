@@ -3,6 +3,36 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess view mode full for press_photo_listing node.
+ */
+function debut_mobile_preprocess_node__photo_listing__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+
+  $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
+
+  $images = array();
+  foreach ($photo_field['#items'] as $i => $item) {
+    $title = check_plain($item['title']);
+    $class = ($i % 2) ? 'first' : 'last';
+    $images[] = drupal_render($photo_field[$i]) . '<div class="image-title">' . $title . '</div>';
+  }
+
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
+}
+
 /**
  * Preprocess simplenews_confirm_removal_form.
  */
@@ -27,6 +57,24 @@ function debut_mobile_preprocess_form__simplenews_confirm_add_form(&$variables) 
 
   $_html['question'] = debut_mobile_render($form, 'question');
   $_html['description'] = debut_mobile_render($form, 'description');
+
+  $_html['form'] = drupal_render_children($form);
+}
+
+/**
+ * Preprocess debut_common_send_manuscript_form.
+ */
+function debut_mobile_preprocess_form__debut_common_send_manuscript_form(&$variables) {
+  $form = &$variables['form'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['name'] = debut_mobile_render($form, 'name');
+  $_html['email'] = debut_mobile_render($form, 'email');
+  $_html['message'] = debut_mobile_render($form, 'comment');
+  $_html['file_upload'] = debut_mobile_render($form, 'file_upload');
+
+  $_html['messages'] = theme('status_messages');
 
   $_html['form'] = drupal_render_children($form);
 }
@@ -271,7 +319,7 @@ function debut_mobile_preprocess_node__debut_jury__full(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -321,7 +369,7 @@ function debut_mobile_preprocess_node__debut_jury__frame($variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -354,7 +402,7 @@ function debut_mobile_preprocess_node__debut_jury__teaser(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -398,7 +446,7 @@ function debut_mobile_preprocess_node__debut_jury__compact(&$variables) {
     $image = debut_mobile_render($content, 'field_jury_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -453,7 +501,7 @@ function debut_mobile_preprocess_node__nobel_speech__full(&$variables) {
       ));
     }
     else {
-      $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+      $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
       $params = array(
         'path' => $path,
         'alt' => $node->title,
@@ -644,7 +692,7 @@ function debut_mobile_preprocess_node__interview__compact(&$variables) {
     ));
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -707,7 +755,7 @@ function debut_mobile_preprocess_node__master_class__full(&$variables) {
   $content = &$variables['content'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -732,7 +780,7 @@ function debut_mobile_preprocess_node__master_class__full(&$variables) {
 
   $_html['body'] = debut_mobile_render($content, 'field_master_class_description');
   $_html['title'] = check_plain($node->title);
-  
+
   $_html['social_links'] = theme('debut_mobile_social_links');
 }
 
@@ -753,7 +801,7 @@ function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
   $_data = &$variables['_data'];
 
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
-  
+
   $text_filed = qtools_api__field_get_item('node', $node, 'field_master_class_text');
   if (!empty($text_filed)) {
     $texts = array();
@@ -777,7 +825,7 @@ function debut_mobile_preprocess_node__master_class__teaser(&$variables) {
     $auth_node = cache_common_load_node($auth_field);
     $_html['master'] = l($auth_node->title, 'node/' . $auth_node->nid, array('html' => TRUE));
   }
-  
+
   // Theme interview.
   $_html['interviews'] = debut_mobile_render($content, 'field_master_class_interview');
 
@@ -827,7 +875,7 @@ function debut_mobile_preprocess_node__debut_prize_person__full(&$variables) {
     $image = debut_mobile_render($content, 'field_person_image');
   }
   else {
-    $path = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
     $params = array(
       'path' => $path,
       'alt' => $node->title,
@@ -881,4 +929,229 @@ function debut_mobile_preprocess_node__debut_prize_person__full(&$variables) {
 
   $_html['social_links'] = theme('debut_mobile_social_links');
   $_data['nid'] = $node->nid;
+}
+
+/**
+ * Preprocess debut_prize_person at frame view.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode teaser for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode listing for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  $_html['num'] = $node->_delta + 1;
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess view mode search for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__search(&$variables) {
+  debut_mobile_preprocess_node__debut_prize_person__teaser($variables);
+}
+
+/**
+ * Preprocess view mode compact for debut_prize_person node.
+ */
+function debut_mobile_preprocess_node__debut_prize_person__compact(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Theme title and person image.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Image.
+  if (!empty($content['field_person_image'])) {
+    $image = debut_mobile_render($content, 'field_person_image');
+  }
+  else {
+    $path = drupal_get_path('theme', 'debut_mobile') . '/html/images/content/no_photo.jpg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '150px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess video_full.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_mobile_preprocess_node__video__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_mobile_render($content, 'field_video_body');
+
+  // Embed Player.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_embed_src($field);
+  $_data['src'] = $src;
+  $_data['id'] = $node->nid;
+
+  if (!empty($src)) {
+    $_html['player'] = theme('debut_mobile_common_embed_player', array('_data' => $_data));
+  }
+  
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess video_listing.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_mobile_preprocess_node__video__teaser(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_mobile_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_embed_src($field);
+  $_data['src'] = $src;
+  $_data['id'] = $node->nid;
+
+  if (!empty($src)) {
+    $_html['player'] = theme('debut_mobile_common_embed_player', array('_data' => $_data));
+  }
+}
+
+/**
+ * Preprocess video_search.
+ */
+function debut_mobile_preprocess_node__video__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
+  $_html['body'] = debut_mobile_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_image_src('http://youtube.com/' . $field);
+
+  $params = array(
+    'path' => $src,
+    'alt' => $node->title,
+    'title' => $node->title,
+    'attributes' => NULL,
+    'getsize' => FALSE,
+  );
+  $image = theme('image', $params);
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
+ * Preprocess video_listing.
+ *
+ * Displayes playeble youtube iframe.
+ */
+function debut_mobile_preprocess_node__video__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['body'] = debut_mobile_render($content, 'field_video_body');
+
+  // Preview picture.
+  $field = qtools_api__field_get_item('node', $node, 'field_video_url', 0, 'value');
+  $src = debut_common_image_src('http://youtube.com/' . $field);
+
+  $params = array(
+    'path' => $src,
+    'alt' => $node->title,
+    'title' => $node->title,
+    'attributes' => NULL,
+    'getsize' => FALSE,
+  );
+  $image = theme('image', $params);
+
+  $_html['image'] = l($image, 'node/' . $node->nid , array('html' => TRUE));
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
 }

@@ -37,6 +37,9 @@ body .page .ui-content .block .page-top {
   text-transform: uppercase;
   font-weight: normal;
   font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .page-top .back {
   color: #333;
@@ -717,19 +720,22 @@ a, a.active, li a.active {
 .block-press.listing,
 .block-news.listing,
 .block-nobel-speech.listing,
-.block-travels.listing {
+.block-travels.listing,
+.block-video.listing {
   border-bottom: 2px dotted #dcdcdc;
 }
 .block-press.listing.last,
 .block-news.listing.last,
-.block-travels.listing.last {
+.block-travels.listing.last,
+.block-video.listing.last {
   border-bottom: none;
 }
 .block-press.listing h1,
 .block-news.listing h1,
 .block-document.listing h1,
 .block-nobel-speech.listing h1,
-.block-travels.listing h1 {
+.block-travels.listing h1,
+.block-video.listing h1 {
   font-size: 1em;
 }
 .block-press.listing .press-body,
@@ -1003,32 +1009,25 @@ div.messages ul li {
 .ui-loading .ui-loader {
   display: block;
 }
+.ui-loader h1 {
+  display: none;
+}
 .ui-loader {
   display: none;
   z-index: 9999999;
   position: fixed;
-  top: 50%;
-  left: 50%;
   border: 0;
 }
 .ui-loader-default {
-  background: none;
-  filter: Alpha(Opacity=18);
-  opacity: 0.18;
-  width: 2.875em;
-  height: 2.875em;
-  margin-left: -1.4375em;
-  margin-top: -1.4375em;
+  background: #fff;
+  opacity: 0.28;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
 }
 .ui-loader .ui-icon-loading {
-  background-color: #000;
   display: block;
-  margin: 0;
-  width: 2.75em;
-  height: 2.75em;
-  padding: 0.0625em;
-  -webkit-border-radius: 2.25em;
-  border-radius: 2.25em;
 }
 .ui-loader-verbose .ui-icon-loading {
   margin: 0 auto 0.625em;
@@ -1104,3 +1103,156 @@ div.messages ul li {
   border: 1px solid #bd01b5;
 }
 /*------------end newsletter styles---------------*/
+/*------------send manuscript styles---------------*/
+.page-send-manuscript .rules-text {
+  padding-bottom: 0px;
+}
+.panel-send-manuscript {
+  padding: 0px 25px 16px 25px;
+}
+.panel-send-manuscript .champs {
+  text-transform: uppercase;
+}
+.panel-send-manuscript .label h3 {
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+.panel-send-manuscript .form-wrapper .form-item {
+  float: none;
+  margin: 0 0 1.625em;
+  outline: 0 none;
+  width: auto;
+}
+.panel-send-manuscript .form-wrapper .form-item label {
+  color: #333333;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+  text-transform: uppercase;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-text {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 0.875em;
+  padding: 12px 10px;
+  vertical-align: top;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-textarea {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  height: 130px !important;
+  line-height: 1.5em;
+  min-height: 130px !important;
+  overflow: auto;
+  padding: 12px 10px;
+  resize: none;
+  transition: height 200ms linear 0s;
+  vertical-align: top;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .buttons:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.panel-send-manuscript .form-wrapper .button {
+  margin: 0;
+  width: 100%;
+}
+.panel-send-manuscript .form-wrapper .button span {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  margin-bottom: 15px;
+  padding: 12px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.panel-send-manuscript .form-wrapper .form-item .form-file {
+  border: 1px solid #f09015;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-size: 0.875em;
+  padding: 12px 10px;
+  vertical-align: top;
+  width: 100%;
+  cursor:  pointer;
+}
+/*------------end send manuscript styles---------------*/
+/*------------photo node styles---------------*/
+.node-photo-item {
+  padding: 0px 25px 35px 25px;
+}
+.node-photo-item h1 {
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333333;
+}
+.node-photo-item .image-title {
+  margin: 0 auto;
+  width: 100%;
+}
+.node-photo-item .flex-control-nav {
+  text-align: center;
+  width: 100%;
+  padding-left: 0px;
+}
+.node-photo-item .flex-control-paging li a {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+  cursor: pointer;
+  display: block;
+  height: 11px;
+  text-indent: -9999px;
+  width: 11px;
+}
+.node-photo-item .flex-control-paging li {
+  display: inline-block;
+  margin: 0 6px;
+}
+.node-photo-item .flex-control-paging li a.flex-active {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.9);
+  cursor: default;
+}
+@media screen and (min-width: 480px) {
+  .node-photo-item .slider-wrapper,
+  .node-photo-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 590px;
+  }
+  .node-photo-item .flex-control-nav,
+  .node-photo-item .image-title {
+    width: 590px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .node-photo-item .slider-wrapper,
+  .node-photo-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 310px;
+  }
+  .node-photo-item .flex-control-nav,
+  .node-photo-item .image-title {
+    width: 310px;
+  }
+}
+/*------------end photo node styles---------------*/
