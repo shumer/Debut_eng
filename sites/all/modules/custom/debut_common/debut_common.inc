@@ -147,7 +147,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       $breadcrumb[] = t('Letopis Debuta');
       break;
 
-    // Bc for news page.
+    // Bc for video page.
     case DEBUT_COMMON_PAGE_VIDEO:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -164,7 +164,21 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = $current_year;
       }
       break;
-    
+
+      // Bc for books page.
+    case DEBUT_COMMON_PAGE_BOOKS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+      
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
