@@ -1207,7 +1207,10 @@ function debut_mobile_preprocess_node__books__full(&$variables) {
   $pdf_path = qtools_api__field_get_item('node', $node, 'field_book_pdf', 0, 'uri');
   if (!empty($pdf_path)) {
     $_html['pdf_link'] = l(t('Download PDF book version'), file_create_url($pdf_path), array(
-      'attributes' => array('class' => 'pdf'),
+      'attributes' => array(
+        'class' => 'pdf',
+        'rel' => 'external',
+      ),
     ));
   }
 
