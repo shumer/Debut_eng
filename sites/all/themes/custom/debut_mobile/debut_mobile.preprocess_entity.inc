@@ -405,6 +405,17 @@ function debut_mobile_preprocess_views_debut_view_list_books__default(&$variable
 }
 
 /**
+ * Preprocess views debut_view_list_ibooks__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_ibooks__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
  * Preprocess views debut_view_list_master_class__default.
  */
 function debut_mobile_preprocess_views_debut_view_list_master_class__default(&$variables) {
@@ -1462,4 +1473,135 @@ function debut_mobile_preprocess_node__books__popup(&$variables) {
       'attributes' => array('class' => 'listing'),
     ));
   }
+}
+
+/**
+ * Preprocess ibooks_full.
+ */
+function debut_mobile_preprocess_node__ibooks__full(&$variables) {
+  global $base_url;
+
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = check_plain($node->title);
+
+  // Image render.
+  $_html['image'] = debut_mobile_render($content, 'field_book_image');
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // link for read on-line.
+  $_html['ilink'] = NULL;
+  $link = qtools_api__field_get_item('node', $node, 'field_ibook_link', 0, 'value');
+  if (!empty($link)) {
+    $_html['ilink'] = l(t('Read online'), $base_url . $link, array(
+      'attributes' => array('class' => 'ebook'),
+    ));
+  }
+
+  // Authors.
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+
+      $author = cache_common_entity_render('node', $authnode, 'frame');
+
+      // Author stories.
+      $stories = explode("\n", qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author_texts', 0, 'value'));
+      foreach ($stories as $key => $item) {
+        $item = trim($item);
+        if (empty($item)) {
+          unset($stories[$key]);
+        }
+      }
+      $authors[] = array(
+        'author' => $author,
+        'stories' => theme_item_list(array(
+          'items' => $stories,
+          'title' => '',
+          'type' => 'ul',
+          'attributes' => array('class' => 'listing'),
+        )),
+      );
+    }
+
+    $_html['authors'] = $authors;
+  }
+
+  $_html['stories_type'] = qtools_api__field_get_item('node', $node, 'field_book_stories_type', 0, 'value');
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess ibooks_listing.
+ */
+function debut_mobile_preprocess_node__ibooks__listing(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $_html['title'] = l($node->title, 'node/'. $node->nid, array('html' => TRUE));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+
+  // Authors.
+  $authors = array();
+  $field_content = qtools_api__field_get_item('node', $node, 'field_book_content');
+  if (!empty($field_content)) {
+    foreach ($field_content as $key => $val) {
+      $collection = field_collection_item_load($val['value']);
+      $nid = qtools_api__field_get_item('field_collection_item', $collection, 'field_book_author', 0, 'target_id');
+      $authnode = cache_common_load_node($nid);
+      $authors[] = l($authnode->title, 'node/' . $authnode->nid);
+    }
+  }
+
+  if (!empty($authors)) {
+    $_html['authors'] = theme_item_list(array(
+      'items' => $authors,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'listing'),
+    ));
+  }
+  else {
+    $_html['authors'] = '';
+  }
+  
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess books_popup.
+ */
+function debut_mobile_preprocess_node__ibooks__popup(&$variables) {
+  debut_mobile_preprocess_node__books__popup($variables);
+}
+
+/**
+ * Preprocess ibooks_search.
+ */
+function debut_mobile_preprocess_node__ibooks__search(&$variables) {
+  debut_mobile_preprocess_node__ibooks__listing($variables);
 }

@@ -5,7 +5,7 @@
  * Template file.
  */
 ?>
-<article class="block-books listing">
+<article class="block-books listing <?php print $_data['class']; ?>">
   <h1><?php print $_html['title']; ?></h1>
   <?php if (!empty($_html['image'])) : ?>
     <div class="book-image">

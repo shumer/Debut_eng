@@ -552,7 +552,6 @@
   color: #333333;
   font-size: 1.5em;
   line-height: 1.1;
-  padding: 0 0 0.78125em;
   text-align: center;
   text-transform: uppercase;
 }
@@ -656,23 +655,37 @@
   width: 13px;
 }
 .block-books .books-ilink a {
-  vertical-align: middle;
-  padding-bottom: 5px;
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 10px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 15px;
 }
 .block-books .books-ilink {
   margin: 5px 0;
   height: 32px;
   line-height: 32px;
 }
-.block-books .books-ilink .ebook:before {
-  background: url("../images/content/ibooks.png") no-repeat #FFFFFF;
+.block-books .books-ilink .books-ilink-ico {
+  background: url("../images/content/ibooks.png") no-repeat transparent;
   content: "";
   height: 32px;
   float: left;
   width: 32px;
+  margin: 5px 0px 0px 5px;
+}
+.block-books .books-ilink {
+  margin-bottom: 25px;
 }
 .block-books .books-ilink .ebook {
   text-transform: uppercase;
+  padding-right: 37px;
 }
 
 .block-books .books-ilink a {
@@ -725,7 +738,7 @@
   line-height: 1.6;
   text-align: left;
   text-transform: uppercase;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #bcbcbc;
 }
 .block-books.listing .book-description p {
   line-height: 1.5;
@@ -741,7 +754,6 @@
 .block-books-listing .block-books.listing h1 a {
   color: #F09015;
 }
-
 /*--------- end book block ----------*/
 /*--------- landscape orientation -----------*/
 @media screen and (min-width: 400px) {
