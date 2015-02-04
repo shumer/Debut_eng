@@ -15,6 +15,7 @@ function debut_mobile_preprocess_views_debut_view_list_photos__default(&$variabl
 }
 
 /**
+ * 
  * Preprocess view mode teaser for press_photo__listing node.
  */
 function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
@@ -152,7 +153,7 @@ function debut_mobile_preprocess_form__debut_common_contact_us_form(&$variables)
 }
 
 /**
- * Preprocess node__press_about_debut__listing.
+ * Preprocess node__news__full.
  */
 function debut_mobile_preprocess_node__news__full(&$variables) {
   $node = &$variables['node'];
@@ -352,6 +353,83 @@ function debut_mobile_preprocess_node__press_about_debut__listing(&$variables) {
  * Preprocess views debut_view_list_press_about_debut__default.
  */
 function debut_mobile_preprocess_views_debut_view_list_press_about_debut__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_news__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_news__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_travels__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_travels__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_documents__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_documents__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_books__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_books__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_master_class__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_master_class__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_nobel_speach__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_nobel_speach__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess views debut_view_list_video__default.
+ */
+function debut_mobile_preprocess_views_debut_view_list_video__default(&$variables) {
   $view  = &$variables['view'];
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];

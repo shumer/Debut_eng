@@ -737,8 +737,7 @@ a, a.active, li a.active {
 .block-document.listing h1,
 .block-nobel-speech.listing h1,
 .block-travels.listing h1,
-.block-video.listing h1,
-.block-books.listing h1 {
+.block-video.listing h1 {
   font-size: 1em;
 }
 .block-press.listing .press-body,
