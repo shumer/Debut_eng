@@ -731,6 +731,16 @@
   line-height: 1.5;
   width: auto;
 }
+.block-books-listing .block-books.listing h1 {
+  border-bottom: 1px solid #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+}
+.block-books-listing .block-books.listing h1 a {
+  color: #F09015;
+}
 
 /*--------- end book block ----------*/
 /*--------- landscape orientation -----------*/
