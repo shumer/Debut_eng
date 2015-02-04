@@ -395,7 +395,6 @@
           accDx = 0;
 
         if(!msGesture){
-            el.addEventListener('touchstart', onTouchStart, false);
 
             function onTouchStart(e) {
               if (slider.animating) {
@@ -423,7 +422,7 @@
                 el.addEventListener('touchend', onTouchEnd, false);
               }
             }
-
+            el.addEventListener('touchstart', onTouchStart, false);
             function onTouchMove(e) {
               // Local vars for X and Y points.
 
@@ -721,7 +720,7 @@
               slider.animating = false;
               slider.currentSlide = slider.animatingTo;
             }
-            
+
             // Unbind previous transitionEnd events and re-bind new transitionEnd event
             slider.container.unbind("webkitTransitionEnd transitionend");
             slider.container.bind("webkitTransitionEnd transitionend", function() {

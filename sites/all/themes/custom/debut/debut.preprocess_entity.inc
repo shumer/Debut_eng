@@ -623,7 +623,8 @@ function debut_preprocess_node__photo_listing__full(&$variables) {
   $images = array();
   foreach ($photo_field['#items'] as $i => $item) {
     $class = ($i % 2) ? 'first' : 'last';
-    $images[] = drupal_render($photo_field[$i]);
+    $title = check_plain($item['title']);
+    $images[] = drupal_render($photo_field[$i]) . '<div class="image-title">' . $title . '</div>';
   }
   $_html['images'] = theme('item_list', array(
     'items' => $images,

@@ -15,5 +15,11 @@
   </div>
   <div class="separator"></div>
   <div class="photo-main-control-wrap"></div>
+
+  <div class="block-share">
+    <span><?php print t('Share article'); ?></span>
+  </div>
+  <?php print $_html['social_links']; ?>
+
 </div>
 <div class="clearfix"></div>

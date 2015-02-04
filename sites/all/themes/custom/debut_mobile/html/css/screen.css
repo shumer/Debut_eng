@@ -1259,3 +1259,95 @@ div.messages ul li {
   }
 }
 /*------------end photo node styles---------------*/
+/*------------photo listing styles---------------*/
+.block-photo-listing {
+  padding: 0px 25px 35px 25px;
+}
+.block-photo-listing .photo-listing-item h3 {
+  border-bottom: 1px solid #333333;
+  color: #f09015;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+}
+.block-photo-listing .photo-listing-item {
+  border-bottom: 2px dotted #dcdcdc;
+  padding-bottom: 16px;
+}
+.block-photo-listing .photo-listing-item h3 a {
+  color: #f09015;
+}
+.block-photo-listing .photo-listing-item .flex-control-nav {
+  text-align: center;
+  width: 100%;
+  padding-left: 0px;
+}
+.block-photo-listing .photo-listing-item .flex-control-paging li a {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+  cursor: pointer;
+  display: block;
+  height: 11px;
+  text-indent: -9999px;
+  width: 11px;
+}
+.block-photo-listing .photo-listing-item .flex-control-paging li {
+  display: inline-block;
+  margin: 0 6px;
+}
+.block-photo-listing .photo-listing-item .flex-control-paging li a.flex-active {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.9);
+  cursor: default;
+}
+@media screen and (min-width: 480px) {
+  .block-photo-listing .photo-listing-item .slider-wrapper,
+  .block-photo-listing .photo-listing-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 590px;
+  }
+  .block-photo-listing .photo-listing-item .flex-control-nav,
+  .block-photo-listing .photo-listing-item .image-title {
+    width: 590px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .block-photo-listing .photo-listing-item .slider-wrapper,
+  .block-photo-listing .photo-listing-item .slider-wrapper ul img {
+    margin: 0 auto;
+    width: 310px;
+  }
+  .block-photo-listing .photo-listing-item .flex-control-nav,
+  .block-photo-listing .photo-listing-item .image-title {
+    width: 310px;
+  }
+}
+.block-photo-listing .photo-listing-item .node-page-link {
+  width: 100%;
+}
+.block-photo-listing .photo-listing-item .node-page-link a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  margin-bottom: 15px;
+  padding: 12px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-photo-listing .photo-listing-item .publish-date {
+  color: #999999;
+  display: block;
+  float: right;
+  font-size: 12px;
+  font-style: normal;
+  padding: 0 0 2px;
+}
+.block-photo-listing .single .image-title {
+  padding-bottom: 10px;
+}
+/*------------end photo listing styles---------------*/
