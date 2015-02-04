@@ -165,7 +165,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       }
       break;
 
-      // Bc for books page.
+    // Bc for books page.
     case DEBUT_COMMON_PAGE_BOOKS_LIST:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -178,7 +178,21 @@ function debut_common_create_page_mobile_breadcrumbs() {
       );
       $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
       break;
-      
+
+    // Bc for ibooks page.
+    case DEBUT_COMMON_PAGE_IBOOKS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
+      break;
+    
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
@@ -436,6 +450,19 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
         )
       );
       $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+
+    case DEBUT_COMMON_TYPE_IBOOKS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       break;
 
     default:
