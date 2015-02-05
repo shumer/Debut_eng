@@ -11,6 +11,7 @@ scripts[] = html/js/jquery.once.js
 scripts[] = html/js/libs/jquery.flexslider.js
 scripts[] = html/js/jquery-ui.js
 scripts[] = html/js/jquery.watermark.js
+scripts[] = html/js/jquery.mobile.fix.js
 
 scripts[] = debut-mobile-custom.js
 
