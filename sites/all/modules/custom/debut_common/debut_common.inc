@@ -192,6 +192,20 @@ function debut_common_create_page_mobile_breadcrumbs() {
       );
       $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       break;
+
+    // Bc for jury page.
+    case DEBUT_COMMON_PAGE_PRIZE_JURY:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
+      break;
     
     default:
       // Get default breadcrumb.
