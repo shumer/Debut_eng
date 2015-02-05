@@ -755,8 +755,152 @@
   color: #F09015;
 }
 /*--------- end book block ----------*/
+
+/*------------alphabet header styles---------------*/
+.block-alphabet {
+  padding-top: 0px;
+  max-width: 880px;
+  padding: 16px 10px 16px 10px;
+  text-align: center;
+}
+
+.block-alphabet h1 {
+  margin: 0px;
+}
+
+.block-alphabet .alphabet ul {
+  margin: 0px;
+  padding: 0;
+}
+
+.block-alphabet .alphabet ul:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.block-alphabet .alphabet ul li {
+  background: url("../images/bgs/bg_divider_c.png") no-repeat scroll 100% 3px transparent;
+  display: block;
+  float: left;
+  font-size: 16px;
+  margin: 0 5px 0 0;
+  padding: 0 8px 2px 0;
+  text-transform: uppercase;
+}
+
+.block-alphabet .alphabet ul li a {
+  color: #BD01B5;
+  font-weight: normal;
+}
+
+.block-alphabet .alphabet ul li a.active {
+  color: #FF9B0F;
+}
+
+.block-alphabet .alphabet ul li.last {
+  background: none repeat scroll 0 0 transparent;
+  margin: 0;
+  padding: 0;
+}
+/*------------end alphabet header styles---------------*/
+
+/*------------ jury listing ----------------*/
+.block-jury-years .jury-years-wrapper {
+  font-size: 22px;
+  padding: 0 0 25px;
+  position: relative;
+  text-align: center;
+}
+
+.block-jury-years .jury-years-wrapper a {
+  color: #1E1E1E;
+  margin: 0 7px;
+}
+
+.block-jury-years .jury-years-wrapper a.active-link {
+  color: #BD01B5;
+}
+
+.block-jury-listing {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+
+.block-jury-listing .item {
+  float: left;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 10px;
+  width: 130px;
+  height: 155px;
+  padding: 0px;
+  text-transform: uppercase;
+  margin: 0 10px 5px 0;
+  text-align: center;
+}
+.block-jury-listing .item img {
+  width: 90%;
+  height: auto;
+}
+.block-jury-listing .item .text a {
+  display: block;
+  margin-top: 5px;
+  color: #343434;
+  font-size: 12px;
+  font-weight: normal;
+}
+.block-jury-listing .item .text a:hover {
+  color: #BD01B5;
+}
+
+.block-jury-listing .compact-listing {
+  background: url("../images/bgs/dot.gif") repeat-x scroll 0 0 transparent;
+  list-style: none outside none;
+  min-height: 1px;
+  overflow: hidden;
+  padding: 25px 0 50px;
+  position: relative;
+  clear: both;
+}
+.block-jury-listing .compact-listing li {
+  float: left;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  padding: 0 0 4px 20px;
+  width: 210px;
+}
+.block-jury-listing .compact-listing a {
+  border: 1px solid #FFFFFF;
+  color: #333333;
+  float: left;
+  padding: 2px;
+  font-weight: normal;
+}
+.block-jury-listing .block-jury-list-listing table {
+  width: 100%;
+}
+
+/*------------ end jury listing ---------------*/
+
+/*----------- grid -----------*/
+@media screen and (max-width: 420px) {
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row {
+    width:48%;
+    float:left;
+  }
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1) {
+    margin-left:2%;
+    margin-right:2%;
+  }
+}
+/*----------- end grid --------*/
+
 /*--------- landscape orientation -----------*/
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 420px) {
   .block-nobel-speech .part-a .pic .pic-inner img {
     width: auto;
   }
@@ -805,9 +949,31 @@
   .block-books-listing .block-books.listing .book-image {
     float: left;
   }
+  
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row {
+    float:left;
+    width:30%;
+  }
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n-1) {
+    margin-right:3%;
+    margin-left:3%;
+  }
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
+  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n + 1) {
+    clear:left;
+    margin-left:2%;
+  }  
 }
 /*--------- portrait orientation -----------*/
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 420px) {
   .block-master-class.listing .author .interview {
     margin-top: 0px;
   }
