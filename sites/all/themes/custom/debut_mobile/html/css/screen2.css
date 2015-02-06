@@ -835,23 +835,34 @@
   float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
-  width: 130px;
-  height: 155px;
+  width: 150px;
+  height: 150px;
   padding: 0px;
   text-transform: uppercase;
-  margin: 0 10px 5px 0;
+  margin: 0 10px 20px 0;
   text-align: center;
-}
-.block-jury-listing .item img {
-  width: 90%;
-  height: auto;
+  display:inline-block;  
+  position:relative;  
 }
 .block-jury-listing .item .text a {
   display: block;
-  margin-top: 5px;
+  margin: 5px 0px 0px 0px;
   color: #343434;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: bold;
+  display:block;
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color:#fff;
+  padding:3px;
+  background-color:rgba(0,0,0,.3);  
+  text-shadow: none;
 }
 .block-jury-listing .item .text a:hover {
   color: #BD01B5;
@@ -887,7 +898,7 @@
 /*------------ end jury listing ---------------*/
 
 /*----------- grid -----------*/
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 480px) {
   .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
     width:48%;
@@ -902,7 +913,7 @@
 /*----------- end grid --------*/
 
 /*--------- landscape orientation -----------*/
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 480px) {
   .block-nobel-speech .part-a .pic .pic-inner img {
     width: auto;
   }
@@ -958,14 +969,14 @@
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row,
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
     float:left;
-    width:30%;
+    width:29%;
   }
   .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n-1) {
-    margin-right:3%;
+    margin-right:5%;
     margin-left:3%;
   }
   .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
@@ -974,7 +985,7 @@
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n + 1),
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n + 1) {
     clear:left;
-    margin-left:2%;
+    margin-right:2%;
   }  
 }
 /*--------- portrait orientation -----------*/
