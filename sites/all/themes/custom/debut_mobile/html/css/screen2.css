@@ -783,10 +783,10 @@
 }
 
 .block-alphabet .alphabet ul li {
-  background: url("../images/bgs/bg_divider_c.png") no-repeat scroll 100% 3px transparent;
+  //background: url("../images/bgs/bg_divider_c.png") no-repeat scroll 100% 3px transparent;
   display: block;
   float: left;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 5px 0 0;
   padding: 0 8px 2px 0;
   text-transform: uppercase;
@@ -819,6 +819,7 @@
 .block-jury-years .jury-years-wrapper a {
   color: #1E1E1E;
   margin: 0 7px;
+  float: left;
 }
 
 .block-jury-years .jury-years-wrapper a.active-link {
@@ -896,101 +897,3 @@
 }
 
 /*------------ end jury listing ---------------*/
-
-/*----------- grid -----------*/
-@media screen and (max-width: 480px) {
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
-  .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
-    width:48%;
-    float:left;
-  }
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1),
-  .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(2n-1) {
-    margin-left:2%;
-    margin-right:2%;
-  }
-}
-/*----------- end grid --------*/
-
-/*--------- landscape orientation -----------*/
-@media screen and (min-width: 480px) {
-  .block-nobel-speech .part-a .pic .pic-inner img {
-    width: auto;
-  }
-  .block-nobel-speech .part-a .pic {
-    float: left;
-    padding: 3px 20px 3px 0px;
-  }
-  .block-nobel-speech .part {
-    clear: both;
-    padding: 1px 0px 0px;
-  }
-  .block-nobel-speech h1 {
-    color: #333333;
-    font-size: 1.5em;
-    line-height: 1.1;
-    padding: 0 0 0.1em;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .block-interview .interview-photo img {
-    float: left;
-    width: auto;
-  }
-  .block-interview .interview-photo {
-    background: none repeat scroll 0px 0px #EEE;
-    float: left;
-    margin: 10px 20px 20px 0px;
-    padding: 20px;
-  }
-
-  .block-person .person-photo,
-  .block-person .person-photo img {
-    width: auto;
-  }
-  .block-person .tags {
-    padding: 0px 0px 5px 22px;
-    margin: 0px 0px 37px;
-  }
-  .block-books .book-image {
-    width: 200px;
-  }
-  .block-books.listing .book-image {
-    padding-right: 10px;
-  }
-  .block-books-listing .block-books.listing .book-image {
-    float: left;
-  }
-  
-  .view-debut-view-persons-list.view-display-id-default .view-content .views-row,
-  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row,
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
-  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row,
-  .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
-    float:left;
-    width:29%;
-  }
-  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
-  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
-  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n-1),
-  .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n-1) {
-    margin-right:5%;
-    margin-left:3%;
-  }
-  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
-  .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
-  .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n + 1),
-  .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n + 1) {
-    clear:left;
-    margin-right:2%;
-  }  
-}
-/*--------- portrait orientation -----------*/
-@media screen and (max-width: 420px) {
-  .block-master-class.listing .author .interview {
-    margin-top: 0px;
-  }
-}

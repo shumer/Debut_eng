@@ -41,16 +41,16 @@ function debut_common_jury_years_list_content_type_render($subtype, $conf, $pane
 
   foreach ($terms as $term) {
     $class = ($_GET['field_jury_years_value'] == $term->tid) ? 'active-link' : '';
-    $years[] = l($term->name, 'prize_jury', array(
+    $years[$term->name] = l($term->name, 'prize_jury', array(
       'query' => array('field_jury_years_value' => $term->tid),
       'attributes' => array(
         'class' => array($class),
       ),
     ));
   }
-  arsort($years);
+  krsort($years);
   $data['years'] = $years;
-
+  
   $block->content = theme('debut_common_jury_years_list', $data);
   return $block;
 }
