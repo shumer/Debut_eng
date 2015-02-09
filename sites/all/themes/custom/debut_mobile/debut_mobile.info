@@ -25,3 +25,4 @@ stylesheets[all][] = html/css/jquery.mobile.icons.min.css
 stylesheets[all][] = html/css/debut-mobile.css
 stylesheets[all][] = html/css/screen.css
 stylesheets[all][] = html/css/screen2.css
+stylesheets[all][] = html/css/screen2.responsive.css
