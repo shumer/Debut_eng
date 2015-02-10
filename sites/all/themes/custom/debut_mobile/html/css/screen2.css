@@ -760,8 +760,12 @@
 .block-alphabet {
   padding-top: 0px;
   max-width: 880px;
-  padding: 16px 10px 16px 10px;
   text-align: center;
+}
+
+.alphabet.alphabet-wrapper {
+  padding: 5px 40px 5px 40px;
+  border-top: 1px solid rgb(240, 144, 21);
 }
 
 .block-alphabet h1 {
@@ -811,9 +815,12 @@
 /*------------ jury listing ----------------*/
 .block-jury-years .jury-years-wrapper {
   font-size: 22px;
-  padding: 0 0 25px;
   position: relative;
   text-align: center;
+  border-top: 1px solid rgb(240, 144, 21);
+  border-bottom: 1px solid rgb(240, 144, 21);
+  margin: 0px 0px 25px;
+  padding: 5px 40px 3px 33px;  
 }
 
 .block-jury-years .jury-years-wrapper a {
@@ -833,14 +840,14 @@
 }
 
 .block-jury-listing .item {
-  float: left;
+  //float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
   width: 150px;
   height: 150px;
   padding: 0px;
   text-transform: uppercase;
-  margin: 0 10px 20px 0;
+  margin: 0 0px 20px 0;
   text-align: center;
   display:inline-block;  
   position:relative;  
@@ -897,3 +904,33 @@
 }
 
 /*------------ end jury listing ---------------*/
+
+.flex-direction-nav a {
+    width: 30px; 
+    height: 30px; 
+    margin: -25px 0 0; 
+    display: block; 
+    background: url(../images/bg_direction_nav.png) no-repeat 0 0; 
+    cursor: pointer; 
+    text-indent: -9999px; 
+    -webkit-transition: all .3s ease;
+}
+.flex-direction-nav .flex-next {
+    background-position: 100% 0; 
+    right: 1px; 
+    position: absolute;
+    opacity: 0.8; 
+}
+.flex-direction-nav .flex-prev {
+    opacity: 0.8; 
+    left: 1px;
+    position: absolute;
+}
+.flex-direction-nav .disabled {
+    opacity: .3!important; 
+    filter:alpha(opacity=30); 
+    cursor: default;
+}
+.block-jury-years .jury-years-wrapper .flex-direction-nav a {
+  margin: -28px 0 0;
+}
