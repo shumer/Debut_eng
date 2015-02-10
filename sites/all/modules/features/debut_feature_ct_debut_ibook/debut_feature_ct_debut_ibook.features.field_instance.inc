@@ -108,22 +108,28 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
       ),
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'site_common',
         'settings' => array(
+          'deltas' => '',
           'image_link' => '',
-          'image_style' => 'node__field_book_image__full',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__full',
         ),
-        'type' => 'image',
+        'type' => 'site_common_image_field_default',
         'weight' => 2,
       ),
       'full' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'site_common',
         'settings' => array(
+          'deltas' => '',
           'image_link' => '',
-          'image_style' => 'node__field_book_image__full',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__full',
         ),
-        'type' => 'image',
+        'type' => 'site_common_image_field_default',
         'weight' => 2,
       ),
       'home_page' => array(
@@ -141,12 +147,15 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
       ),
       'listing' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'site_common',
         'settings' => array(
+          'deltas' => '',
           'image_link' => '',
-          'image_style' => 'node__field_book_image__listing',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_book_image__listing',
         ),
-        'type' => 'image',
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'popup' => array(

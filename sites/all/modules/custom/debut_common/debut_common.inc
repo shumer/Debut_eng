@@ -147,7 +147,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       $breadcrumb[] = t('Letopis Debuta');
       break;
 
-    // Bc for news page.
+    // Bc for video page.
     case DEBUT_COMMON_PAGE_VIDEO:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -163,6 +163,48 @@ function debut_common_create_page_mobile_breadcrumbs() {
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
       }
+      break;
+
+    // Bc for books page.
+    case DEBUT_COMMON_PAGE_BOOKS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+
+    // Bc for ibooks page.
+    case DEBUT_COMMON_PAGE_IBOOKS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
+      break;
+
+    // Bc for jury page.
+    case DEBUT_COMMON_PAGE_PRIZE_JURY:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
       break;
     
     default:
@@ -397,7 +439,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
       $year = date('Y', $date);
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_VIDEO . '/' . $year);
       break;
-    
+
     case DEBUT_COMMON_TYPE_PHOTOS:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -408,7 +450,33 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = t('Photo reports');
+      $breadcrumb[] = l(t('Photo reports'), DEBUT_COMMON_TYPE_PHOTOS);
+      break;
+
+    case DEBUT_COMMON_TYPE_BOOKS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      break;
+
+    case DEBUT_COMMON_TYPE_IBOOKS:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       break;
 
     default:

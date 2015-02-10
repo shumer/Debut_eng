@@ -46,12 +46,15 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
   foreach ($vocabulary as $term) {
     $alphabet[] = l($term->name, $conf['page'] . '/' . drupal_strtolower($term->name));
   }
-  $_html['alphabet'] = theme_item_list(array(
+
+  $variables = array(
     'items' => $alphabet,
     'title' => '',
     'type' => 'ul',
-    'attributes' => array(),
+    'attributes' => array('class' => array('letter-slides')
   ));
+  
+  $_html['alphabet'] = theme('item_list', $variables);
   
   $data['_html'] = $_html;
   $block->content = theme('debut_common_alphabet_header', $data);

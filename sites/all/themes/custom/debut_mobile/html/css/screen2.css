@@ -545,51 +545,355 @@
 .block-video-teaser {
   margin-bottom: 40px;
 }
-/*--------- landscape orientation -----------*/
-@media screen and (min-width: 480px) {
-  .block-nobel-speech .part-a .pic .pic-inner img {
-    width: auto;
-  }
-  .block-nobel-speech .part-a .pic {
-    float: left;
-    padding: 3px 20px 3px 0px;
-  }
-  .block-nobel-speech .part {
-    clear: both;
-    padding: 1px 0px 0px;
-  }
-  .block-nobel-speech h1 {
-    color: #333333;
-    font-size: 1.5em;
-    line-height: 1.1;
-    padding: 0 0 0.1em;
-    text-align: center;
-    text-transform: uppercase;
-  }
+/*------- end video block -----------*/
 
-  .block-interview .interview-photo img {
-    float: left;
-    width: auto;
-  }
-  .block-interview .interview-photo {
-    background: none repeat scroll 0px 0px #EEE;
-    float: left;
-    margin: 10px 20px 20px 0px;
-    padding: 20px;
-  }
+/*-------- book block -----------*/
+.block-books h1 {
+  color: #333333;
+  font-size: 1.5em;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-books {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+.block-books .book-content h3.sub-title {
+  background: url("../images/bgs/hb.gif") no-repeat scroll 50% 100% #F6F6F6;
+  color: #666666;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  height: 21px;
+  margin: 0 0 2px;
+  padding-top: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block-books .book-image {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.block-books .book-image img {
+  width: 100%;
+}
+.block-books .publication {
+  color: #666666;
+  font-size: 11px;
+  margin: 10px 0 0;
+}
 
-  .block-person .person-photo,
-  .block-person .person-photo img {
-    width: auto;
-  }
-  .block-person .tags {
-    padding: 0px 0px 5px 22px;
-    margin: 0px 0px 37px;
-  }
+.block-books .book_link {
+  margin-top: 10px;
 }
-/*--------- portrait orientation -----------*/
-@media screen and (max-width: 480px) {
-  .block-master-class.listing .author .interview {
-    margin-top: 0px;
-  }
+
+.block-books .book_link .pdf{
+  background: url("../images/sprite-a.png") no-repeat scroll 0 100% #fff;
+  padding: 5px 0 2px 20px;
+  height:  19px;
+  font-size: 12px;
 }
+
+.block-books .book-content {
+  float: left;
+  font-family: 'PT Sans', sans-serif;
+  width: 100%;
+}
+
+.block-books .book-content h4 {
+  background: url("../images/bgs/hb.gif") no-repeat scroll 50% 100% #F6F6F6;
+  color: #666666;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  height: 21px;
+  margin: 0 0 2px;
+  padding-top: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.block-books .book-content .book-author {
+  border-bottom: 1px dotted #CCCCCC;
+  padding: 10px 0;
+  text-align: left;
+  vertical-align: top;
+  clear: both;
+}
+
+.block-books .book-content .book-author .pic {
+  float: left;
+  margin: 0px;
+  width: 105px;
+  margin-right: 10px;
+}
+
+.block-books .book-content .book-author .pic a {
+  color: #BD01B5;
+  outline-style: none;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.block-books .book-content .book-author .text .listing {
+  text-align: left;
+  overflow: auto;
+}
+
+.block-books .book-content .book-author .text .listing li {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 0 6px 0;
+  padding: 0 0 0 20px;
+}
+.block-books .book-content .book-author .text .listing li:before {
+  background: url("../images/sprite-a.png") no-repeat scroll 0 -129px transparent;
+  content: "";
+  height: 21px;
+  float: left;
+  margin-left: -20px;
+  width: 13px;
+}
+.block-books .books-ilink a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 10px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+.block-books .books-ilink {
+  margin: 5px 0;
+  height: 32px;
+  line-height: 32px;
+}
+.block-books .books-ilink .books-ilink-ico {
+  background: url("../images/content/ibooks.png") no-repeat transparent;
+  content: "";
+  height: 32px;
+  float: left;
+  width: 32px;
+  margin: 5px 0px 0px 5px;
+}
+.block-books .books-ilink {
+  margin-bottom: 25px;
+}
+.block-books .books-ilink .ebook {
+  text-transform: uppercase;
+  padding-right: 37px;
+}
+
+.block-books .books-ilink a {
+  color: #BD01B5;
+  outline-style: none;
+  text-decoration: none;
+  font-size: 16px;
+}
+.block-books .book-content :last-child {
+  border-bottom: none;
+}
+.block-books .book-pdf-link {
+  width: 100%;
+}
+.block-books .book-pdf-link a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 10px;
+  display: block;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+.block-books.listing .authors .listing a {
+  background: url("../images/sprite-a.png") no-repeat scroll 0px -89px transparent;
+  display: block;
+  font-family: "PT Sans",sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 4px 0px 0px 15px;
+  font-weight: none;
+}
+.block-books-listing .block-books.listing .publication {
+  background: none repeat scroll 0 0 #EEEEEE;
+  padding: 5px;
+  color: #666666;
+  font-size: 11px;
+  margin: 15px 0 0;
+}
+.block-books-listing .block-books.listing  .item-list ul li {
+  padding: 0px;
+  margin: 0px 0px 0.25em 0em;  
+}
+.block-books-listing .block-books.listing h2.sub-title {
+  font-size: 0.9em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid #bcbcbc;
+}
+.block-books.listing .book-description p {
+  line-height: 1.5;
+  width: auto;
+}
+.block-books-listing .block-books.listing h1 {
+  border-bottom: 1px solid #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+}
+.block-books-listing .block-books.listing h1 a {
+  color: #F09015;
+}
+/*--------- end book block ----------*/
+
+/*------------alphabet header styles---------------*/
+.block-alphabet {
+  padding-top: 0px;
+  max-width: 880px;
+  padding: 16px 10px 16px 10px;
+  text-align: center;
+}
+
+.block-alphabet h1 {
+  margin: 0px;
+}
+
+.block-alphabet .alphabet ul {
+  margin: 0px;
+  padding: 0;
+}
+
+.block-alphabet .alphabet ul:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.block-alphabet .alphabet ul li {
+  //background: url("../images/bgs/bg_divider_c.png") no-repeat scroll 100% 3px transparent;
+  display: block;
+  float: left;
+  font-size: 18px;
+  margin: 0 5px 0 0;
+  padding: 0 8px 2px 0;
+  text-transform: uppercase;
+}
+
+.block-alphabet .alphabet ul li a {
+  color: #BD01B5;
+  font-weight: normal;
+}
+
+.block-alphabet .alphabet ul li a.active {
+  color: #FF9B0F;
+}
+
+.block-alphabet .alphabet ul li.last {
+  background: none repeat scroll 0 0 transparent;
+  margin: 0;
+  padding: 0;
+}
+/*------------end alphabet header styles---------------*/
+
+/*------------ jury listing ----------------*/
+.block-jury-years .jury-years-wrapper {
+  font-size: 22px;
+  padding: 0 0 25px;
+  position: relative;
+  text-align: center;
+}
+
+.block-jury-years .jury-years-wrapper a {
+  color: #1E1E1E;
+  margin: 0 7px;
+  float: left;
+}
+
+.block-jury-years .jury-years-wrapper a.active-link {
+  color: #BD01B5;
+}
+
+.block-jury-listing {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+
+.block-jury-listing .item {
+  float: left;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 10px;
+  width: 150px;
+  height: 150px;
+  padding: 0px;
+  text-transform: uppercase;
+  margin: 0 10px 20px 0;
+  text-align: center;
+  display:inline-block;  
+  position:relative;  
+}
+.block-jury-listing .item .text a {
+  display: block;
+  margin: 5px 0px 0px 0px;
+  color: #343434;
+  font-size: 12px;
+  font-weight: bold;
+  display:block;
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color:#fff;
+  padding:3px;
+  background-color:rgba(0,0,0,.3);  
+  text-shadow: none;
+}
+.block-jury-listing .item .text a:hover {
+  color: #BD01B5;
+}
+
+.block-jury-listing .compact-listing {
+  background: url("../images/bgs/dot.gif") repeat-x scroll 0 0 transparent;
+  list-style: none outside none;
+  min-height: 1px;
+  overflow: hidden;
+  padding: 25px 0 50px;
+  position: relative;
+  clear: both;
+}
+.block-jury-listing .compact-listing li {
+  float: left;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  padding: 0 0 4px 20px;
+  width: 210px;
+}
+.block-jury-listing .compact-listing a {
+  border: 1px solid #FFFFFF;
+  color: #333333;
+  float: left;
+  padding: 2px;
+  font-weight: normal;
+}
+.block-jury-listing .block-jury-list-listing table {
+  width: 100%;
+}
+
+/*------------ end jury listing ---------------*/

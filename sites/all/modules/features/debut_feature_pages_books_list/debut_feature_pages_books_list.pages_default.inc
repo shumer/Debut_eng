@@ -32,7 +32,7 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -41,6 +41,18 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -278,6 +290,164 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->uuid = '0c0f9057-c3f0-440f-81d4-cf594b1bcf6f';
     $display->content['new-0c0f9057-c3f0-440f-81d4-cf594b1bcf6f'] = $pane;
     $display->panels['top'][1] = 'new-0c0f9057-c3f0-440f-81d4-cf594b1bcf6f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_books_list_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'books_list';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'middle' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '2720e7ac-0ff7-4473-90c6-18dd2bafa153';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => '',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $display->content['new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0'] = $pane;
+    $display->panels['content'][0] = 'new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
+    $pane = new stdClass();
+    $pane->pid = 'new-0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_years_header';
+    $pane->subtype = 'debut_common_years_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'text' => 'Книги',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $display->content['new-0c66ca9a-9a5f-4a96-980a-31050e5d0945'] = $pane;
+    $display->panels['content'][1] = 'new-0c66ca9a-9a5f-4a96-980a-31050e5d0945';
+    $pane = new stdClass();
+    $pane->pid = 'new-54de0bb4-6545-4780-a85c-72724fd1d469';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_books_listing';
+    $pane->subtype = 'debut_common_books_listing';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '54de0bb4-6545-4780-a85c-72724fd1d469';
+    $display->content['new-54de0bb4-6545-4780-a85c-72724fd1d469'] = $pane;
+    $display->panels['content'][2] = 'new-54de0bb4-6545-4780-a85c-72724fd1d469';
+    $pane = new stdClass();
+    $pane->pid = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $display->content['new-b1fc68f0-4344-45ab-956e-49a2144cb759'] = $pane;
+    $display->panels['content'][3] = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $pane = new stdClass();
+    $pane->pid = 'new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = '1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
+    $display->content['new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6'] = $pane;
+    $display->panels['content'][4] = 'new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
