@@ -1,4 +1,10 @@
-7.x-2.03
+7.x-2.06
+- User blocks cachemode fixed.
+
+7.x-2.05
+- User blocks cache tags fixed.
+
+7.x-2.04
 - Support for Panels everywhere added.
 
 7.x-2.03
@@ -24,5 +30,3 @@
 - Added support for new panels module
 - Added ability to set TTL based on page URL for non panels (require deeper testing)
 - Added redirect check in hook_init() to see if we can redirect to update cookies (fix redirect loop)
-
-

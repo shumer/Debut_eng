@@ -123,6 +123,7 @@ sub vcl_hash {
             /** Set user session as bin */
             set req.http.X-BIN  = "user:" + req.http.X-SESS;
         }
+        set req.http.X-URL = req.url;
 
     }
     else {
@@ -132,8 +133,8 @@ sub vcl_hash {
             set req.http.X-BIN  = "role:" + regsub(req.http.Cookie, "^.*?QTEBIN=([^;]*);*.*$", "\1");
         }
         else {
-	    set req.http.X-BIN = "anonymous";
-	}
+            set req.http.X-BIN = "anonymous";
+        }
     }
 
     /** If Bin is set - add it to hash data for this page */

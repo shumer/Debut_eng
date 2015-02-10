@@ -57,6 +57,9 @@ function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
     }
   }
 
+  // Apply tags.
+  qtools_api__cache_tag_apply($cache_tags);
+
   // Return actual content and set desired TTL.
   // Grace for user block is 0 by design.
   return array(
@@ -204,9 +207,10 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
 
   // Get arguments.
   $esi_args = !empty($_GET['a']) ? $_GET['a'] : array();
+  $cachemode = !empty($_GET['cachemode']) ? $_GET['cachemode'] : DRUPAL_CACHE_PER_USER;
 
   // Validate signature.
-  $new_sig = qtools_varnish_get_signature($esi_type, $esi_id, $esi_args);
+  $new_sig = qtools_varnish_get_signature($esi_type, $esi_id, $cachemode, $esi_args);
   if ($new_sig != $signature) {
     // Signature error.
     $error = QTOOLS_VARNISH_ERR_SIGNATURE_FAIL;
@@ -219,9 +223,17 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
     $handler = qtools_varnish_esi_handler($esi_type);
     if (!empty($handler) && !empty($handler['callback'])) {
 
+      // Include callback file.
+      if (!empty($handler['include'])) {
+        module_load_include($handler['include'][0], $handler['include'][1], $handler['include'][2]);
+      }
+
       // Get result.
       if (function_exists($handler['callback'])) {
-        $result = $handler['callback']($esi_id, $esi_args, $signature);
+        // Add cachemode to the arguments.
+        $variables = $esi_args;
+        $variables['cachemode'] = $cachemode;
+        $result = $handler['callback']($esi_id, $variables, $signature);
       }
       else {
         $result = QTOOLS_VARNISH_ERR_CALLBACK;
