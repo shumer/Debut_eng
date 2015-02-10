@@ -17,6 +17,19 @@ if(typeof String.prototype.trim !== 'function') {
 }
 
 /**
+ * Execution time test function.
+ */
+qtools.devTestTime = function(callback, loop_count) {
+  var start = new Date().getTime();
+  loop_count = loop_count || 1;
+  for (var i = 1; i <= loop_count; i++) {
+    callback();
+  }
+  var spend = new Date().getTime() - start;
+  return [loop_count, spend, spend / loop_count];
+}
+
+/**
  * Local storage Get.
  */
 qtools.localStorageGet = function (bin, key, def_value, type) {

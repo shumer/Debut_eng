@@ -506,11 +506,12 @@ function qtools_varnish_init() {
  *
  * Note that if 'qtools_varnish_privat_key' is not set it will fallback to site salt.
  */
-function qtools_varnish_get_signature($esi_type, $esi_id, $params = array()) {
+function qtools_varnish_get_signature($esi_type, $esi_id, $cachemode, $params = array()) {
 
   // Add items id.
   $params[] = $esi_type;
   $params[] = $esi_id;
+  $params[] = $cachemode;
 
   // Bind type to string.
   $params = qtools_api__bind_type($params, 's', TRUE);
@@ -792,7 +793,7 @@ function _qtools_varnish_get_themed_pane($pane, $display = NULL, $context = arra
 /**
  * Wrap content with some info.
  */
-function qtools_varnish_wrap($content, $tag = TRUE) {
+function qtools_varnish_wrap($content, $tag = TRUE, $comment = FALSE) {
   global $user;
 
   // Save ESI tags to watchdog.
@@ -819,7 +820,14 @@ function qtools_varnish_wrap($content, $tag = TRUE) {
   if (_qtools_varnish_settings('general', 'debug', FALSE)) {
     $attributes['origin'] = $_SERVER["REQUEST_URI"];
   }
-  return '<div ' . drupal_attributes($attributes) . '>' . $content . '</div>';
+
+  if ($comment) {
+    $result = '<!-- <div ' . drupal_attributes($attributes) . '> -->' . $content . '<!-- </div> -->';
+  }
+  else {
+    $result = '<div ' . drupal_attributes($attributes) . '>' . $content . '</div>';
+  }
+  return $result;
 }
 
 /**
@@ -1057,7 +1065,12 @@ function qtools_varnish_page_cache_form_submit(&$form, &$form_state) {
 
   // Update settings.
   $settings = _qtools_varnish_page_cache_form_conf_set($form_state['values']['qtools_varnish_page_cache_form'], $form_state['handler_id']);
-  $form_state['handler']->conf['qtools_varnish_page_cache_form'] = $settings;
+  if (!empty($settings)) {
+    $form_state['handler']->conf['qtools_varnish_page_cache_form'] = $settings;
+  }
+  elseif (isset($form_state['handler']->conf['qtools_varnish_page_cache_form'])) {
+    unset($form_state['handler']->conf['qtools_varnish_page_cache_form']);
+  }
 
   // Purge if required.
   $purge = $form_state['values']['qtools_varnish_page_cache_form']['purge'];
@@ -1100,7 +1113,7 @@ function qtools_varnish_ctools_render_alter(&$info, $page, $context) {
       // Attach user specific info.
       // Only add user blocks if we have an actual user.
       if (!empty($user->uid)) {
-        $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', array('cachemode' => DRUPAL_CACHE_PER_USER));
+        $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', DRUPAL_CACHE_PER_USER);
         $esi_tag = qtools_varnish_wrap($esi_tag);
 
         if (is_array($info['content'])) {
@@ -1187,7 +1200,7 @@ function _qtools_varnish_page_delivery_callback($page_callback_result) {
 
     // Only adds user blocks if we have an actual user.
     if (!empty($user->uid)) {
-      $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', array('cachemode' => DRUPAL_CACHE_PER_USER));
+      $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS, '1', DRUPAL_CACHE_PER_USER);
       $esi_tag = qtools_varnish_wrap($esi_tag);
 
       // Attach user specific info.
