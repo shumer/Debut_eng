@@ -342,10 +342,11 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       animation: "slide",
       animationLoop: false,
       slideshow: false,
-      itemWidth: 50,
-      itemMargin: 18,
+      itemWidth: 70,
       controlNav: false,
       directionNav: true,
+      minItems: 3,
+      maxItems: 5,
       selector: ".years-slides > a",
     });
   });
@@ -357,10 +358,11 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       animation: "slide",
       animationLoop: false,
       slideshow: false,
-      itemWidth: 17,
-      itemMargin: 5,
+      itemWidth: 25,
       controlNav: false,
       directionNav: true,
+      minItems: 7,
+      maxItems: 20,
       selector: ".letter-slides > li",
     });
   });
