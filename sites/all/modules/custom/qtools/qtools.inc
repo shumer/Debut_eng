@@ -116,6 +116,19 @@ function qtools_api__ajax_command_log($title, $data) {
 }
 
 /**
+ * Entity extractor.
+ *
+ * @param $param
+ *   (string) entity_type.
+ * @param $value
+ *   (int) entity id.
+ */
+function _qtools_api__field_get_item_entity($param, $value) {
+  $result = entity_load($param, array($value));
+  return !empty($result[$value]) ? $result[$value] : NULL;
+}
+
+/**
  * Get specific field delta.
  */
 function qtools_api__field_get_item($entity_type, $entity, $field_name, $deltas = NULL, $key = NULL, $langcode = NULL) {
@@ -155,6 +168,14 @@ function qtools_api__field_get_item($entity_type, $entity, $field_name, $deltas 
   }
   $return = array();
 
+  // Check if we have complex extractor.
+  if (!empty($key) && strpos($key, ':')) {
+    list($key, $function, $param) = explode(':', $key);
+    if (empty($function)) {
+      $function = '_qtools_api__field_get_item_entity';
+    }
+  }
+
   // Get all items.
   foreach ($deltas as $delta) {
     if (!empty($items[$delta])) {
@@ -165,6 +186,16 @@ function qtools_api__field_get_item($entity_type, $entity, $field_name, $deltas 
         $return[$delta] = !empty($items[$delta][$key])
           ? $items[$delta][$key]
           : NULL;
+
+        // If we have valid extractor - use it.
+        if (!empty($function)) {
+          if (function_exists($function)) {
+            $return[$delta] = $function($param, $return[$delta]);
+          }
+          else {
+            $return[$delta] = NULL;
+          }
+        }
       }
     }
     else {
@@ -653,7 +684,7 @@ function qtools_api__ready() {
 /**
  * Generate hash for given structure with inner seed.
  */
-function qtools_api__hash($params, $noise = NULL) {
+function qtools_api__hash($params, $noise = NULL, $length = NULL) {
   global $drupal_hash_salt;
 
   // Use sitewide noise if not provided.
@@ -668,6 +699,12 @@ function qtools_api__hash($params, $noise = NULL) {
 
   // Hash and return result.
   $hash = hash('sha256', $params . $noise);
+  if (!empty($length)) {
+    $hlength = drupal_strlen($hash);
+    if ($hlength > $length) {
+      $hash = substr($hash, floor(($hlength - $length) / 2), $length);
+    }
+  }
   return $hash;
 }
 
@@ -1159,6 +1196,25 @@ function qtools_api__array_get($array, $key_path, $default = NULL) {
     $value = qtools_api__array_get($value, $key_path, $default);
   }
   return $value;
+}
+
+function qtools_api__array_set(&$array, $key_path, $value) {
+
+  $array = (array) $array;
+
+  $key_path = is_array($key_path) ? $key_path : array($key_path);
+  $key = array_shift($key_path);
+
+  // If path empty - set given value.
+  if (empty($key_path)) {
+    $array[$key] = $value;
+  }
+  else {
+    if (empty($array[$key])) {
+      $array[$key] = array();
+    }
+    qtools_api__array_set($array[$key], $key_path, $value);
+  }
 }
 
 /**

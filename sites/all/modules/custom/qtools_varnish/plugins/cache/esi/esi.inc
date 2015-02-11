@@ -79,7 +79,6 @@ function qtools_varnish_esi_cache_set_cache($conf, $content, $display, $args, $c
 
   // Base ESI args.
   $esi_args = array_filter(array(
-    'cachemode' => $cachemode,
     'context' => $context,
     'nocontext' => $conf['nocontext'],
     'path' => $path,
@@ -90,7 +89,7 @@ function qtools_varnish_esi_cache_set_cache($conf, $content, $display, $args, $c
   $pane->style['settings'] = NULL;
 
   // Generate ESI tag.
-  $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_PANE, $esi_id, $esi_args);
+  $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_PANE, $esi_id, $cachemode, $esi_args);
 
   $printed_content = '<div>tag:'. time() . '; '. htmlentities($esi_tag) .' </div>';
   // DEBUG.
