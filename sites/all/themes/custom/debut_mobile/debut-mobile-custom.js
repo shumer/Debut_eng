@@ -334,34 +334,36 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       controlsContainer: '.' + wrapper_class
     });
   });
-  
-  $('.block-alphabet', $context).once('debut-alphabet-slider', function () {
-    var $this = $(this);
-    
-    $('.alphabet-wrapper').flexslider({
-      animation: "slide",
-      animationLoop: false,
-      slideshow: false,
-      itemWidth: 17,
-      itemMargin: 5,
-      controlNav: false,
-      directionNav: false,
-      selector: ".letter-slides > li"
-    });
-  });
 
   $('.block-jury-years', $context).once('debut-jury-prize-slider', function () {
     var $this = $(this);
     
-    $('.jury-years-wrapper').flexslider({
+    $this.find('.jury-years-wrapper').flexslider({
       animation: "slide",
       animationLoop: false,
       slideshow: false,
-      itemWidth: 50,
-      itemMargin: 18,
+      itemWidth: 70,
       controlNav: false,
-      directionNav: false,
-      selector: ".years-slides > a"
+      directionNav: true,
+      minItems: 3,
+      maxItems: 5,
+      selector: ".years-slides > a",
+    });
+  });
+  
+  $('.block-alphabet', $context).once('debut-alphabet-slider', function () {
+    var $this = $(this);
+    
+    $this.find('.alphabet-wrapper').flexslider({
+      animation: "slide",
+      animationLoop: false,
+      slideshow: false,
+      itemWidth: 25,
+      controlNav: false,
+      directionNav: true,
+      minItems: 7,
+      maxItems: 20,
+      selector: ".letter-slides > li",
     });
   });
   

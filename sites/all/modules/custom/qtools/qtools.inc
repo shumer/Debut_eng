@@ -188,11 +188,13 @@ function qtools_api__field_get_item($entity_type, $entity, $field_name, $deltas 
           : NULL;
 
         // If we have valid extractor - use it.
-        if (!empty($function) && function_exists($function)) {
-          $return[$delta] = $function($param, $return[$delta]);
-        }
-        else {
-          $return[$delta] = NULL;
+        if (!empty($function)) {
+          if (function_exists($function)) {
+            $return[$delta] = $function($param, $return[$delta]);
+          }
+          else {
+            $return[$delta] = NULL;
+          }
         }
       }
     }

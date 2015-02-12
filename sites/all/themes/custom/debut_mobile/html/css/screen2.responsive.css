@@ -1,14 +1,21 @@
 /*---------- portrait orientation --------*/
 @media screen and (max-width: 480px) {
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
-    width:48%;
+    width:49%;
     float:left;
   }
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1),
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(2n-1) {
-    margin-left:2%;
-    margin-right:2%;
+    clear: left;
+  }
+
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row {
+    width:49%;
+    float:left;
+    display: table-cell;
+    text-align: center;    
+  }
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1) {
+    clear: left;
   }
   
   .block-master-class.listing .author .interview {
@@ -85,15 +92,15 @@
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row,
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row {
     float:left;
-    width:29%;
+    width:33%;
+    display: table-cell;
+    text-align: center;    
   }
   .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n-1),
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n-1) {
-    margin-right:5%;
-    margin-left:3%;
   }
   .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
   .view-debut-view-persons-list.view-display-id-default .view-content .views-row:nth-child(3n + 1),
@@ -101,6 +108,5 @@
   .view-debut-view-persons-nominees-list-teaser.view-display-id-default .view-content .views-row:nth-child(3n + 1),
   .view-debut-view-jury-prize-list.view-display-id-listing_view_mode .view-content .views-row:nth-child(3n + 1) {
     clear:left;
-    margin-right:2%;
   }  
 }

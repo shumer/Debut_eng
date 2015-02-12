@@ -760,8 +760,14 @@
 .block-alphabet {
   padding-top: 0px;
   max-width: 880px;
-  padding: 16px 10px 16px 10px;
   text-align: center;
+}
+.block-alphabet .item {
+  border-top: 1px solid #F09015;
+}
+.alphabet.alphabet-wrapper {
+  padding: 5px 0px;
+  margin: 0px 40px;
 }
 
 .block-alphabet h1 {
@@ -787,7 +793,6 @@
   display: block;
   float: left;
   font-size: 18px;
-  margin: 0 5px 0 0;
   padding: 0 8px 2px 0;
   text-transform: uppercase;
 }
@@ -811,14 +816,17 @@
 /*------------ jury listing ----------------*/
 .block-jury-years .jury-years-wrapper {
   font-size: 22px;
-  padding: 0 0 25px;
-  position: relative;
   text-align: center;
+  margin: 0px 40px 2px 37px;
+  padding: 5px 0px 3px 0px;  
 }
-
+.block-jury-years-item {
+  border-top: 1px solid rgb(240, 144, 21);
+  border-bottom: 1px solid rgb(240, 144, 21);
+  margin-bottom: 20px;
+}
 .block-jury-years .jury-years-wrapper a {
   color: #1E1E1E;
-  margin: 0 7px;
   float: left;
 }
 
@@ -833,14 +841,14 @@
 }
 
 .block-jury-listing .item {
-  float: left;
+  //float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
   width: 150px;
   height: 150px;
   padding: 0px;
   text-transform: uppercase;
-  margin: 0 10px 20px 0;
+  margin: 0 0px 20px 0;
   text-align: center;
   display:inline-block;  
   position:relative;  
@@ -897,3 +905,44 @@
 }
 
 /*------------ end jury listing ---------------*/
+
+.block-alphabet .flex-direction-nav a,
+.block-jury-years .flex-direction-nav a {
+    width: 30px; 
+    height: 30px; 
+    margin: -25px 0 0; 
+    display: block; 
+    cursor: pointer; 
+    text-indent: -9999px; 
+    -webkit-transition: all .3s ease;
+}
+.block-jury-years .flex-direction-nav a.flex-next,
+.block-alphabet .flex-direction-nav a.flex-next{
+    background: url(../images/sprite-a.png) no-repeat -974px -778px; 
+}
+.block-jury-years .flex-direction-nav a.flex-prev,
+.block-alphabet .flex-direction-nav a.flex-prev {
+    background: url(../images/sprite-a.png) no-repeat -943px -778px; 
+}
+.block-jury-years .flex-direction-nav .flex-next,
+.block-alphabet .flex-direction-nav .flex-next {
+    background-position: 100% 0; 
+    right: 5px; 
+    position: absolute;
+    opacity: 0.8; 
+}
+.block-jury-years .flex-direction-nav .flex-prev,
+.block-alphabet .flex-direction-nav .flex-prev {
+    opacity: 0.8; 
+    left: 5px;
+    position: absolute;
+}
+.block-jury-years .flex-direction-nav .disabled,
+.block-alphabet .flex-direction-nav .disabled {
+    opacity: .3!important; 
+    filter:alpha(opacity=30); 
+    cursor: default;
+}
+.block-jury-years .jury-years-wrapper .flex-direction-nav a {
+  margin: -28px 0 0;
+}
