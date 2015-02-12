@@ -1350,3 +1350,45 @@ div.messages ul li {
   padding-bottom: 10px;
 }
 /*------------end photo listing styles---------------*/
+/*---------- Persons page with letter filter --------*/
+.block-persons-list .item {
+  font-family: "PT Sans",sans-serif;
+  font-size: 10px;
+  width: 150px;
+  height: 150px;
+  padding: 0px;
+  text-transform: uppercase;
+  margin: 0px 0px 20px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+}
+.block-persons-list .item .text a {
+  margin: 5px 0px 0px;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #FFF;
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-shadow: none;
+}
+.view-debut-view-persons-list.view-display-id-default .view-content {
+  padding: 0px 25px 35px 25px;
+  text-align: center;
+  margin: 0 auto;
+}
+.view-debut-view-persons-list.view-display-id-default .view-content .item {
+  width: 150px;
+}
+@media screen and (min-width: 480px) {
+  .block-persons-list .item {
+    margin-right: 15px;
+  }
+}
+/*---------- end Persons page with letter filter --------*/
