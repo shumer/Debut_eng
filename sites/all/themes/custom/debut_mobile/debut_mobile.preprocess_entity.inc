@@ -3,6 +3,18 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess views debut_view_persons_list__default.
+ */
+function debut_mobile_preprocess_views_debut_view_persons_list__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
 /**
  * Preprocess views debut_view_list_photos__default.
  */
@@ -15,7 +27,7 @@ function debut_mobile_preprocess_views_debut_view_list_photos__default(&$variabl
 }
 
 /**
- * 
+ *
  * Preprocess view mode teaser for press_photo__listing node.
  */
 function debut_mobile_preprocess_node__photo_listing__listing(&$variables) {
@@ -1585,7 +1597,7 @@ function debut_mobile_preprocess_node__ibooks__listing(&$variables) {
   else {
     $_html['authors'] = '';
   }
-  
+
   $_data['class'] = '';
   if ($node->_last) {
     $_data['class'] = 'last';
