@@ -373,6 +373,17 @@ function debut_mobile_preprocess_views_debut_view_list_press_about_debut__defaul
 }
 
 /**
+ * Preprocess views debut_view_list_debut_view_jury_alphabet_list__default.
+ */
+function debut_mobile_preprocess_views_debut_view_jury_alphabet_list__default(&$variables) {
+  $view  = &$variables['view'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
  * Preprocess views debut_view_list_press_about_debut__default.
  */
 function debut_mobile_preprocess_views_debut_view_jury_prize_list__default(&$variables) {
