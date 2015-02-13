@@ -8,28 +8,33 @@
     clear: left;
   }
 
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row {
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row,
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row {
     width:49%;
     float:left;
     display: table-cell;
     text-align: center;    
   }
-  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1) {
+  .view-debut-view-jury-prize-list.view-display-id-default .view-content .views-row:nth-child(2n-1),
+  .view-debut-view-jury-alphabet-list.view-display-id-default .view-content .views-row:nth-child(2n-1) {
     clear: left;
   }
   
   .block-master-class.listing .author .interview {
     margin-top: 0px;
   }
-  .block-jury-listing .item {
+  .block-jury-listing .item,
+  .block-persons-alphabet-list .item {
     width: 95%;
     height: auto;
   }
-  .block-jury-listing .item .image img {
+  .block-jury-listing .item .image img,
+  .block-persons-alphabet-list .image img {
     width: 100%;
     height: auto;
   }
-  .block-jury-listing .item .text a {
+  .block-jury-listing .item .text a,
+  .block-persons-alphabet-list .text a {
     bottom: 3px;
   }
 }

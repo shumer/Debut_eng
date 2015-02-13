@@ -207,6 +207,38 @@ function debut_common_create_page_mobile_breadcrumbs() {
       $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
       break;
     
+    case DEBUT_COMMON_PAGE_PERSONS_LIST:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PERSONS_LIST);
+      if (strlen($argument) == 2) {
+        $breadcrumb[] = strtoupper($argument);
+      }
+      break;
+    
+    case DEBUT_COMMON_PAGE_ALPHABET_JURY:
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_ALPHABET_JURY);
+      if (strlen($argument) == 2) {
+        $breadcrumb[] = strtoupper($argument);
+      }
+      break;
+      
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();
