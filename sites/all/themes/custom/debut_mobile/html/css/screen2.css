@@ -893,7 +893,7 @@
   padding: 0 0 4px 20px;
   width: 210px;
 }
-.block-jury-listing .compact-listing a {
+.block-jury-listing .compact-listing .views-row a {
   border: 1px solid #FFFFFF;
   color: #333333;
   float: left;
