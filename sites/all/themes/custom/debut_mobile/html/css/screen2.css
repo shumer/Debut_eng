@@ -764,6 +764,7 @@
 }
 .block-alphabet .item {
   border-top: 1px solid #F09015;
+  border-bottom: 1px solid #F09015;
 }
 .alphabet.alphabet-wrapper {
   padding: 5px 0px;
@@ -818,10 +819,9 @@
   font-size: 22px;
   text-align: center;
   margin: 0px 40px 2px 37px;
-  padding: 5px 0px 3px 0px;  
+  padding: 2px 0px 2px 0px;  
 }
 .block-jury-years-item {
-  border-top: 1px solid rgb(240, 144, 21);
   border-bottom: 1px solid rgb(240, 144, 21);
   margin-bottom: 20px;
 }
@@ -840,7 +840,8 @@
   padding: 16px 25px 16px 25px;
 }
 
-.block-jury-listing .item {
+.block-jury-listing .item,
+.block-persons-alphabet-list .item {
   //float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
@@ -853,7 +854,8 @@
   display:inline-block;  
   position:relative;  
 }
-.block-jury-listing .item .text a {
+.block-jury-listing .item .text a,
+.block-persons-alphabet-list .item .text a {
   display: block;
   margin: 5px 0px 0px 0px;
   color: #343434;
@@ -862,7 +864,7 @@
   display:block;
   position:absolute;
   left:0;
-  bottom:0;
+  bottom:3px;
   width:100%;
   box-sizing:border-box;
   -moz-box-sizing: border-box;
@@ -873,7 +875,8 @@
   background-color:rgba(0,0,0,.3);  
   text-shadow: none;
 }
-.block-jury-listing .item .text a:hover {
+.block-jury-listing .item .text a:hover,
+.block-persons-alphabet-list .item .text a:hover {
   color: #BD01B5;
 }
 
@@ -905,7 +908,7 @@
 }
 
 /*------------ end jury listing ---------------*/
-
+/*------------ flexslider --------------*/
 .block-alphabet .flex-direction-nav a,
 .block-jury-years .flex-direction-nav a {
     width: 30px; 
@@ -946,3 +949,12 @@
 .block-jury-years .jury-years-wrapper .flex-direction-nav a {
   margin: -28px 0 0;
 }
+/*----------- flexslider -----------*/
+
+/*----------- alphabet persons list ----------*/
+.block-persons-alphabet-list {
+  margin: 0px auto;
+  max-width: 880px;
+  padding: 36px 25px 16px 25px;
+}
+/*----------- end alphabet persons list ----------*/

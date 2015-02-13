@@ -384,8 +384,7 @@ function debut_feature_pages_persons_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Лица премии|prize_persons|1
-@arg1',
+      'custombc' => '',
       'context' => array(
         0 => 'empty',
       ),
