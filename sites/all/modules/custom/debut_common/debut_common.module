@@ -89,7 +89,7 @@ module_load_include('form.inc', 'debut_common');
  * Implements hook_qtools_varnish_user_cache_bin_alter().
  */
 function debut_common_qtools_varnish_user_cache_bin_alter(&$cookie_inf) {
-  $is_mobile - debut_common_is_mobile();
+  $is_mobile = debut_common_is_mobile();
   if ($is_mobile) {
     $cookie_inf .= '_mobile';
   }
