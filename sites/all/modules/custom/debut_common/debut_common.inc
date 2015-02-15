@@ -29,8 +29,8 @@ function debut_common_create_page_mobile_breadcrumbs() {
       break;
 
     // Bc for contact us page.
-    case DEBUT_COMMON_PAGE_CONTACT:
-    case DEBUT_COMMON_PAGE_CONTACT_SUBMIT:
+    case 'nofollow':
+    case 'contact_us':
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
           array(
@@ -206,7 +206,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       );
       $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
       break;
-    
+
     case DEBUT_COMMON_PAGE_PERSONS_LIST:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -222,7 +222,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = strtoupper($argument);
       }
       break;
-    
+
     case DEBUT_COMMON_PAGE_ALPHABET_JURY:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -238,7 +238,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
         $breadcrumb[] = strtoupper($argument);
       }
       break;
-      
+
     default:
       // Get default breadcrumb.
       $breadcrumb = drupal_get_breadcrumb();

@@ -1392,3 +1392,46 @@ div.messages ul li {
   }
 }
 /*---------- end Persons page with letter filter --------*/
+/*---------- home page styles ---------------------------*/
+.home-page-news-gallery {
+  background: #fef7ed;
+}
+.home-page-news-gallery .view-content {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.home-page-news-gallery .view-content .news-home-page-item {
+  padding-top: 20px;
+}
+.home-page-news-gallery .view-content .date {
+  color: #898989;
+  text-transform: uppercase;
+}
+.home-page-news-gallery .view-content .news-home-page-item .title {
+  color: #333333;
+  font-size: 1.25em;
+  text-align: left;
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f09416;
+}
+.home-page-news-gallery .view-content .news-home-page-item .title a {
+  color: #474747;
+}
+.home-page-news .span-archive {
+  background: url("../images/bgs/bg_news_archive.png") repeat-x scroll 0 0 transparent;
+  display: block;
+  float: right;
+  height: 35px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 200px;
+  text-transform: uppercase;
+}
+.home-page-news .span-archive a {
+  right: 15px;
+  position: absolute;
+}

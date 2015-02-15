@@ -5,6 +5,20 @@
  */
 
 /**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__news__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_news_annonce'] = debut_mobile_render($content, 'field_news_annonce');;
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');
+}
+
+/**
  * Preprocess views debut_view_persons_list__default.
  */
 function debut_mobile_preprocess_views_debut_view_persons_list__default(&$variables) {

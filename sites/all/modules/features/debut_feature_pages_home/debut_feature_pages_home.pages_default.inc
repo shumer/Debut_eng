@@ -317,6 +317,25 @@ function debut_feature_pages_home_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-bbadc74b-f65c-4698-985f-1d35c7177f90';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_home_page_news';
+    $pane->subtype = 'debut_common_home_page_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'bbadc74b-f65c-4698-985f-1d35c7177f90';
+    $display->content['new-bbadc74b-f65c-4698-985f-1d35c7177f90'] = $pane;
+    $display->panels['content'][0] = 'new-bbadc74b-f65c-4698-985f-1d35c7177f90';
+    $pane = new stdClass();
     $pane->pid = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
     $pane->panel = 'content';
     $pane->type = 'debut_common_prize_jury';
@@ -330,11 +349,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '7ed86190-d384-42cc-a3d4-e52911605ccc';
     $display->content['new-7ed86190-d384-42cc-a3d4-e52911605ccc'] = $pane;
-    $display->panels['content'][0] = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
+    $display->panels['content'][1] = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
     $pane = new stdClass();
     $pane->pid = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $pane->panel = 'content';
@@ -349,11 +368,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $display->content['new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32'] = $pane;
-    $display->panels['content'][1] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $display->panels['content'][2] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
