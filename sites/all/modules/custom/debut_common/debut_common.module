@@ -86,6 +86,16 @@ module_load_include('inc', 'debut_common');
 module_load_include('form.inc', 'debut_common');
 
 /**
+ * Implements hook_qtools_varnish_user_cache_bin_alter().
+ */
+function debut_common_qtools_varnish_user_cache_bin_alter(&$cookie_inf) {
+  $is_mobile - debut_common_is_mobile();
+  if ($is_mobile) {
+    $cookie_inf .= '_mobile';
+  }
+}
+
+/**
  * Implements hook_node_view_alter().
  */
 function debut_common_node_view_alter(&$build) {
@@ -260,7 +270,7 @@ function debut_common_theme() {
     'template' => 'debut-common-embed-player',
     'path' => drupal_get_path('theme', 'debut_mobile') . '/templates/debut_common',
   );
-  
+
   $theme['debut_common_persons_view_more'] = array(
     'variables' => array('params' => array()),
     'template' => 'debut-common-persons-view-more',
