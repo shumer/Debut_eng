@@ -51,7 +51,7 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach main menu.
   debut_mobile_custom.main_menu_fold($context, settings);
-  
+
   // Attach flexslider resize on pageshow.
   debut_mobile_custom.flexslider_resize($context, settings);
 };
@@ -63,7 +63,7 @@ debut_mobile_custom.init = function ($context, settings) {
   // Mark this as inited.
   debut_mobile_custom._inited = true;
   document.addEventListener("touchstart", function(){}, true);
-  
+
 };
 
 /**
@@ -340,7 +340,7 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
 
   $('.block-jury-years', $context).once('debut-jury-prize-slider', function () {
     var $this = $(this);
-    
+
     $this.find('.slider-wrapper').flexslider({
       animation: "slide",
       animationLoop: false,
@@ -353,10 +353,10 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       selector: ".years-slides > a",
     });
   });
-  
+
   $('.block-alphabet', $context).once('debut-alphabet-slider', function () {
     var $this = $(this);
-    
+
     $this.find('.slider-wrapper').flexslider({
       animation: "slide",
       animationLoop: false,
@@ -370,10 +370,27 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
     });
   });
 
+  $('.home-page-news-gallery', $context).once('debut-home-page-news-slider', function () {
+    var $this = $(this);
+
+    $this.find('.view-content').flexslider({
+      animation: 'slide',
+      directionNav: true,
+      controlNav: false,
+      animationLoop: true,
+      prevText: ' ',
+      nextText: ' ',
+      slideshowSpeed: 7000,
+      slideshow: true,
+      selector: ".slides > li",
+      smoothHeight: true
+    });
+  });
+
 };
 
 debut_mobile_custom.flexslider_resize = function(context, settings) {
-  context.on("pageshow",function(){
+  context.on("pageshow", function() {
     $slider = $('.slider-wrapper');
     $slider.resize();
   });
