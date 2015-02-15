@@ -261,9 +261,6 @@ function debut_common_is_mobile() {
   if ($is_mobile || $is_mobile_theme) {
     $result = TRUE;
   }
-  kpr(array($is_mobile));
-  kpr('<h1>' . $cookie_inf . '</h1>');
-  die;
   return $result;
 }
 
