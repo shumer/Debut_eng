@@ -254,7 +254,10 @@ function debut_common_create_page_mobile_breadcrumbs() {
 function debut_common_is_mobile() {
   global $theme_key;
   $detect = mobile_detect_get_object();
-  $is_mobile = $detect->isMobile();
+  $is_mobile = FALSE;
+  if($detect->isMobile() && !$detect->isTablet()) {
+    $is_mobile = TRUE;
+  }
   $is_mobile_theme = ($theme_key == DEBUT_COMMON_THEME_MOBILE) ? TRUE : FALSE;
 
   $result = FALSE;
