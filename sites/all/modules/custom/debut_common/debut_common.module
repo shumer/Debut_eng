@@ -93,8 +93,8 @@ function debut_common_qtools_varnish_user_cache_bin_alter(&$cookie_inf) {
   if ($is_mobile) {
     $cookie_inf .= '_mobile';
   }
-  var_dump($is_mobile);
-  print '<h1>' . $cookie_inf . '</h1>';
+ // var_dump($is_mobile);
+  //print '<h1>' . $cookie_inf . '</h1>';
   //die;
 }
 
