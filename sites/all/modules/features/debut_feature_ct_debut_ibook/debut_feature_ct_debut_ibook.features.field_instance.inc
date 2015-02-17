@@ -45,7 +45,7 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'listing' => array(
         'label' => 'above',
@@ -244,9 +244,10 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
       ),
       'home_page' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'listing' => array(
         'label' => 'above',
@@ -324,9 +325,10 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
       ),
       'home_page' => array(
         'label' => 'above',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 1,
       ),
       'listing' => array(
         'label' => 'above',
@@ -406,7 +408,7 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'listing' => array(
         'label' => 'above',
@@ -485,7 +487,7 @@ function debut_feature_ct_debut_ibook_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'listing' => array(
         'label' => 'above',
