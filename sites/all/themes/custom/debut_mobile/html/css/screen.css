@@ -1435,3 +1435,17 @@ div.messages ul li {
   right: 15px;
   position: absolute;
 }
+.book-shelf-homepage {
+  margin: 0 25px 1.5em;
+}
+.book-shelf-homepage .book-header {
+  border-bottom: 1px solid #333333;
+  color: #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+}
+.book-shelf-homepage .book-header a {
+  color: #bd01b5;
+}

@@ -258,10 +258,9 @@ function debut_common_is_mobile() {
   if($detect->isMobile() && !$detect->isTablet()) {
     $is_mobile = TRUE;
   }
-  $is_mobile_theme = ($theme_key == DEBUT_COMMON_THEME_MOBILE) ? TRUE : FALSE;
 
   $result = FALSE;
-  if ($is_mobile || $is_mobile_theme) {
+  if ($is_mobile) {
     $result = TRUE;
   }
   return $result;
