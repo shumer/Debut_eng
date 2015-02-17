@@ -3,6 +3,45 @@
  * @file
  * Preprocess functions.
  */
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__ibooks__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['field_book_image'] = $image;
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__books__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['field_book_image'] = $image;
+}
 
 /**
  * Preprocess node__news__home_page.

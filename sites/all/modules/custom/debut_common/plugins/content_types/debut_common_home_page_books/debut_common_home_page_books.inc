@@ -32,6 +32,7 @@ function debut_common_home_page_books_content_type_render($subtype, $conf, $pane
 
   $_html['books_link'] = l('<span class="links"></span>', DEBUT_COMMON_PAGE_BOOKS_LIST, array('html' => TRUE));
 
+  $_html['books_link_mobile'] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST, array('html' => TRUE));
   $data = array (
     '_html' => $_html,
   );
