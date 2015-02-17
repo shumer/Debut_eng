@@ -387,6 +387,22 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
     });
   });
 
+  $('.home-page-books-gallery', $context).once('debut-home-page-books-slider', function () {
+    var $this = $(this);
+
+    $this.find('.view-content').flexslider({
+      animation: 'slide',
+      directionNav: true,
+      controlNav: false,
+      animationLoop: true,
+      prevText: ' ',
+      nextText: ' ',
+      slideshowSpeed: 7000,
+      slideshow: true,
+      selector: ".slides > li",
+      smoothHeight: true
+    });
+  });
 };
 
 debut_mobile_custom.flexslider_resize = function(context, settings) {

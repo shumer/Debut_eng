@@ -12,7 +12,7 @@ function debut_mobile_preprocess_node__ibooks__home_page(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array(
     'attributes' => array(
       'class' => array('show-popup-book'),
     )
@@ -20,7 +20,14 @@ function debut_mobile_preprocess_node__ibooks__home_page(&$variables) {
 
   // Image render.
   $image = debut_mobile_render($content, 'field_book_image');
-  $_html['field_book_image'] = $image;
+  $_html['field_book_image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+
 }
 
 /**
@@ -32,7 +39,7 @@ function debut_mobile_preprocess_node__books__home_page(&$variables) {
   $_html = &$variables['_html'];
   $_data = &$variables['_data'];
 
-  $_html['title'] = l('', 'node/' . $node->nid . '/popup', array(
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array(
     'attributes' => array(
       'class' => array('show-popup-book'),
     )
@@ -40,7 +47,13 @@ function debut_mobile_preprocess_node__books__home_page(&$variables) {
 
   // Image render.
   $image = debut_mobile_render($content, 'field_book_image');
-  $_html['field_book_image'] = $image;
+  $_html['field_book_image'] =  l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
 }
 
 /**

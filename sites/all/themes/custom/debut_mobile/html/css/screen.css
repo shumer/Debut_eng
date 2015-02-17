@@ -1449,3 +1449,21 @@ div.messages ul li {
 .book-shelf-homepage .book-header a {
   color: #bd01b5;
 }
+.book-shelf-homepage .compact-books-item {
+  margin-top: 20px;
+}
+.book-shelf-homepage .compact-books-item .title a {
+  text-transform: uppercase;
+  color: #f09015;
+}
+.book-shelf-homepage .compact-books-item .book-image {
+  float: left;
+  padding-right: 10px;
+}
+.book-shelf-homepage .compact-books-item .publication {
+  background: none repeat scroll 0 0 #eeeeee;
+  color: #666666;
+  font-size: 11px;
+  margin: 15px 0 0;
+  padding: 5px;
+}
