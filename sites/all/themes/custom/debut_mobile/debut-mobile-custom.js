@@ -348,8 +348,9 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       itemWidth: 70,
       controlNav: false,
       directionNav: true,
-      minItems: 3,
-      maxItems: 5,
+      minItems: Drupal.settings.debut_common_jury_years.flexslider_years_list_items_count,
+      maxItems: Drupal.settings.debut_common_jury_years.flexslider_years_list_items_count,
+      startAt: Drupal.settings.debut_common_jury_years.flexslider_years_list_startAt,
       selector: ".years-slides > a",
     });
   });
@@ -364,8 +365,9 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       itemWidth: 25,
       controlNav: false,
       directionNav: true,
-      minItems: 7,
-      maxItems: 20,
+      minItems: Drupal.settings.debut_common_alphabet_header.flexslider_alphabet_list_items_count,
+      maxItems: Drupal.settings.debut_common_alphabet_header.flexslider_alphabet_list_items_count,
+      startAt:  Drupal.settings.debut_common_alphabet_header.flexslider_alphabet_list_startAt,
       selector: ".letter-slides > li",
     });
   });

@@ -32,6 +32,7 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
   $data = array();
   $_html = array();
   $alphabet = array();
+  $active_id = '';
 
   $path = $_GET['q'];
   $path = explode('/', $path);
@@ -43,8 +44,15 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
   }
 
   $vocabulary = taxonomy_get_tree($conf['alphabet']);
+  $i = 0;
   foreach ($vocabulary as $term) {
     $alphabet[] = l($term->name, $conf['page'] . '/' . drupal_strtolower($term->name));
+    if (!empty(!empty($path[1]))) {
+      if (drupal_strtoupper($term->name) == $letter) {
+        $active_id = $i;
+      }
+      $i++;
+    }
   }
 
   $variables = array(
@@ -55,6 +63,17 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
   ));
   
   $_html['alphabet'] = theme('item_list', $variables);
+  
+  if (debut_common_is_mobile()) {
+    if (!empty($active_id)) { 
+      $startAt = ceil($active_id/DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW) - 1;
+    }
+    else {
+      $startAt = 0;
+    }
+    drupal_add_js(array('debut_common_alphabet_header' => array('flexslider_alphabet_list_startAt' => $startAt)), 'setting');
+    drupal_add_js(array('debut_common_alphabet_header' => array('flexslider_alphabet_list_items_count' => DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW)), 'setting');
+  }
   
   $data['_html'] = $_html;
   $block->content = theme('debut_common_alphabet_header', $data);

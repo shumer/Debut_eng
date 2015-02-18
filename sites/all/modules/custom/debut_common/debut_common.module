@@ -80,6 +80,8 @@ define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 
 define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
 define('DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW', 6); // 2 years (3 each year).
+define('DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW', 10);
+define('DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW', 3);
 
 // Load includes.
 module_load_include('inc', 'debut_common');
