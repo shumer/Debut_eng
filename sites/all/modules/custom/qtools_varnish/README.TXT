@@ -1,3 +1,8 @@
+7.x-2.07
+- ESI pane fixed
+- ESI blocks api added
+- Varnish considered off on POST requests
+
 7.x-2.06
 - User blocks cachemode fixed.
 

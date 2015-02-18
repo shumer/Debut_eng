@@ -5,6 +5,30 @@
  */
 
 /**
+ * Render custom ESI block.
+ */
+function qtools_varnish_page_esi_block_render($identifier, $variables) {
+
+  // Reference to debug array.
+  $debug_content = drupal_static('qtools_varnish_page_esi_debug_content', array());
+
+  // Get module and block_id.
+  $tmp = explode('-', $identifier);
+  $module = array_shift($tmp);
+  $block_id = implode('-', $tmp);
+
+  $function = $module . '_qtools_varnish_esi_block';
+  if (function_exists($function)) {
+    $result = $function($block_id, $variables);
+  }
+  else {
+    $result = QTOOLS_VARNISH_ERR_DATA;
+  }
+
+  return $result;
+}
+
+/**
  * Render User blocks.
  */
 function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
@@ -40,7 +64,10 @@ function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
   }
   jQuery("#qtools_varnish_userblocks .qtools_varnish_userblock-item").each(function () {
     var $this = jQuery(this);
-    jQuery($this.attr("data-target")).replaceWith($this.html());
+    var $target = jQuery($this.attr("data-target"));
+    if ($target.length > 0) {
+      $target.replaceWith($this.html());
+    }
   });' . 'jQuery.extend(true, Drupal.settings, ' . drupal_json_encode(drupal_array_merge_deep_array($js_data)) . ');'
   . '</script>';
 
@@ -63,7 +90,7 @@ function qtools_varnish_page_esi_userblocks_render($identifier, $variables) {
   // Return actual content and set desired TTL.
   // Grace for user block is 0 by design.
   return array(
-    'content' => qtools_varnish_wrap($content, FALSE),
+    'content' => $content,
     'ttl' => _qtools_varnish_settings('userblocks', 'ttl', -1),
     'grace' => 0,
   );
@@ -85,9 +112,9 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
   }
 
   // Extract variables from request.
-  $path = (!empty($variables['path']) && is_string($variables['path']))
-    ? $variables['path']
-    : NULL;
+  $tail_args = (!empty($variables['tail_args']) && is_array($variables['tail_args']))
+    ? $variables['tail_args']
+    : array();
 
   $context = (!empty($variables['context']) && is_array($variables['context']))
     ? $variables['context']
@@ -110,31 +137,6 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
     return QTOOLS_VARNISH_ERR_PANE_NONE;
   }
 
-  // Read menu item for specified path.
-  if (!empty($path)) {
-    $menu_item = menu_get_item($path);
-
-    // Exit if user dont have access to this path.
-    if (empty($menu_item['access']) ) {
-      return QTOOLS_VARNISH_ERR_MENU_DENIED;
-    }
-
-    // Build tail args.
-    $tail_args = explode('/', $path);
-    array_splice($tail_args, 0, count(explode('/', $menu_item['path'])));
-
-  }
-  else {
-    // Unset REQUEST URI if path empty.
-    if (empty($path)) {
-      $request_uri = $_SERVER['REQUEST_URI'];
-      $_SERVER['REQUEST_URI'] = '';
-    }
-
-    // Empty tail args.
-    $tail_args = array();
-  }
-
   // Populate context.
   foreach ($context as $cid => &$cdata) {
     $cdata = qtools_api__ctools_context_create($cid, $cdata);
@@ -146,20 +148,8 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
     return QTOOLS_VARNISH_ERR_EMPTY;
   }
 
-  // Set drupal path.
-  $_path = $_GET['q'];
-  $_GET['q'] = $path;
-  $_REQUEST['q'] = $path;
-
   // Looks like we are ready to actually render our pane.
   $content = _qtools_varnish_get_themed_pane($pane, $display, $context, $tail_args);
-
-  // Restore path.
-  $_GET['q'] = $_path;
-  $_REQUEST['q'] = $_path;
-  if (!empty($request_uri)) {
-    $_SERVER['REQUEST_URI'] = $request_uri;
-  }
 
   // Tag all caches with all context.
   $context_tags = qtools_api__cache_tags_from($context);
@@ -178,9 +168,72 @@ function qtools_varnish_page_esi_pane_render($identifier, $variables, $signature
 
   // Return actual content and set desired TTL.
   return array(
-    'content' => qtools_varnish_wrap($content, FALSE),
+    'content' => $content,
     'ttl' => !empty($cache_settins['ttl']) ? $cache_settins['ttl'] : -1,
   );
+}
+
+/**
+ * Prepare environment.
+ */
+function _qtools_varnish_page_environment($esi_args = NULL) {
+
+  // If esi args not suplied then we need to restore environment.
+  if ($esi_args === NULL) {
+
+    // Restore REQUEST_URI.
+    $_SERVER['REQUEST_URI'] = qtools_option('qtools_varnish_esi:request_uri', NULL, $_SERVER['REQUEST_URI']);
+
+    // Restore drupal path.
+    $_GET['q'] = qtools_option('qtools_varnish_esi:get_q', NULL, $_GET['q']);
+    $_REQUEST['q'] = qtools_option('qtools_varnish_esi:request_q', NULL, $_REQUEST['q']);
+    return;
+  }
+
+  // Save current values.
+  qtools_option('qtools_varnish_esi:request_uri', $_SERVER['REQUEST_URI']);
+  qtools_option('qtools_varnish_esi:get_q', $_GET['q']);
+  qtools_option('qtools_varnish_esi:request_q', $_REQUEST['q']);
+
+  // Prepare environment (default homepage).
+  $path = (!empty($esi_args['path']) && is_string($esi_args['path']))
+    ? $esi_args['path']
+    : NULL;
+
+  // Read menu item for specified path.
+  if ($path != NULL) {
+    $menu_item = menu_get_item($path);
+
+    // Exit if user don't have access to this path.
+    if (empty($menu_item['access']) ) {
+      return QTOOLS_VARNISH_ERR_MENU_DENIED;
+    }
+
+    // Build tail args.
+    $tail_args = explode('/', $path);
+    array_splice($tail_args, 0, count(explode('/', $menu_item['path'])));
+  }
+  else {
+    // Unset REQUEST URI if path empty.
+    // TODO: WHY? something connected to drupal default cache.
+    //$_SERVER['REQUEST_URI'] = '';
+
+    // Empty tail args.
+    $tail_args = array();
+  }
+
+  // Set server REQUEST_URI to path, this is needed for forms.
+  // @see request_uri().
+  $_SERVER['REQUEST_URI'] = ($path != variable_get('site_frontpage', 'node'))
+    ? '/' . $path
+    : '/';
+
+  // Set drupal path.
+  $_GET['q'] = $path;
+  $_REQUEST['q'] = $path;
+
+  // Return tail args or error code.
+  return $tail_args;
 }
 
 /**
@@ -219,42 +272,52 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
     // Mark request as contained ESI.
     qtools_option('qtools_varnish:esi_rendered', TRUE);
 
-    // Dispatch esi.
-    $handler = qtools_varnish_esi_handler($esi_type);
-    if (!empty($handler) && !empty($handler['callback'])) {
+    // Set environment.
+    $tail_args = _qtools_varnish_page_environment($esi_args);
 
-      // Include callback file.
-      if (!empty($handler['include'])) {
-        module_load_include($handler['include'][0], $handler['include'][1], $handler['include'][2]);
-      }
-
-      // Get result.
-      if (function_exists($handler['callback'])) {
-        // Add cachemode to the arguments.
-        $variables = $esi_args;
-        $variables['cachemode'] = $cachemode;
-        $result = $handler['callback']($esi_id, $variables, $signature);
-      }
-      else {
-        $result = QTOOLS_VARNISH_ERR_CALLBACK;
-      }
-
-      // Valid result should be an array.
-      if (!is_array($result)) {
-        $error = $result;
-      }
-      else {
-        // Extract content to return.
-        $content = $result['content'];
-
-        // Set page ttl.
-        $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
-        qtools_varnish_set_page_ttl($result['ttl'], $cache_tags);
-      }
+    // If tail_args are not array - this is an error.
+    if (!is_array($tail_args)) {
+      $result = $tail_args;
     }
     else {
-      // Handler error.
-      $error = QTOOLS_VARNISH_ERR_HANDLER;
+      // Dispatch esi.
+      $handler = qtools_varnish_esi_handler($esi_type);
+      if (!empty($handler) && !empty($handler['callback'])) {
+
+        // Include callback file.
+        if (!empty($handler['include'])) {
+          module_load_include($handler['include'][0], $handler['include'][1], $handler['include'][2]);
+        }
+
+        // Get result.
+        if (function_exists($handler['callback'])) {
+          // Add cachemode to the arguments.
+          $variables = $esi_args;
+          $variables['cachemode'] = $cachemode;
+          $variables['tail_args'] = $tail_args;
+          $result = $handler['callback']($esi_id, $variables, $signature);
+        }
+        else {
+          $result = QTOOLS_VARNISH_ERR_CALLBACK;
+        }
+
+        // Valid result should be an array.
+        if (!is_array($result)) {
+          $error = $result;
+        }
+        else {
+          // Extract content to return.
+          $content = qtools_varnish_wrap($result['content'], FALSE);
+
+          // Set page ttl.
+          $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);
+          qtools_varnish_set_page_ttl($result['ttl'], $cache_tags);
+        }
+      }
+      else {
+        // Handler error.
+        $error = QTOOLS_VARNISH_ERR_HANDLER;
+      }
     }
   }
 

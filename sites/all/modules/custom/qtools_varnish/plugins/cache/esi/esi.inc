@@ -90,10 +90,7 @@ function qtools_varnish_esi_cache_set_cache($conf, $content, $display, $args, $c
 
   // Generate ESI tag.
   $esi_tag = qtools_varnish_esi_tag(QTOOLS_VARNISH_ESI_TYPE_PANE, $esi_id, $cachemode, $esi_args);
-
-  $printed_content = '<div>tag:'. time() . '; '. htmlentities($esi_tag) .' </div>';
-  // DEBUG.
-  // $printed_content = qtools_varnish_wrap($esi_tag);
+  $printed_content = qtools_varnish_wrap($esi_tag);
 
   $content->content->content = $printed_content;
 }
