@@ -1467,3 +1467,32 @@ div.messages ul li {
   margin: 15px 0 0;
   padding: 5px;
 }
+.video-shelf-homepage {
+  margin: 0 25px 1.5em;
+}
+.video-shelf-homepage .video-header {
+  border-bottom: 1px solid #333333;
+  color: #333333;
+  font-size: 1.25em;
+  line-height: 1.6;
+  text-align: left;
+  text-transform: uppercase;
+}
+.video-shelf-homepage .view-content {
+  padding-top: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+.video-shelf-homepage .video-header a {
+  color: #bd01b5;
+}
+.video-shelf-homepage .video {
+  width: 220px;
+}
+.video-shelf-homepage .slides li .video h4 a {
+  color: #F47400;
+}
+.video-shelf-homepage .slides{
+  padding:0;
+  margin:0;
+}

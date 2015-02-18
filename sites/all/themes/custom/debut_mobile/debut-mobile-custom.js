@@ -381,7 +381,7 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       prevText: ' ',
       nextText: ' ',
       slideshowSpeed: 7000,
-      slideshow: true,
+      slideshow: false,
       selector: ".slides > li",
       smoothHeight: true
     });
@@ -398,9 +398,24 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       prevText: ' ',
       nextText: ' ',
       slideshowSpeed: 7000,
-      slideshow: true,
+      slideshow: false,
       selector: ".slides > li",
       smoothHeight: true
+    });
+  });
+
+  $('.home-page-video-gallery', $context).once('debut-alphabet-slider', function () {
+    var $this = $(this);
+
+    $this.find('.slider-wrapper').flexslider({
+      animation: "slide",
+      animationLoop: false,
+      slideshow: false,
+      itemWidth: 240,
+      itemMargin: 30,
+      controlNav: false,
+      directionNav: false,
+      selector: ".slides > li",
     });
   });
 };
