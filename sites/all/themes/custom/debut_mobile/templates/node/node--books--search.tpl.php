@@ -5,25 +5,17 @@
  * Template file.
  */
 ?>
-<article class="block-books listing">
-  <h1><?php print $_html['title']; ?></h1>
-  <?php if (!empty($_html['image'])) : ?>
+<div class="compact-books-item">
+  <?php if (!empty($_html['field_book_image'])) : ?>
     <div class="book-image">
-      <?php print $_html['image']; ?>
+      <?php print $_html['field_book_image']; ?>
     </div>
-  <?php endif; ?>
-  <div class="book-description">
-    <?php print $_html['description']; ?>
-  </div>
-  <div class="clearfix"></div>
-  <?php if (!empty($_html['authors'])): ?>
-    <div class="authors">
-      <h2 class="sub-title"><?php print t('Authors'); ?></h2>
-      <?php print $_html['authors']; ?>
+    <div class="title"><?php print $_html['title']; ?></div>
+    <div class="book-description">
+      <?php print $_html['description']; ?>
     </div>
   <?php endif; ?>
   <div class="clearfix"></div>
   <div class="publication"><?php print $_html['publication']; ?></div>
   <div class="clearfix"></div>
-  <div class="separator"></div>
-</article>
+</div>

@@ -1502,3 +1502,26 @@ div.messages ul li {
   color: #F47400;
 }
 /*---------- end error page styles ---------------------------*/
+.view-debut-view-search .compact-books-item {
+  margin-top: 20px;
+}
+.view-debut-view-search .compact-books-item .book-image {
+  float: left;
+  padding-right: 10px;
+}
+.view-debut-view-search .compact-books-item .title a {
+  color: #f09015;
+  text-transform: uppercase;
+}
+.view-debut-view-search .compact-books-item .publication {
+  background: none repeat scroll 0 0 #eeeeee;
+  color: #666666;
+  font-size: 11px;
+  margin: 15px 0 0;
+  padding: 5px;
+}
+.view-debut-view-search .person-search-page{
+  margin-top: 20px;
+  text-align: center;
+  border-bottom: 2px dotted #dcdcdc;
+}

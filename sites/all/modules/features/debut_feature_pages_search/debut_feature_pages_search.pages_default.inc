@@ -41,7 +41,7 @@ function debut_feature_pages_search_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Панель',
+    'title' => 'Desktop',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -50,6 +50,18 @@ function debut_feature_pages_search_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -263,6 +275,162 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $display->panels['top'][0] = 'new-1a7ce938-fb2c-440f-8068-1f8780c9e22b';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-d5c0fdd0-f703-4a1f-b1a4-b4ea43182239';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_search_panel_context_2';
+  $handler->task = 'page';
+  $handler->subtask = 'search';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Mobile',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut_mobile',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'site_content_one_col';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+      'content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '09f3605c-0c83-4256-94a9-c0e9f5ba3e0d';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1a7ce938-fb2c-440f-8068-1f8780c9e22b';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Поиск
+@arg1
+',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1a7ce938-fb2c-440f-8068-1f8780c9e22b';
+    $display->content['new-1a7ce938-fb2c-440f-8068-1f8780c9e22b'] = $pane;
+    $display->panels['content'][0] = 'new-1a7ce938-fb2c-440f-8068-1f8780c9e22b';
+    $pane = new stdClass();
+    $pane->pid = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
+    $pane->panel = 'content';
+    $pane->type = 'views';
+    $pane->subtype = 'debut_view_search';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '20',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'default',
+      'context' => array(
+        0 => 'argument_string_1.raw',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '9b8cc17b-6c53-4df3-a808-1d8a1673e439';
+    $display->content['new-9b8cc17b-6c53-4df3-a808-1d8a1673e439'] = $pane;
+    $display->panels['content'][1] = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
+    $pane = new stdClass();
+    $pane->pid = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_prize_jury';
+    $pane->subtype = 'debut_common_prize_jury';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $display->content['new-2644f409-ec11-4fe8-b219-58c06463e6f8'] = $pane;
+    $display->panels['content'][2] = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $pane = new stdClass();
+    $pane->pid = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
+    $pane->panel = 'content';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '5817b262-a507-471a-8ac3-4a6684e9ec7f';
+    $display->content['new-5817b262-a507-471a-8ac3-4a6684e9ec7f'] = $pane;
+    $display->panels['content'][3] = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['search'] = $page;
