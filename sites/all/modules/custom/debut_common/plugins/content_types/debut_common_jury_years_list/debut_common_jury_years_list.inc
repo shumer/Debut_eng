@@ -32,6 +32,7 @@ function debut_common_jury_years_list_content_type_render($subtype, $conf, $pane
   $data = array();
   $_html = array();
   $alphabet = array();
+  $active_name = '';
 
   $terms = taxonomy_get_tree($conf['voc']);
 
@@ -40,7 +41,13 @@ function debut_common_jury_years_list_content_type_render($subtype, $conf, $pane
   }
 
   foreach ($terms as $term) {
-    $class = ($_GET['field_jury_years_value'] == $term->tid) ? 'active-link' : '';
+    if ($_GET['field_jury_years_value'] == $term->tid) {
+      $class = 'active-link';
+      $active_name = $term->name;
+    }
+    else {
+      $class = '';
+    }
     $years[$term->name] = l($term->name, 'prize_jury', array(
       'query' => array('field_jury_years_value' => $term->tid),
       'attributes' => array(
@@ -50,6 +57,18 @@ function debut_common_jury_years_list_content_type_render($subtype, $conf, $pane
   }
   krsort($years);
   $data['years'] = $years;
+
+  if (debut_common_is_mobile()) {
+    if (!empty($active_name)) {
+      $order_num = array_search($active_name, array_keys($years));
+      $startAt = ceil($order_num/DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW) - 1;
+    }
+    else {
+      $startAt = 0;
+    }
+    drupal_add_js(array('debut_common_jury_years' => array('flexslider_years_list_startAt' => $startAt)), 'setting');
+    drupal_add_js(array('debut_common_jury_years' => array('flexslider_years_list_items_count' => DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW)), 'setting');
+  }
   
   $block->content = theme('debut_common_jury_years_list', $data);
   return $block;

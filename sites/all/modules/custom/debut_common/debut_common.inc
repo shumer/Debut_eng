@@ -233,7 +233,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_ALPHABET_JURY);
+      $breadcrumb[] = l(t('Prize jury'), DEBUT_COMMON_PAGE_PRIZE_JURY);
       if (strlen($argument) == 2) {
         $breadcrumb[] = strtoupper($argument);
       }
