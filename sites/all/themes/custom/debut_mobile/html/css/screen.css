@@ -1492,10 +1492,6 @@ div.messages ul li {
 .video-shelf-homepage .slides li .video h4 a {
   color: #F47400;
 }
-.video-shelf-homepage .slides{
-  padding:0;
-  margin:0;
-}
 /*---------- end home page styles ---------------------------*/
 /*---------- error page styles ---------------------------*/
 .block-404 {

@@ -412,7 +412,6 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       animationLoop: false,
       slideshow: false,
       itemWidth: 240,
-      itemMargin: 30,
       controlNav: false,
       directionNav: false,
       selector: ".slides > li",
