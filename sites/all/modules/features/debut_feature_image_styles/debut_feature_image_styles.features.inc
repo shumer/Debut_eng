@@ -339,6 +339,29 @@ function debut_feature_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: node__field_photo_listing_photo__search.
+  $styles['node__field_photo_listing_photo__search'] = array(
+    'name' => 'node__field_photo_listing_photo__search',
+    'label' => 'node__field_photo_listing_photo__search',
+    'effects' => array(
+      1 => array(
+        'label' => 'Масштабирование и обрезка',
+        'help' => '«Масштабирование и обрезка» сначала масштабирует изображение, а затем обрезает большее значение. Это наиболее эффективный способ создания миниатюр без искажения пропорций исходного изображения.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 366,
+          'height' => 144,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: node__field_video_image__home_page.
   $styles['node__field_video_image__home_page'] = array(
     'name' => 'node__field_video_image__home_page',

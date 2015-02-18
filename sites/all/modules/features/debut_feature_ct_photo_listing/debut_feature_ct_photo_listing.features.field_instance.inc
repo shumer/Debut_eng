@@ -62,12 +62,15 @@ function debut_feature_ct_photo_listing_field_default_field_instances() {
       ),
       'search' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'site_common',
         'settings' => array(
+          'deltas' => '',
           'image_link' => '',
-          'image_style' => 'node__field_photo_listing_photo__listing',
+          'image_style' => '',
+          'nosize' => 1,
+          'preset' => 'node__field_photo_listing_photo__search',
         ),
-        'type' => 'image',
+        'type' => 'site_common_image_field_default',
         'weight' => 0,
       ),
       'teaser' => array(
