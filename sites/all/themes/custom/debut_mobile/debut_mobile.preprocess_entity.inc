@@ -3,6 +3,27 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess node__video__home_page.
+ */
+function debut_mobile_preprocess_node__video__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $title = truncate_utf8($node->title, 50, TRUE, TRUE);
+  $_html['title'] = l($title, 'node/' . $node->nid);
+
+  // Preview picture.
+  $image = debut_mobile_render($content, 'field_video_image');
+  $_html['field_video_image'] = l($image, 'node/' . $node->nid, array(
+    'html' => TRUE,
+  ));
+}
+
 /**
  * Preprocess node__news__home_page.
  */
