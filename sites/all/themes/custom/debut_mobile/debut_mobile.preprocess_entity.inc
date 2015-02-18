@@ -3,6 +3,31 @@
  * @file
  * Preprocess functions.
  */
+
+/**
+ * Preprocess nobel_speech_search.
+ */
+function debut_mobile_preprocess_node__nobel_speech__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['press_date'] = debut_mobile_render($content, 'field_publication_date');
+
+  $nid = qtools_api__field_get_item('node', $node, 'field_nobel_speech_author', 0, 'target_id');
+  if (!empty($nid)) {
+    $auth_node = cache_common_load_node($nid);
+    $_html['author'] = check_plain($auth_node->title);
+  }
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
 /**
  * Preprocess node__documents__search.
  */
