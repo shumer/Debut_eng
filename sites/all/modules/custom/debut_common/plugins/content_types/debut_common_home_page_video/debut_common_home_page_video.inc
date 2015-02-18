@@ -31,6 +31,7 @@ function debut_common_home_page_video_content_type_render($subtype, $conf, $pane
   $_html['videos'] = views_embed_view(DEBUT_COMMON_VIEW_VIDEOS_HOME_PAGE);
 
   $_html['videos_link'] = l('<span class="links"></span>', DEBUT_COMMON_PAGE_VIDEO, array('html' => TRUE));
+  $_html['videos_link_mobile'] = l(t('Videos'), DEBUT_COMMON_PAGE_VIDEO, array('html' => TRUE));
 
   $data = array (
     '_html' => $_html,

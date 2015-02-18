@@ -5,6 +5,93 @@
  */
 
 /**
+ * Preprocess node__video__home_page.
+ */
+function debut_mobile_preprocess_node__video__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  // Caption.
+  $title = truncate_utf8($node->title, 50, TRUE, TRUE);
+  $_html['title'] = l($title, 'node/' . $node->nid);
+
+  // Preview picture.
+  $image = debut_mobile_render($content, 'field_video_image');
+  $_html['field_video_image'] = l($image, 'node/' . $node->nid, array(
+    'html' => TRUE,
+  ));
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__ibooks__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['field_book_image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__books__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array(
+    'attributes' => array(
+      'class' => array('show-popup-book'),
+    )
+  ));
+
+  // Image render.
+  $image = debut_mobile_render($content, 'field_book_image');
+  $_html['field_book_image'] =  l($image, 'node/' . $node->nid, array('html' => TRUE));
+
+  // Publication.
+  $_html['publication'] = debut_mobile_render($content, 'field_book_publication');
+
+  // Desription.
+  $_html['description']  = debut_mobile_render($content, 'field_book_short_description');
+}
+
+/**
+ * Preprocess node__news__home_page.
+ */
+function debut_mobile_preprocess_node__news__home_page(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_news_annonce'] = debut_mobile_render($content, 'field_news_annonce');;
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');
+}
+
+/**
  * Preprocess views debut_view_persons_list__default.
  */
 function debut_mobile_preprocess_views_debut_view_persons_list__default(&$variables) {
