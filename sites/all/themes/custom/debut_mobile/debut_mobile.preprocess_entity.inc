@@ -3,6 +3,74 @@
  * @file
  * Preprocess functions.
  */
+/**
+ * Preprocess node__documents__search.
+ */
+function debut_mobile_preprocess_node__documents__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+
+}
+
+/**
+ * Preprocess node__press_about_debut__search.
+ */
+function debut_mobile_preprocess_node__press_about_debut__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['field_press_text'] = debut_common_trim(debut_mobile_render($content, 'field_press_text'), 350);
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');
+
+  $publication_link = qtools_api__field_get_item('node', $node, 'field_press_publication_link', 0, 'value');
+  $publication_text = qtools_api__field_get_item('node', $node, 'field_press_publication_text', 0, 'value');
+  $author = debut_mobile_render($content, 'field_press_author');
+
+  if (!empty($publication_link) && !empty($publication_text)) {
+    $_html['press_link'] = l($publication_text, $publication_link, array(
+      'absolute' => TRUE,
+      'html' => true,
+    ));
+  }
+  elseif (!empty($publication_text)) {
+    $_html['press_link'] = $publication_text;
+  }
+
+  if (!empty($author)) {
+    $_html['author'] = $author;
+  }
+
+  $_data['class'] = '';
+  if ($node->_last) {
+    $_data['class'] = 'last';
+  }
+}
+
+/**
+ * Preprocess view mode search for news node.
+ */
+function debut_mobile_preprocess_node__news__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  $_html['text'] = debut_mobile_render($content, 'field_news_annonce');
+  $_html['news_date'] = debut_mobile_render($content, 'field_publication_date');
+}
 
 /**
  * Preprocess node__video__home_page.
@@ -1544,7 +1612,7 @@ function debut_mobile_preprocess_node__books__listing(&$variables) {
  * Preprocess books_search.
  */
 function debut_mobile_preprocess_node__books__search(&$variables) {
-  debut_mobile_preprocess_node__books__listing($variables);
+  debut_mobile_preprocess_node__books__home_page($variables);
 }
 
 /**
@@ -1724,5 +1792,5 @@ function debut_mobile_preprocess_node__ibooks__popup(&$variables) {
  * Preprocess ibooks_search.
  */
 function debut_mobile_preprocess_node__ibooks__search(&$variables) {
-  debut_mobile_preprocess_node__ibooks__listing($variables);
+  debut_mobile_preprocess_node__ibooks__home_page($variables);
 }

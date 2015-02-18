@@ -79,6 +79,27 @@ function debut_feature_views_debut_view_search_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Критерий фильтра: Содержимое: Тип */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'ibooks' => 'ibooks',
+    'video' => 'video',
+    'documents' => 'documents',
+    'debut_jury' => 'debut_jury',
+    'interview' => 'interview',
+    'books' => 'books',
+    'debut_prize_person' => 'debut_prize_person',
+    'master_class' => 'master_class',
+    'master_class_text' => 'master_class_text',
+    'nobel_speech' => 'nobel_speech',
+    'news' => 'news',
+    'travel' => 'travel',
+    'travel_description' => 'travel_description',
+    'press_about_debut' => 'press_about_debut',
+    'photo_listing' => 'photo_listing',
+  );
   $translatables['debut_view_search'] = array(
     t('Master'),
     t('ещё'),
