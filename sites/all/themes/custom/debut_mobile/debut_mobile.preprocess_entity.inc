@@ -5,6 +5,52 @@
  */
 
 /**
+ *
+ * Preprocess view mode teaser for press_photo__listing node.
+ */
+function debut_mobile_preprocess_node__photo_listing__search(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $visible_image_count = 4;
+
+  $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+
+  $photo_field = debut_mobile_get('field_photo_listing_photo', $content);
+
+  $images = array();
+  $_data['node_class'] = 'single';
+  $_data['class'] = '';
+  $_data['wrapper_class'] = '';
+  foreach ($photo_field['#items'] as $i => $item) {
+    if ($i >= $visible_image_count) {
+      break;
+    }
+    $title = check_plain($item['title']);
+    $image = drupal_render($photo_field[$i]) . '<div class="image-title">' . $title . '</div>';
+    $images[] = $image;
+  }
+  if (count($images) > 1) {
+    $_data['class'] = 'flexslider';
+    $_data['wrapper_class'] = $node->nid;
+    $_data['node_class'] = 'multiply';
+  }
+  $_html['images'] = theme('item_list', array(
+    'items' => $images,
+    'type' => 'ul',
+    'attributes'=> array(
+      'class' => array('slides'),
+    ),
+  ));
+  $_html['node_page_link'] = l(t('View more'), 'node/' . $node->nid);
+
+  // Publication date.
+  $_html['field_publication_date'] = debut_mobile_render($content, 'field_publication_date');;
+}
+
+/**
  * Preprocess nobel_speech_search.
  */
 function debut_mobile_preprocess_node__nobel_speech__search(&$variables) {
