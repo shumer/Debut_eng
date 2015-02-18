@@ -380,8 +380,8 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
       animationLoop: true,
       prevText: ' ',
       nextText: ' ',
-      slideshowSpeed: 7000,
-      slideshow: false,
+      slideshowSpeed: 10000,
+      slideshow: true,
       selector: ".slides > li",
       smoothHeight: true
     });

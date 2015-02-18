@@ -1496,3 +1496,13 @@ div.messages ul li {
   padding:0;
   margin:0;
 }
+/*---------- end home page styles ---------------------------*/
+/*---------- error page styles ---------------------------*/
+.block-404 {
+  padding: 0px 25px 35px 25px;
+}
+.block-404 h1 {
+  text-transform: uppercase;
+  color: #F47400;
+}
+/*---------- end error page styles ---------------------------*/

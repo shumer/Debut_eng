@@ -40,7 +40,20 @@ function debut_common_breadcrumb_content_type_render($subtype, $conf, $panel_arg
     for ($i = 0; $i < 10; $i++) {
       $replace['@arg' . $i] = arg($i);
     }
-    $breadcrumb[] = l(t('Home'), '');
+    if ($is_mobile) {
+      $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
+        array('attributes' =>
+          array(
+            'data-rel' => 'back',
+            'class' => array('back'),
+          ),
+          'html' => true,
+        )
+      );
+    }
+    else {
+      $breadcrumb[] = l(t('Home'), '');
+    }
     $chunks = explode(PHP_EOL, $conf['custombc']);
     foreach ($chunks as $chunk) {
       $chunk = explode('|', $chunk);
