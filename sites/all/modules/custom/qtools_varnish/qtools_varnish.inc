@@ -53,6 +53,24 @@ function qtools_varnish_create_user_block($selector, $attributes = array()) {
 }
 
 /**
+ * Helper function that create esi markup and check if it can be used.
+ */
+function qtools_varnish_create_esi_block($module, $block_id, $cachemode = DRUPAL_CACHE_PER_USER, $esi_args = array(), $maxwait = 5000) {
+
+  // ESI blocks are only available when Varnish enabled.
+  if (qtools_varnish_enabled()) {
+    $esi_type = QTOOLS_VARNISH_ESI_TYPE_BLOCK;
+    $esi_id = $module . '-' . $block_id;
+    $block = qtools_varnish_wrap(qtools_varnish_esi_tag($esi_type, $esi_id, $cachemode, $esi_args, $maxwait));
+  }
+  else {
+    $block = FALSE;
+  }
+  return $block;
+}
+
+
+/**
  * Check if this server can handle Varnish.
  */
 function qtools_varnish_enabled() {
@@ -65,8 +83,8 @@ function qtools_varnish_enabled() {
   // Disabled by default.
   $varnish_enabled = FALSE;
 
-  // Enable Varnish if header present.
-  if (!empty($_SERVER[QTOOLS_VARNISH_HEADER_ENABLED])) {
+  // Enable Varnish if header present and not POST.
+  if (!empty($_SERVER[QTOOLS_VARNISH_HEADER_ENABLED]) && empty($_POST)) {
 
     // Check for https.
     if (_qtools_varnish_settings('available', 'https') || !$is_https) {

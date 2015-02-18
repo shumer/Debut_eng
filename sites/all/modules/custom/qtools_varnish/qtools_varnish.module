@@ -36,10 +36,12 @@ define('QTOOLS_VARNISH_ERR_MENU_DENIED', 'e5');
 define('QTOOLS_VARNISH_ERR_EMPTY', 'e6');
 define('QTOOLS_VARNISH_ERR_HANDLER', 'e7');
 define('QTOOLS_VARNISH_ERR_CALLBACK', 'e8');
+define('QTOOLS_VARNISH_ERR_DATA', 'e9');
 
 // ESI Types.
 define('QTOOLS_VARNISH_ESI_TYPE_PANE', 'qtools_varnish_esi_type_pane');
 define('QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS', 'qtools_varnish_esi_type_userblocks');
+define('QTOOLS_VARNISH_ESI_TYPE_BLOCK', 'qtools_varnish_esi_type_block');
 
 // Cache options.
 define('QTOOLS_VARNISH_OPTION_CACHE_PAGE', 'qtools_varnish:cache_page');
@@ -82,6 +84,9 @@ function qtools_varnish_qtools_varnish_esi_handlers() {
     ),
     QTOOLS_VARNISH_ESI_TYPE_USERBLOCKS => array(
       'callback' => 'qtools_varnish_page_esi_userblocks_render',
+    ),
+    QTOOLS_VARNISH_ESI_TYPE_BLOCK => array(
+      'callback' => 'qtools_varnish_page_esi_block_render',
     ),
   );
   return $handlers;
@@ -819,6 +824,9 @@ function qtools_varnish_wrap($content, $tag = TRUE, $comment = FALSE) {
   // Add origin if in debug mode.
   if (_qtools_varnish_settings('general', 'debug', FALSE)) {
     $attributes['origin'] = $_SERVER["REQUEST_URI"];
+    if ($tag) {
+      $attributes['source'] = htmlentities($content);
+    }
   }
 
   if ($comment) {
@@ -1086,12 +1094,9 @@ function qtools_varnish_page_cache_form_submit(&$form, &$form_state) {
 function qtools_varnish_ctools_render_alter(&$info, $page, $context) {
   global $user;
 
-  $settings = array();
-  if (isset($context['handler']->conf['qtools_varnish_page_cache_form'])) {
-    // Get settings for this display.
-    $settings = _qtools_varnish_page_cache_form_conf_get($context['handler']->conf, $context['handler']->name);
-    qtools_option(QTOOLS_VARNISH_OPTION_CACHE_PAGE, $settings);
-  }
+  // Get settings for this display.
+  $settings = _qtools_varnish_page_cache_form_conf_get($context['handler']->conf, $context['handler']->name);
+  qtools_option(QTOOLS_VARNISH_OPTION_CACHE_PAGE, $settings);
 
   $path_404 = drupal_get_normal_path(variable_get('site_404', ''));
   $path_403 = drupal_get_normal_path(variable_get('site_403', ''));
