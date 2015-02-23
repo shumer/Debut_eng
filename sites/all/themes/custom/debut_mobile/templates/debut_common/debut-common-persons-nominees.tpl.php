@@ -4,7 +4,7 @@
  * Template placeholder.
  */
 ?>
-<section class="block block-article block-questions block-lexique persons-list">
+<section class="block block-persons-listing">
   <?php foreach ($_data['prizes'] as $rows) : ?>
     <div class="prize-persons">
       <p class="winners-links">

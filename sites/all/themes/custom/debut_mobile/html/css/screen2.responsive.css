@@ -27,6 +27,7 @@
   .block-persons-alphabet-list .item {
     width: 95%;
     height: auto;
+    padding: 0px;
   }
   .block-jury-listing .item .image img,
   .block-persons-alphabet-list .image img {
