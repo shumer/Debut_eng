@@ -841,13 +841,14 @@
 }
 
 .block-jury-listing .item,
-.block-persons-alphabet-list .item {
+.block-persons-alphabet-list .item,
+.block-persons-listing .item {
   //float: left;
   font-family: 'PT Sans', sans-serif;
   font-size: 10px;
   width: 150px;
   height: 150px;
-  padding: 0px;
+  padding: 0px 0px 3px 0px;
   text-transform: uppercase;
   margin: 0 0px 20px 0;
   text-align: center;
@@ -855,7 +856,8 @@
   position:relative;  
 }
 .block-jury-listing .item .text a,
-.block-persons-alphabet-list .item .text a {
+.block-persons-alphabet-list .item .text a,
+.block-persons-listing .item .text a{
   display: block;
   margin: 5px 0px 0px 0px;
   color: #343434;
@@ -876,7 +878,8 @@
   text-shadow: none;
 }
 .block-jury-listing .item .text a:hover,
-.block-persons-alphabet-list .item .text a:hover {
+.block-persons-alphabet-list .item .text a:hover,
+.block-persons-listing .item .text a:hover{
   color: #BD01B5;
 }
 
