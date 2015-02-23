@@ -958,3 +958,52 @@
   padding: 36px 25px 16px 25px;
 }
 /*----------- end alphabet persons list ----------*/
+/*---------- persons list page ------------------*/
+p.winners-links {
+  margin-bottom: 12px;
+  padding-left: 10px;
+  clear: left;
+}
+.winners-links .winners {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 30px;
+  font-weight: bold;
+  color: #1E1E1E;
+  font-weight: bold;
+}
+.winners-links .winners:hover {
+  color: #CC00CC;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.winners-links .list {
+  color: #1E1E1E;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 14px;
+}
+section article.prem_list {
+  padding-bottom: 20px;
+  padding-left: 10px;
+  margin-top: -10px;
+  display: none;
+}
+section article.prem_list h3 {
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  clear: left;
+}
+section article.prem_list .prize-person-list-item {
+  margin: 0 0 0 0px;
+  padding: 0 0 14px;
+  list-style-type: decimal;
+}
+section article.prem_list ol li,
+section article.prem_list .prize-person-list-item a {
+  color: #333333;
+  padding: 0 0 1px;
+}
+section article.prem_list a {
+  color: #333333;
+}
