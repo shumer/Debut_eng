@@ -58,7 +58,7 @@ function debut_common_jury_years_list_content_type_render($subtype, $conf, $pane
   krsort($years);
   $data['years'] = $years;
 
-  if (debut_common_is_mobile()) {
+  if (debut_common_is_mobile() || qtools_api__developer()) {
     if (!empty($active_name)) {
       $order_num = array_search($active_name, array_keys($years));
       $startAt = ceil($order_num/DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW) - 1;

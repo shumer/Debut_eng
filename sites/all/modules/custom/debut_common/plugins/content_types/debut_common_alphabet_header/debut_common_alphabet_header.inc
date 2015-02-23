@@ -64,7 +64,7 @@ function debut_common_alphabet_header_content_type_render($subtype, $conf, $pane
   
   $_html['alphabet'] = theme('item_list', $variables);
   
-  if (debut_common_is_mobile()) {
+  if (debut_common_is_mobile() || qtools_api__developer()) {
     if (!empty($active_id)) { 
       $startAt = ceil($active_id/DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW) - 1;
     }
