@@ -3,8 +3,8 @@
  * @file
  * Template placeholder.
  */
+
 ?>
-<section class="block block-persons-listing persons-list">
   <?php foreach ($_data['prizes'] as $rows) : ?>
     <div class="prize-persons">
       <p class="winners-links">
@@ -29,8 +29,6 @@
     </div>
   <?php endforeach; ?>
 
-  <div class="view-more-target"></div>
-
   <?php if ($_data['show_more']) : ?>
     <span class="text-throbber">
 		  <span class="button button-c">
@@ -42,9 +40,3 @@
 		  </span>
     </span>
   <?php endif; ?>
-  
-  <div class="block-share">
-    <span><?php print t('Share page'); ?></span>
-  </div>
-  <?php print theme('debut_mobile_social_links'); ?>  
-</section>
