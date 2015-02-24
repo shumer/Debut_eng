@@ -54,6 +54,12 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach flexslider resize on pageshow.
   debut_mobile_custom.flexslider_resize($context, settings);
+  
+  // Attach prizes toggle.
+  debut_mobile_custom.attach_prizes_show($context, settings);
+
+  // Attach View more buttons.
+  debut_mobile_custom.attach_view_more($context, settings);
 };
 
 // Init routine, will be called once.
@@ -421,6 +427,7 @@ debut_mobile_custom.attach_sliders = function ($context, settings) {
   });
 };
 
+// Flexslider resize on page show.
 debut_mobile_custom.flexslider_resize = function(context, settings) {
   context.on("pageshow", function() {
     $slider = $('.slider-wrapper');
@@ -439,3 +446,33 @@ debut_mobile_custom.main_menu_fold = function(context, settings) {
 
   });
 }
+
+// Attach prizes toggle function.
+debut_mobile_custom.attach_prizes_show = function ($context, settings) {
+  $context.find('.js-prizes-show').once('debut-js-prizes-show', function (delta) {
+    $(this).click(function() {
+      debut_mobile_custom.hide_all_prizes();
+      var target = '#' + $(this).attr('data-ref-id');
+      $(target).show();
+    });
+  });
+}
+
+// Hide all prizes.
+debut_mobile_custom.hide_all_prizes = function () {
+  $('.prem_list').hide();
+}
+
+// Attach View more buttons.
+debut_mobile_custom.attach_view_more = function($context, settings) {
+  $context.find('.persons-view-more-button').once('persons-view-more', function () {
+    var $this = $(this);
+    $this.click(function () {
+      var $this = $(this);
+      var name = 'persons-view-more';
+      var url = $this.attr('data-ajax-url');
+      qtools_ajax.ajax_call(name, url, [], 'get');
+      $this.remove();
+    });
+  });
+};

@@ -962,6 +962,12 @@
 }
 /*----------- end alphabet persons list ----------*/
 /*---------- persons list page ------------------*/
+.block-persons-listing {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 16px 25px 16px 25px;
+}
+
 p.winners-links {
   margin-bottom: 12px;
   padding-left: 10px;
@@ -1006,7 +1012,31 @@ section article.prem_list ol li,
 section article.prem_list .prize-person-list-item a {
   color: #333333;
   padding: 0 0 1px;
+  font-weight: normal;
 }
 section article.prem_list a {
   color: #333333;
+}
+.block-persons-listing .prize-persons table {
+  list-style: none outside none;
+  margin: 0px;
+  min-height: 1px;
+  overflow: hidden;
+  padding: 0 0 30px 8px;
+  position: relative;
+  width: 100%;
+}
+.block-persons-listing .text-throbber .button a {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #f09015;
+  color: #000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  margin-bottom: 15px;
+  padding: 12px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  clear: both;
 }
