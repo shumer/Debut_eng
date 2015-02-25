@@ -55,7 +55,7 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
       
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       $prizes[$row]['captions'][$term->tid]['ref-id'] = '';
-      $prizes[$row]['captions'][$term->tid]['class'] = '';
+      $prizes[$row]['captions'][$term->tid]['class'] = 'caption'; 
     }
     else {
       $key = md5(uniqid(rand(),1));
@@ -64,8 +64,14 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
       $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;
       $prizes[$row]['data'][$term->tid]['id'] = $key;
-      
-      $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
+   
+      if (debut_common_is_mobile() || qtools_api__developer()) {
+        $title = explode(' ', $term->name);
+        $prizes[$row]['captions'][$term->tid]['title'] = $title[0];
+      }
+      else {
+        $prizes[$row]['captions'][$term->tid]['title'] = $term->name;        
+      }
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
       $prizes[$row]['captions'][$term->tid]['class'] = 'js-prizes-show';
     }
