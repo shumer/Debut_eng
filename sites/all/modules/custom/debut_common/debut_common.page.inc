@@ -157,7 +157,13 @@ function debut_common_persons_view_more($shift = 0) {
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;
       $prizes[$row]['data'][$term->tid]['id'] = $key;
 
-      $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
+      if (debut_common_is_mobile() || qtools_api__developer()) {
+        $title = explode(' ', $term->name);
+        $prizes[$row]['captions'][$term->tid]['title'] = $title[0];
+      }
+      else {
+        $prizes[$row]['captions'][$term->tid]['title'] = $term->name;        
+      }
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
       $prizes[$row]['captions'][$term->tid]['class'] = 'js-prizes-show';
     }
