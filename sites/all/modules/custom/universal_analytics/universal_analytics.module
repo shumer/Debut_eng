@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * @file
+ * Drupal Module: Universal Analytics.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function universal_analytics_permission() {
+  return array(
+    'administer universal analytics' => array(
+      'title' => t('Administer Universal Analytics'),
+      'description' => t('Perform maintenance tasks for Universal Analytics.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function universal_analytics_menu() {
+  $items['admin/config/system/universalanalytics'] = array(
+    'title' => 'Universal Analytics',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('universal_analytics_admin_settings_form'),
+    'access arguments' => array('administer universal analytics'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'universal_analytics.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Check visibility on pages.
+ */
+function universal_analytics_disallowed() {
+  static $page_match;
+  if (!isset($page_match)) {
+    $setting_pages = variable_get('universal_analytics_excluded', '');
+    if (!empty($setting_pages)) {
+      $pages = drupal_strtolower($setting_pages);
+      $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+      $page_match = drupal_match_path($path, $pages);
+      if ($path != $_GET['q']) {
+        $page_match = $page_match || drupal_match_path($_GET['q'], $pages);
+      }
+    }
+    else {
+      $page_match = TRUE;
+    }
+  }
+  return $page_match;
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function universal_analytics_page_alter(&$page) {
+  if (!universal_analytics_disallowed()) {
+    $script = universal_analytics_get_script();
+    drupal_add_js($script, 'inline');
+  }
+}
+
+/**
+ * Aggregeate analytics code to string.
+ */
+function universal_analytics_get_script() {
+  global $cookie_domain;
+  $script = "(function(i,s,o,g,r,a,m) {
+    i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+    a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
+    (window,document,'script','//www.google-analytics.com/analytics.js','ga');" . "\n\n";
+  // Initial settings.
+  $script .= "ga('create', " . drupal_json_encode(variable_get('universal_analytics_id', '')) . ", 'auto');" . "\n";
+  // Pre settings.
+  if (variable_get('universal_analytics_pre_js', '')) {
+    $script .= variable_get('universal_analytics_pre_js', '') . "\n";
+  }
+  // Custom variables.
+  $types = array();
+  $node = menu_get_object();
+  if (is_object($node)) {
+    $types += array('node' => $node);
+  }
+  $dimensions = variable_get('universal_analytics_dimensions', array());
+  foreach ($dimensions as $key => $value) {
+    $dimension = token_replace($value, $types, array('clear' => TRUE));
+    if ($dimension) {
+      $script .= "ga('set', 'dimension" . $key . "', " . drupal_json_encode($dimension) . ");" . "\n";
+    }
+  }
+  if (variable_get('universal_analytics_domain', $cookie_domain)) {
+    $script .= "ga('set', 'cookieDomain', " . drupal_json_encode(variable_get('universal_analytics_domain', $cookie_domain)) . ");" . "\n";
+  }
+  $script .= "ga('send', 'pageview');" . "\n";
+  // Post settings.
+  if (variable_get('universal_analytics_post_js', '')) {
+    $script .= variable_get('universal_analytics_post_js', '') . "\n";
+  }
+  return $script;
+}

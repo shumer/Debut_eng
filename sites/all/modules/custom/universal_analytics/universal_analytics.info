@@ -1,0 +1,6 @@
+name = Universal Analytics
+description = Allows trackinh by Google Universal Analytics.
+core = 7.x
+package = Debut
+dependencies[] = token
+configure = admin/config/system/universalanalytics
