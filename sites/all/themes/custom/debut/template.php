@@ -367,6 +367,9 @@ function debut_process_html(&$variables) {
     }
   }
 
+  // Image for FB.
+  $variables['fb_image'] = theme('image', array('path' => $theme_path . '/html/images/flash.jpg'));
+  
   // A dummy query-string is added to filenames, to gain control over
   // browser-caching. The string changes on every update or full cache
   // flush, forcing browsers to load a new copy of the files, as the

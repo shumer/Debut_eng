@@ -405,7 +405,7 @@ function debut_mobile_process_html(&$variables) {
   $variables['head_title'] = implode(' | ', $variables['head_title_array']);
 
   $theme_path = path_to_theme();
-
+  
   // Replace default jQuery with our variant for normal pages.
   $js_list = drupal_add_js();
   if (!site_common_is_xmlhttp()) {
