@@ -112,6 +112,41 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     $display->content['new-eed7df26-2d4f-4fbc-8861-24d73680a374'] = $pane;
     $display->panels['footer'][0] = 'new-eed7df26-2d4f-4fbc-8861-24d73680a374';
     $pane = new stdClass();
+    $pane->pid = 'new-c3db0213-858d-46ba-a894-106a51b4dced';
+    $pane->panel = 'header';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'PingDom',
+      'title' => 'PingDom',
+      'body' => '<script>
+var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
+             [\'mark\', \'firstbyte\', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName(\'script\')[0]
+      , p = document.createElement(\'script\');
+    p.async = \'async\';
+    p.src = \'//rum-static.pingdom.net/prum.min.js\';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>',
+      'format' => 'admin_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c3db0213-858d-46ba-a894-106a51b4dced';
+    $display->content['new-c3db0213-858d-46ba-a894-106a51b4dced'] = $pane;
+    $display->panels['header'][0] = 'new-c3db0213-858d-46ba-a894-106a51b4dced';
+    $pane = new stdClass();
     $pane->pid = 'new-40e28a71-10e7-46d8-95ac-adb34666ec34';
     $pane->panel = 'header';
     $pane->type = 'debut_common_header';
@@ -128,11 +163,11 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '40e28a71-10e7-46d8-95ac-adb34666ec34';
     $display->content['new-40e28a71-10e7-46d8-95ac-adb34666ec34'] = $pane;
-    $display->panels['header'][0] = 'new-40e28a71-10e7-46d8-95ac-adb34666ec34';
+    $display->panels['header'][1] = 'new-40e28a71-10e7-46d8-95ac-adb34666ec34';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-22d6dce7-6c4a-4b9c-a065-85bafd8dfce2';
   $handler->conf['display'] = $display;
@@ -320,6 +355,41 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     $display->content['new-377daca5-3f4d-45d1-b7f4-30cd150736fd'] = $pane;
     $display->panels['footer'][1] = 'new-377daca5-3f4d-45d1-b7f4-30cd150736fd';
     $pane = new stdClass();
+    $pane->pid = 'new-da9d60f7-4c8d-4ca5-9d1c-fecbfd80d466';
+    $pane->panel = 'header';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'PingDom',
+      'title' => 'PingDom',
+      'body' => '<script>
+var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
+             [\'mark\', \'firstbyte\', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName(\'script\')[0]
+      , p = document.createElement(\'script\');
+    p.async = \'async\';
+    p.src = \'//rum-static.pingdom.net/prum.min.js\';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>',
+      'format' => 'admin_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'da9d60f7-4c8d-4ca5-9d1c-fecbfd80d466';
+    $display->content['new-da9d60f7-4c8d-4ca5-9d1c-fecbfd80d466'] = $pane;
+    $display->panels['header'][0] = 'new-da9d60f7-4c8d-4ca5-9d1c-fecbfd80d466';
+    $pane = new stdClass();
     $pane->pid = 'new-62e7feef-407d-4bfe-8086-0a3fd3b31ae7';
     $pane->panel = 'header';
     $pane->type = 'debut_common_mobile_header';
@@ -333,11 +403,11 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '62e7feef-407d-4bfe-8086-0a3fd3b31ae7';
     $display->content['new-62e7feef-407d-4bfe-8086-0a3fd3b31ae7'] = $pane;
-    $display->panels['header'][0] = 'new-62e7feef-407d-4bfe-8086-0a3fd3b31ae7';
+    $display->panels['header'][1] = 'new-62e7feef-407d-4bfe-8086-0a3fd3b31ae7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-22d6dce7-6c4a-4b9c-a065-85bafd8dfce2';
   $handler->conf['display'] = $display;
