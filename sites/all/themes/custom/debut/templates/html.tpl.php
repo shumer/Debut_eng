@@ -71,5 +71,6 @@
   <div style="display: none;" class="messages-container">
     <?php print $messages; ?>
   </div>
+  <div class="bg-flash"><?php print $fb_image; ?></div>
 </body>
 </html>

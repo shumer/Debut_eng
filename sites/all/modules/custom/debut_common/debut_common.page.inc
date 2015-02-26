@@ -128,10 +128,10 @@ function debut_common_persons_view_more($shift = 0) {
   $prizes = array();
   $voc = taxonomy_vocabulary_machine_name_load(DEBUT_COMMON_VOC_PERSON_PRIZES);
   $vocabulary = taxonomy_get_tree($voc->vid);
-  $vocabulary = array_slice($vocabulary, $shift, 6);
-
-  $max_count = DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW;
   $terms_count = count($vocabulary);
+  
+  $vocabulary = array_slice($vocabulary, $shift, 6);
+  $max_count = DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW;
 
   foreach ($vocabulary as $term) {
     if ($counter >= $max_count) {
@@ -139,19 +139,18 @@ function debut_common_persons_view_more($shift = 0) {
     }
 
     $row = floor($counter/$interval);
+    $key = md5(uniqid(rand(),1));
 
     if ($counter % $interval == 0) {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'full';
-      $prizes[$row]['data'][$term->tid]['id'] = '';
+      $prizes[$row]['data'][$term->tid]['id'] = $key;
 
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
-      $prizes[$row]['captions'][$term->tid]['ref-id'] = '';
-      $prizes[$row]['captions'][$term->tid]['class'] = '';
+      $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
+      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show';
     }
     else {
-      $key = md5(uniqid(rand(),1));
-
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;
@@ -173,7 +172,7 @@ function debut_common_persons_view_more($shift = 0) {
 
   // Check if we need to show more button.
   $_data['show_more'] = FALSE;
-  if ($terms_count > $counter) {
+  if ($terms_count > ($counter + $shift)) {
     $_data['show_more'] = TRUE;
     $shift = $shift + $max_count;
     $_data['show_more_url'] = url('debut_common/ajax/debut_common_persons_view_more/' . $shift);

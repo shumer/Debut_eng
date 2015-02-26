@@ -996,7 +996,7 @@ p.winners-links {
   text-decoration: underline; 
 }
 .winners-links .winners.caption {
-  background: url("../images/button.png") no-repeat scroll 0 0 transparent;
+  background: url("../images/sprite-a.png") no-repeat scroll -860px -814px transparent;
   color: #FFF;
   text-shadow: 0px 1px 0px #000;
   padding: 3px 15px;
@@ -1016,6 +1016,7 @@ section article.prem_list .prize-person-list-item {
   margin: 0 0 0 0px;
   padding: 0 0 14px;
   list-style-type: decimal;
+  font-size: 14px;
 }
 section article.prem_list ol li,
 section article.prem_list .prize-person-list-item a {

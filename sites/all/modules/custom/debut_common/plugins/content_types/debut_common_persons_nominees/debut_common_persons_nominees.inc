@@ -47,19 +47,18 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
     }
     
     $row = floor($counter/$interval);
-
+    $key = md5(uniqid(rand(),1));
+    
     if ($counter % $interval == 0) {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'full';
-      $prizes[$row]['data'][$term->tid]['id'] = '';
+      $prizes[$row]['data'][$term->tid]['id'] = $key;
       
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
-      $prizes[$row]['captions'][$term->tid]['ref-id'] = '';
-      $prizes[$row]['captions'][$term->tid]['class'] = 'caption'; 
+      $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
+      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show'; 
     }
     else {
-      $key = md5(uniqid(rand(),1));
-      
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;

@@ -18,14 +18,16 @@
             <?php print $caption['title']; ?></span>
         <?php endforeach; ?>
       </p>
-    <?php foreach ($rows['data'] as $block) : ?>
-      <article class="<?php print $block['class']; ?>" id="<?php print $block['id']; ?>">
-          <?php if (!empty($block['title'])) : ?>
-            <h3><?php print $block['title']; ?></h3>
-          <?php endif; ?>
-        <?php print $block['html']; ?>
-      </article>
-    <?php endforeach; ?>
+      <div class="articles-list">
+        <?php foreach ($rows['data'] as $block) : ?>
+          <article class="<?php print $block['class']; ?>" id="<?php print $block['id']; ?>">
+              <?php if (!empty($block['title'])) : ?>
+                <h3><?php print $block['title']; ?></h3>
+              <?php endif; ?>
+            <?php print $block['html']; ?>
+          </article>
+        <?php endforeach; ?>
+      </div>
     </div>
   <?php endforeach; ?>
 

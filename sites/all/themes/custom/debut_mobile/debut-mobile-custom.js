@@ -450,8 +450,9 @@ debut_mobile_custom.main_menu_fold = function(context, settings) {
 // Attach prizes toggle function.
 debut_mobile_custom.attach_prizes_show = function ($context, settings) {
   $context.find('.js-prizes-show').once('debut-js-prizes-show', function (delta) {
+    
     $(this).click(function() {
-      debut_mobile_custom.hide_all_prizes();
+      debut_mobile_custom.hide_all_prizes(this);
       var target = '#' + $(this).attr('data-ref-id');
       $(target).show();
     });
@@ -459,8 +460,10 @@ debut_mobile_custom.attach_prizes_show = function ($context, settings) {
 }
 
 // Hide all prizes.
-debut_mobile_custom.hide_all_prizes = function () {
-  $('.prem_list').hide();
+debut_mobile_custom.hide_all_prizes = function (elem) {
+  $parent = $(elem).parent().parent().find('.articles-list');
+  $($parent).find('.prem_list').hide();
+  $($parent).find('.full').hide();
 }
 
 // Attach View more buttons.
