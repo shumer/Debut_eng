@@ -999,7 +999,7 @@ p.winners-links {
   background: url("../images/sprite-a.png") no-repeat scroll -860px -814px transparent;
   color: #FFF;
   text-shadow: 0px 1px 0px #000;
-  padding: 3px 15px;
+  padding: 4px 15px 4px 15px;
 }    
 section article.prem_list {
   padding-bottom: 20px;
