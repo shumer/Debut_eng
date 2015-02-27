@@ -454,6 +454,7 @@ debut_mobile_custom.attach_prizes_show = function ($context, settings) {
     $(this).click(function() {
       debut_mobile_custom.hide_all_prizes(this);
       var target = '#' + $(this).attr('data-ref-id');
+      $(this).addClass('active-link');
       $(target).show();
     });
   });
@@ -461,9 +462,15 @@ debut_mobile_custom.attach_prizes_show = function ($context, settings) {
 
 // Hide all prizes.
 debut_mobile_custom.hide_all_prizes = function (elem) {
-  $parent = $(elem).parent().parent().find('.articles-list');
-  $($parent).find('.prem_list').hide();
-  $($parent).find('.full').hide();
+  $parent = $(elem).parent().parent();
+
+  $captions = $parent.find('.winners-links');
+  $captions.find('.js-prizes-show').removeClass('active-link');
+  
+  // Hide all articles.
+  $articles = $parent.find('.articles-list');
+  $($articles).find('.prem_list').hide();
+  $($articles).find('.full').hide();
 }
 
 // Attach View more buttons.
