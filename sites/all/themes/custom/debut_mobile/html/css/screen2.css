@@ -982,8 +982,6 @@ p.winners-links {
   font-weight: bold;
 }
 .winners-links .winners:hover {
-  color: #CC00CC;
-  text-decoration: underline;
   cursor: pointer;
 }
 .winners-links .list {
@@ -991,6 +989,9 @@ p.winners-links {
   font-size: 14px;
   font-weight: bold;
   margin-right: 14px;
+}
+.winners-links span:hover {
+  color: #fff;
 }
 .winners-links .winners.js-prizes-show {
   text-decoration: underline; 
