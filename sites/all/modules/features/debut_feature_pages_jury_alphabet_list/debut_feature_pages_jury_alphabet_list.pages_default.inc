@@ -62,6 +62,10 @@ function debut_feature_pages_jury_alphabet_list_default_page_manager_pages() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -353,6 +357,10 @@ function debut_feature_pages_jury_alphabet_list_default_page_manager_pages() {
           'not' => FALSE,
         ),
       ),
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();

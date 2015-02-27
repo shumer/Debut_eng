@@ -67,6 +67,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -325,6 +329,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -585,6 +593,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -844,6 +856,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_2col_toped';
@@ -1047,6 +1063,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -1254,6 +1274,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
     ),
     'panels_everywhere_site_template' => 'site_template_panel_context_2',
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -1341,6 +1365,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
     ),
     'panels_everywhere_site_template' => 'site_template_panel_context_2',
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -1424,6 +1452,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -1684,6 +1716,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -1835,6 +1871,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -1988,6 +2028,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -2139,6 +2183,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -2399,6 +2447,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -2658,6 +2710,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -2810,6 +2866,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -2956,6 +3016,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -3109,6 +3173,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -3260,6 +3328,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -3413,6 +3485,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -3564,6 +3640,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -3717,6 +3797,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -3869,6 +3953,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -4020,6 +4108,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -4280,6 +4372,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -4431,6 +4527,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -4584,6 +4684,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'site_content_one_col';
@@ -4735,6 +4839,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -4995,6 +5103,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_3col_toped';
@@ -5253,6 +5365,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
@@ -5772,6 +5888,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
       ),
       'logic' => 'and',
     ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
+    ),
   );
   $display = new panels_display();
   $display->layout = 'debut_content_2col_toped';
@@ -5975,6 +6095,10 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'qtools_varnish_page_cache_form' => array(
+      'ttl' => '604800',
+      'save_to_features' => 1,
     ),
   );
   $display = new panels_display();
