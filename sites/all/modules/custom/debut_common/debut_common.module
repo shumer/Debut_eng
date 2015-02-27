@@ -241,6 +241,92 @@ function debut_common_node_presave($node) {
 }
 
 /**
+ * Implements hook_node_insert().
+ */
+function debut_common_node_insert($node) {
+  
+  $supported_types = array(
+    DEBUT_COMMON_TYPE_NEWS => array(
+      'page_news_list_panel_context', 
+      'page_news_list_panel_context_2', 
+      'page_home_panel_context', 
+      'page_home_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_PRESS => array(
+      'page_press_list_panel_context', 
+      'page_press_list_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_DOCUMENTS => array(
+      'page_documents_panel_context', 
+      'page_documents_panel_context_2'
+    ),
+    DEBUT_COMMON_TYPE_PERSONS => array(
+      'page_persons_list_panel_context', 
+      'page_persons_list_panel_context_2', 
+      'page_prize_persons_panel_context', 
+      'page_prize_persons_panel_context_2', 
+      'page_home_panel_context', 
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_JURY => array(
+      'page_jury_list_panel_context',
+      'page_jury_list_panel_context_2',
+      'page_prize_jury_panel_context',
+      'page_prize_jury_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_BOOKS => array(
+      'page_books_list_panel_context',
+      'page_books_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_IBOOKS => array(
+      'page_ikniga_panel_context',
+      'page_ikniga_panel_context_2',
+      'page_books_list_panel_context',
+      'page_books_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_PHOTOS => array(
+      'page_photo_listing_panel_context',
+      'page_photo_listing_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_VIDEO => array(
+      'page_video_list_panel_context',
+      'page_video_list_panel_context_2',
+      'page_home_panel_context',
+      'page_home_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_MASTER_CLASS_SECTION => array(
+      'page_master_class_panel_context',
+      'page_master_class_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_TRAVELS => array(
+      'page_travels_panel_context',
+      'page_travels_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_NOBEL_SPEECH => array(
+      'page_nobel_speech_panel_context',
+      'page_nobel_speech_panel_context_2',
+    ),
+    DEBUT_COMMON_TYPE_MASTER_CLASS_TEXT => array(),
+    DEBUT_COMMON_TYPE_INTERVIEW => array(),
+    DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION => array(),
+  );
+
+  if (!in_array($node->type, $supported_types)) {
+    return;
+  }
+  
+  // Purge cache.
+  //qtools_varnish_purge_tags($tags);
+  
+}
+
+/**
  * Implements hook_field_widget_form_alter().
  */
 function debut_common_field_widget_form_alter(&$element, &$form_state, $context) {
