@@ -56,7 +56,7 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
       
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
-      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show'; 
+      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show active-link'; 
     }
     else {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);

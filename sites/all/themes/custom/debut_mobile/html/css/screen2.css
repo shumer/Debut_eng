@@ -995,12 +995,13 @@ p.winners-links {
 .winners-links .winners.js-prizes-show {
   text-decoration: underline; 
 }
-.winners-links .winners.caption {
-  background: url("../images/sprite-a.png") no-repeat scroll -860px -814px transparent;
-  color: #FFF;
+.winners-links .active-link {
+  background: linear-gradient(to bottom,  #f0842f, #ef6900);
+  padding: 3px 15px 3px 15px;
+  color: #fff;
   text-shadow: 0px 1px 0px #000;
-  padding: 4px 15px 4px 15px;
-}    
+  border-radius: 4px;
+}
 section article.prem_list {
   padding-bottom: 20px;
   padding-left: 10px;
