@@ -317,13 +317,13 @@ function debut_common_node_insert($node) {
     DEBUT_COMMON_TYPE_TRAVEL_DESCRIPTION => array(),
   );
 
-  if (!in_array($node->type, $supported_types)) {
+  if (empty($supported_types[$node->type])) {
     return;
   }
   
   // Purge cache.
-  //qtools_varnish_purge_tags($tags);
-  
+  $tags = $supported_types[$node->type];
+  qtools_varnish_purge_tags($tags);
 }
 
 /**
