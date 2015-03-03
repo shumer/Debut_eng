@@ -38,7 +38,7 @@ debut_mobile_custom.attach = function ($context, settings) {
   debut_mobile_custom.attach_addthis($context, settings);
 
   // Attach view more button.
-  debut_mobile_custom.attach_view_more($context, settings);
+  debut_mobile_custom.attach_view_more_button($context, settings);
 
   // Attach proxy.
   debut_mobile_custom.attach_proxy($context, settings);
@@ -201,7 +201,7 @@ debut_mobile_custom.attach_addthis = function ($context, settings) {
 };
 
 // Attach view more.
-debut_mobile_custom.attach_view_more = function ($context, settings) {
+debut_mobile_custom.attach_view_more_button = function ($context, settings) {
   $context.find('.block-button-more').once('debut_view_more', function(){
     var $this = $(this);
     $this.click(function () {
