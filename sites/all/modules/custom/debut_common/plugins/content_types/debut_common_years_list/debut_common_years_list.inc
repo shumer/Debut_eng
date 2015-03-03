@@ -96,7 +96,7 @@ function debut_common_years_list_content_type_render($subtype, $conf, $panel_arg
   )), 'setting');
 
   $select = array(
-    '#title' => 'Select a year:',
+    '#title' => t('Select a year:'),
     '#name' => 'years-select',
     '#id' => 'years-select',
     '#type' => 'select',
