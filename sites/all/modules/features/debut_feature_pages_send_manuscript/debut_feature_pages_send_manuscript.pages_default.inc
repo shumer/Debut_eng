@@ -187,31 +187,6 @@ function debut_feature_pages_send_manuscript_default_page_manager_pages() {
     $display->content['new-ea5d8f3a-2fe9-419b-a645-5c566d77f291'] = $pane;
     $display->panels['content_left'][1] = 'new-ea5d8f3a-2fe9-419b-a645-5c566d77f291';
     $pane = new stdClass();
-    $pane->pid = 'new-084e22cc-ba5c-4944-a2e8-6c2530501429';
-    $pane->panel = 'content_pre';
-    $pane->type = 'debut_common_breadcrumb';
-    $pane->subtype = 'debut_common_breadcrumb';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'extend' => 0,
-      'custombc' => 'Отправить рукопись',
-      'context' => array(
-        0 => 'empty',
-      ),
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '084e22cc-ba5c-4944-a2e8-6c2530501429';
-    $display->content['new-084e22cc-ba5c-4944-a2e8-6c2530501429'] = $pane;
-    $display->panels['content_pre'][0] = 'new-084e22cc-ba5c-4944-a2e8-6c2530501429';
-    $pane = new stdClass();
     $pane->pid = 'new-f0b0b877-1e14-4de2-bd0a-7b1913154557';
     $pane->panel = 'content_right';
     $pane->type = 'debut_common_prize_jury';
@@ -272,6 +247,31 @@ function debut_feature_pages_send_manuscript_default_page_manager_pages() {
     $pane->uuid = '51591403-3b5e-4d77-8c1c-c967de15e0ad';
     $display->content['new-51591403-3b5e-4d77-8c1c-c967de15e0ad'] = $pane;
     $display->panels['content_right'][2] = 'new-51591403-3b5e-4d77-8c1c-c967de15e0ad';
+    $pane = new stdClass();
+    $pane->pid = 'new-084e22cc-ba5c-4944-a2e8-6c2530501429';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Отправить рукопись',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '084e22cc-ba5c-4944-a2e8-6c2530501429';
+    $display->content['new-084e22cc-ba5c-4944-a2e8-6c2530501429'] = $pane;
+    $display->panels['top'][0] = 'new-084e22cc-ba5c-4944-a2e8-6c2530501429';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
