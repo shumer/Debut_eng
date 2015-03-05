@@ -10,7 +10,7 @@
   <?php print $_html['short']; ?>
   <?php if (!empty($_html['hidden'])) : ?>
     <div class="block-button-more" data-target="bibliography-long-<?php print $_data['id']; ?>">
-      <span><?php print t('View more'); ?></span>
+      <span><?php print t('onward'); ?></span>
     </div>
     <div class="bibliography-long bibliography-long-<?php print $_data['id']; ?>" style="display: none">
       <?php print $_html['hidden']; ?>

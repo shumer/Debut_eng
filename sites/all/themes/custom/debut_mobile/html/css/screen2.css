@@ -418,25 +418,6 @@
 .block-person p {
   line-height: 1.5;
 }
-.block-button-more {
-  border-top: 1px solid #dcdcdc;
-  border-bottom: 1px solid #dcdcdc;
-  color: #f09015;
-  display: block;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 0 25px;
-  text-align: center;
-  text-transform: uppercase;
-}
-.block-button-more:hover {
-  background: #ffebcd;
-}
-.block-button-more span {
-  display: inline-block;
-  padding: 1.0625em 0 1.0625em 0px;
-  position: relative;
-}
 .clearfix:after {
   content: ".";
   display: block;
@@ -537,7 +518,7 @@
   text-align: center;
 }
 .block-video.listing .player img {
-  width: 220px;   
+  width: 220px;
 }
 .block-video-teaser .title {
   padding-bottom: 5px;
@@ -731,7 +712,7 @@
 }
 .block-books-listing .block-books.listing  .item-list ul li {
   padding: 0px;
-  margin: 0px 0px 0.25em 0em;  
+  margin: 0px 0px 0.25em 0em;
 }
 .block-books-listing .block-books.listing h2.sub-title {
   font-size: 0.9em;
@@ -819,7 +800,7 @@
   font-size: 22px;
   text-align: center;
   margin: 0px 40px 2px 37px;
-  padding: 2px 0px 2px 0px;  
+  padding: 2px 0px 2px 0px;
 }
 .block-jury-years-item {
   border-bottom: 1px solid rgb(240, 144, 21);
@@ -852,8 +833,8 @@
   text-transform: uppercase;
   margin: 0 0px 20px 0;
   text-align: center;
-  display:inline-block;  
-  position:relative;  
+  display:inline-block;
+  position:relative;
 }
 .block-jury-listing .item .text a,
 .block-persons-alphabet-list .item .text a,
@@ -874,7 +855,7 @@
   box-sizing: border-box;
   color:#fff;
   padding:3px;
-  background-color:rgba(0,0,0,.3);  
+  background-color:rgba(0,0,0,.3);
   text-shadow: none;
 }
 .block-jury-listing .item .text a:hover,
@@ -914,39 +895,39 @@
 /*------------ flexslider --------------*/
 .block-alphabet .flex-direction-nav a,
 .block-jury-years .flex-direction-nav a {
-    width: 30px; 
-    height: 30px; 
-    margin: -25px 0 0; 
-    display: block; 
-    cursor: pointer; 
-    text-indent: -9999px; 
+    width: 30px;
+    height: 30px;
+    margin: -25px 0 0;
+    display: block;
+    cursor: pointer;
+    text-indent: -9999px;
     -webkit-transition: all .3s ease;
 }
 .block-jury-years .flex-direction-nav a.flex-next,
 .block-alphabet .flex-direction-nav a.flex-next{
-    background: url(../images/sprite-a.png) no-repeat -974px -778px; 
+    background: url(../images/sprite-a.png) no-repeat -974px -778px;
 }
 .block-jury-years .flex-direction-nav a.flex-prev,
 .block-alphabet .flex-direction-nav a.flex-prev {
-    background: url(../images/sprite-a.png) no-repeat -943px -778px; 
+    background: url(../images/sprite-a.png) no-repeat -943px -778px;
 }
 .block-jury-years .flex-direction-nav .flex-next,
 .block-alphabet .flex-direction-nav .flex-next {
-    background-position: 100% 0; 
-    right: 5px; 
+    background-position: 100% 0;
+    right: 5px;
     position: absolute;
-    opacity: 0.8; 
+    opacity: 0.8;
 }
 .block-jury-years .flex-direction-nav .flex-prev,
 .block-alphabet .flex-direction-nav .flex-prev {
-    opacity: 0.8; 
+    opacity: 0.8;
     left: 5px;
     position: absolute;
 }
 .block-jury-years .flex-direction-nav .disabled,
 .block-alphabet .flex-direction-nav .disabled {
-    opacity: .3!important; 
-    filter:alpha(opacity=30); 
+    opacity: .3!important;
+    filter:alpha(opacity=30);
     cursor: default;
 }
 .block-jury-years .jury-years-wrapper .flex-direction-nav a {
@@ -994,7 +975,7 @@ p.winners-links {
   color: #fff;
 }
 .winners-links .winners.js-prizes-show {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 .winners-links .active-link {
   background: linear-gradient(to bottom,  #f0842f, #ef6900);
@@ -1040,15 +1021,16 @@ section article.prem_list a {
 }
 .block-persons-listing .text-throbber .button a {
   background: none repeat scroll 0 0 #fff;
-  border: 1px solid #f09015;
-  color: #000;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  color: #F09015;
   display: block;
-  font-size: 12px;
   font-weight: normal;
   line-height: 16px;
   margin-bottom: 15px;
-  padding: 12px 10px;
+  padding: 16px 10px;
   text-align: center;
   text-transform: uppercase;
   clear: both;
 }
+/*-------- end persons list page --------------*/

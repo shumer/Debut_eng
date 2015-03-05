@@ -2315,8 +2315,8 @@ section article.prem_list a {
   line-height: 14px;
 }
 
-.master-class-section .interview ul li,
-.master-class-section .author .interview {
+//.master-class-section .author .interview
+.master-class-section .interview ul li {
   text-align: center;
 }
 
