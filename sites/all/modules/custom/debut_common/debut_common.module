@@ -78,7 +78,7 @@ define('DEBUT_COMMON_VIEW_GET_MASTER_CLASS_BY_PARAMS', 'debut_view_get_master_cl
 
 define('DEBUT_COMMON_VOC_PERSON_PRIZES', 'debut_prizes');
 
-define('DEBUT_COMMON_TID_NEWSLETTERS', '982');
+define('DEBUT_COMMON_TID_NEWSLETTERS', variable_get('DEBUT_COMMON_TID_NEWSLETTERS', '978'));
 define('DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW', 6); // 2 years (3 each year).
 define('DEBUT_COMMON_JURY_PAGE_LETTER_COUNT_SHOW', 10);
 define('DEBUT_COMMON_JURY_PAGE_YEARS_COUNT_SHOW', 3);
@@ -244,28 +244,28 @@ function debut_common_node_presave($node) {
  * Implements hook_node_insert().
  */
 function debut_common_node_insert($node) {
-  
+
   $supported_types = array(
     DEBUT_COMMON_TYPE_NEWS => array(
-      'page_news_list_panel_context', 
-      'page_news_list_panel_context_2', 
-      'page_home_panel_context', 
+      'page_news_list_panel_context',
+      'page_news_list_panel_context_2',
+      'page_home_panel_context',
       'page_home_panel_context_2'
     ),
     DEBUT_COMMON_TYPE_PRESS => array(
-      'page_press_list_panel_context', 
+      'page_press_list_panel_context',
       'page_press_list_panel_context_2'
     ),
     DEBUT_COMMON_TYPE_DOCUMENTS => array(
-      'page_documents_panel_context', 
+      'page_documents_panel_context',
       'page_documents_panel_context_2'
     ),
     DEBUT_COMMON_TYPE_PERSONS => array(
-      'page_persons_list_panel_context', 
-      'page_persons_list_panel_context_2', 
-      'page_prize_persons_panel_context', 
-      'page_prize_persons_panel_context_2', 
-      'page_home_panel_context', 
+      'page_persons_list_panel_context',
+      'page_persons_list_panel_context_2',
+      'page_prize_persons_panel_context',
+      'page_prize_persons_panel_context_2',
+      'page_home_panel_context',
       'page_home_panel_context_2',
     ),
     DEBUT_COMMON_TYPE_JURY => array(
@@ -320,7 +320,7 @@ function debut_common_node_insert($node) {
   if (empty($supported_types[$node->type])) {
     return;
   }
-  
+
   // Purge cache.
   $tags = $supported_types[$node->type];
   qtools_varnish_purge_tags($tags);
