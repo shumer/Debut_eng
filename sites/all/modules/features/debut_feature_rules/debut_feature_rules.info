@@ -1,0 +1,9 @@
+name = Debut Feature: Rules
+description = Debut Feature: Rules
+core = 7.x
+package = Debut
+version = 7.x-0.01
+project = debut_feature_rules
+dependencies[] = features
+features[features_api][] = api:2
+features[user_role][] = contributor
