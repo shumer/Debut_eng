@@ -40,7 +40,7 @@ function debut_common_news_listing_content_type_render($subtype, $conf, $panel_a
     $default_data = $context->data;
     $args = $default_data['args'];
     $query = $default_data['query'];
-  }  
+  }
 
   $_html['news_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_NEWS_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   $data['_html'] = $_html;

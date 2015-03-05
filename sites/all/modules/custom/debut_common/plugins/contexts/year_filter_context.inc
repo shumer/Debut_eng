@@ -17,7 +17,7 @@ $plugin = array(
  * Context.
  */
 function debut_common_year_filter_context_create($empty, $data = NULL, $conf = FALSE) {
-  
+
   $cid = 'debut_common_' . $data['view'] . '_year_list';
   $cache = cache_get($cid);
   $cache = !empty($cache) ? $cache->data : FALSE;
@@ -41,19 +41,19 @@ function debut_common_year_filter_context_create($empty, $data = NULL, $conf = F
   }
 
   $year = array_shift($years);
-  
+
   $query = array(
     'sort_by' => 'field_publication_date_value',
-    'sort_order' => 'ASC'
+    'sort_order' => 'DESC'
   );
 
   $args = array($year);
-  
+
   $data = array(
     'query' => $query,
     'args' => $args,
   );
-  
+
   $context = new ctools_context('year_filter_context');
   $context->plugin = 'year_filter_context';
 
