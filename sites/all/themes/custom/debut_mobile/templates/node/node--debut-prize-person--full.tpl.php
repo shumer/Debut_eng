@@ -6,7 +6,7 @@
 ?>
 <div class="block-person">
   <h1><?php print $_html['title']; ?></h1>
-  
+
   <!-- photo and tags -->
   <div class="person-head-wrapper">
     <div class="person-photo">
@@ -30,7 +30,7 @@
     </div>
     <?php if (!empty($_html['biography'])) : ?>
       <div class="block-button-more" data-target="biography-long-<?php print $_data['nid']; ?>">
-        <span><?php print t('View more'); ?></span>
+        <span><?php print t('onward'); ?></span>
       </div>
       <div class="biography-long biography-long-<?php print $_data['nid']; ?>" style="display: none">
         <?php print $_html['biography']; ?>
@@ -49,7 +49,7 @@
         </div>
         <?php if (!empty($_html['autocomment'])) : ?>
           <div class="block-button-more" data-target="autocomment-long-<?php print $_data['nid']; ?>">
-            <span><?php print t('View more'); ?></span>
+            <span><?php print t('onward'); ?></span>
           </div>
           <div class="autocomment-long autocomment-long-<?php print $_data['nid']; ?>" style="display: none">
             <?php print $_html['autocomment']; ?>
@@ -59,7 +59,7 @@
     </div>
   <?php endif; ?>
   <!-- end autocomment block -->
-  
+
   <!-- bibliography block -->
   <?php if (!empty($_html['bibliography'])) : ?>
     <h2 class="sub-title"><?php print t('Bibliography'); ?></h2>
@@ -72,7 +72,7 @@
     <?php endforeach; ?>
   <?php endif; ?>
   <!-- end bibliography block -->
-  
+
   <!-- resources block -->
   <?php if (!empty($_html['resources'])) : ?>
     <h2 class="sub-title"><?php print t('Help resources'); ?></h2>
@@ -81,7 +81,7 @@
     </div>
   <?php endif; ?>
   <!-- end resources block -->
-  
+
   <!-- video block -->
   <?php if (!empty($_html['video'])) : ?>
     <h2 class="sub-title"><?php print t('Video'); ?></h2>
@@ -91,7 +91,7 @@
     </section>
   <?php endif; ?>
   <!-- end video block -->
-  
+
   <div class="block-share">
     <span><?php print t('Share article'); ?></span>
   </div>
