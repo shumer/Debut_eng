@@ -136,7 +136,6 @@ function debut_common_send_manuscript_form($form, $form_state) {
   $form['file_upload'] = array(
     '#type' => 'file',
     '#title' => t('Select the file'),
-    '#required' => TRUE,
     '#description' => t('Select the file with extension .doc or .rtf')
   );
 

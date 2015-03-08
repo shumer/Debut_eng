@@ -181,6 +181,11 @@ function debut_import_book_import_actions($source, &$entity, $item) {
   }
 
   if (!empty($entity->{'Temporary target 1'})) {
+    if (!is_array($entity->{'Temporary target 1'})) {
+      $entity->{'Temporary target 1'} = array($entity->{'Temporary target 1'});
+      $entity->{'Temporary target 2'} = array($entity->{'Temporary target 2'});
+    }
+
     // Create new field collection items.
     foreach ($entity->{'Temporary target 1'} as $key => $b_author) {
       $b_text = $entity->{'Temporary target 2'}[$key];
@@ -189,7 +194,9 @@ function debut_import_book_import_actions($source, &$entity, $item) {
       $fc_item = entity_create('field_collection_item', array('field_name' => 'field_book_content'));
       $fc_item->setHostEntity($entity->feeds_item->entity_type, $entity);
       $fc_item->field_book_author[LANGUAGE_NONE][0]['target_id'] = $b_author;
-      $fc_item->field_book_author_texts[LANGUAGE_NONE][0]['value'] = $b_text;
+      if (!empty($b_text)) {
+        $fc_item->field_book_author_texts[LANGUAGE_NONE][0]['value'] = $b_text;
+      }
       $fc_item->save(TRUE);
     }
   }
