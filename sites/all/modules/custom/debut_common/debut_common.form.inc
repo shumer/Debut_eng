@@ -104,6 +104,10 @@ function debut_common_contact_us_form_submit($form, &$form_state) {
  */
 function debut_common_send_manuscript_form($form, $form_state) {
 
+  $form['#attributes'] = array(
+    'data-ajax' => 'false',
+  );
+
   $form['name'] = array(
     '#type' => 'textfield',
     '#title' => t('Name'),
