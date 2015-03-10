@@ -45,36 +45,36 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
     if ($counter >= $max_count) {
       break;
     }
-    
+
     $row = floor($counter/$interval);
     $key = md5(uniqid(rand(),1));
-    
+
     if ($counter % $interval == 0) {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'full';
       $prizes[$row]['data'][$term->tid]['id'] = $key;
-      
+
       $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
-      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show active-link'; 
+      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show active-link';
     }
     else {
       $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
       $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
       $prizes[$row]['data'][$term->tid]['title'] = $term->name;
       $prizes[$row]['data'][$term->tid]['id'] = $key;
-   
+
       if (debut_common_is_mobile() || qtools_api__developer()) {
         $title = explode(' ', $term->name);
         $prizes[$row]['captions'][$term->tid]['title'] = $title[0];
       }
       else {
-        $prizes[$row]['captions'][$term->tid]['title'] = $term->name;        
+        $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
       }
       $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
       $prizes[$row]['captions'][$term->tid]['class'] = 'js-prizes-show';
     }
-    
+
     $counter++;
   }
 
