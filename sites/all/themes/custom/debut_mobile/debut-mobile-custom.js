@@ -54,7 +54,10 @@ debut_mobile_custom.attach = function ($context, settings) {
 
   // Attach flexslider resize on pageshow.
   debut_mobile_custom.flexslider_resize($context, settings);
-  
+
+  // Attach footer show/hide.
+  debut_mobile_custom.footer_toggle($context, settings);
+
   // Attach prizes toggle.
   debut_mobile_custom.attach_prizes_show($context, settings);
 
@@ -435,6 +438,19 @@ debut_mobile_custom.flexslider_resize = function(context, settings) {
   });
 }
 
+// Flexslider resize on page show.
+debut_mobile_custom.footer_toggle = function(context, settings) {
+  context.on("pagebeforeshow", function() {
+    $footer = $('.footer');
+    $footer.hide();
+  });
+
+  context.on("pageshow", function() {
+    $footer = $('.footer');
+    $footer.show();
+  });
+}
+
 debut_mobile_custom.main_menu_fold = function(context, settings) {
 
   $('#main-menu', context).once('debut-main-menu-fold', function () {
@@ -450,7 +466,7 @@ debut_mobile_custom.main_menu_fold = function(context, settings) {
 // Attach prizes toggle function.
 debut_mobile_custom.attach_prizes_show = function ($context, settings) {
   $context.find('.js-prizes-show').once('debut-js-prizes-show', function (delta) {
-    
+
     $(this).click(function() {
       debut_mobile_custom.hide_all_prizes(this);
       var target = '#' + $(this).attr('data-ref-id');
@@ -466,7 +482,7 @@ debut_mobile_custom.hide_all_prizes = function (elem) {
 
   $captions = $parent.find('.winners-links');
   $captions.find('.js-prizes-show').removeClass('active-link');
-  
+
   // Hide all articles.
   $articles = $parent.find('.articles-list');
   $($articles).find('.prem_list').hide();
