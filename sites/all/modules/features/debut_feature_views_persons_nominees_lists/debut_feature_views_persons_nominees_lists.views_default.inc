@@ -53,6 +53,10 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['element_default_classes'] = FALSE;
+  /* Критерий сортировки: Содержимое: Surname (field_person_surname) */
+  $handler->display->display_options['sorts']['field_person_surname_value']['id'] = 'field_person_surname_value';
+  $handler->display->display_options['sorts']['field_person_surname_value']['table'] = 'field_data_field_person_surname';
+  $handler->display->display_options['sorts']['field_person_surname_value']['field'] = 'field_person_surname_value';
   /* Контекстный фильтр: Содержимое: Prizes (field_person_awards) */
   $handler->display->display_options['arguments']['field_person_awards_target_id']['id'] = 'field_person_awards_target_id';
   $handler->display->display_options['arguments']['field_person_awards_target_id']['table'] = 'field_data_field_person_awards';
