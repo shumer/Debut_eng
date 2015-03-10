@@ -220,7 +220,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
       );
       $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
       break;
-    
+
     case DEBUT_COMMON_PAGE_PERSONS_LIST:
       $breadcrumb[] = l('</span><span class="ico ico-home-c"> </span>', '',
         array('attributes' =>
@@ -269,7 +269,7 @@ function debut_common_is_mobile() {
   global $theme_key;
   $detect = mobile_detect_get_object();
   $is_mobile = FALSE;
-  if($detect->isMobile() && !$detect->isTablet()) {
+  if($detect->isMobile() || $detect->isTablet()) {
     $is_mobile = TRUE;
   }
 
