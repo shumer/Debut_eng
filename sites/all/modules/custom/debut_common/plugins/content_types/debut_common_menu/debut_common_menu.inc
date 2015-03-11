@@ -147,7 +147,7 @@ function debut_common_menu_content_type_render($subtype, $conf, $panel_args, $co
         default:
           $class = '';
       }
-      
+
       switch ($page) {
         case DEBUT_COMMON_PAGE_PERSONS_LIST:
           $page = DEBUT_COMMON_PAGE_PRIZE_PERSONS;

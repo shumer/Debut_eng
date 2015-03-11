@@ -178,7 +178,7 @@ debut_mobile_custom.attach_selects = function ($context, settings) {
   $context.find('.form-selectmenu').once('debut_selects-1', function(){
 
     // Years list select.
-    $(this).find('.years-select').on('click', function () {
+    $(this).find('.years-select').on('change', function () {
       var year = $(this).val();
       var url = settings.debut_common.years_list[year];
       debut_mobile_custom.redirect(url);
