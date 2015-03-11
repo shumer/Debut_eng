@@ -20,7 +20,7 @@ $plugin = array(
   'category' => t('Debut', array(), array('context' => 'Debut: admin area')),
   'icon' => NULL,
   'no title override' => TRUE,
-  'required context' => FALSE,
+  'required context'  => new ctools_context_required('Year Filter exposed', array('year_filter_context')),
 );
 
 /**
@@ -37,9 +37,11 @@ function debut_common_documents_listing_content_type_render($subtype, $conf, $pa
     $query = $_GET;
   }
   else {
-    $query = $args = array();
+    $default_data = $context->data;
+    $args = $default_data['args'];
+    $query = $default_data['query'];
   }
-  
+
   $_html['documents_listing'] = qtools_api__views_get_result(DEBUT_COMMON_VIEW_DOCUMENTS_LISTING, 'default', $args, $query, FALSE, QTOOLS_VIEWS_MODE_PREVIEW);
   $data['_html'] = $_html;
 
