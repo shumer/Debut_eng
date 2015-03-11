@@ -33,7 +33,7 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
   $_data = array();
 
   // Theme main menu.
-  $main_menu = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+  $main_menu = menu_tree(variable_get('menu_main_mobile_links_source', 'menu-main-menu-mobile'));
   $_html['main_menu'] = drupal_render($main_menu);
 
   // Logo.
@@ -65,13 +65,13 @@ function debut_common_mobile_header_content_type_render($subtype, $conf, $panel_
   $_html['input_value'] = '';
   $q = current_path();
   $page_path = explode('/', $q);
-  
+
   if (!empty($page_path[0]) && !empty($page_path[1])) {
     if ($page_path[0] == DEBUT_COMMON_PATH_SEARCH) {
       $_html['input_value'] = check_plain($page_path[1]);
     }
   }
-  
+
   // Prepare data for search form.
   $url_path = 'search';
   $page_url = url($url_path);
