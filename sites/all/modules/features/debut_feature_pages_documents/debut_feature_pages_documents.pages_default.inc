@@ -378,7 +378,15 @@ return FALSE;',
     'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
-    'contexts' => array(),
+    'contexts' => array(
+      0 => array(
+        'identifier' => 'Expose Year Filter context',
+        'keyword' => 'year_filter',
+        'name' => 'year_filter_context',
+        'view' => 'debut_view_list_documents',
+        'id' => 1,
+      ),
+    ),
     'relationships' => array(),
     'access' => array(
       'plugins' => array(
@@ -485,7 +493,9 @@ return FALSE;',
     $pane->subtype = 'debut_common_documents_listing';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'context' => 'context_year_filter_context_1',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -497,44 +507,6 @@ return FALSE;',
     $pane->uuid = 'fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a';
     $display->content['new-fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a'] = $pane;
     $display->panels['content'][3] = 'new-fbcaa71d-2fc3-4c60-b9d7-ef770dd4ba8a';
-    $pane = new stdClass();
-    $pane->pid = 'new-99090060-b3be-4260-9324-1e3a76ddb218';
-    $pane->panel = 'content';
-    $pane->type = 'content';
-    $pane->subtype = 'content';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'php',
-          'settings' => array(
-            'description' => 'Hide if no result',
-            'php' => 'if (empty($_GET[\'sort_by\'])) {
-  return TRUE;
-}
-return FALSE;',
-          ),
-          'not' => FALSE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'bundle' => 'manuscript_page',
-      'view_mode' => 'full',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 4;
-    $pane->locks = array();
-    $pane->uuid = '99090060-b3be-4260-9324-1e3a76ddb218';
-    $display->content['new-99090060-b3be-4260-9324-1e3a76ddb218'] = $pane;
-    $display->panels['content'][4] = 'new-99090060-b3be-4260-9324-1e3a76ddb218';
     $pane = new stdClass();
     $pane->pid = 'new-22a75b73-616f-447c-8fad-78887e21e6f7';
     $pane->panel = 'content';
@@ -549,11 +521,11 @@ return FALSE;',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '22a75b73-616f-447c-8fad-78887e21e6f7';
     $display->content['new-22a75b73-616f-447c-8fad-78887e21e6f7'] = $pane;
-    $display->panels['content'][5] = 'new-22a75b73-616f-447c-8fad-78887e21e6f7';
+    $display->panels['content'][4] = 'new-22a75b73-616f-447c-8fad-78887e21e6f7';
     $pane = new stdClass();
     $pane->pid = 'new-98bc7696-acf2-4013-b766-ff5e50ed6285';
     $pane->panel = 'content';
@@ -568,11 +540,11 @@ return FALSE;',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 6;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = '98bc7696-acf2-4013-b766-ff5e50ed6285';
     $display->content['new-98bc7696-acf2-4013-b766-ff5e50ed6285'] = $pane;
-    $display->panels['content'][6] = 'new-98bc7696-acf2-4013-b766-ff5e50ed6285';
+    $display->panels['content'][5] = 'new-98bc7696-acf2-4013-b766-ff5e50ed6285';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-23836f86-ca2d-47e1-bd48-7055e789e68e';
   $handler->conf['display'] = $display;
