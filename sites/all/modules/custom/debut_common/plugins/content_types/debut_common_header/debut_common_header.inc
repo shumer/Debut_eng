@@ -117,7 +117,7 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
 
   // Prepare language links for header.
   if (!empty($_conf['language_links'])) {
-    $language_links[] = l('RU', '', array('attributes' => array('class' => 'active')));
+    $language_links[] = l('EN', '', array('attributes' => array('class' => 'active')));
     $values = variable_get('debut_common_conf', array());
     $languages = $values['common']['site_language_links'];
     if (!empty($languages)) {
@@ -138,13 +138,13 @@ function debut_common_header_content_type_render($subtype, $_conf, $panel_args, 
   $_html['input_value'] = '';
   $q = current_path();
   $page_path = explode('/', $q);
-  
+
   if (!empty($page_path[0]) && !empty($page_path[1])) {
     if ($page_path[0] == DEBUT_COMMON_PATH_SEARCH) {
       $_html['input_value'] = check_plain($page_path[1]);
     }
   }
-  
+
   // Prepare data for search form.
   $url_path = 'search';
   $page_url = url($url_path);

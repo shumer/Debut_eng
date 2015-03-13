@@ -98,7 +98,7 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
     $pane->configuration = array(
       'footer_menu' => '0',
       'first_text_block' => '',
-      'second_text_block' => 'Наш адрес: 111141, г. Москва, Зеленый проспект, д. 5/12, стр. 2 Электронная почта: info@pokolenie-debut.ru Данный сайт является официальным сайтом премии "Дебют" . Все права защищены ®',
+      'second_text_block' => ' This is the official site of the Debut Prize Foundation. All rights reserved ® Email: info@pokolenie-debut.ru',
     );
     $pane->cache = array();
     $pane->style = array(
