@@ -83,10 +83,10 @@ function debut_feature_pages_page_404_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text_block' => '<h1>Страница 404</h1>
-<p>Страница, которую Вы искали, не существует. Проверьте правильность введенного адреса.</p>',
+      'text_block' => '<h1>Page 404</h1>
+<p>Page, that you looking for, doesn\'t exist. Check if your url address is correct.</p>',
       'override_title' => 1,
-      'override_title_text' => 'Запрашиваемая страница не найдена',
+      'override_title_text' => 'Page not found',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -238,10 +238,10 @@ function debut_feature_pages_page_404_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text_block' => '<h1>Страница 404</h1>
-<p>Страница, которую Вы искали, не существует. Проверьте правильность введенного адреса.</p>',
+      'text_block' => '<h1>Page 404</h1>
+<p>Page doesn\'t exist.</p>',
       'override_title' => 1,
-      'override_title_text' => 'Запрашиваемая страница не найдена',
+      'override_title_text' => 'Page not found',
     );
     $pane->cache = array();
     $pane->style = array(
