@@ -50,8 +50,9 @@ function debut_common_president_info_content_type_edit_form($form, &$form_state)
   $form['conf']['more_url'] = array(
     '#title' => t('URL for detail info about president and foundation.'),
     '#type' => 'textfield',
-    '#default_value' => isset($conf['more_url']) ?
-      $conf['more_url'] : 'http://fond-pokolenie.livejournal.com/',
+    '#default_value' => isset($conf['more_url'])
+      ? $conf['more_url']
+      : 'http://fondskocha.ru/',
   );
   return $form;
 }
