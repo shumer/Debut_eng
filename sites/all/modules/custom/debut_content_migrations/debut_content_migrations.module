@@ -1,0 +1,8 @@
+<?php
+/**
+ * @file
+ * Module hooks.
+ */
+
+//DB with old content name
+define("SOURCE_DATABASE", 'debut_old');

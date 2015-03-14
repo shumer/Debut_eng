@@ -1,0 +1,9 @@
+name = Debut content migrations
+description = Debut D6 to D7 migrations
+core = 7.x
+package = Debut
+
+dependencies[] = migrate
+
+files[] = debut_content_migrations.classes.inc
+files[] = debut_content_migrations.migrate.inc
