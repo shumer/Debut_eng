@@ -58,7 +58,7 @@ function debut_common_site_calendar_content_type_render($subtype, $conf, $panel_
     $calendar_days[]       = t($days_array[$i]);
     $calendar_days_short[] = drupal_substr(t($days_array[$i]), 0, 3);
   }
-  $calendar_days_min = array('BC', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ');
+  $calendar_days_min = array('Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa');
 
   // Add data for calendar.
   drupal_add_js(array('debut_common_site_calendar' => array('days' => $days)), 'setting');

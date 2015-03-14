@@ -874,15 +874,15 @@ function debut_common_create_changes_list($date) {
     foreach ($changes as $sid => $day) {
       switch ($day['type']) {
         case DEBUT_COMMON_TYPE_PERSONS:
-          $section = t('«Prize persons»');
+          $section = t('«Debut Authors»');
           break;
 
         case DEBUT_COMMON_TYPE_NEWS:
-          $section = t('«News»');
+          $section = t('Events');
           break;
 
         case DEBUT_COMMON_TYPE_PRESS:
-          $section = t('«Press about prize»');
+          $section = t('«Press on Debut»');
           break;
 
         case DEBUT_COMMON_TYPE_DOCUMENTS:
@@ -894,7 +894,7 @@ function debut_common_create_changes_list($date) {
           break;
 
         case DEBUT_COMMON_TYPE_BOOKS:
-          $section = t('«Books»');
+          $section = t('Publications');
           break;
 
         case DEBUT_COMMON_TYPE_PHOTOS:
@@ -902,11 +902,11 @@ function debut_common_create_changes_list($date) {
           break;
 
         case DEBUT_COMMON_TYPE_VIDEO:
-          $section = t('«Video»');
+          $section = t('«Videos»');
           break;
 
         case DEBUT_COMMON_TYPE_IBOOKS:
-          $section = t('«iBooks»');
+          $section = t('Publications');
           break;
 
         case DEBUT_COMMON_TYPE_NOBEL_SPEECH:
@@ -929,7 +929,7 @@ function debut_common_create_changes_list($date) {
     ));
   }
   else {
-    $links = '<div class="empty_day">' . t('На эту дату нет обновлений.') . '</div>';
+    $links = '<div class="empty_day">' . t('There are no changes for this date.') . '</div>';
   }
 
   return $links;
