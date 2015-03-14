@@ -197,35 +197,18 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $display->content['new-ec54a060-f125-44e3-83e5-79531248f98d'] = $pane;
     $display->panels['content_left'][1] = 'new-ec54a060-f125-44e3-83e5-79531248f98d';
     $pane = new stdClass();
-    $pane->pid = 'new-54756c0c-7cbb-4f8b-adfb-8b7564896095';
-    $pane->panel = 'content_left';
-    $pane->type = 'debut_common_contact_us';
-    $pane->subtype = 'debut_common_contact_us';
+    $pane->pid = 'new-762f6e82-dc1e-4380-b4fe-cbfa71255ef8';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fond-pokolenie.livejournal.com/',
     );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '54756c0c-7cbb-4f8b-adfb-8b7564896095';
-    $display->content['new-54756c0c-7cbb-4f8b-adfb-8b7564896095'] = $pane;
-    $display->panels['content_left'][2] = 'new-54756c0c-7cbb-4f8b-adfb-8b7564896095';
-    $pane = new stdClass();
-    $pane->pid = 'new-0e7d2bbe-792e-4ac9-8308-8674619eadab';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -234,9 +217,9 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '0e7d2bbe-792e-4ac9-8308-8674619eadab';
-    $display->content['new-0e7d2bbe-792e-4ac9-8308-8674619eadab'] = $pane;
-    $display->panels['content_right'][0] = 'new-0e7d2bbe-792e-4ac9-8308-8674619eadab';
+    $pane->uuid = '762f6e82-dc1e-4380-b4fe-cbfa71255ef8';
+    $display->content['new-762f6e82-dc1e-4380-b4fe-cbfa71255ef8'] = $pane;
+    $display->panels['content_right'][0] = 'new-762f6e82-dc1e-4380-b4fe-cbfa71255ef8';
     $pane = new stdClass();
     $pane->pid = 'new-14ac26f9-4a01-42f1-860d-5bdddcfafcd3';
     $pane->panel = 'content_right';
@@ -256,29 +239,6 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->uuid = '14ac26f9-4a01-42f1-860d-5bdddcfafcd3';
     $display->content['new-14ac26f9-4a01-42f1-860d-5bdddcfafcd3'] = $pane;
     $display->panels['content_right'][1] = 'new-14ac26f9-4a01-42f1-860d-5bdddcfafcd3';
-    $pane = new stdClass();
-    $pane->pid = 'new-85a151e9-0375-4cff-819d-69c33000105c';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_newsletter_block';
-    $pane->subtype = 'debut_common_newsletter_block';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'newsletters' => '54',
-      'override_title' => 1,
-      'override_title_text' => 'РАССЫЛКА',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '85a151e9-0375-4cff-819d-69c33000105c';
-    $display->content['new-85a151e9-0375-4cff-819d-69c33000105c'] = $pane;
-    $display->panels['content_right'][2] = 'new-85a151e9-0375-4cff-819d-69c33000105c';
     $pane = new stdClass();
     $pane->pid = 'new-38731a91-e88e-40ac-a712-c361386f6379';
     $pane->panel = 'top';
@@ -477,25 +437,6 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $display->content['new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884'] = $pane;
     $display->panels['content'][3] = 'new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884';
     $pane = new stdClass();
-    $pane->pid = 'new-aec57407-8857-4f36-868f-65299e070f78';
-    $pane->panel = 'content';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 4;
-    $pane->locks = array();
-    $pane->uuid = 'aec57407-8857-4f36-868f-65299e070f78';
-    $display->content['new-aec57407-8857-4f36-868f-65299e070f78'] = $pane;
-    $display->panels['content'][4] = 'new-aec57407-8857-4f36-868f-65299e070f78';
-    $pane = new stdClass();
     $pane->pid = 'new-f84c147f-527a-437f-a588-dc919632587f';
     $pane->panel = 'content';
     $pane->type = 'debut_blocks_prize_person';
@@ -509,11 +450,11 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = 'f84c147f-527a-437f-a588-dc919632587f';
     $display->content['new-f84c147f-527a-437f-a588-dc919632587f'] = $pane;
-    $display->panels['content'][5] = 'new-f84c147f-527a-437f-a588-dc919632587f';
+    $display->panels['content'][4] = 'new-f84c147f-527a-437f-a588-dc919632587f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-287e1a77-280f-4e0f-9665-9b14a445a42a';
   $handler->conf['display'] = $display;
