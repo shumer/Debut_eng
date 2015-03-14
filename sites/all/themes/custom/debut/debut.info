@@ -4,6 +4,8 @@ version = 7.x-1.0
 core = 7.x
 engine = phptemplate
 
+stylesheets[screen][] = "css/debut-custom.css"
+
 ; ======== jquery ui css
 stylesheets[screen][] = "html/js/jquery-ui.min.css"
 stylesheets[screen][] = "html/js/jquery-ui.structure.min.css"
