@@ -183,7 +183,7 @@ function debut_feature_pages_news_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+      'override_title_text' => 'site updates',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -437,6 +437,30 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $display->content['new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884'] = $pane;
     $display->panels['content'][3] = 'new-89b0b0d4-32f0-42d9-b8ba-f17b3ea72884';
     $pane = new stdClass();
+    $pane->pid = 'new-fa5ba940-99a3-4d8a-88d0-5a5640fc1a8d';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'fa5ba940-99a3-4d8a-88d0-5a5640fc1a8d';
+    $display->content['new-fa5ba940-99a3-4d8a-88d0-5a5640fc1a8d'] = $pane;
+    $display->panels['content'][4] = 'new-fa5ba940-99a3-4d8a-88d0-5a5640fc1a8d';
+    $pane = new stdClass();
     $pane->pid = 'new-f84c147f-527a-437f-a588-dc919632587f';
     $pane->panel = 'content';
     $pane->type = 'debut_blocks_prize_person';
@@ -450,11 +474,11 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = 'f84c147f-527a-437f-a588-dc919632587f';
     $display->content['new-f84c147f-527a-437f-a588-dc919632587f'] = $pane;
-    $display->panels['content'][4] = 'new-f84c147f-527a-437f-a588-dc919632587f';
+    $display->panels['content'][5] = 'new-f84c147f-527a-437f-a588-dc919632587f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-287e1a77-280f-4e0f-9665-9b14a445a42a';
   $handler->conf['display'] = $display;
