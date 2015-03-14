@@ -54,7 +54,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $breadcrumb[] = l(t('Press on Debut'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
       $current_year = (is_numeric($argument)) ? $argument : '';
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
@@ -72,7 +72,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $breadcrumb[] = l(t('Events'), DEBUT_COMMON_PAGE_NEWS_LIST);
       $current_year = (is_numeric($argument)) ? $argument : '';
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
@@ -158,7 +158,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $breadcrumb[] = l(t('Videos'), DEBUT_COMMON_PAGE_VIDEO);
       $current_year = (is_numeric($argument)) ? $argument : '';
       if (!empty($current_year)) {
         $breadcrumb[] = $current_year;
@@ -176,7 +176,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_BOOKS_LIST);
       break;
 
     // Bc for ibooks page.
@@ -190,7 +190,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       break;
 
     // Bc for jury page.
@@ -218,7 +218,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
+      $breadcrumb[] = l(t('Debut Authors'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
       break;
 
     case DEBUT_COMMON_PAGE_PERSONS_LIST:
@@ -231,7 +231,7 @@ function debut_common_create_page_mobile_breadcrumbs() {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
+      $breadcrumb[] = l(t('Debut Authors'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
       if (strlen($argument) == 2) {
         $breadcrumb[] = strtoupper($argument);
       }
@@ -298,10 +298,10 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $breadcrumb[] = l(t('Events'), DEBUT_COMMON_PAGE_NEWS_LIST);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
-      $year = t('News for !year year', array('!year' => date('Y', $date)));
+      $year = t('Events for !year year', array('!year' => date('Y', $date)));
       $breadcrumb[] = l($year, DEBUT_COMMON_PAGE_NEWS_LIST . '/' . date('Y', $date));
       break;
 
@@ -334,7 +334,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $breadcrumb[] = l(t('Press on Debut'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
@@ -369,7 +369,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
+      $breadcrumb[] = l(t('Debut Authors'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
       $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
@@ -480,7 +480,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $breadcrumb[] = l(t('Videos'), DEBUT_COMMON_PAGE_VIDEO);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
@@ -510,7 +510,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_BOOKS_LIST);
       break;
 
     case DEBUT_COMMON_TYPE_IBOOKS:
@@ -523,7 +523,7 @@ function debut_common_create_node_mobile_breadcrumbs($node) {
           'html' => true,
         )
       );
-      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       break;
 
     default:
@@ -558,7 +558,7 @@ function debut_common_create_node_breadcrumbs($node) {
 
     // Make breadcrumb for Debut person.
     case DEBUT_COMMON_TYPE_PERSONS:
-      $breadcrumb[] = l(t('Prize persons'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
+      $breadcrumb[] = l(t('Debut Authors'), DEBUT_COMMON_PAGE_PRIZE_PERSONS);
       $letter = qtools_api__field_get_item('node', $node, 'field_person_surname', 0, 'value');
       $letter = drupal_substr($letter, 0, 1);
       $breadcrumb[] = l($letter, DEBUT_COMMON_PAGE_ALPHABET_PERSONS . '/' . $letter);
@@ -594,7 +594,7 @@ function debut_common_create_node_breadcrumbs($node) {
 
     // Make breadcrumb for press about prize node.
     case DEBUT_COMMON_TYPE_PRESS:
-      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $breadcrumb[] = l(t('Press on Debut'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
@@ -608,7 +608,7 @@ function debut_common_create_node_breadcrumbs($node) {
 
     // Make breadcrumb for news node.
     case DEBUT_COMMON_TYPE_NEWS:
-      $breadcrumb[] = l(t('News'), DEBUT_COMMON_PAGE_NEWS_LIST);
+      $breadcrumb[] = l(t('Events'), DEBUT_COMMON_PAGE_NEWS_LIST);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
@@ -618,7 +618,7 @@ function debut_common_create_node_breadcrumbs($node) {
 
     // Make breadcrumb for video node.
     case DEBUT_COMMON_TYPE_VIDEO:
-      $breadcrumb[] = l(t('Video'), DEBUT_COMMON_PAGE_VIDEO);
+      $breadcrumb[] = l(t('Videos'), DEBUT_COMMON_PAGE_VIDEO);
       $publication_date = qtools_api__field_get_item('node', $node, 'field_publication_date', 0, 'value');
       $date = strtotime($publication_date);
       $year = date('Y', $date);
@@ -656,13 +656,13 @@ function debut_common_create_node_breadcrumbs($node) {
 
     // Make breadcrumb for book node.
     case DEBUT_COMMON_TYPE_BOOKS:
-      $breadcrumb[] = l(t('Books'), DEBUT_COMMON_PAGE_BOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_BOOKS_LIST);
       $breadcrumb[] = $node->title;
       break;
 
     // Make breadcrumb for ibook node.
     case DEBUT_COMMON_TYPE_IBOOKS:
-      $breadcrumb[] = l(t('iBooks'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
+      $breadcrumb[] = l(t('Publications'), DEBUT_COMMON_PAGE_IBOOKS_LIST);
       $breadcrumb[] = $node->title;
       break;
 
@@ -758,7 +758,7 @@ function debut_common_create_page_breadcrumbs() {
 
     // Bc for press page.
     case DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT:
-      $breadcrumb[] = l(t('Press about prize'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
+      $breadcrumb[] = l(t('Press on Debut'), DEBUT_COMMON_PAGE_PRESS_ABOUT_DEBUT);
       $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : '';
       if (!empty($current_year)) {
         $current_year = $current_year['value']['year'];
