@@ -53,9 +53,16 @@ class DebutNewsMigration extends Migration{
     $this->addSimpleMappings(array('title', 'nid', 'status'));
     $this->addFieldMapping('is_new')->defaultValue(TRUE);
     $this->addFieldMapping('field_news_annonce', 'field_news_annonce_value');
+    $this->addFieldMapping('field_news_annonce:format')->defaultValue('full_html');
     $this->addFieldMapping('field_news_full_text', 'body');
+    $this->addFieldMapping('field_news_full_text:format')->defaultValue('full_html');
     $this->addFieldMapping('field_publication_date', 'field_publication_date_value');
 
+  }
+
+  public function prepareRow($row) {
+    $row->field_news_annonce_value = htmlspecialchars_decode($row->field_news_annonce_value);
+    $row->body =  htmlspecialchars_decode($row->body);
   }
 
 }
