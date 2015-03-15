@@ -50,8 +50,9 @@ function debut_common_president_info_content_type_edit_form($form, &$form_state)
   $form['conf']['more_url'] = array(
     '#title' => t('URL for detail info about president and foundation.'),
     '#type' => 'textfield',
-    '#default_value' => isset($conf['more_url']) ?
-      $conf['more_url'] : 'http://fond-pokolenie.livejournal.com/',
+    '#default_value' => isset($conf['more_url'])
+      ? $conf['more_url']
+      : 'http://fondskocha.ru/',
   );
   return $form;
 }
@@ -72,6 +73,7 @@ function debut_common_president_info_content_type_render($subtype, $_conf, $pane
   $_html = array();
 
   $_html['info_text'] = t($_conf['info_text']);
+  $_html['title'] = t('President of Foundation');
   if (!empty($_conf['override_title'])) {
     $_html['title'] = (!empty($_conf['override_title_text'])) ? $_conf['override_title_text'] : t('Andrei Skoch');
   }

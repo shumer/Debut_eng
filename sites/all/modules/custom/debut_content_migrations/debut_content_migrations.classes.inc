@@ -4,13 +4,13 @@
  * Migration classes.
  */
 
- class DebutNewsMigration extends Migration{
+class DebutNewsMigration extends Migration{
 
   public function __construct($arguments) {
     parent::__construct($arguments);
     $this->description = t('Migration of the news nodes from old version');
 
-    // Define the field which normally is a primary key
+    // Define the field which normally is a primary key.
     $this->map = new MigrateSQLMap($this->machineName,
       array(
         'nid' => array(
@@ -24,14 +24,14 @@
       MigrateDestinationNode::getKeySchema()
     );
 
-    // Grab data from tables in source database
+    // Grab data from tables in source database.
     $query = db_select(SOURCE_DATABASE . '.node', 'n')
-          ->fields('n', array('nid', 'vid', 'title', 'uid', 'status'))
-          ->condition('n.type', 'news', '=');
+      ->fields('n', array('nid', 'vid', 'title', 'uid', 'status'))
+      ->condition('n.type', 'news', '=');
     $query->join(SOURCE_DATABASE . '.node_revisions', 'nr', 'n.vid = nr.vid');
     $query->fields('nr', array('body'));
 
-    // Grab other fields which can mapping directly
+    // Grab other fields which can mapping directly.
     $query->join(SOURCE_DATABASE . '.content_type_news', 'ct', 'ct.vid = n.vid');
     $query->addField('ct', 'field_news_annonce_value');
     $query->join(SOURCE_DATABASE . '.content_field_publication_date', 'cf', 'cf.vid = n.vid');
@@ -49,13 +49,20 @@
     $this->destination = new MigrateDestinationNode('news');
 
     // Mapping: Assign mappings TO destination fields FROM source fields.
-    // Simple Mappings : map the fields with the same name
+    // Simple Mappings : map the fields with the same name.
     $this->addSimpleMappings(array('title', 'nid', 'status'));
     $this->addFieldMapping('is_new')->defaultValue(TRUE);
     $this->addFieldMapping('field_news_annonce', 'field_news_annonce_value');
+    $this->addFieldMapping('field_news_annonce:format')->defaultValue('full_html');
     $this->addFieldMapping('field_news_full_text', 'body');
+    $this->addFieldMapping('field_news_full_text:format')->defaultValue('full_html');
     $this->addFieldMapping('field_publication_date', 'field_publication_date_value');
 
+  }
+
+  public function prepareRow($row) {
+    $row->field_news_annonce_value = htmlspecialchars_decode($row->field_news_annonce_value);
+    $row->body = htmlspecialchars_decode($row->body);
   }
 
 }
