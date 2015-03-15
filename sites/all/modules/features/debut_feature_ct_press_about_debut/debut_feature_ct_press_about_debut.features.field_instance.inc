@@ -255,10 +255,8 @@ function debut_feature_ct_press_about_debut_field_default_field_instances() {
       'listing' => array(
         'label' => 'above',
         'module' => 'text',
-        'settings' => array(
-          'trim_length' => 350,
-        ),
-        'type' => 'text_trimmed',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'popup' => array(

@@ -128,6 +128,8 @@ class DebutPressMigration extends Migration{
 
   public function prepareRow($row) {
     $row->body = htmlspecialchars_decode($row->body);
+    $row->field_press_author_value = html_entity_decode($row->field_press_author_value);
+    $row->field_press_publication_text_value = html_entity_decode($row->field_press_publication_text_value);
   }
 
 }
