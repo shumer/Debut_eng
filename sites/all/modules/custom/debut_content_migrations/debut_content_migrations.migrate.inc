@@ -20,6 +20,10 @@ function debut_content_migrations_migrate_api() {
         'class_name' => 'DebutNewsMigration',
         'group_name' => 'debut',
       ),
+      'DebutPress' => array(
+        'class_name' => 'DebutPressMigration',
+        'group_name' => 'debut',
+      ),
     ),
   );
   return $api;
