@@ -62,7 +62,7 @@ class DebutNewsMigration extends Migration{
 
   public function prepareRow($row) {
     $row->field_news_annonce_value = htmlspecialchars_decode($row->field_news_annonce_value);
-    $row->body =  htmlspecialchars_decode($row->body);
+    $row->body = htmlspecialchars_decode($row->body);
   }
 
 }

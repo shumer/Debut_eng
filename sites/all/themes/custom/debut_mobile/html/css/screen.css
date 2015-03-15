@@ -1604,3 +1604,8 @@ div.messages ul li {
   font-style: normal;
   padding: 0 0 2px;
 }
+/*---------- president info block --------------------------*/
+.block.block-skoch .link a{
+  color: #f47400;
+}
+
