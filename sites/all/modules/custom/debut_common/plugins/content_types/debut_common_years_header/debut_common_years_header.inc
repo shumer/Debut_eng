@@ -31,9 +31,8 @@ function debut_common_years_header_content_type_render($subtype, $conf, $panel_a
   $_html = array();
 
   $title = $conf['text'];
-  $current_year = isset($_GET['field_publication_date_value']) ? $_GET['field_publication_date_value'] : NULL;
+  $current_year = isset($panel_args[0]) ? check_plain($panel_args[0]) : NULL;
   if (!empty($current_year)) {
-    $current_year = $current_year['value']['year'];
     $title = t('@title for @year year', array('@title' => $title, '@year' => $current_year));
   }
 
