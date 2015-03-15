@@ -93,7 +93,7 @@ function debut_feature_pages_press_list_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => 'Пресса о премии',
+      'text' => 'Press on Debut',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -387,7 +387,7 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => 'Пресса о премии',
+      'text' => 'Press on Debut',
     );
     $pane->cache = array();
     $pane->style = array(
