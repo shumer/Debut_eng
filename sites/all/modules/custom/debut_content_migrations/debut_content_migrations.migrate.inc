@@ -24,6 +24,10 @@ function debut_content_migrations_migrate_api() {
         'class_name' => 'DebutPressMigration',
         'group_name' => 'debut',
       ),
+      'DebutVideo' => array(
+        'class_name' => 'DebutVideoMigration',
+        'group_name' => 'debut',
+      ),
     ),
   );
   return $api;
