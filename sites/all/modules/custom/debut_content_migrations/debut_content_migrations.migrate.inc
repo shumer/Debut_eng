@@ -28,6 +28,14 @@ function debut_content_migrations_migrate_api() {
         'class_name' => 'DebutVideoMigration',
         'group_name' => 'debut',
       ),
+      'DebutAlphabet' => array(
+        'class_name' => 'DebutAlphabetMigration',
+        'group_name' => 'debut',
+      ),
+      'DebutPrizes' => array(
+        'class_name' => 'DebutPrizesMigration',
+        'group_name' => 'debut',
+      ),
     ),
   );
   return $api;
