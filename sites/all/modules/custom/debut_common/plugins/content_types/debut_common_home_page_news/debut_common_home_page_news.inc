@@ -33,7 +33,7 @@ function debut_common_home_page_news_content_type_render($subtype, $conf, $panel
 
   $_html['news'] = views_embed_view(DEBUT_COMMON_VIEW_NEWS_HOME_PAGE);
 
-  $_html['news_link'] = l(t('Архив новостей'), 'news_list');
+  $_html['news_link'] = l(t('Events arhcive'), 'news_list');
 
   $data = array (
     '_html' => $_html,
