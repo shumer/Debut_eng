@@ -217,3 +217,95 @@ class DebutVideoMigration extends Migration{
   }
 
 }
+
+class DebutAlphabetMigration extends Migration{
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = t('Migration of the press nodes from old version');
+
+    // Define the field which normally is a primary key.
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'tid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'D6 Unique Term ID',
+          'alias' => 'td',
+        )
+      ),
+      MigrateDestinationTerm::getKeySchema()
+    );
+
+    // Grab data from tables in source database.
+    $query = db_select(SOURCE_DATABASE . '.term_data', 'td')
+      ->fields('td', array('tid', 'vid', 'name', 'description', 'weight'))
+      ->condition('td.vid', 4, '=');
+
+
+    // Add source fields which not queried in $query, will be populated in prepareRow()
+    $source_fields = array(
+      'tid' => t('Term id'),
+     );
+
+     // Create a MigrateSource object, which manages retrieving the input data.
+    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->destination = new MigrateDestinationTerm('alphabet');
+
+    // Mapping: Assign mappings TO destination fields FROM source fields.
+    // Simple Mappings : map the fields with the same name.
+    $this->addFieldMapping('name', 'name');
+    $this->addFieldMapping('description', 'description');
+    $this->addFieldMapping('format')->defaultValue('plain_text');
+    $this->addFieldMapping('weight', 'weight');
+
+  }
+
+}
+
+class DebutPrizesMigration extends Migration{
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = t('Migration of the press nodes from old version');
+
+    // Define the field which normally is a primary key.
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'tid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'D6 Unique Term ID',
+          'alias' => 'td',
+        )
+      ),
+      MigrateDestinationTerm::getKeySchema()
+    );
+
+    // Grab data from tables in source database.
+    $query = db_select(SOURCE_DATABASE . '.term_data', 'td')
+      ->fields('td', array('tid', 'vid', 'name', 'description', 'weight'))
+      ->condition('td.vid', 3, '=');
+
+
+    // Add source fields which not queried in $query, will be populated in prepareRow()
+    $source_fields = array(
+      'tid' => t('Term id'),
+     );
+
+     // Create a MigrateSource object, which manages retrieving the input data.
+    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->destination = new MigrateDestinationTerm('debut_prizes');
+
+    // Mapping: Assign mappings TO destination fields FROM source fields.
+    // Simple Mappings : map the fields with the same name.
+    $this->addFieldMapping('name', 'name');
+    $this->addFieldMapping('description', 'description');
+    $this->addFieldMapping('format')->defaultValue('plain_text');
+    $this->addFieldMapping('weight', 'weight');
+
+  }
+
+}
