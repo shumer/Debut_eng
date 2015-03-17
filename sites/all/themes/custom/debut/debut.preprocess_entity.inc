@@ -1533,3 +1533,16 @@ function debut_preprocess_node__interview__compact(&$variables) {
   $_html['image'] = l($image, 'node/' . $node->nid, array('html' => TRUE));
   $_html['title'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
 }
+
+/**
+ * Preprocess node__custom_page__full.
+ */
+function debut_preprocess_node__custom_page__full(&$variables) {
+  $node = &$variables['node'];
+  $_html = &$variables['_html'];
+  $content = &$variables['content'];
+
+  // Text part.
+  $_html['title'] = check_plain($node->title);
+  $_html['body']  = debut_render($content, 'field_custom_page_body');
+}

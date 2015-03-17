@@ -62,7 +62,7 @@ function debut_common_prize_person_content_type_render($subtype, $_conf, $panel_
 
   //$image = drupal_get_path('theme', 'debut') . '/html/images/content/no_photo.jpg';
 
-  $_html['title'] = t('Prize persons');
+  $_html['title'] = t('Debut Authors');
   if (!empty($_conf['override_title'])) {
     $_html['title'] = (!empty($_conf['override_title_text'])) ? $_conf['override_title_text'] : t('Prize persons');
   }

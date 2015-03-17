@@ -4324,3 +4324,30 @@ body.no-admin-menu.admin-menu #admin-menu, body.no-admin-menu.admin-menu #admin-
         margin-left: 1%;
     }
 }
+
+/*------------Slavnikova block styles---------------*/
+.slavnikova {
+  color: #666666;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  min-height: 150px !important;
+  padding: 24px 30px 25px 25px;
+}
+
+.slavnikova h3 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.slavnikova a {
+  color: #BD01B5;
+  outline-style: none;
+  text-decoration: none;
+}
+
+.slavnikova p {
+  min-height: 5px;
+  padding: 0 0 15px;
+  line-height: 18px;
+}
+/*------------end Slavnikova block styles---------------*/

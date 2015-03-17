@@ -17,7 +17,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'http_response';
-  $handler->weight = 2;
+  $handler->weight = 3;
   $handler->conf = array(
     'title' => 'DEFAULT',
     'contexts' => array(),
@@ -34,7 +34,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -2;
+  $handler->weight = -1;
   $handler->conf = array(
     'title' => 'News',
     'no_blocks' => 0,
@@ -297,7 +297,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -22;
+  $handler->weight = -21;
   $handler->conf = array(
     'title' => 'iBooks',
     'no_blocks' => 0,
@@ -560,7 +560,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -26;
+  $handler->weight = -25;
   $handler->conf = array(
     'title' => 'Nobel speech',
     'no_blocks' => 0,
@@ -823,7 +823,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -28;
+  $handler->weight = -27;
   $handler->conf = array(
     'title' => 'Prize person',
     'no_blocks' => 0,
@@ -1031,7 +1031,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -30;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Jury person',
     'no_blocks' => 0,
@@ -1238,7 +1238,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -24;
+  $handler->weight = -23;
   $handler->conf = array(
     'title' => '(Popup) Books',
     'no_blocks' => 0,
@@ -1329,7 +1329,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -23;
+  $handler->weight = -22;
   $handler->conf = array(
     'title' => '(Popup) iBooks',
     'no_blocks' => 0,
@@ -1420,7 +1420,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -10;
+  $handler->weight = -9;
   $handler->conf = array(
     'title' => 'Master class section',
     'no_blocks' => 0,
@@ -1683,7 +1683,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 1;
+  $handler->weight = 2;
   $handler->conf = array(
     'title' => 'Document (mobile)',
     'no_blocks' => 0,
@@ -1839,7 +1839,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -1;
+  $handler->weight = 0;
   $handler->conf = array(
     'title' => 'News (mobile)',
     'no_blocks' => 0,
@@ -1995,7 +1995,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -3;
+  $handler->weight = -2;
   $handler->conf = array(
     'title' => 'Press about Debut (mobile)',
     'no_blocks' => 0,
@@ -2151,7 +2151,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = 1;
   $handler->conf = array(
     'title' => 'Document',
     'no_blocks' => 0,
@@ -2414,7 +2414,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -8;
+  $handler->weight = -7;
   $handler->conf = array(
     'title' => 'Interview',
     'no_blocks' => 0,
@@ -2677,7 +2677,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -29;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'Jury person (mobile)',
     'no_blocks' => 0,
@@ -2833,7 +2833,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -25;
+  $handler->weight = -24;
   $handler->conf = array(
     'title' => 'Nobel speech (mobile)',
     'no_blocks' => 0,
@@ -2984,7 +2984,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -13;
+  $handler->weight = -12;
   $handler->conf = array(
     'title' => 'Travel description (mobile)',
     'no_blocks' => 0,
@@ -3140,7 +3140,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -11;
+  $handler->weight = -10;
   $handler->conf = array(
     'title' => 'Travels (mobile)',
     'no_blocks' => 0,
@@ -3296,7 +3296,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -7;
+  $handler->weight = -6;
   $handler->conf = array(
     'title' => 'Interview (mobile)',
     'no_blocks' => 0,
@@ -3452,7 +3452,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -5;
+  $handler->weight = -4;
   $handler->conf = array(
     'title' => 'Master class text (mobile)',
     'no_blocks' => 0,
@@ -3608,7 +3608,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -9;
+  $handler->weight = -8;
   $handler->conf = array(
     'title' => 'Master class section (mobile)',
     'no_blocks' => 0,
@@ -3764,7 +3764,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -27;
+  $handler->weight = -26;
   $handler->conf = array(
     'title' => 'Prize person (mobile)',
     'no_blocks' => 0,
@@ -3920,7 +3920,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -17;
+  $handler->weight = -16;
   $handler->conf = array(
     'title' => 'Photos (mobile)',
     'no_blocks' => 0,
@@ -4076,7 +4076,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -4;
+  $handler->weight = -3;
   $handler->conf = array(
     'title' => 'Press about debut',
     'no_blocks' => 0,
@@ -4339,7 +4339,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -15;
+  $handler->weight = -14;
   $handler->conf = array(
     'title' => 'Video (mobile)',
     'no_blocks' => 0,
@@ -4495,7 +4495,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -19;
+  $handler->weight = -18;
   $handler->conf = array(
     'title' => 'Books (mobile)',
     'no_blocks' => 0,
@@ -4651,7 +4651,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -21;
+  $handler->weight = -20;
   $handler->conf = array(
     'title' => 'iBooks (mobile)',
     'no_blocks' => 0,
@@ -4803,11 +4803,236 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_view_panel_context_33';
+  $handler->task = 'node_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -30;
+  $handler->conf = array(
+    'title' => 'Custom page',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'custom_page' => 'custom_page',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'theme',
+          'settings' => array(
+            'theme' => 'debut',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'debut_content_3col_toped';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'content_pre' => NULL,
+      'content_left' => NULL,
+      'content_center' => NULL,
+      'content_right' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'daee931d-b000-4f52-9189-10a27f9f2740';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-09e25d7c-689c-468a-982c-436c5a72ac5b';
+    $pane->panel = 'content_center';
+    $pane->type = 'cache_node_content';
+    $pane->subtype = 'cache_node_content';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'build_mode' => 'full',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '09e25d7c-689c-468a-982c-436c5a72ac5b';
+    $display->content['new-09e25d7c-689c-468a-982c-436c5a72ac5b'] = $pane;
+    $display->panels['content_center'][0] = 'new-09e25d7c-689c-468a-982c-436c5a72ac5b';
+    $pane = new stdClass();
+    $pane->pid = 'new-05a63d39-1ceb-4610-bc43-4d7814f0cb68';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_menu';
+    $pane->subtype = 'debut_common_menu';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'browser_menu' => 'main-menu',
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '05a63d39-1ceb-4610-bc43-4d7814f0cb68';
+    $display->content['new-05a63d39-1ceb-4610-bc43-4d7814f0cb68'] = $pane;
+    $display->panels['content_left'][0] = 'new-05a63d39-1ceb-4610-bc43-4d7814f0cb68';
+    $pane = new stdClass();
+    $pane->pid = 'new-b12f8175-2d2a-4ac7-a29d-b2639a5406fe';
+    $pane->panel = 'content_left';
+    $pane->type = 'debut_common_site_calendar';
+    $pane->subtype = 'debut_common_site_calendar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Site changes',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'b12f8175-2d2a-4ac7-a29d-b2639a5406fe';
+    $display->content['new-b12f8175-2d2a-4ac7-a29d-b2639a5406fe'] = $pane;
+    $display->panels['content_left'][1] = 'new-b12f8175-2d2a-4ac7-a29d-b2639a5406fe';
+    $pane = new stdClass();
+    $pane->pid = 'new-28b4ef2c-3eb6-4fc4-9848-dc421905bf6d';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fond-pokolenie.livejournal.com/',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '28b4ef2c-3eb6-4fc4-9848-dc421905bf6d';
+    $display->content['new-28b4ef2c-3eb6-4fc4-9848-dc421905bf6d'] = $pane;
+    $display->panels['content_right'][0] = 'new-28b4ef2c-3eb6-4fc4-9848-dc421905bf6d';
+    $pane = new stdClass();
+    $pane->pid = 'new-0900a805-dd86-4224-9aae-5626919ee19f';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_blocks_prize_person';
+    $pane->subtype = 'debut_blocks_prize_person';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = '';
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0900a805-dd86-4224-9aae-5626919ee19f';
+    $display->content['new-0900a805-dd86-4224-9aae-5626919ee19f'] = $pane;
+    $display->panels['content_right'][1] = 'new-0900a805-dd86-4224-9aae-5626919ee19f';
+    $pane = new stdClass();
+    $pane->pid = 'new-633e3618-9340-4809-b9e6-a81553408bdb';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_breadcrumb';
+    $pane->subtype = 'debut_common_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'extend' => 0,
+      'custombc' => 'Olga Slavnikova',
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '633e3618-9340-4809-b9e6-a81553408bdb';
+    $display->content['new-633e3618-9340-4809-b9e6-a81553408bdb'] = $pane;
+    $display->panels['top'][0] = 'new-633e3618-9340-4809-b9e6-a81553408bdb';
+    $pane = new stdClass();
+    $pane->pid = 'new-b74e42e3-a98a-4bc2-aab0-f82ca0c20fae';
+    $pane->panel = 'top';
+    $pane->type = 'debut_common_social_links';
+    $pane->subtype = 'debut_common_social_links';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'b74e42e3-a98a-4bc2-aab0-f82ca0c20fae';
+    $display->content['new-b74e42e3-a98a-4bc2-aab0-f82ca0c20fae'] = $pane;
+    $display->panels['top'][1] = 'new-b74e42e3-a98a-4bc2-aab0-f82ca0c20fae';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $export['node_view_panel_context_33'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'node_view_panel_context_4';
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -6;
+  $handler->weight = -5;
   $handler->conf = array(
     'title' => 'Master class text',
     'no_blocks' => 0,
@@ -5070,7 +5295,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -14;
+  $handler->weight = -13;
   $handler->conf = array(
     'title' => 'Travel description',
     'no_blocks' => 0,
@@ -5333,7 +5558,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -12;
+  $handler->weight = -11;
   $handler->conf = array(
     'title' => 'Travels',
     'no_blocks' => 0,
@@ -5596,7 +5821,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -16;
+  $handler->weight = -15;
   $handler->conf = array(
     'title' => 'Video',
     'no_blocks' => 0,
@@ -5855,7 +6080,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -18;
+  $handler->weight = -17;
   $handler->conf = array(
     'title' => 'Photos',
     'no_blocks' => 0,
@@ -6063,7 +6288,7 @@ function debut_feature_pages_node_view_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -20;
+  $handler->weight = -19;
   $handler->conf = array(
     'title' => 'Books',
     'no_blocks' => 0,
