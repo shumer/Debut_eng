@@ -77,6 +77,36 @@ function debut_feature_pages_home_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-505e6bb2-1b00-461a-a0cb-a47641a765c6';
+    $pane->panel = 'content_center';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Debut Prize Director',
+      'title' => '',
+      'body' => '<div class="slavnikova"><h3><a href="/node/718">Olga Slavnikova</a></h3>
+<p>Writer, winner of the Russian Booker Prize<br>Director of the Debut Prize</p>
+<img width="120" height="120" alt="" src="/sites/default/files/custom_images/slavnikova.jpeg" style="float: left; margin-right: 20px;">
+<p>Debut showcases Russian prose by a new generation. The authors never lived in the Soviet Union &mdash; or were very young when the USSR collapsed. They are new people, and entirely new writers. They are free of the Soviet legacy in all senses.</p>
+<p>They have no nostalgia and do not resonate to the sort of art that attempts to turn everything Soviet into vintage chic. And unlike many older writers, they are not fighting the Soviet past.</p>
+<p><a href="/node/718">more »</a></p></div>',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '505e6bb2-1b00-461a-a0cb-a47641a765c6';
+    $display->content['new-505e6bb2-1b00-461a-a0cb-a47641a765c6'] = $pane;
+    $display->panels['content_center'][0] = 'new-505e6bb2-1b00-461a-a0cb-a47641a765c6';
+    $pane = new stdClass();
     $pane->pid = 'new-2c397fcf-3263-4dab-b245-856b639a02d1';
     $pane->panel = 'content_center';
     $pane->type = 'debut_common_home_page_news';
@@ -90,11 +120,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '2c397fcf-3263-4dab-b245-856b639a02d1';
     $display->content['new-2c397fcf-3263-4dab-b245-856b639a02d1'] = $pane;
-    $display->panels['content_center'][0] = 'new-2c397fcf-3263-4dab-b245-856b639a02d1';
+    $display->panels['content_center'][1] = 'new-2c397fcf-3263-4dab-b245-856b639a02d1';
     $pane = new stdClass();
     $pane->pid = 'new-eb1263bd-1f27-4b55-9d8b-64c03ced072f';
     $pane->panel = 'content_center';
@@ -109,11 +139,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'eb1263bd-1f27-4b55-9d8b-64c03ced072f';
     $display->content['new-eb1263bd-1f27-4b55-9d8b-64c03ced072f'] = $pane;
-    $display->panels['content_center'][1] = 'new-eb1263bd-1f27-4b55-9d8b-64c03ced072f';
+    $display->panels['content_center'][2] = 'new-eb1263bd-1f27-4b55-9d8b-64c03ced072f';
     $pane = new stdClass();
     $pane->pid = 'new-e8411dc4-d2f0-40fc-9491-ab1c53febf76';
     $pane->panel = 'content_center';
@@ -128,11 +158,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = 'e8411dc4-d2f0-40fc-9491-ab1c53febf76';
     $display->content['new-e8411dc4-d2f0-40fc-9491-ab1c53febf76'] = $pane;
-    $display->panels['content_center'][2] = 'new-e8411dc4-d2f0-40fc-9491-ab1c53febf76';
+    $display->panels['content_center'][3] = 'new-e8411dc4-d2f0-40fc-9491-ab1c53febf76';
     $pane = new stdClass();
     $pane->pid = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
     $pane->panel = 'content_left';
@@ -166,7 +196,7 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Изменения на сайте',
+      'override_title_text' => 'Site changes',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -179,47 +209,6 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $pane->uuid = '127be3fc-6a62-4191-87e3-0c503b4c8c84';
     $display->content['new-127be3fc-6a62-4191-87e3-0c503b4c8c84'] = $pane;
     $display->panels['content_left'][1] = 'new-127be3fc-6a62-4191-87e3-0c503b4c8c84';
-    $pane = new stdClass();
-    $pane->pid = 'new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
-    $pane->panel = 'content_left';
-    $pane->type = 'debut_common_contact_us';
-    $pane->subtype = 'debut_common_contact_us';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Связаться с нами',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
-    $display->content['new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65'] = $pane;
-    $display->panels['content_left'][2] = 'new-070b9d0e-d3c7-4878-ac76-b5e27a06ee65';
-    $pane = new stdClass();
-    $pane->pid = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '7ed86190-d384-42cc-a3d4-e52911605ccc';
-    $display->content['new-7ed86190-d384-42cc-a3d4-e52911605ccc'] = $pane;
-    $display->panels['content_right'][0] = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
     $pane = new stdClass();
     $pane->pid = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $pane->panel = 'content_right';
@@ -234,34 +223,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $display->content['new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32'] = $pane;
-    $display->panels['content_right'][1] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
-    $pane = new stdClass();
-    $pane->pid = 'new-a3207211-1982-404c-86f1-fa939638f858';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_newsletter_block';
-    $pane->subtype = 'debut_common_newsletter_block';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'newsletters' => '980',
-      'override_title' => 1,
-      'override_title_text' => 'РАССЫЛКА',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'a3207211-1982-404c-86f1-fa939638f858';
-    $display->content['new-a3207211-1982-404c-86f1-fa939638f858'] = $pane;
-    $display->panels['content_right'][2] = 'new-a3207211-1982-404c-86f1-fa939638f858';
+    $display->panels['content_right'][0] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f1606c7d-a933-483e-8950-ac6baec77f29';
   $handler->conf['display'] = $display;
@@ -378,25 +344,6 @@ function debut_feature_pages_home_default_page_manager_pages() {
     $display->content['new-bd353912-7a51-413f-942e-d4fc6c3e817a'] = $pane;
     $display->panels['content'][2] = 'new-bd353912-7a51-413f-942e-d4fc6c3e817a';
     $pane = new stdClass();
-    $pane->pid = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
-    $pane->panel = 'content';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = '7ed86190-d384-42cc-a3d4-e52911605ccc';
-    $display->content['new-7ed86190-d384-42cc-a3d4-e52911605ccc'] = $pane;
-    $display->panels['content'][3] = 'new-7ed86190-d384-42cc-a3d4-e52911605ccc';
-    $pane = new stdClass();
     $pane->pid = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $pane->panel = 'content';
     $pane->type = 'debut_blocks_prize_person';
@@ -410,11 +357,11 @@ function debut_feature_pages_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
     $display->content['new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32'] = $pane;
-    $display->panels['content'][4] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
+    $display->panels['content'][3] = 'new-71db6479-0a82-40ab-aa4f-ff3ad7a72c32';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
