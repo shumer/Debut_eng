@@ -405,7 +405,7 @@ function debut_mobile_process_html(&$variables) {
   $variables['head_title'] = implode(' | ', $variables['head_title_array']);
 
   $theme_path = path_to_theme();
-  
+
   // Replace default jQuery with our variant for normal pages.
   $js_list = drupal_add_js();
   if (!site_common_is_xmlhttp()) {
@@ -795,4 +795,20 @@ function debut_mobile_pager($variables) {
       'attributes' => array('class' => array('pager')),
     ));
   }
+}
+
+/**
+ * Preprocess debut page 404 CCT.
+ */
+function debut_mobile_preprocess_debut_common_page_404_alt(&$variables){
+  $path = drupal_get_path('theme', 'debut_mobile');
+  drupal_add_css($path . '/html/css/404.css');
+}
+
+/**
+ * Preprocess debut page 403 CCT.
+ */
+function debut_mobile_preprocess_debut_common_page_403_alt(&$variables){
+  $path = drupal_get_path('theme', 'debut_mobile');
+  drupal_add_css($path . '/html/css/403.css');
 }

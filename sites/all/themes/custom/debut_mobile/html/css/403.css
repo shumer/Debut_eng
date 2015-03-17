@@ -1,0 +1,86 @@
+/* 404 Alternative page*/
+body{
+	background: url(../images/bg1.png);
+	font-family: "Century Gothic",Arial, Helvetica, sans-serif;
+}
+
+.wrap-404 a{text-decoration:none;}
+.wrap-404 img{max-width:100%;}
+
+.content-404 p{
+	margin: 18px 0px 45px 0px;
+}
+.content-404 p{
+	font-family: "Century Gothic";
+	font-size:2em;
+	color:#666;
+	text-align:center;
+}
+.content-404 p span,.logo h1 a{
+	color:#e54040;
+}
+.content-404{
+	text-align:center;
+	padding:115px 0px 0px 0px;
+}
+.content-404 a{
+	color:#fff;
+	font-family: "Century Gothic";
+	background: #F29213; /* Old browsers */
+	background: -moz-linear-gradient(top,  #F29213 0%, #F29213 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F29213), color-stop(100%,#F29213)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #F29213 0%,#F29213 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #F29213 0%,#F29213 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #F29213 0%,#F29213 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #F29213 0%,#F29213 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F29213', endColorstr='#F29213',GradientType=0 ); /* IE6-9 */
+	padding: 15px 20px;
+	border-radius: 1em;
+}
+.content-404 a:hover{
+	color:#e54040;
+}
+.wrap-404 .logo{
+	text-align:center;
+	-webkit-box-shadow: 0 8px 6px -6px rgb(97, 97, 97);
+	-moz-box-shadow: 0 8px 6px -6px  rgb(97, 97, 97);
+	box-shadow: 0 8px 6px -6px  rgb(97, 97, 97);
+}
+.wrap-404 .logo h1{
+	font-size:2em;
+	font-family: "Century Gothic";
+	background: #F29213; /* Old browsers */
+	background: -moz-linear-gradient(top,  #F29213 0%, #F29213 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F29213), color-stop(100%,#F29213)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #F29213 0%,#F29213 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #F29213 0%,#F29213 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #F29213 0%,#F29213 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #F29213 0%,#F29213 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F29213', endColorstr='#F29213',GradientType=0 ); /* IE6-9 */
+	padding: 10px 10px 18px 10px;
+}
+.wrap-404 .logo h1 a{
+	font-size:1em;
+}
+.wrap-404 .copy-right{
+	padding-top:20px;
+}
+.wrap-404 .copy-right p{
+	font-size:0.9em;
+}
+.wrap-404 .copy-right p a{
+	background:none;
+	color:#e54040;
+	padding:0px 0px 5px 0px;
+	font-size:0.9em;
+}
+.wrap-404 .copy-right p a:hover{
+	color:#666;
+}
+
+.image-404{
+  height: 370px;
+  width: 415px;
+  background: url(../images/book-403.png);
+  margin:  0 auto;
+}
