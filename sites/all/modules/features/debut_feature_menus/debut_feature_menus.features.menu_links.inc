@@ -110,6 +110,106 @@ function debut_feature_menus_menu_default_menu_links() {
     'weight' => -47,
     'customized' => 1,
   );
+  // Exported menu link: menu-main-menu-mobile_debut-authors:prize_persons
+  $menu_links['menu-main-menu-mobile_debut-authors:prize_persons'] = array(
+    'menu_name' => 'menu-main-menu-mobile',
+    'link_path' => 'prize_persons',
+    'router_path' => 'prize_persons',
+    'link_title' => 'Debut Authors',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-main-menu-mobile_debut-authors:prize_persons',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-main-menu-mobile_events:news_list
+  $menu_links['menu-main-menu-mobile_events:news_list'] = array(
+    'menu_name' => 'menu-main-menu-mobile',
+    'link_path' => 'news_list',
+    'router_path' => 'news_list',
+    'link_title' => 'Events',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-main-menu-mobile_events:news_list',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-main-menu-mobile_press-on-debut:press_list
+  $menu_links['menu-main-menu-mobile_press-on-debut:press_list'] = array(
+    'menu_name' => 'menu-main-menu-mobile',
+    'link_path' => 'press_list',
+    'router_path' => 'press_list',
+    'link_title' => 'Press on Debut',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-main-menu-mobile_press-on-debut:press_list',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-main-menu-mobile_publications:books_list
+  $menu_links['menu-main-menu-mobile_publications:books_list'] = array(
+    'menu_name' => 'menu-main-menu-mobile',
+    'link_path' => 'books_list',
+    'router_path' => 'books_list',
+    'link_title' => 'Publications',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-main-menu-mobile_publications:books_list',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-main-menu-mobile_videos:video_list
+  $menu_links['menu-main-menu-mobile_videos:video_list'] = array(
+    'menu_name' => 'menu-main-menu-mobile',
+    'link_path' => 'video_list',
+    'router_path' => 'video_list',
+    'link_title' => 'Videos',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'menu-main-menu-mobile_videos:video_list',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+  );
   // Translatables
   // Included for use with string extractors like potx.
   t('Debut Authors');
