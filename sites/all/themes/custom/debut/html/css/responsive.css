@@ -16,6 +16,16 @@
   .footer .inner .level-3,
   .header {
     width: 800px;
+    height: 179px;
+    background-size: cover;
+  }
+
+  .header .logo-container{
+    top: 10px;
+  }
+
+  .header .logo-container img{
+    width: 70px;
   }
 
   .underheader .social {
