@@ -18,7 +18,7 @@
     <div class="form-item form-type-textfield form-item-keys">
       <div class="form-text-wrap">
         <div class="form-text-wrap-inner">
-          <input type="text" name="keys" value="<?php print $_html['input_value']; ?>" size="60" maxlength="128" class="form-text search-form-text" placeholder="Search"/>
+          <input type="text" name="keys" value="<?php print $_html['input_value']; ?>" size="60" maxlength="128" class="form-text search-form-text" placeholder="<?php print t("Search");?>"/>
         </div>
       </div>
     </div>
