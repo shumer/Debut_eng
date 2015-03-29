@@ -1611,10 +1611,16 @@ div.messages ul li {
 
 .debut-search-header {
   margin-bottom: 20px;
+  padding: 0 25px;
 }
 
 .debut-search-header h3{
   color: #bd01b5;
+}
+
+ul.facetapi-facetapi-links{
+  padding-left: 25px;
+  padding-right:  25px;
 }
 
 .facetapi-facetapi-links li {

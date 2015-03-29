@@ -22,7 +22,7 @@ function debut_feature_ct_news_ctools_plugin_api($module = NULL, $api = NULL) {
 function debut_feature_ct_news_node_info() {
   $items = array(
     'news' => array(
-      'name' => t('Новости'),
+      'name' => t('News'),
       'base' => 'node_content',
       'description' => t('Content type for site news.'),
       'has_title' => '1',

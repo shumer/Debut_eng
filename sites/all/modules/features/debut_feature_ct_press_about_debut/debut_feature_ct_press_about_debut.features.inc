@@ -22,7 +22,7 @@ function debut_feature_ct_press_about_debut_ctools_plugin_api($module = NULL, $a
 function debut_feature_ct_press_about_debut_node_info() {
   $items = array(
     'press_about_debut' => array(
-      'name' => t('Пресса о премии'),
+      'name' => t('Press about debut'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

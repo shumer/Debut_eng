@@ -22,7 +22,7 @@ function debut_feature_ct_video_ctools_plugin_api($module = NULL, $api = NULL) {
 function debut_feature_ct_video_node_info() {
   $items = array(
     'video' => array(
-      'name' => t('Видео'),
+      'name' => t('Video'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
