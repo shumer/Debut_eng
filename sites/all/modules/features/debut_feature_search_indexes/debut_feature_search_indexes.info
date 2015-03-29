@@ -1,0 +1,10 @@
+name = Debut Feature: Search indexes
+description = Debut Feature: Search indexes
+core = 7.x
+package = Debut
+version = 7.x-0.01
+project = debut_feature_search_indexes
+dependencies[] = entity
+dependencies[] = search_api
+features[features_api][] = api:2
+features[search_api_index][] = debut_search_index

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Debut Feature: Search indexes feature.
+ */
+
+include_once 'debut_feature_search_indexes.features.inc';
