@@ -36,6 +36,14 @@ function debut_content_migrations_migrate_api() {
         'class_name' => 'DebutPrizesMigration',
         'group_name' => 'debut',
       ),
+      'DebutPrizePersons' => array(
+        'class_name' => 'DebutPrizePersonsMigration',
+        'group_name' => 'debut',
+      ),
+      'DebutPrizePersonsBiografy' => array(
+        'class_name' => 'DebutPrizePersonsBiografyMigration',
+        'group_name' => 'debut',
+      ),
     ),
   );
   return $api;

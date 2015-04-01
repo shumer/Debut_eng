@@ -255,6 +255,7 @@ class DebutAlphabetMigration extends Migration{
 
     // Mapping: Assign mappings TO destination fields FROM source fields.
     // Simple Mappings : map the fields with the same name.
+    $this->addFieldMapping('tid', 'tid');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('format')->defaultValue('plain_text');
@@ -301,6 +302,7 @@ class DebutPrizesMigration extends Migration{
 
     // Mapping: Assign mappings TO destination fields FROM source fields.
     // Simple Mappings : map the fields with the same name.
+    $this->addFieldMapping('tid', 'tid');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('format')->defaultValue('plain_text');
@@ -309,3 +311,150 @@ class DebutPrizesMigration extends Migration{
   }
 
 }
+
+class DebutPrizePersonsMigration extends Migration{
+
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+    $this->description = t('Migration of the debut authors from old version');
+
+    // Define the field which normally is a primary key.
+    $this->map = new MigrateSQLMap($this->machineName,
+      array(
+        'nid' => array(
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'D6 Unique Node ID',
+          'alias' => 'n',
+        )
+      ),
+      MigrateDestinationNode::getKeySchema()
+    );
+
+    // Grab data from tables in source database.
+    $query = db_select(SOURCE_DATABASE . '.node', 'n')
+      ->fields('n', array('nid', 'vid', 'title', 'status'))
+      ->condition('n.type', 'debut_prize_person', '=');
+    $query->join(SOURCE_DATABASE . '.node_revisions', 'nr', 'n.vid = nr.vid');
+    $query->fields('nr', array('body'));
+
+    // Grab other fields which can mapping directly.
+    $query->join(SOURCE_DATABASE . '.content_type_debut_prize_person', 'ct', 'ct.vid = n.vid');
+    $query->addField('ct', 'field_person_name_value');
+    $query->addField('ct', 'field_person_surname_value');
+    $query->addField('ct', 'field_person_info_value');
+    $query->addField('ct', 'field_person_biography_value');
+    $query->addField('ct', 'field_person_biography_short_value');
+    $query->addField('ct', 'field_person_autocomment_value');
+    $query->addField('ct', 'field_person_autocomment_short_value');
+    $query->addField('ct', 'field_person_resources_value');
+    $query->join(SOURCE_DATABASE . '.content_field_person_image', 'cpi', 'cpi.vid = n.vid');
+    $query->leftJoin(SOURCE_DATABASE . '.files', 'f', 'cpi.field_person_image_fid = f.fid');
+    $query->addField('f', 'filename');
+    $query->join(SOURCE_DATABASE . '.content_field_person_awards', 'cfpa', 'cfpa.vid = n.vid');
+    $query->addField('cfpa', 'field_person_awards_value');
+    $query->orderBy('n.nid', 'ASC');
+
+    // Add source fields which not queried in $query, will be populated in prepareRow()
+    $source_fields = array(
+      'nid' => t('Node id'),
+      'title' => t('Node title'),
+      'filename' => t('Image filename'),
+    );
+
+     // Create a MigrateSource object, which manages retrieving the input data.
+    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->destination = new MigrateDestinationNode('debut_prize_person');
+
+    // Mapping: Assign mappings TO destination fields FROM source fields.
+    // Simple Mappings : map the fields with the same name.
+    $this->addSimpleMappings(array('title', 'nid', 'status'));
+    $this->addFieldMapping('is_new')->defaultValue(TRUE);
+    $this->addFieldMapping('field_person_name', 'field_person_name_value');
+    $this->addFieldMapping('field_person_surname', 'field_person_surname_value');
+    $this->addFieldMapping('field_person_info', 'field_person_info_value');
+    $this->addFieldMapping('field_person_autocomment', 'field_person_autocomment_value');
+    $this->addFieldMapping('field_person_autocomment_short', 'field_person_autocomment_short_value');
+    $this->addFieldMapping('field_person_biography', 'field_person_biography_value');
+    $this->addFieldMapping('field_person_biography_short', 'field_person_biography_short_value');
+    $this->addFieldMapping('field_person_resources', 'field_person_resources_value');
+    $this->addFieldMapping('field_person_image');
+    $this->addFieldMapping('field_person_info:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_autocomment:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_autocomment_short:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_biography:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_biography_short:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_resources:format')->defaultValue('full_html');
+    $this->addFieldMapping('field_person_awards');
+  }
+
+  public function prepareRow($row) {
+    $row->field_person_info = html_entity_decode($row->field_press_author_value);
+    $row->field_person_autocomment = html_entity_decode($row->field_press_author_value);
+    $row->field_person_autocomment_short = html_entity_decode($row->field_press_author_value);
+    $row->field_person_biography = html_entity_decode($row->field_press_author_value);
+    $row->field_person_biography_short = html_entity_decode($row->field_press_author_value);
+    $row->field_person_resources = html_entity_decode($row->field_press_author_value);
+
+
+  }
+
+  public function prepare($node, $row) {
+     if($row->filename) {
+       $file_path='http://www.pokolenie-debut.com/sites/default/files/imagecache/debut_person_page_photo/writers_images/' . $row->filename;
+       $destination='public://writers_images/' . $row->filename;
+
+       $data = drupal_http_request($file_path);
+       if($data->code==200){
+         $file = file_save_data($data->data, $destination);
+         if ($file) {
+            $node->field_person_image[LANGUAGE_NONE][] = (array)$file;
+            node_save($node);
+         }
+       }
+     }
+  }
+
+  public function postImport() {
+    $query = db_select(SOURCE_DATABASE . '.node', 'n')
+      ->fields('n', array('nid', 'vid', 'title'))
+      ->condition('n.type', 'debut_prize_person', '=');
+    $query->join(SOURCE_DATABASE . '.content_field_person_awards', 'cfpa', 'cfpa.vid = n.vid');
+    $query->addField('cfpa', 'field_person_awards_value');
+    $query->orderBy('n.nid', 'ASC');
+
+    $result = $query->execute()->fetchAll();
+    foreach ($result as $item) {
+      if (!empty($item->field_person_awards_value)) {
+        $node = node_load ($item->nid);
+        $node->field_person_awards[LANGUAGE_NONE][] = array('target_id' => $item->field_person_awards_value);
+        node_save($node);
+      }
+    }
+
+    $query = db_select(SOURCE_DATABASE . '.node', 'n')
+      ->fields('n', array('nid', 'vid', 'title', 'status'))
+      ->condition('n.type', 'debut_prize_person', '=');
+    $query->join(SOURCE_DATABASE . '.content_field_person_biography_title', 'cfbt', 'cfbt.vid = n.vid');
+    $query->addField('cfbt', 'field_person_biography_title_value');
+    $query->addField('cfbt', 'delta');
+    $query->leftJoin(SOURCE_DATABASE . '.content_field_person_biography_text', 'cfbb', 'cfbb.vid = n.vid AND cfbb.delta=cfbt.delta');
+    $query->addField('cfbb', 'field_person_biography_text_value');
+    $query->addField('cfbt', 'delta');
+    $query->orderBy('n.nid', 'ASC');
+    $res = $query->execute()->fetchAll();
+
+    foreach ($res as $item){
+    	$collection_item = entity_create('field_collection_item', array('field_name' => 'field_person_bibliography'));
+
+      $host_entity = node_load($item->nid);
+      $collection_item->setHostEntity('node', $host_entity);
+
+      $collection_item->field_person_biography_title[LANGUAGE_NONE][0]['value'] = $item->field_person_biography_title_value;
+      $collection_item->field_person_biography_text[LANGUAGE_NONE][0]['value'] = $item->field_person_biography_text_value;
+      $collection_item->save();
+    }
+  }
+
+} // end class.
