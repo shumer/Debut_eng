@@ -85,7 +85,7 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => 'Книги',
+      'text' => 'Publications',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -150,7 +150,7 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+      'override_title_text' => 'Site changes',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -164,35 +164,18 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $display->content['new-57f5b923-d18f-4f0b-a72c-07df686a0b45'] = $pane;
     $display->panels['content_left'][1] = 'new-57f5b923-d18f-4f0b-a72c-07df686a0b45';
     $pane = new stdClass();
-    $pane->pid = 'new-bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8';
-    $pane->panel = 'content_left';
-    $pane->type = 'debut_common_contact_us';
-    $pane->subtype = 'debut_common_contact_us';
+    $pane->pid = 'new-186f0708-aac2-449a-acb1-2730b5a0e498';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'СВЯЗАТЬСЯ С НАМИ',
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
     );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8';
-    $display->content['new-bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8'] = $pane;
-    $display->panels['content_left'][2] = 'new-bf2b062f-a220-4fd6-ab23-49ea1ef4c9e8';
-    $pane = new stdClass();
-    $pane->pid = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -201,9 +184,9 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'b1fc68f0-4344-45ab-956e-49a2144cb759';
-    $display->content['new-b1fc68f0-4344-45ab-956e-49a2144cb759'] = $pane;
-    $display->panels['content_right'][0] = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $pane->uuid = '186f0708-aac2-449a-acb1-2730b5a0e498';
+    $display->content['new-186f0708-aac2-449a-acb1-2730b5a0e498'] = $pane;
+    $display->panels['content_right'][0] = 'new-186f0708-aac2-449a-acb1-2730b5a0e498';
     $pane = new stdClass();
     $pane->pid = 'new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
     $pane->panel = 'content_right';
@@ -224,29 +207,6 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $display->content['new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6'] = $pane;
     $display->panels['content_right'][1] = 'new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
     $pane = new stdClass();
-    $pane->pid = 'new-03ae738d-838a-4742-9e5f-dbecfb6b426d';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_newsletter_block';
-    $pane->subtype = 'debut_common_newsletter_block';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'newsletters' => '54',
-      'override_title' => 1,
-      'override_title_text' => 'РАССЫЛКА',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '03ae738d-838a-4742-9e5f-dbecfb6b426d';
-    $display->content['new-03ae738d-838a-4742-9e5f-dbecfb6b426d'] = $pane;
-    $display->panels['content_right'][2] = 'new-03ae738d-838a-4742-9e5f-dbecfb6b426d';
-    $pane = new stdClass();
     $pane->pid = 'new-76ffa4c0-5179-4604-a4b4-b167dbf43fc0';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
@@ -255,7 +215,7 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Книги',
+      'custombc' => 'Publications',
       'context' => array(
         0 => 'empty',
       ),
@@ -386,7 +346,7 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'text' => 'Книги',
+      'text' => 'Publications',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -419,13 +379,18 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $display->content['new-54de0bb4-6545-4780-a85c-72724fd1d469'] = $pane;
     $display->panels['content'][2] = 'new-54de0bb4-6545-4780-a85c-72724fd1d469';
     $pane = new stdClass();
-    $pane->pid = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $pane->pid = 'new-e78a89fb-8d6c-48f4-918a-cc273b0fa928';
     $pane->panel = 'content';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -434,9 +399,9 @@ function debut_feature_pages_books_list_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 3;
     $pane->locks = array();
-    $pane->uuid = 'b1fc68f0-4344-45ab-956e-49a2144cb759';
-    $display->content['new-b1fc68f0-4344-45ab-956e-49a2144cb759'] = $pane;
-    $display->panels['content'][3] = 'new-b1fc68f0-4344-45ab-956e-49a2144cb759';
+    $pane->uuid = 'e78a89fb-8d6c-48f4-918a-cc273b0fa928';
+    $display->content['new-e78a89fb-8d6c-48f4-918a-cc273b0fa928'] = $pane;
+    $display->panels['content'][3] = 'new-e78a89fb-8d6c-48f4-918a-cc273b0fa928';
     $pane = new stdClass();
     $pane->pid = 'new-1fbcc8bf-8eae-453f-957d-7a9ba17764a6';
     $pane->panel = 'content';
