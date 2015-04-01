@@ -40,7 +40,7 @@ function debut_common_search_header_content_type_render($subtype, $conf, $panel_
   else {
     $result_string = t('No results found. Try to give more details for search query.');
   }
-  $text = t('You are searching for <i>"@searchphrase"</i>.', array('@searchphrase' => $searchphrase));
+  $text = t('You are searching for <i>"@searchphrase"</i>', array('@searchphrase' => $searchphrase));
 
   $_html['title'] = $text;
   $_html['search_overview'] = $result_string;

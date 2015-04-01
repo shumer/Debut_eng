@@ -22,7 +22,7 @@ function debut_feature_ct_debut_books_ctools_plugin_api($module = NULL, $api = N
 function debut_feature_ct_debut_books_node_info() {
   $items = array(
     'books' => array(
-      'name' => t('Книги'),
+      'name' => t('Publications'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

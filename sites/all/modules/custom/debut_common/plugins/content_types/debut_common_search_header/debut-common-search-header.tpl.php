@@ -7,5 +7,6 @@
 ?>
 <div class="debut-search-header">
   <h1><?php print $_html['title'];?></h1>
+  <div class="separator"></div>
   <h3><?php print $_html['search_overview'];?></h3>
 </div>

@@ -86,6 +86,47 @@ function debut_feature_pages_search_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-02c5be93-b46b-4037-b48b-1ef7ee634a26';
+    $pane->panel = 'content_center';
+    $pane->type = 'debut_common_search_header';
+    $pane->subtype = 'debut_common_search_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '02c5be93-b46b-4037-b48b-1ef7ee634a26';
+    $display->content['new-02c5be93-b46b-4037-b48b-1ef7ee634a26'] = $pane;
+    $display->panels['content_center'][0] = 'new-02c5be93-b46b-4037-b48b-1ef7ee634a26';
+    $pane = new stdClass();
+    $pane->pid = 'new-df1f658e-f3ff-4700-ac38-54db3201660c';
+    $pane->panel = 'content_center';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-FiSw1bzCb7fG7gAj2GF4YyEYbgdwerZa';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'df1f658e-f3ff-4700-ac38-54db3201660c';
+    $display->content['new-df1f658e-f3ff-4700-ac38-54db3201660c'] = $pane;
+    $display->panels['content_center'][1] = 'new-df1f658e-f3ff-4700-ac38-54db3201660c';
+    $pane = new stdClass();
     $pane->pid = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $pane->panel = 'content_center';
     $pane->type = 'views';
@@ -117,11 +158,11 @@ function debut_feature_pages_search_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $display->content['new-9b8cc17b-6c53-4df3-a808-1d8a1673e439'] = $pane;
-    $display->panels['content_center'][0] = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
+    $display->panels['content_center'][2] = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $pane = new stdClass();
     $pane->pid = 'new-d5c0fdd0-f703-4a1f-b1a4-b4ea43182239';
     $pane->panel = 'content_left';
@@ -147,7 +188,7 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $display->content['new-d5c0fdd0-f703-4a1f-b1a4-b4ea43182239'] = $pane;
     $display->panels['content_left'][0] = 'new-d5c0fdd0-f703-4a1f-b1a4-b4ea43182239';
     $pane = new stdClass();
-    $pane->pid = 'new-44adce78-a0f4-4a2c-97fe-c326a1ab3e98';
+    $pane->pid = 'new-81ab48e7-1461-4c08-91b2-f7e0d3e62109';
     $pane->panel = 'content_left';
     $pane->type = 'debut_common_site_calendar';
     $pane->subtype = 'debut_common_site_calendar';
@@ -165,39 +206,22 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '44adce78-a0f4-4a2c-97fe-c326a1ab3e98';
-    $display->content['new-44adce78-a0f4-4a2c-97fe-c326a1ab3e98'] = $pane;
-    $display->panels['content_left'][1] = 'new-44adce78-a0f4-4a2c-97fe-c326a1ab3e98';
+    $pane->uuid = '81ab48e7-1461-4c08-91b2-f7e0d3e62109';
+    $display->content['new-81ab48e7-1461-4c08-91b2-f7e0d3e62109'] = $pane;
+    $display->panels['content_left'][1] = 'new-81ab48e7-1461-4c08-91b2-f7e0d3e62109';
     $pane = new stdClass();
-    $pane->pid = 'new-8acec6e2-9f5d-4632-a606-cec2d095706a';
-    $pane->panel = 'content_left';
-    $pane->type = 'debut_common_contact_us';
-    $pane->subtype = 'debut_common_contact_us';
+    $pane->pid = 'new-49fe66a2-4df8-47cc-adb6-ca1c7b185d2f';
+    $pane->panel = 'content_right';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
     );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '8acec6e2-9f5d-4632-a606-cec2d095706a';
-    $display->content['new-8acec6e2-9f5d-4632-a606-cec2d095706a'] = $pane;
-    $display->panels['content_left'][2] = 'new-8acec6e2-9f5d-4632-a606-cec2d095706a';
-    $pane = new stdClass();
-    $pane->pid = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = '';
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -206,9 +230,9 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '2644f409-ec11-4fe8-b219-58c06463e6f8';
-    $display->content['new-2644f409-ec11-4fe8-b219-58c06463e6f8'] = $pane;
-    $display->panels['content_right'][0] = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $pane->uuid = '49fe66a2-4df8-47cc-adb6-ca1c7b185d2f';
+    $display->content['new-49fe66a2-4df8-47cc-adb6-ca1c7b185d2f'] = $pane;
+    $display->panels['content_right'][0] = 'new-49fe66a2-4df8-47cc-adb6-ca1c7b185d2f';
     $pane = new stdClass();
     $pane->pid = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
     $pane->panel = 'content_right';
@@ -229,29 +253,6 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $display->content['new-5817b262-a507-471a-8ac3-4a6684e9ec7f'] = $pane;
     $display->panels['content_right'][1] = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
     $pane = new stdClass();
-    $pane->pid = 'new-740d55ed-d07f-4225-9f4d-726214f3d263';
-    $pane->panel = 'content_right';
-    $pane->type = 'debut_common_newsletter_block';
-    $pane->subtype = 'debut_common_newsletter_block';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'newsletters' => '54',
-      'override_title' => 1,
-      'override_title_text' => 'РАССЫЛКА',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '740d55ed-d07f-4225-9f4d-726214f3d263';
-    $display->content['new-740d55ed-d07f-4225-9f4d-726214f3d263'] = $pane;
-    $display->panels['content_right'][2] = 'new-740d55ed-d07f-4225-9f4d-726214f3d263';
-    $pane = new stdClass();
     $pane->pid = 'new-1a7ce938-fb2c-440f-8068-1f8780c9e22b';
     $pane->panel = 'top';
     $pane->type = 'debut_common_breadcrumb';
@@ -260,7 +261,7 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Поиск
+      'custombc' => 'Search
 ',
       'context' => array(
         0 => 'empty',
@@ -340,7 +341,7 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Поиск
+      'custombc' => 'Search
 @arg1
 ',
       'context' => array(
@@ -358,6 +359,47 @@ function debut_feature_pages_search_default_page_manager_pages() {
     $pane->uuid = '1a7ce938-fb2c-440f-8068-1f8780c9e22b';
     $display->content['new-1a7ce938-fb2c-440f-8068-1f8780c9e22b'] = $pane;
     $display->panels['content'][0] = 'new-1a7ce938-fb2c-440f-8068-1f8780c9e22b';
+    $pane = new stdClass();
+    $pane->pid = 'new-736907f6-54ba-4fab-8354-5270a31ec1b8';
+    $pane->panel = 'content';
+    $pane->type = 'debut_common_search_header';
+    $pane->subtype = 'debut_common_search_header';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '736907f6-54ba-4fab-8354-5270a31ec1b8';
+    $display->content['new-736907f6-54ba-4fab-8354-5270a31ec1b8'] = $pane;
+    $display->panels['content'][1] = 'new-736907f6-54ba-4fab-8354-5270a31ec1b8';
+    $pane = new stdClass();
+    $pane->pid = 'new-ee4c4672-d067-43b9-bf7f-5e8f93f3b2ca';
+    $pane->panel = 'content';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-FiSw1bzCb7fG7gAj2GF4YyEYbgdwerZa';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'ee4c4672-d067-43b9-bf7f-5e8f93f3b2ca';
+    $display->content['new-ee4c4672-d067-43b9-bf7f-5e8f93f3b2ca'] = $pane;
+    $display->panels['content'][2] = 'new-ee4c4672-d067-43b9-bf7f-5e8f93f3b2ca';
     $pane = new stdClass();
     $pane->pid = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $pane->panel = 'content';
@@ -390,30 +432,35 @@ function debut_feature_pages_search_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $display->content['new-9b8cc17b-6c53-4df3-a808-1d8a1673e439'] = $pane;
-    $display->panels['content'][1] = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
+    $display->panels['content'][3] = 'new-9b8cc17b-6c53-4df3-a808-1d8a1673e439';
     $pane = new stdClass();
-    $pane->pid = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $pane->pid = 'new-76b0b60e-2a0a-4561-9bdb-d01bea7d53ed';
     $pane->panel = 'content';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 4;
     $pane->locks = array();
-    $pane->uuid = '2644f409-ec11-4fe8-b219-58c06463e6f8';
-    $display->content['new-2644f409-ec11-4fe8-b219-58c06463e6f8'] = $pane;
-    $display->panels['content'][2] = 'new-2644f409-ec11-4fe8-b219-58c06463e6f8';
+    $pane->uuid = '76b0b60e-2a0a-4561-9bdb-d01bea7d53ed';
+    $display->content['new-76b0b60e-2a0a-4561-9bdb-d01bea7d53ed'] = $pane;
+    $display->panels['content'][4] = 'new-76b0b60e-2a0a-4561-9bdb-d01bea7d53ed';
     $pane = new stdClass();
     $pane->pid = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
     $pane->panel = 'content';
@@ -428,11 +475,11 @@ function debut_feature_pages_search_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = '5817b262-a507-471a-8ac3-4a6684e9ec7f';
     $display->content['new-5817b262-a507-471a-8ac3-4a6684e9ec7f'] = $pane;
-    $display->panels['content'][3] = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
+    $display->panels['content'][5] = 'new-5817b262-a507-471a-8ac3-4a6684e9ec7f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
