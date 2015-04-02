@@ -17,7 +17,7 @@ function debut_feature_pages_default_site_template_default_page_manager_handlers
   $handler->task = 'site_template';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'DEFAULT',
     'no_blocks' => 0,
@@ -194,7 +194,7 @@ var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
   $handler->task = 'site_template';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 1;
+  $handler->weight = -30;
   $handler->conf = array(
     'title' => 'POPUP',
     'no_blocks' => 0,
@@ -205,6 +205,29 @@ var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => '404_alt',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => '403_alt',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'or',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'onecol';
@@ -258,7 +281,7 @@ var _prum = [[\'id\', \'54eef555abe53d4637d54684\'],
   $handler->task = 'site_template';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = -30;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'MOBILE',
     'no_blocks' => 0,
