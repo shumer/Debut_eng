@@ -32,7 +32,7 @@ function debut_common_years_header_content_type_render($subtype, $conf, $panel_a
 
   $title = $conf['text'];
   $current_year = isset($panel_args[0]) ? check_plain($panel_args[0]) : NULL;
-  if (!empty($current_year)) {
+  if (!empty($current_year) && is_numeric($current_year)) {
     $title = t('@title for @year year', array('@title' => $title, '@year' => $current_year));
   }
 
