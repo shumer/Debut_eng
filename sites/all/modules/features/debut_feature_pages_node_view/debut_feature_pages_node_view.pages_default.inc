@@ -902,7 +902,7 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'Изменения на сайте',
+      'override_title_text' => 'Site changes',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -915,28 +915,6 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->uuid = '9561c475-d9bc-4efd-bb9c-f4bb5e7c2d22';
     $display->content['new-9561c475-d9bc-4efd-bb9c-f4bb5e7c2d22'] = $pane;
     $display->panels['content_left'][1] = 'new-9561c475-d9bc-4efd-bb9c-f4bb5e7c2d22';
-    $pane = new stdClass();
-    $pane->pid = 'new-34cdb9b8-62eb-45b4-9839-4e3da0cb1866';
-    $pane->panel = 'content_left';
-    $pane->type = 'debut_common_contact_us';
-    $pane->subtype = 'debut_common_contact_us';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Связаться с нами',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '34cdb9b8-62eb-45b4-9839-4e3da0cb1866';
-    $display->content['new-34cdb9b8-62eb-45b4-9839-4e3da0cb1866'] = $pane;
-    $display->panels['content_left'][2] = 'new-34cdb9b8-62eb-45b4-9839-4e3da0cb1866';
     $pane = new stdClass();
     $pane->pid = 'new-55b4e0b8-cfeb-49d5-8b46-affc8e1012b9';
     $pane->panel = 'top';
@@ -3847,13 +3825,18 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $display->content['new-4ef0ec45-1ec9-42da-b092-603df1f0ffa0'] = $pane;
     $display->panels['content'][1] = 'new-4ef0ec45-1ec9-42da-b092-603df1f0ffa0';
     $pane = new stdClass();
-    $pane->pid = 'new-e6f2bdcb-8e54-4963-a6a1-608d378c6603';
+    $pane->pid = 'new-4ca4d56e-3c95-4dbb-a6ab-40e6400fc82b';
     $pane->panel = 'content';
-    $pane->type = 'debut_common_prize_jury';
-    $pane->subtype = 'debut_common_prize_jury';
+    $pane->type = 'debut_common_president_info';
+    $pane->subtype = 'debut_common_president_info';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = '';
+    $pane->configuration = array(
+      'info_text' => '<h3>Andrei Skoch</h3><br />
+President of the Pokolenie Foundation, founder of the independent literary prize Debut            <br>    <br> 
+By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education. He started writing poetry during his army service. He has seven children. Originally he founded his Pokolenie Foundation to help invalid children. There was a time when he needed such help for his own children and he received it from friends. Since then charity has become an important part of his life...<br>',
+      'more_url' => 'http://fondskocha.ru/',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -3862,9 +3845,9 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = 'e6f2bdcb-8e54-4963-a6a1-608d378c6603';
-    $display->content['new-e6f2bdcb-8e54-4963-a6a1-608d378c6603'] = $pane;
-    $display->panels['content'][2] = 'new-e6f2bdcb-8e54-4963-a6a1-608d378c6603';
+    $pane->uuid = '4ca4d56e-3c95-4dbb-a6ab-40e6400fc82b';
+    $display->content['new-4ca4d56e-3c95-4dbb-a6ab-40e6400fc82b'] = $pane;
+    $display->panels['content'][2] = 'new-4ca4d56e-3c95-4dbb-a6ab-40e6400fc82b';
     $pane = new stdClass();
     $pane->pid = 'new-198daf72-20f0-4cb5-9235-b8bbcd481683';
     $pane->panel = 'content';
