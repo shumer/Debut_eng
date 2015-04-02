@@ -32,60 +32,8 @@ function debut_common_persons_nominees_content_type_render($subtype, $conf, $pan
   $data = array();
   $_html = array();
 
-  $counter = 0; // Counter.
-  $interval = 3; // Count of grouping prizes.
-  $prizes = array();
-
-  $vocabulary = taxonomy_get_tree($conf['terms']);
-
-  $max_count = DEBUT_COMMON_MAX_PERSONS_NOMINEES_SHOW;
-  $terms_count = count($vocabulary);
-
-  foreach ($vocabulary as $term) {
-    if ($counter >= $max_count) {
-      break;
-    }
-
-    $row = floor($counter/$interval);
-    $key = md5(uniqid(rand(),1));
-
-    if ($counter % $interval == 0) {
-      $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default', $term->tid);
-      $prizes[$row]['data'][$term->tid]['class'] = 'full';
-      $prizes[$row]['data'][$term->tid]['id'] = $key;
-
-      $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
-      $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
-      $prizes[$row]['captions'][$term->tid]['class'] = 'caption js-prizes-show active-link';
-    }
-    else {
-      $prizes[$row]['data'][$term->tid]['html'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST, 'default', $term->tid);
-      $prizes[$row]['data'][$term->tid]['class'] = 'prem_list';
-      $prizes[$row]['data'][$term->tid]['title'] = $term->name;
-      $prizes[$row]['data'][$term->tid]['id'] = $key;
-
-      if (debut_common_is_mobile() || qtools_api__developer()) {
-        $title = explode(' ', $term->name);
-        $prizes[$row]['captions'][$term->tid]['title'] = $title[0];
-      }
-      else {
-        $prizes[$row]['captions'][$term->tid]['title'] = $term->name;
-      }
-      $prizes[$row]['captions'][$term->tid]['ref-id'] = $key;
-      $prizes[$row]['captions'][$term->tid]['class'] = 'js-prizes-show';
-    }
-
-    $counter++;
-  }
-
-  // Check if we need to show more button.
-  $_data['show_more'] = FALSE;
-  if ($terms_count > $counter) {
-    $_data['show_more'] = TRUE;
-    $_data['show_more_url'] = url('debut_common/ajax/debut_common_persons_view_more/' . $max_count);
-  }
-  $_data['prizes'] = $prizes;
-  $data['_data'] = $_data;
+  $_html['persons_list'] = views_embed_view(DEBUT_COMMON_VIEW_GET_PERSONS_NOMINEES_LIST_TEASER, 'default');
+  $data['_html'] = $_html;
 
   $block->content = theme('debut_common_persons_nominees', $data);
   return $block;
