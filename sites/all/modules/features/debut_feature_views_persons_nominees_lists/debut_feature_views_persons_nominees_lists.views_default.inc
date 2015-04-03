@@ -122,6 +122,10 @@ function debut_feature_views_persons_nominees_lists_views_default_views() {
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['element_default_classes'] = FALSE;
+  /* Sort criterion: Content: Surname (field_person_surname) */
+  $handler->display->display_options['sorts']['field_person_surname_value']['id'] = 'field_person_surname_value';
+  $handler->display->display_options['sorts']['field_person_surname_value']['table'] = 'field_data_field_person_surname';
+  $handler->display->display_options['sorts']['field_person_surname_value']['field'] = 'field_person_surname_value';
   /* Filter criterion: Content: Published or admin */
   $handler->display->display_options['filters']['status_extra']['id'] = 'status_extra';
   $handler->display->display_options['filters']['status_extra']['table'] = 'node';
