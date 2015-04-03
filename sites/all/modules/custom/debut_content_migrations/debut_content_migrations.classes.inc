@@ -247,20 +247,30 @@ class DebutAlphabetMigration extends Migration{
     // Add source fields which not queried in $query, will be populated in prepareRow()
     $source_fields = array(
       'tid' => t('Term id'),
+      'name' => t('Term id'),
+      'description' => t('Term id'),
+      'weight' => t('Term id'),
      );
 
      // Create a MigrateSource object, which manages retrieving the input data.
-    $this->source = new MigrateSourceSQL($query, $source_fields);
+    $this->source = new MigrateSourceSQL($query);
     $this->destination = new MigrateDestinationTerm('alphabet');
 
     // Mapping: Assign mappings TO destination fields FROM source fields.
     // Simple Mappings : map the fields with the same name.
-    $this->addFieldMapping('tid', 'tid');
+    //$this->addFieldMapping('tid', 'tid');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('format')->defaultValue('plain_text');
     $this->addFieldMapping('weight', 'weight');
 
+  }
+
+   public function prepareRow($current_row) {
+    if ($current_row->parent == 0) {
+      unset($current_row->parent);
+    }
+    return TRUE;
   }
 
 }
@@ -302,7 +312,7 @@ class DebutPrizesMigration extends Migration{
 
     // Mapping: Assign mappings TO destination fields FROM source fields.
     // Simple Mappings : map the fields with the same name.
-    $this->addFieldMapping('tid', 'tid');
+    //$this->addFieldMapping('tid', 'tid');
     $this->addFieldMapping('name', 'name');
     $this->addFieldMapping('description', 'description');
     $this->addFieldMapping('format')->defaultValue('plain_text');
@@ -427,8 +437,14 @@ class DebutPrizePersonsMigration extends Migration{
     $result = $query->execute()->fetchAll();
     foreach ($result as $item) {
       if (!empty($item->field_person_awards_value)) {
+        $query = db_select(SOURCE_DATABASE . '.term_data', 'td')
+          ->fields('td', array('tid', 'vid', 'name'))
+          ->condition('td.tid', $item->field_person_awards_value, '=');
+        $term_name = $query->execute()->fetchField(2);
+        $tid = array_keys(taxonomy_get_term_by_name($term_name));
+        $tid = array_shift($tid);
         $node = node_load ($item->nid);
-        $node->field_person_awards[LANGUAGE_NONE][] = array('target_id' => $item->field_person_awards_value);
+        $node->field_person_awards[LANGUAGE_NONE][] = array('target_id' => $tid);
         node_save($node);
       }
     }

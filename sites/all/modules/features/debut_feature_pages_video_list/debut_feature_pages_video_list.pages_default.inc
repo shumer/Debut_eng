@@ -173,7 +173,7 @@ function debut_feature_pages_video_list_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
-      'override_title_text' => 'ИЗМЕНЕНИЯ НА САЙТЕ',
+      'override_title_text' => 'Site changes',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -261,7 +261,7 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Видео',
+      'custombc' => 'Video',
       'context' => array(
         0 => 'empty',
       ),

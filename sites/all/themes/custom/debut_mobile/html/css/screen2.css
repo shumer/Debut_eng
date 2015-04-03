@@ -944,7 +944,8 @@
 }
 /*----------- end alphabet persons list ----------*/
 /*---------- persons list page ------------------*/
-.block-persons-listing {
+.block-persons-listing,
+.block-persons-teaser-list {
   margin: 0 auto;
   max-width: 880px;
   padding: 16px 10px 16px 10px;
