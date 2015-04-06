@@ -44,6 +44,7 @@ function debut_feature_ct_debut_books_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'custom_page' => 'custom_page',
           'debut_jury' => 'debut_jury',
           'debut_prize_person' => 'debut_prize_person',
         ),
