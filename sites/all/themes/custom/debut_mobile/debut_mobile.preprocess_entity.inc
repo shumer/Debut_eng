@@ -1367,6 +1367,46 @@ function debut_mobile_preprocess_node__debut_prize_person__frame($variables) {
 }
 
 /**
+ * Preprocess view mode full for custom_page node.
+ */
+function debut_mobile_preprocess_node__custom_page__full(&$variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+  $_data = &$variables['_data'];
+
+  $_html['title'] = check_plain($node->title);
+  $_html['body'] = debut_mobile_render($content, 'field_custom_page_body');
+  $_html['social_links'] = theme('debut_mobile_social_links');
+}
+
+/**
+ * Preprocess cutom_page at frame view.
+ */
+function debut_mobile_preprocess_node__custom_page__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  $image = '';
+  if ($node->nid == DEBUT_COMMON_CUSTOM_PAGE_SLAVNIKOVA_NID) {
+    $path = '/sites/default/files/custom_images/slavnikova.jpeg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
  * Preprocess view mode teaser for debut_prize_person node.
  */
 function debut_mobile_preprocess_node__debut_prize_person__teaser(&$variables) {

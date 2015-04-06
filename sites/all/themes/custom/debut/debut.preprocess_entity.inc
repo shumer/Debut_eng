@@ -882,6 +882,32 @@ function debut_preprocess_node__debut_prize_person__frame($variables) {
 }
 
 /**
+ * Preprocess cutom_page at frame view.
+ */
+function debut_preprocess_node__custom_page__frame($variables) {
+  $node = &$variables['node'];
+  $content = &$variables['content'];
+  $_html = &$variables['_html'];
+
+  $image = '';
+  if ($node->nid == DEBUT_COMMON_CUSTOM_PAGE_SLAVNIKOVA_NID) {
+    $path = '/sites/default/files/custom_images/slavnikova.jpeg';
+    $params = array(
+      'path' => $path,
+      'alt' => $node->title,
+      'title' => $node->title,
+      'width' => '100px',
+      'attributes' => array('class' => array('image-class')),
+      'getsize' => FALSE,
+    );
+    $image =  theme('image', $params);
+  }
+
+  $_html['image'] = $image;
+  $_html['name'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+}
+
+/**
  * Preprocess ibooks_full.
  */
 function debut_preprocess_node__ibooks__full(&$variables) {
