@@ -239,7 +239,7 @@ By training Andrei Skoch is a teacher and psychologist with a Ph.D. in Education
     $pane->access = array();
     $pane->configuration = array(
       'extend' => 0,
-      'custombc' => 'Deut authors',
+      'custombc' => 'Debut authors',
       'context' => array(
         0 => 'empty',
       ),
