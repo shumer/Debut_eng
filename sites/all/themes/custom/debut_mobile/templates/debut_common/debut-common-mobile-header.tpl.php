@@ -35,8 +35,8 @@
       <div class="vertical-divider"></div>
       <div class="header-calendar-button"></div>
       <div class="vertical-divider"></div>
-      <div class="header-newsletter-button"></div>
-      <div class="vertical-divider"></div>
+      <!--div class="header-newsletter-button"></div>
+      <div class="vertical-divider"></div-->
     </div>
   </div>
   <!-- Placeholders -->

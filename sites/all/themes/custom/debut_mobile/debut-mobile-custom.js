@@ -44,7 +44,8 @@ debut_mobile_custom.attach = function ($context, settings) {
   debut_mobile_custom.attach_proxy($context, settings);
 
   // Attach newsletters.
-  debut_mobile_custom.attach_newsletters($context, settings);
+  // Disabled in english version.
+  //debut_mobile_custom.attach_newsletters($context, settings);
 
   // Attach sliders.
   debut_mobile_custom.attach_sliders($context, settings);
