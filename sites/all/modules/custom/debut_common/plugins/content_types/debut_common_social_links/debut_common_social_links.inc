@@ -40,7 +40,7 @@ function debut_common_social_links_content_type_render($subtype, $conf, $panel_a
   $path = $_GET['q'];
 
   // Twitter link.
-  $_html['tweet'] = '<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru" data-count="none">Tweeter</a>
+  $_html['tweet'] = '<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none">Tweeter</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
 
   // Facebook button.
@@ -53,7 +53,7 @@ function debut_common_social_links_content_type_render($subtype, $conf, $panel_a
     'width' => 136,
     'show_faces' => 'false',
     'action' => 'like',
-    'locale' => 'ru_RU',
+    'locale' => 'en_US',
   )));
   $_html['fblike'] = '<iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:136px; height:22px;" src="' . $url . '"></iframe>';
 
@@ -73,7 +73,7 @@ function debut_common_social_links_content_type_render($subtype, $conf, $panel_a
   </script>";
 
 
-  $_html['vk'] = "<script type=\"text/javascript\" src=\"http://userapi.com/js/api/openapi.js?50\"></script>
+/*  $_html['vk'] = "<script type=\"text/javascript\" src=\"http://userapi.com/js/api/openapi.js?50\"></script>
     <script type=\"text/javascript\">
       VK.init({apiId: 3357115, onlyWidgets: true});
     </script>
@@ -83,6 +83,8 @@ function debut_common_social_links_content_type_render($subtype, $conf, $panel_a
     <script type=\"text/javascript\">
       VK.Widgets.Like(\"vk_like\", {type: \"button\"});
     </script>";
+*/
+  $_html['vk'] = '';
 
   $data['_data'] = $_data;
   $data['_html'] = $_html;

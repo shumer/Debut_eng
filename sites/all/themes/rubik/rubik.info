@@ -30,14 +30,14 @@ settings[rubik_sidebar_field_ui] = 0
 ; favicon, user pictures for nodes/comments, etc. If the "features[]" item is
 ; left empty, Drupal will automatically display all default theme settings,
 ; which are completely ignored and not used by Rubik.
-; 
+;
 ; This makes it confusing for administrators because those fields can be
 ; configured in the admin, but have no effect.
-; 
+;
 ; Leaving the "features[]" key empty will prevent all of those default features
 ; to be displayed and only the fieldset with custom theme settings defined in
 ; theme-settings.php file will be shown.
-features[] = 
+features[] = favicon
 
 ; Information added by Drupal.org packaging script on 2014-06-02
 version = "7.x-4.1"
