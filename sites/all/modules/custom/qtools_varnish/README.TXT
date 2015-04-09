@@ -1,3 +1,10 @@
+7.x-2.09
+- QToolsVstats module support.
+
+7.x-2.08
+- Allow to disable cookie update reload with variable_set('qtools_varnish_cookie_update_reload', FALSE);
+- Notice fix
+
 7.x-2.07
 - ESI pane fixed
 - ESI blocks api added

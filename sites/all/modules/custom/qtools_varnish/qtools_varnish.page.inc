@@ -186,14 +186,18 @@ function _qtools_varnish_page_environment($esi_args = NULL) {
 
     // Restore drupal path.
     $_GET['q'] = qtools_option('qtools_varnish_esi:get_q', NULL, $_GET['q']);
-    $_REQUEST['q'] = qtools_option('qtools_varnish_esi:request_q', NULL, $_REQUEST['q']);
+    if (qtools_option('qtools_varnish_esi:request_q', NULL, TRUE) !== TRUE) {
+      $_REQUEST['q'] = qtools_option('qtools_varnish_esi:request_q');
+    }
     return;
   }
 
   // Save current values.
   qtools_option('qtools_varnish_esi:request_uri', $_SERVER['REQUEST_URI']);
   qtools_option('qtools_varnish_esi:get_q', $_GET['q']);
-  qtools_option('qtools_varnish_esi:request_q', $_REQUEST['q']);
+  if (!empty($_REQUEST['q'])) {
+    qtools_option('qtools_varnish_esi:request_q', $_REQUEST['q']);
+  }
 
   // Prepare environment (default homepage).
   $path = (!empty($esi_args['path']) && is_string($esi_args['path']))
@@ -307,7 +311,8 @@ function qtools_varnish_page_esi($esi_type, $esi_id, $signature = '') {
         }
         else {
           // Extract content to return.
-          $content = qtools_varnish_wrap($result['content'], FALSE);
+          $comment = !empty($result['comment']);
+          $content = qtools_varnish_wrap($result['content'], FALSE, $comment);
 
           // Set page ttl.
           $cache_tags = qtools_api__cache_tags_for(QTOOLS_VARNISH_CACHE_ID_PAGE);

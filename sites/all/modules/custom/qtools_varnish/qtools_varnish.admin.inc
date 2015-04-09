@@ -30,8 +30,10 @@ function qtools_varnish_admin_defalte_form() {
 
   // Display module status.
   $backend_status = qtools_varnish__varnish_get_status();
-  $_messages = $_SESSION['messages'];
-  $_SESSION['messages'] = array();
+  if (!empty($_SESSION['messages'])) {
+    $_messages = $_SESSION['messages'];
+    $_SESSION['messages'] = array();
+  }
   if (empty($backend_status)) {
     drupal_set_message(t('Varnish backend is not set.'), 'warning');
   }
@@ -50,7 +52,9 @@ function qtools_varnish_admin_defalte_form() {
   }
 
   $status_html = theme('status_messages');
-  $_SESSION['messages'] = $_messages;
+  if (!empty($_messages)) {
+    $_SESSION['messages'] = $_messages;
+  }
 
   $form['qtools_varnish_status'] = array(
     '#weight' => -1,

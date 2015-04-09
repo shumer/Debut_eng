@@ -73,7 +73,7 @@ function qtools_varnish_create_esi_block($module, $block_id, $cachemode = DRUPAL
 /**
  * Check if this server can handle Varnish.
  */
-function qtools_varnish_enabled() {
+function qtools_varnish_enabled($ignore_post = FALSE) {
   global $theme, $is_https;
   $varnish_enabled = &drupal_static('qtools_varnish_enabled', NULL);
   if ($varnish_enabled !== NULL) {
@@ -84,32 +84,34 @@ function qtools_varnish_enabled() {
   $varnish_enabled = FALSE;
 
   // Enable Varnish if header present and not POST.
-  if (!empty($_SERVER[QTOOLS_VARNISH_HEADER_ENABLED]) && empty($_POST)) {
+  if ($ignore_post || empty($_POST)) {
+    if (!empty($_SERVER[QTOOLS_VARNISH_HEADER_ENABLED])) {
 
-    // Check for https.
-    if (_qtools_varnish_settings('available', 'https') || !$is_https) {
+      // Check for https.
+      if (_qtools_varnish_settings('available', 'https') || !$is_https) {
 
-      // Do nothing if in admin theme.
-      $admin_theme = variable_get('admin_theme', 0);
-      if (_qtools_varnish_settings('available', 'admin_theme') || ($admin_theme != $theme)) {
+        // Do nothing if in admin theme.
+        $admin_theme = variable_get('admin_theme', 0);
+        if (_qtools_varnish_settings('available', 'admin_theme') || ($admin_theme != $theme)) {
 
-        // From now Varnish enabled by default.
-        $varnish_enabled = TRUE;
+          // From now Varnish enabled by default.
+          $varnish_enabled = TRUE;
 
-        // Disable if current user may bypass varnish.
-        if (user_access(QTOOLS_VARNISH_PERM_BYPASS_VARNISH)) {
-          $varnish_enabled = FALSE;
-        }
+          // Disable if current user may bypass varnish.
+          if (user_access(QTOOLS_VARNISH_PERM_BYPASS_VARNISH)) {
+            $varnish_enabled = FALSE;
+          }
 
-        // Disable if varnish disabled for specific domain name.
-        if ($varnish_enabled) {
-          $config = explode(PHP_EOL, _qtools_varnish_settings('available', 'exclide', ''));
-          foreach ($config as $line) {
-            $rule = explode('|', trim($line));
-            if (($rule[0] == '*') || ($_SERVER['SERVER_NAME'] == $rule[0])) {
-              if (($rule[1] == '*') || strpos($_SERVER['REQUEST_URI'], $rule[1]) === 0) {
-                $varnish_enabled = FALSE;
-                break;
+          // Disable if varnish disabled for specific domain name.
+          if ($varnish_enabled) {
+            $config = explode(PHP_EOL, _qtools_varnish_settings('available', 'exclide', ''));
+            foreach ($config as $line) {
+              $rule = explode('|', trim($line));
+              if (($rule[0] == '*') || ($_SERVER['SERVER_NAME'] == $rule[0])) {
+                if (($rule[1] == '*') || strpos($_SERVER['REQUEST_URI'], $rule[1]) === 0) {
+                  $varnish_enabled = FALSE;
+                  break;
+                }
               }
             }
           }
@@ -151,6 +153,13 @@ function qtools_varnish_get_def_key($reset = FALSE) {
  * Generate ESI tag.
  */
 function qtools_varnish_esi_tag($esi_type, $esi_id, $cachemode = DRUPAL_CACHE_PER_USER, $esi_args = array(), $maxwait = 5000) {
+
+  // Disallow ESI tags on ESI requests to prevent loop.
+  // TODO: we need to do this only on error pages?
+  if (strpos($_SERVER['REQUEST_URI'], '/qtools_varnish/esi/') !== FALSE) {
+    $tag = '<div style="display:none" class="qtools_varnish_esi_loop"></div>';
+    return $tag;
+  }
 
   // Generate ESI path.
   $path = 'qtools_varnish/esi/' . $esi_type . '/' . $esi_id;
