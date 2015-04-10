@@ -51,7 +51,8 @@ function debut_mobile_preprocess_mimemail_message(&$variables) {
 function debut_mobile_preprocess_debut_common_footer(&$variables) {
   $_html = &$variables['_html'];
 
-  $_html['contact_us'] = l(t('Contact us'), DEBUT_COMMON_PAGE_CONTACT);
+  //$_html['contact_us'] = l(t('Contact us'), DEBUT_COMMON_PAGE_CONTACT);
+  $_html['contact_us'] = '';
 }
 
 /**
