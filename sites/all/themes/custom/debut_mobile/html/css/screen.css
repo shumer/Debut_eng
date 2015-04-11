@@ -681,6 +681,9 @@ a, a.active, li a.active {
   top: 50%;
   width: 13px;
 }
+.a2a_kit_size_32.a2a_default_style {
+  display: inline-block;
+}
 /*------------years header styles---------------*/
 .years-title {
   margin: 0 auto;
