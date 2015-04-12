@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Template page 404 placeholder.
+ * Template page 403 placeholder.
  */
 ?>
 
