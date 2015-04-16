@@ -100,4 +100,16 @@
     margin-left:1%;
   }
 
+  /** Home page books list **/
+  .view-debut-common-books-home-page ul.books-list .book-image a,
+  .view-debut-common-books-home-page ul.books-list .book-image img,
+  .view-debut-common-books-home-page ul.books-list li {
+    width: 130px;
+    height: 210px;
+  }
+
+  /** Home page video list **/
+  .video-shelf ul.video-list li.last {
+    padding-right: 20px;
+  }
 }
